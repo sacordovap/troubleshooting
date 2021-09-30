@@ -5,7 +5,7 @@ class AccionesTomadasScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Aqui va el codigo de vista</Text>
+        <Text>Aqui va el codigo de vistassss</Text>
       </View>
     );
   }
