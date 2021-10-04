@@ -6,9 +6,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 //importas los screens
 
-import HomeScreen from './src/screens/HomeScreen';
-import DatosInicialesScreen from "./src/screens/data/DatosInicialesScreen";
-import AccionesTomadasScreen from "./src/screens/data/AccionesTomadasScreen";
+import HomeScreen from './src/screens/Home/HomeScreen';
+import DatosInicialesScreen from "./src/screens/data/datosIniciales/DatosInicialesScreen";
+import AccionesTomadasScreen from "./src/screens/data/AccionesTomadas/AccionesTomadasScreen";
+import Login from "./src/screens/Login/Login";
+import DataEquipo from "./src/screens/data/DataEquipo/DataEquipoScreen"
 
 
 const Stack = createNativeStackNavigator();
@@ -16,18 +18,25 @@ const Stack = createNativeStackNavigator();
 function MyStack() {
   return (
     //Aqui por mientras alternas las plantallas de vista
-    <Stack.Navigator>
-       
-      <Stack.Screen name="Datos entrada" 
-      component={AccionesTomadasScreen} />
-
-      <Stack.Screen name="Datos Iniciales" 
-      component={DatosInicialesScreen} />
-
+    <Stack.Navigator screenOptions={{
+      headerShown: false
+    }}>
       
-      <Stack.Screen name="Home"
-          component={HomeScreen}
-          options={{ title: 'Home' }} />
+      <Stack.Screen name="Datos Equipo"
+        component={DataEquipo} /> 
+
+      <Stack.Screen name="Datos Iniciales"
+        component={DatosInicialesScreen} /> 
+
+      <Stack.Screen name="Login"
+        component={Login} />
+
+<Stack.Screen name="Home"
+        component={HomeScreen}
+        options={{ title: 'Home' }} /> 
+        
+      <Stack.Screen name="Datos entrada"
+        component={AccionesTomadasScreen} />
     </Stack.Navigator>
   )
 }
@@ -42,11 +51,4 @@ export default function App() {
 
 
 //Esto se debe de importar desde styles
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
