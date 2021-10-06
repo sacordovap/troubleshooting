@@ -9,8 +9,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './src/screens/Home/HomeScreen';
 import DatosInicialesScreen from "./src/screens/data/datosIniciales/DatosInicialesScreen";
 import AccionesTomadasScreen from "./src/screens/data/AccionesTomadas/AccionesTomadasScreen";
+
 import Login from "./src/screens/Login/Login";
 import DataEquipo from "./src/screens/data/DataEquipo/DataEquipoScreen"
+
 
 
 const Stack = createNativeStackNavigator();
@@ -21,8 +23,8 @@ function MyStack() {
     <Stack.Navigator screenOptions={{
       headerShown: false
     }}>  
-     <Stack.Screen name="Datos Iniciales"
-        component={DatosInicialesScreen} /> 
+     <Stack.Screen name="Acciones Tomadas"
+        component={AccionesTomadasScreen} /> 
     <Stack.Screen name="Datos Equipo"
         component={DataEquipo} /> 
 
