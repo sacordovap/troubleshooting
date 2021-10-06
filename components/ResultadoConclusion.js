@@ -1,12 +1,20 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Text, TextInput } from "react-native";
+import DetalleImputResultadoConcluciones from "./DetalleImputResultadoConcluciones";
 
 function ResultadoConclusion(props) {
   return (
     <View style={[styles.container, props.style]}>
-      <Text style={styles.acciones}>Acciones Tomadas</Text>
-      
+      <Text style={styles.resultados}>Resultados</Text>
+      <DetalleImputResultadoConcluciones style={styles.acciones_Input}></DetalleImputResultadoConcluciones>
+
+      <Text style={styles.concluciones}>Concluciones</Text>
+      <DetalleImputResultadoConcluciones style={styles.acciones_Input}></DetalleImputResultadoConcluciones>
+
     </View>
+     
+   
+    
   );
 }
 
@@ -15,7 +23,14 @@ const styles = StyleSheet.create({
     
     backgroundColor: "transparent"
   },
-  acciones: {
+  resultados: {
+    fontSize: 12,
+    textAlign: "left",
+    color: "#000",
+    opacity: 0.6,
+    paddingTop: 16
+  },
+  concluciones: {
     fontSize: 12,
     textAlign: "left",
     color: "#000",

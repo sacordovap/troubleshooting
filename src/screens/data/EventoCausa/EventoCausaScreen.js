@@ -1,30 +1,25 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from "react";
+import { StyleSheet, View, Image, ImageBackground, Text } from "react-native";
+import Header from "../../../../components/Header";
+import EventoCausa from "../../../../components/EventoCausa";
+import DetalleImputResultadoConcluciones from "../../../../components/DetalleImputResultadoConcluciones";
+import styles from './styleEventoCausa'
 
-class EventoCausaScreen extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Aqui va el codigo de vista</Text>
-      </View>
-    );
-  }
+function EventoCausaScreen(props) {
+  return (
+    <View style={styles.container}>
+      <Header style={styles.header_Registro}></Header>
+      <ImageBackground
+        source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
+        resizeMode="cover"
+        style={styles.image1}
+        imageStyle={styles.image1_imageStyle}
+      >
+        <View style={styles.contenedorDatos1}>
+          <EventoCausa style={styles.resultados}></EventoCausa>
+        </View>
+      </ImageBackground>
+    </View>
+  );
 }
-
-//Esto se debe de importar desde styles
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 35,
-    },
-    inputGroups: {
-        flex: 1,
-        padding: 0,
-        marginBottom: 15,
-        borderBottomWidth: 1,
-        alignItems: "center",
-        borderBottomColor: '#cccccc'
-    }
-});
-
-export default EventoCausaScreen;
+export default EventoCausaScreen; 
