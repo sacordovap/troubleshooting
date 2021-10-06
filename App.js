@@ -20,14 +20,18 @@ function MyStack() {
     //Aqui por mientras alternas las plantallas de vista
     <Stack.Navigator screenOptions={{
       headerShown: false
-    }}>
-      
-      <Stack.Screen name="Datos Equipo"
+    }}>  
+     <Stack.Screen name="Datos Iniciales"
+        component={DatosInicialesScreen} /> 
+    <Stack.Screen name="Datos Equipo"
         component={DataEquipo} /> 
 
-      <Stack.Screen name="Datos Iniciales"
-        component={DatosInicialesScreen} /> 
+   
 
+
+
+      
+   
       <Stack.Screen name="Login"
         component={Login} />
 

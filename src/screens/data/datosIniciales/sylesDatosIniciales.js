@@ -2,173 +2,100 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "rgba(249,249,249,1)"
-  },
-  group3: {
-    height: 48,
-    marginTop: 21
-  },
-  contenedor_Header: {
-    backgroundColor: "rgba(65,89,111,1)",
-    flexDirection: "row"
-  },
-  icon_Back: {
-    color: "rgba(254,249,249,1)",
-    fontSize: 40,
-    width: 0,
-    height: 44,
-    marginLeft: 5,
-    marginTop: 4
-  },
-  ingreso_De_Datos: {
-    fontFamily: "helvetica-regular",
-    color: "rgba(255,255,255,1)",
-    fontSize: 18,
-    textAlign: "center",
-    flex: 1,
-    marginRight: 109,
-    marginLeft: 98,
-    marginTop: 16,
+    backgroundColor: "rgba(255,255,255,1)"
     
   },
-  fechaYHora: {
-    height: 41,
-    flexDirection: "row",
-    width: 120,
-    marginTop: 34,
-    marginLeft: 189
+  header_Registro_Info_1: {
+    height: 39,
+    borderWidth: 1,
+    borderColor: "rgba(7,252,21,1)",
+    backgroundColor: "#fff",
+    marginTop: 21
   },
-  horas: {
-    height: 41,
-    width: 120
+  image: {
+    width: 360,
+    backgroundColor: "rgba(15,15, 15,0.0732)",
+    height: 679,
+    flex: 1,
+    marginTop: 1
   },
-  hora: {
-    fontFamily: "helvetica-regular",
-    color: "rgba(154,154,157,1)",
-    height: 19,
-    width: 120,
-    marginTop: -19
+  image_imageStyle: {
+    opacity: 0.61
   },
-  hora_Input: {
-    height: 41,
-    backgroundColor: "#E6E6E6",
-    borderRadius: 4,
-    width: 120
-  },
-  icon_Hora: {
-    color: "rgba(80,75,75,1)",
-    fontSize: 40,
-    width: 10,
-    height: 5,
-    marginLeft: 5,
-  },
-  hora_InputRow: {
-    height: 41,
-    flexDirection: "row"
-  },
-  fechas: {
-    height: 19,
-    width: 82,
-    marginLeft: -299,
-    marginTop: -19
+  contenedor_datos: {
+    width: 321,
+    height: 608,
+    backgroundColor: "rgba(255,255,255,1)",
+    borderWidth: 1,
+    borderColor: "rgba(197,196,196,1)",
+    borderRadius: 36,
+    shadowColor: "rgba(7,252,21,1)",
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    elevation: 5,
+    shadowOpacity: 0.41,
+    shadowRadius: 0,
+    marginTop: 24,
+    marginLeft: 20
   },
   fecha: {
-    fontFamily: "helvetica-regular",
-    color: "rgba(154,154,157,1)",
-    height: 19,
-    width: 82
-  },
-  fecha_input: {
-    height: 41,
-    backgroundColor: "#E6E6E6",
-    borderWidth: 0,
-    borderColor: "#000000",
-    borderRadius: 4,
+    height: 60,
     width: 113
   },
-  fechaColumn: {
-    width: 113
+  icon: {
+    color: "rgba(128,128,128,1)",
+    fontSize: 21,
+    width: 21,
+    opacity: 0.84,
+    height: 21,
+    marginLeft: 5,
+    marginTop: 30
   },
-  icon_fecha: {
-    color: "rgba(80,75,75,1)",
-    fontSize: 40,
-    width: 0,
-    height: 25,
-    marginLeft: 10,
-    marginTop: 18
-  },
-  fechaColumnRow: {
+  fechaRow: {
     height: 60,
     flexDirection: "row",
-    marginRight: -48
+    marginTop: 42,
+    marginLeft: 22,
+    marginRight: 160
   },
-  superintendente: {
-    fontFamily: "helvetica-regular",
-    color: "rgba(154,154,157,1)",
-    height: 22,
-    width: 140,
-    fontSize: 16,
-    marginTop: 15,
-    marginLeft: 10
+  hora: {
+    width: 113,
+    height: 35,
+    marginTop: -1
   },
-  superintendente_Input: {
-    fontFamily: "helvetica-regular",
-    color: "#121212",
-    height: 44,
-    lineHeight: 16,
-    fontSize:18,
-    textAlign: "justify",
-    borderBottomWidth: 1,
-    borderColor: "#D9D5DC",
-    textAlign: "justify",
-    marginTop:5,
-    marginLeft: 10,
-    marginRight:10
+  icon2: {
+    color: "rgba(128,128,128,1)",
+    fontSize: 23,
+    height: 23,
+    width: 23,
+    marginLeft: 3,
+    marginTop: 6
+  },
+  horaRow: {
+    height: 35,
+    flexDirection: "row",
+    marginTop: 13,
+    marginLeft: 22,
+    marginRight: 160
+  },
+  superIntendenteInput: {
+    height: 96,
+    width: 275,
+    marginTop: 13,
+    marginLeft: 23
   },
   supervisores: {
-    fontFamily: "helvetica-regular",
-    color: "rgba(154,154,157,1)",
-    height: 20,
-    width: 140,
-    fontSize: 16,
-    marginTop: 31,
-    marginLeft: 10
-  },
-  supervisores_Input: {
-    fontFamily: "helvetica-regular",
-    color: "#121212",
-    height: 44,
-    lineHeight: 16,
-    fontSize:18,
-    textAlign: "justify",
-    borderBottomWidth: 1,
-    borderColor: "#D9D5DC",
-    textAlign: "justify",
-    marginTop:5,
-    marginLeft: 10,
-    marginRight:10
+    height: 90,
+    width: 275,
+    marginTop: 26,
+    marginLeft: 23
   },
   operadores: {
-    fontFamily: "helvetica-regular",
-    color: "rgba(154,154,157,1)",
-    height: 23,
-    width: 140,
-    fontSize: 16,
-    marginTop: 34,
-    marginLeft: 10
-  },
-  operadores_Input: {
-    fontFamily: "helvetica-regular",
-    fontSize:18,
-    color: "#121212",
-    height: 44,
-    lineHeight: 16,
-    textAlign: "justify",
-    borderBottomWidth: 1,
-    borderColor: "#D9D5DC",
-    marginTop:5,
-    marginLeft: 10,
-    marginRight:10
-
+    height: 90,
+    width: 275,
+    marginTop: 16,
+    marginLeft: 23
   }
 });

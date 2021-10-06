@@ -1,75 +1,46 @@
 import React, { Component } from "react";
-import {Text, View } from 'react-native';
-import styles from './sylesDatosIniciales'
+import { StyleSheet, View, Image, ImageBackground } from "react-native";
+import Header from "../../../../components/Header";
+import FechaInput from "../../../../components/FechaInput";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import HoraInput from "../../../../components/HoraInput";
 import FeatherIcon from "react-native-vector-icons/Feather";
-import IoniconsIcon from "react-native-vector-icons/Ionicons";
-import { TextInput } from 'react-native-gesture-handler';
-/*import {
-  Avatar,
-  FlatFeed,
-  Activity,
-  LikeButton,
-  ReactionIcon
-} from "expo-activity-feed";*/
+import SUperintendenteInput from "../../../../components/SUperintendenteInput";
+import SupervisoresInput from "../../../../components/SupervisoresInput";
+import OperadoresInput from "../../../../components/OperadoresInput";
+
+import styles from './sylesDatosIniciales'
 
 function DatosInicialesScreen(props) {
   return (
     <View style={styles.container}>
-      <View style={styles.group3}>
-        <View style={styles.contenedor_Header}>
-          <FeatherIcon
-            name="arrow-left"
-            style={styles.icon_Back}
-          ></FeatherIcon>
-          <Text style={styles.ingreso_De_Datos}>Ingreso de datos</Text>
-        </View>
-      </View>
-      <View style={styles.fechaYHora}>
-        <View style={styles.horas}>
-          <Text style={styles.hora}>Hora</Text>
-          <View style={styles.hora_InputRow}>
-            <View style={styles.hora_Input}></View>
-            <FeatherIcon name="clock" style={styles.icon_Hora}></FeatherIcon>
-          </View>
-        </View>
-        <View style={styles.fechas}>
-          <View style={styles.fechaColumnRow}>
-            <View style={styles.fechaColumn}>
-              <Text style={styles.fecha}>Fecha</Text>
-              <View style={styles.fecha_input}></View>
-            </View>
+      <Header style={styles.header_Registro_Info_1}></Header>
+      <ImageBackground
+        source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
+        resizeMode="cover"
+        style={styles.image}
+        imageStyle={styles.image_imageStyle}
+      >
+        <View style={styles.contenedor_datos}>
+          <View style={styles.fechaRow}>
+            <FechaInput style={styles.fecha}></FechaInput>
             <FontAwesomeIcon
               name="calendar-times-o"
-              style={styles.icon_fecha}
+              style={styles.icon}
             ></FontAwesomeIcon>
           </View>
+          <View style={styles.horaRow}>
+            <HoraInput style={styles.hora}></HoraInput>
+            <FeatherIcon name="clock" style={styles.icon2}></FeatherIcon>
+          </View>
+          <SUperintendenteInput
+            style={styles.superIntendenteInput}
+          ></SUperintendenteInput>
+          <SupervisoresInput style={styles.supervisores}></SupervisoresInput>
+          <OperadoresInput style={styles.operadores}></OperadoresInput>
         </View>
-      </View>
-      <Text style={styles.superintendente}>Superintendente</Text>
-      <TextInput
-        placeholder="Ingrese nombre"
-        multiline
-        style={styles.superintendente_Input}
-      ></TextInput>
-      <Text style={styles.supervisores}>Supervisores</Text>
-      <TextInput
-        placeholder="Ingrese nombres"
-        multiline
-        style={styles.supervisores_Input}
-      ></TextInput>
-      <Text style={styles.operadores}>Operadores</Text>
-      <TextInput
-      
-        placeholder="Ingrese nombres"
-        multiline 
-        style={styles.operadores_Input}
-      ></TextInput>
+      </ImageBackground>
     </View>
   );
 }
-
-//Esto se debe de importar desde styles
-
-
 export default DatosInicialesScreen;

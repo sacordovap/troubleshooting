@@ -1,35 +1,33 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, TextInput } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons";
-import CupertinoStepper from "../../../../components/CupertinoStepper";
+import { StyleSheet, View, Image, ImageBackground, Text } from "react-native";
+import Header from "../../../../components/Header";
+import EquipoInput from "../../../../components/EquipoInput";
+import HorasParadaInput from "../../../../components/HorasParadaInput";
+import AddRestHoras from "../../../../components/AddRestHoras";
+import DetallesInput from "../../../../components/DetallesInput";
 import styles from './styleData'
 
 function DataEquipoScreen(props) {
   return (
     <View style={styles.container}>
-      <View style={styles.contenedor_Header}>
-        <View style={styles.icon1Row}>
-          <Icon name="ios-arrow-back" style={styles.icon1}></Icon>
-          <Text style={styles.ingresoDeDatos1}>Ingreso de datos</Text>
+      <Header style={styles.header_Registro}></Header>
+      <ImageBackground
+        source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
+        resizeMode="cover"
+        style={styles.image1}
+        imageStyle={styles.image1_imageStyle}
+      >
+        <View style={styles.contenedorDatos1}>
+          <EquipoInput style={styles.equipo}></EquipoInput>
+          <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
+          <View style={styles.horasRow}>
+            <HorasParadaInput style={styles.horas}></HorasParadaInput>
+            <AddRestHoras style={styles.cupertinoStepper1}></AddRestHoras>
+          </View>
+          <DetallesInput style={styles.detalles_Input}></DetallesInput>
         </View>
-      </View>
-      <Text style={styles.equipo}>Equipo</Text>
-      <Text style={styles.tiempo_De_Parada}>Tiempo de parada</Text>
-      <View style={styles.horas_InputRow}>
-        <TextInput placeholder="Horas" style={styles.horas_Input}></TextInput>
-        <CupertinoStepper style={styles.stteper}></CupertinoStepper>
-      </View>
-      <TextInput
-        placeholder="Ingrese Equipo"
-        multiline={true}
-        style={styles.equipo_Input}
-      ></TextInput>
-      <TextInput
-        placeholder="Detalles"
-        multiline={true}
-        style={styles.detalle_Tiempo_Parada_Input}
-      ></TextInput>
+      </ImageBackground>
     </View>
   );
 }
-export default DataEquipoScreen;
+export default DataEquipoScreen; 

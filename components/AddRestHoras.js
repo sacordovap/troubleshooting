@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import MaterialCommunityIconsIcon from "react-native-vector-icons/MaterialCommunityIcons";
 
-function CupertinoStepper(props) {
+function AddRestHoras(props) {
   return (
     <View style={[styles.container, props.style]}>
       <TouchableOpacity
         style={[
           styles.leftStepper,
-          { 
+          {
             backgroundColor: props.decrement
               ? "rgba(0, 122, 255,0.1)"
               : "#FFFFFF"
@@ -49,27 +49,27 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     borderWidth: 1,
-    borderColor: "rgba(154,154,157,1)",
+    borderColor: "rgba(7,252,21,1)",
     borderBottomLeftRadius: 3,
     borderTopLeftRadius: 3,
     borderRightWidth: 0
   },
   leftIcon: {
-    fontSize: 30,
-    color: "rgba(154,154,157,1)"
+    fontSize: 18,
+    color: "rgba(7,252,21,1)"
   },
   rightStepper: {
     flex: 1,
     alignItems: "center",
     borderWidth: 1,
-    borderColor: "rgba(154,154,157,1)",
+    borderColor: "rgba(7,252,21,1)",
     borderBottomRightRadius: 3,
     borderTopRightRadius: 3
   },
   rightIcon: {
-    fontSize: 30,
-    color: "rgba(154,154,157,1)"
+    fontSize: 18,
+    color: "rgba(7,252,21,1)"
   }
 });
 
-export default CupertinoStepper;
+export default AddRestHoras;
