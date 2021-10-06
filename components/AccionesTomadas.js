@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent"
   },
   acciones: {
-    fontSize: 12,
+    fontSize: 16,
     textAlign: "left",
     color: "#000",
     opacity: 0.6,

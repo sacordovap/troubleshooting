@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, View, Image, ImageBackground, Text } from "react-native";
 import Header from "../../../../components/Header";
 import AccionesTomadas from "../../../../components/AccionesTomadas";
-import DetallesInput from "../../../../components/DetallesInput";
+import AccionesDetalles from "../../../../components/AccionesDetalles";
 import styles from './styleAcciones'
 
 function AccionestomadasScreen(props) {
@@ -16,11 +16,8 @@ function AccionestomadasScreen(props) {
         imageStyle={styles.image1_imageStyle}
       >
         <View style={styles.contenedorDatos1}>
-          <AccionesTomadas style={styles.acciones}></AccionesTomadas>
-          
-         
-          
-          <DetallesInput style={styles.detalles_Input}></DetallesInput>
+          <AccionesTomadas style={styles.acciones}></AccionesTomadas> 
+          <AccionesDetalles style={styles.detalles_Input}></AccionesDetalles>
         </View>
       </ImageBackground>
     </View>

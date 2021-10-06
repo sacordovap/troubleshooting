@@ -26,12 +26,15 @@ function MyStack() {
     <Stack.Navigator screenOptions={{
       headerShown: false
     }}>  
-    <Stack.Screen name="Evidencia Foto"
-        component={EvidenciaFoto} />  
+
+    <Stack.Screen name="Acciones Tomadas"
+        component={AccionesTomadasScreen} />
+    <Stack.Screen name=" Datos Equipo"
+        component={DataEquipo} />  
     <Stack.Screen name="Datos Iniciales"
         component={DatosInicialesScreen} />  
-    <Stack.Screen name="Datos Equipo"
-        component={DataEquipo} />
+    <Stack.Screen name="Evidencia Foto"
+        component={EvidenciaFoto} />
       
       <Stack.Screen name="Evento Causa"
         component={EventoCausa} />
@@ -44,8 +47,7 @@ function MyStack() {
         component={HomeScreen}
         options={{ title: 'Home' }} />
 
-      <Stack.Screen name="Datos entrada"
-        component={AccionesTomadasScreen} />
+     
     </Stack.Navigator>
   )
 }
