@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { StyleSheet, View, Image, ImageBackground, Text } from "react-native";
 import Header from "../../../../components/Header";
 import ResultadoConclusion from "../../../../components/ResultadoConclusion";
-import DetalleImputResultadoConcluciones from "../../../../components/DetalleImputResultadoConcluciones";
 import styles from './styleResultadoConcluciones'
 
 function ResultadoconclusionScreen(props) {
