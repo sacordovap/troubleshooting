@@ -69,17 +69,20 @@ function DatosInicialesScreen(props) {
           </View>
           <Text style={styles.supeintendente}>Supeintendente</Text>
           <TextInput
+          autoFocus
             placeholder="Ingrese SuperIntendente"
             style={styles.textInput}
           ></TextInput>
           <Text style={styles.supervisores}>Supervisores</Text>
           <TextInput
+          autoFocus
             placeholder="Ingrese Supervisores"
             multiline={true}
             style={styles.textInput2}
           ></TextInput>
           <Text style={styles.operadores}>Operadores</Text>
           <TextInput
+          autoFocus
             placeholder="Ingrese Operadores"
             multiline={true}
             style={styles.textInput3}
@@ -162,7 +165,7 @@ const styles = StyleSheet.create({
     fontFamily: "roboto-regular",
     color: "#121212",
     opacity: 0.6,
-    borderWidth: 1,
+    borderBottomWidth: 1,
     borderColor: "rgba(7,252,21,1)",
     width: 89,
     height: 19,
@@ -198,7 +201,7 @@ const styles = StyleSheet.create({
     height: 19,
     width: 89,
     opacity: 0.6,
-    borderWidth: 1,
+    borderBottomWidth: 1,
     borderColor: "rgba(7,252,21,1)",
     textAlign: "center",
     marginTop: 2
@@ -229,7 +232,7 @@ const styles = StyleSheet.create({
     color: "#121212",
     height: 36,
     width: 263,
-    borderWidth: 1,
+    borderBottomWidth: 1,
     borderColor: "rgba(7,252,21,1)",
     marginTop: 6,
     marginLeft: 30
@@ -246,7 +249,7 @@ const styles = StyleSheet.create({
     color: "#121212",
     height: 44,
     width: 263,
-    borderWidth: 1,
+    borderBottomWidth: 1,
     borderColor: "rgba(7,252,21,1)",
     marginTop: 9,
     marginLeft: 30
@@ -263,7 +266,7 @@ const styles = StyleSheet.create({
     color: "#121212",
     height: 51,
     width: 263,
-    borderWidth: 1,
+    borderBottomWidth: 1,
     borderColor: "rgba(7,252,21,1)",
     marginTop: 15,
     marginLeft: 30

@@ -14,6 +14,7 @@ import EventoCausa from "./src/screens/data/EventoCausa/EventoCausaScreen";
 
 import Login from "./src/screens/Login/Login";
 import DataEquipo from "./src/screens/data/DataEquipo/DataEquipoScreen"
+import EvidenciaFoto from "./src/screens/data/EvidenciaFoto/EvidenciaFotoScreen"
 
 
 
@@ -24,11 +25,14 @@ function MyStack() {
     //Aqui por mientras alternas las plantallas de vista
     <Stack.Navigator screenOptions={{
       headerShown: false
-    }}>    
+    }}>  
+    <Stack.Screen name="Evidencia Foto"
+        component={EvidenciaFoto} />  
+    <Stack.Screen name="Datos Iniciales"
+        component={DatosInicialesScreen} />  
     <Stack.Screen name="Datos Equipo"
         component={DataEquipo} />
-      <Stack.Screen name="Datos Iniciales"
-        component={DatosInicialesScreen} />
+      
       <Stack.Screen name="Evento Causa"
         component={EventoCausa} />
       
