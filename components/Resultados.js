@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Text, TextInput } from "react-native";
 
-function AccionesTomadas(props) {
+function ResultadoConclusion(props) {
   return (
     <View style={[styles.container, props.style]}>
       <Text style={styles.acciones}>Acciones Tomadas</Text>
@@ -41,4 +41,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AccionesTomadas;
+export default ResultadoConclusion;

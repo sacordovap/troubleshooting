@@ -9,6 +9,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './src/screens/Home/HomeScreen';
 import DatosInicialesScreen from "./src/screens/data/datosIniciales/DatosInicialesScreen";
 import AccionesTomadasScreen from "./src/screens/data/AccionesTomadas/AccionesTomadasScreen";
+import ResultadoConclusion from "./src/screens/data/ResultadoConclusion/ResultadoConclusionScreen";
 
 import Login from "./src/screens/Login/Login";
 import DataEquipo from "./src/screens/data/DataEquipo/DataEquipoScreen"
@@ -23,8 +24,8 @@ function MyStack() {
     <Stack.Navigator screenOptions={{
       headerShown: false
     }}>  
-     <Stack.Screen name="Acciones Tomadas"
-        component={AccionesTomadasScreen} /> 
+     <Stack.Screen name="ResultadoConclusion"
+        component={ResultadoConclusion} /> 
     <Stack.Screen name="Datos Equipo"
         component={DataEquipo} /> 
 

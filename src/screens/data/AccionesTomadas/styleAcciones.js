@@ -45,6 +45,14 @@ export default StyleSheet.create({
     marginTop: 24,
     marginLeft: 18
   },
+  tiempoDeParada: {
+    fontFamily: "roboto-regular",
+    color: "#121212",
+    lineHeight: 12,
+    opacity: 0.6,
+    marginTop: 19,
+    marginLeft: 15
+  },
   cupertinoStepper1: {
     height: 29,
     width: 94,

@@ -16,8 +16,9 @@ function AccionestomadasScreen(props) {
         imageStyle={styles.image1_imageStyle}
       >
         <View style={styles.contenedorDatos1}>
-          <EquipoInput style={styles.acciones}></EquipoInput>
-          <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
+          <AccionesTomadas style={styles.acciones}></AccionesTomadas>
+          
+         
           
           <DetallesInput style={styles.detalles_Input}></DetallesInput>
         </View>
