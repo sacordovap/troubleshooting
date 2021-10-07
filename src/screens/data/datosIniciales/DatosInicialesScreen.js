@@ -22,7 +22,7 @@ export const DatosInicialesScreen= () => {
   const [text, setText]=useState('');
   const [horas, setHoras]=useState('');
 
-  const onChange = (event, selectedDate) => {
+  /*const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
     setDate(currentDate);
@@ -31,14 +31,25 @@ export const DatosInicialesScreen= () => {
     let fTime=tempDate.getHours()+':'+tempDate.getMinutes();
     setText(fDate);
     setHoras(fTime);
+  };*/
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(Platform.OS === 'ios');
+    setDate(currentDate);
   };
+
   const showMode = (currentMode) => {
     setShow(true);
     setMode(currentMode);
-  
-    
   };
 
+  const showDatepicker = () => {
+    showMode('date');
+  };
+
+  const showTimepicker = () => {
+    showMode('time');
+  };
 
   return (
     <View style={styles.container}>
@@ -54,8 +65,8 @@ export const DatosInicialesScreen= () => {
           <Text style={styles.titulo}>Registro de Incidentes</Text>
           <Text style={styles.fecha_tag}>Fecha</Text>
           <View style={styles.fecha2Row}>
-            <Text style={styles.fecha2}>{text}</Text>
-            <TouchableOpacity onPress={()=>showMode('date')} >
+            <Text style={styles.fecha2}>{date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear()}</Text>
+            <TouchableOpacity onPress={showDatepicker} >
             <FontAwesomeIcon
               name="calendar-times-o"
               style={styles.icon}
@@ -63,8 +74,8 @@ export const DatosInicialesScreen= () => {
           </View>
           <Text style={styles.hora_tag}>Hora</Text>
           <View style={styles.hora2Row}>
-            <Text style={styles.hora2}>{horas}</Text>
-            <TouchableOpacity onPress={()=>showMode('time')}>
+            <Text style={styles.hora2}>{date.getHours()+':'+date.getMinutes()}</Text>
+            <TouchableOpacity onPress={showTimepicker} >
               <FeatherIcon name="clock" style={styles.icon2}></FeatherIcon>
               </TouchableOpacity >
           </View>
