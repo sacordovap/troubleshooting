@@ -126,8 +126,8 @@ const styles = StyleSheet.create({
   headerRegistro1: {
     height: 39,
     borderBottomWidth: 1,
-    borderColor: "rgba(7,252,21,1)",
-    backgroundColor: "rgba(255,255,255,1)",
+    borderColor:  "rgba(1,123,146,1)",
+    backgroundColor: "rgba(1,123,146,1)"
   },
   camera: {
     color: "rgba(128,128,128,0.65)",
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(197,196,196,1)",
     borderRadius: 36,
-    shadowColor: "rgba(7,252,21,1)",
+    shadowColor: "rgba(1,123,146,1)",
     shadowOffset: {
       width: 0,
       height: 3
@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
     height: 30,
     width: 268,
     borderBottomWidth: 1,
-    borderColor: "rgba(7,252,21,1)",
+    borderColor: "rgba(1,123,146,1)",
     opacity: 0.6,
     textAlign: "left",
     marginTop: 18,

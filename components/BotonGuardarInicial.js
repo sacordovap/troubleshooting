@@ -11,7 +11,7 @@ function BotonGuardarInicial(props) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#4CD964",
+    backgroundColor: "rgba(1,123,146,1)",
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",

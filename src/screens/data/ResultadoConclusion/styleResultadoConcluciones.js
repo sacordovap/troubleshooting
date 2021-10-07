@@ -7,9 +7,9 @@ export default StyleSheet.create({
   header_Registro: {
     height: 39,
     borderWidth: 1,
-    borderColor: "rgba(7,252,21,1)",
-    backgroundColor: "#fff",
-    marginTop: 21
+    borderColor: "rgba(1,123,146,255)",
+    backgroundColor: "rgba(1,123,146,255)",
+
   },
   image1: {
     width: 360,
@@ -28,7 +28,7 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(197,196,196,1)",
     borderRadius: 36,
-    shadowColor: "rgba(7,252,21,1)",
+    shadowColor: "rgba(1,123,146,255)",
     shadowOffset: {
       width: 0,
       height: 3

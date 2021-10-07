@@ -7,8 +7,8 @@ export default StyleSheet.create({
   header_Registro: {
     height: 39,
     borderWidth: 1,
-    borderColor: "rgba(7,252,21,1)",
-    backgroundColor: "#fff",
+    borderColor: "rgba(1,123,146,255)",
+    backgroundColor: "rgba(1,123,146,255)",
 
   },
   image1: {
@@ -62,6 +62,7 @@ export default StyleSheet.create({
   detalles_Input: {
     height: 80,
     width: 289,
+    borderBottomColor:"rgba(1,123,146,255)",
     marginTop: 8,
     marginLeft: 15
   }

@@ -26,7 +26,7 @@ function Header(props) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    backgroundColor: "rgba(255,255,255,1)",
+    backgroundColor: "rgba(1,123,146,1)",
     paddingRight: 8,
     paddingLeft: 8
   },
@@ -39,12 +39,12 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   leftIcon: {
-    color: "rgba(73,230,151,1)",
+    color: "rgba(255,255,255,255)",
     fontSize: 23
   },
   leftText: {
     fontSize: 15,
-    color: "rgba(73,230,151,1)",
+    color: "rgba(255,255,255,255)",
     paddingLeft: 5,
     alignSelf: "center"
   },
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontFamily: "roboto-regular",
     lineHeight: 17,
-    color: "rgba(73,230,151,1)",
+    color:  "rgba(255,255,255,255)",
     textAlign: "center"
   },
   rightWrapper: {

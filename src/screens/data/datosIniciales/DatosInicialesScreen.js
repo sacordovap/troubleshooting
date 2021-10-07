@@ -121,8 +121,8 @@ const styles = StyleSheet.create({
   header_Registro_Info_1: {
     height: 39,    
     borderBottomWidth: 1,
-    borderColor: "rgba(7,252,21,1)",
-    backgroundColor: "#fff",
+    borderColor: "rgba(1,123,146,255)",
+    backgroundColor: "rgba(1,123,146,255)",
 
   },
   image: {
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
       color: "#121212",
     opacity: 0.6,
     borderBottomWidth: 1,
-    borderColor: "rgba(7,252,21,1)",
+    borderColor: "rgba(1,123,146,255)",
     width: 89,
     height: 19,
     textAlign: "center",
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     width: 89,
     opacity: 0.6,
     borderBottomWidth: 1,
-    borderColor: "rgba(7,252,21,1)",
+    borderColor: "rgba(1,123,146,255)",
     textAlign: "center",
     marginTop: 2
   },
@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
     height: 36,
     width: 263,
     borderBottomWidth: 1,
-    borderColor: "rgba(7,252,21,1)",
+    borderColor: "rgba(1,123,146,255)",
     marginTop: 6,
     marginLeft: 30
   },
@@ -259,7 +259,7 @@ const styles = StyleSheet.create({
     height: 44,
     width: 263,
     borderBottomWidth: 1,
-    borderColor: "rgba(7,252,21,1)",
+    borderColor:"rgba(1,123,146,255)",
     marginTop: 9,
     marginLeft: 30
   },
@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
     height: 51,
     width: 263,
     borderBottomWidth: 1,
-    borderColor: "rgba(7,252,21,1)",
+    borderColor:"rgba(1,123,146,255)",
     marginTop: 15,
     marginLeft: 30
   }

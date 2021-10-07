@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   },
   acciones_Input: {
     borderBottomWidth: 1,
-    borderColor: "rgba(7,252,21,1)",
+    borderColor: "rgba(1,123,146,255)",
     color: "#000",
     fontSize: 16,
     lineHeight: 16,
