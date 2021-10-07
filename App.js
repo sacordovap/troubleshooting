@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 //importas los screens
 
-import HomeScreen from './src/screens/Home/HomeScreen';
+import HomeScreen from './src/screens//Home/HomeScreen';
 import DatosInicialesScreen from "./src/screens/data/datosIniciales/DatosInicialesScreen";
 import AccionesTomadasScreen from "./src/screens/data/AccionesTomadas/AccionesTomadasScreen";
 import ResultadoConclusion from "./src/screens/data/ResultadoConclusion/ResultadoConclusionScreen";
@@ -27,7 +27,12 @@ function MyStack() {
       headerShown: false
     }}>  
 
+<Stack.Screen name="Login"
+        component={Login} />
 
+<Stack.Screen name="Home"
+        component={HomeScreen}
+        options={{ title: 'Home' }} />
       <Stack.Screen name="Datos Iniciales"
         component={DatosInicialesScreen} /> 
        <Stack.Screen name="Evidencia Foto"
@@ -44,12 +49,9 @@ function MyStack() {
       <Stack.Screen name="Evento Causa"
         component={EventoCausa} />     
 
-      <Stack.Screen name="Login"
-        component={Login} />
+     
 
-      <Stack.Screen name="Home"
-        component={HomeScreen}
-        options={{ title: 'Home' }} />
+      
 
      
     </Stack.Navigator>

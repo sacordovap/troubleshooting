@@ -128,7 +128,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: "rgba(7,252,21,1)",
     backgroundColor: "rgba(255,255,255,1)",
-    marginTop: 21
   },
   camera: {
     color: "rgba(128,128,128,0.65)",

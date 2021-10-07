@@ -14,6 +14,7 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 function DataEquipoScreen(props) {
   const [Horas, setHoras] =useState(0);
+  
   return (
     <View style={styles.container}>
       <Header style={styles.header_Registro}></Header>
@@ -69,7 +70,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(7,252,21,1)",
     backgroundColor: "#fff",
-    marginTop: 21
   },
   image1: {
     width: 360,

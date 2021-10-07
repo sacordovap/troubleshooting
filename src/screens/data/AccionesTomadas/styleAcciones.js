@@ -9,7 +9,7 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(7,252,21,1)",
     backgroundColor: "#fff",
-    marginTop: 21
+
   },
   image1: {
     width: 360,

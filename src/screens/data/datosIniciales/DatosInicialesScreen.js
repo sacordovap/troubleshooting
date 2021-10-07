@@ -53,7 +53,7 @@ export const DatosInicialesScreen= () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar hidden />
+      
       <Header style={styles.header_Registro_Info_1}></Header>
       <ImageBackground
         source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
@@ -119,11 +119,11 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(230, 230, 230,1)"
   },
   header_Registro_Info_1: {
-    height: 39,
-    borderWidth: 1,
+    height: 39,    
+    borderBottomWidth: 1,
     borderColor: "rgba(7,252,21,1)",
     backgroundColor: "#fff",
-    marginTop: 21
+
   },
   image: {
     width: 360,
