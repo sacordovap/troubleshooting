@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@expo/android-manifest": "^0.2.5",
-    "@react-native-community/datetimepicker": "^3.5.2",
+    "@react-native-community/datetimepicker": "3.5.2",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/native": "^6.0.4",
     "@react-navigation/native-stack": "^6.2.2",
@@ -24,6 +24,7 @@
     "react-native-gesture-handler": "~1.10.2",
     "react-native-image-picker": "^4.1.1",
     "react-native-input-outline": "^1.5.2",
+    "react-native-modal-datetime-picker": "^11.0.0",
     "react-native-outline-input": "^1.0.8",
     "react-native-reanimated": "2.0.0-rc.0",
     "react-native-safe-area-context": "3.2.0",

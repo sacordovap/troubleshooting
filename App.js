@@ -27,18 +27,22 @@ function MyStack() {
       headerShown: false
     }}>  
 
-    <Stack.Screen name="Acciones Tomadas"
-        component={AccionesTomadasScreen} />
-    <Stack.Screen name=" Datos Equipo"
-        component={DataEquipo} />  
-    <Stack.Screen name="Datos Iniciales"
-        component={DatosInicialesScreen} />  
-    <Stack.Screen name="Evidencia Foto"
+
+      <Stack.Screen name="Datos Iniciales"
+        component={DatosInicialesScreen} /> 
+       <Stack.Screen name="Evidencia Foto"
         component={EvidenciaFoto} />
+  
+
+
+        <Stack.Screen name="Acciones Tomadas"
+        component={AccionesTomadasScreen} />
+       <Stack.Screen name=" Datos Equipo"
+        component={DataEquipo} />  
+   
       
       <Stack.Screen name="Evento Causa"
-        component={EventoCausa} />
-      
+        component={EventoCausa} />     
 
       <Stack.Screen name="Login"
         component={Login} />

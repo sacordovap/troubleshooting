@@ -14,30 +14,31 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-function DatosInicialesScreen(props) {
+export const DatosInicialesScreen= () => {
 
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
+  const [text, setText]=useState('');
+  const [horas, setHoras]=useState('');
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
     setDate(currentDate);
+    let tempDate= new Date(currentDate);
+    let fDate= tempDate.getDate()+'/'+(tempDate.getMonth()+1)+'/'+tempDate.getFullYear();
+    let fTime=tempDate.getHours()+':'+tempDate.getMinutes();
+    setText(fDate);
+    setHoras(fTime);
   };
-
   const showMode = (currentMode) => {
     setShow(true);
     setMode(currentMode);
+  
+    
   };
 
-  const showDatepicker = () => {
-    showMode('date');
-  };
-
-  const showTimepicker = () => {
-    showMode('time');
-  };
 
   return (
     <View style={styles.container}>
@@ -53,8 +54,8 @@ function DatosInicialesScreen(props) {
           <Text style={styles.titulo}>Registro de Incidentes</Text>
           <Text style={styles.fecha_tag}>Fecha</Text>
           <View style={styles.fecha2Row}>
-            <Text style={styles.fecha2}>Fecha</Text>
-            <TouchableOpacity onPress={showDatepicker} >
+            <Text style={styles.fecha2}>{text}</Text>
+            <TouchableOpacity onPress={()=>showMode('date')} >
             <FontAwesomeIcon
               name="calendar-times-o"
               style={styles.icon}
@@ -62,12 +63,12 @@ function DatosInicialesScreen(props) {
           </View>
           <Text style={styles.hora_tag}>Hora</Text>
           <View style={styles.hora2Row}>
-            <Text style={styles.hora2}>Hora</Text>
-            <TouchableOpacity onPress={showTimepicker}>
+            <Text style={styles.hora2}>{horas}</Text>
+            <TouchableOpacity onPress={()=>showMode('time')}>
               <FeatherIcon name="clock" style={styles.icon2}></FeatherIcon>
               </TouchableOpacity >
           </View>
-          <Text style={styles.supeintendente}>Supeintendente</Text>
+          <Text style={styles.superintendente}>Supeintendente</Text>
           <TextInput
           autoFocus
             placeholder="Ingrese SuperIntendente"
@@ -86,8 +87,7 @@ function DatosInicialesScreen(props) {
             placeholder="Ingrese Operadores"
             multiline={true}
             style={styles.textInput3}
-          ></TextInput>
-          {show && (
+          ></TextInput>{show && (
             <DateTimePicker
               testID="dateTimePicker"
               value={date}
@@ -95,9 +95,8 @@ function DatosInicialesScreen(props) {
               is24Hour={true}
               display="default"
               onChange={onChange}
-            />
-          )}
-        </View>
+            />            
+          )}</View>
       </ImageBackground>
     </View>
   );
@@ -162,8 +161,7 @@ const styles = StyleSheet.create({
     marginLeft: 30
   },
   fecha2: {
-    fontFamily: "roboto-regular",
-    color: "#121212",
+      color: "#121212",
     opacity: 0.6,
     borderBottomWidth: 1,
     borderColor: "rgba(7,252,21,1)",
@@ -196,7 +194,7 @@ const styles = StyleSheet.create({
     marginLeft: 30
   },
   hora2: {
-    fontFamily: "roboto-regular",
+  
     color: "#121212",
     height: 19,
     width: 89,
@@ -220,7 +218,7 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     marginRight: 158
   },
-  supeintendente: {
+  superintendente: {
     fontFamily: "roboto-regular",
     color: "#121212",
     opacity: 0.7,

@@ -6,7 +6,8 @@ import {
   ImageBackground,
   Text,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  Platform 
 } from "react-native";
 import Header from "../../../../components/Header";
 import Icon from "react-native-vector-icons/Entypo";
@@ -14,12 +15,11 @@ import BotonGuardarInicial from "../../../../components/BotonGuardarInicial";
 import * as ImagePicker from 'expo-image-picker';
 
 function EvidenciaFotoScreen(props) {
-
   const [image, setImage] = useState(null);
-
+  const [image2, setImage2] = useState(null);
   useEffect(() => {
     (async () => {
-      if (Platform.OS !== 'web') {
+      if (Platform.OS !== 'android') {
         const {
           status,
         } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -34,7 +34,7 @@ function EvidenciaFotoScreen(props) {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [4, 3],
+      aspect: [18, 10],
       quality: 1,
     });
 
@@ -44,6 +44,21 @@ function EvidenciaFotoScreen(props) {
       setImage(result.uri);
     }
   };
+  const pickImage2 = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [18, 10],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage2(result.uri);
+    }
+  };
+
 
   return (
     <View style={styles.container}>
@@ -63,24 +78,34 @@ function EvidenciaFotoScreen(props) {
           ></TextInput>
           <View style={styles.iconoFoto}>
             <View style={styles.iconStack}>
-              <Icon onPress={pickImage}
+              <Icon 
                 name="camera"
                 style={styles.icon}>
               </Icon>
-              <Icon name="upload" style={styles.icon1}></Icon>
-
+              <Icon onPress={pickImage}
+              name="upload" style={styles.icon1}></Icon>
             </View>
-            <View style={styles.rect2}>  {image && (
-              <Image source={{ uri: image }} style={{ width: 200, height: 200, marginLeft: 64 }} />
+            <View style={styles.rect2}>{image&&(
+            <Image source={{ uri: image }} 
+            style={{  
+              width: 164,
+                height: 106}} />
             )}</View>
           </View>
 
           <View style={styles.fotosConjunto}>
             <View style={styles.iconos}>
-              <Icon name="camera" style={styles.camera}></Icon>
-              <Icon name="upload" style={styles.archivos}></Icon>
+              <Icon  
+              name="camera" style={styles.camera}></Icon>
+              <Icon onPress={pickImage2}
+              name="upload" style={styles.archivos}></Icon>
             </View>
-            <View style={styles.fotoTomada}></View>
+            <View style={styles.fotoTomada}>{image2&&(
+            <Image source={{ uri: image2 }} 
+            style={{  
+              width: 164,
+                height: 106,}} />
+            )}</View>
           </View>
 
           <BotonGuardarInicial
@@ -147,6 +172,7 @@ const styles = StyleSheet.create({
   fotoTomada: {
     width: 164,
     height: 106,
+    opacity: 0.9,
     backgroundColor: "#E6E6E6",
     marginLeft: 27
   },
@@ -180,6 +206,7 @@ const styles = StyleSheet.create({
   rect2: {
     width: 164,
     height: 106,
+    opacity: 0.9,
     backgroundColor: "#E6E6E6",
     marginLeft: 27
   },
@@ -227,10 +254,11 @@ const styles = StyleSheet.create({
     width: 40
   },
   cupertinoButtonSuccess: {
-    height: 44,
-    width: 216,
+    height: 50,
+    marginLeft:20,
+    marginRight:20,
     marginTop: 92,
-    marginLeft: 52
+
   }
 });
 
