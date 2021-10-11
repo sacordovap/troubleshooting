@@ -25,26 +25,27 @@ function MyStack() {
     //Aqui por mientras alternas las plantallas de vista
     <Stack.Navigator screenOptions={{
       headerShown: false
-    }}>  
-
+    }}> 
+    <Stack.Screen name="Evento Causa"
+        component={EventoCausa} /> 
+ <Stack.Screen name="Login"
+        component={Login} />
 <Stack.Screen name="Resultado Conclusion"
         component={ResultadoConclusion} />
-  <Stack.Screen name="Evento Causa"
-        component={EventoCausa} />
-
+     
+<Stack.Screen name="Datos Iniciales"
+        component={DatosInicialesScreen} />
+ 
        <Stack.Screen name="Acciones Tomadas"
         component={AccionesTomadasScreen} />
     <Stack.Screen name=" Datos Equipo"
         component={DataEquipo} />
-<Stack.Screen name="Datos Iniciales"
-        component={DatosInicialesScreen} />
 <Stack.Screen name="Home"
         component={HomeScreen}
         options={{ title: 'Home' }} />
       <Stack.Screen name="Evidencia Foto"
         component={EvidenciaFoto} />
-      <Stack.Screen name="Login"
-        component={Login} />
+
 
      
       
