@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, TextInput } from "react-native";
 function AccionesTomadas(props) {
   return (
     <View style={[styles.container, props.style]}>
-      <Text style={styles.acciones}>Acciones Tomadas</Text>
+      <Text style={styles.acciones}>Acciones Tomadas </Text>
       
     </View>
   );
