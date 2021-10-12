@@ -1,28 +1,27 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "rgba(255,255,255,1)"
-    
+    backgroundColor: "rgba(230, 230, 230,1)"
   },
   header_Registro_Info_1: {
     height: 39,
-    borderWidth: 1,
-    borderColor: "rgba(7,252,21,1)",
-    backgroundColor: "#fff",
+    borderBottomWidth: 1,
+    borderColor: "rgba(1,123,146,255)",
+    backgroundColor: "rgba(1,123,146,255)",
     marginTop: 21
+
   },
   image: {
     width: 360,
     backgroundColor: "rgba(15,15, 15,0.0732)",
     height: 679,
-    flex: 1,
     marginTop: 1
   },
   image_imageStyle: {
     opacity: 0.61
   },
-  contenedor_datos: {
+  rect: {
     width: 321,
     height: 608,
     backgroundColor: "rgba(255,255,255,1)",
@@ -37,12 +36,37 @@ export default StyleSheet.create({
     elevation: 5,
     shadowOpacity: 0.41,
     shadowRadius: 0,
-    marginTop: 24,
+    marginTop: 27,
     marginLeft: 20
   },
-  fecha: {
-    height: 60,
-    width: 113
+  titulo: {
+    fontFamily: "roboto-regular",
+    color: "#121212",
+    fontSize: 24,
+    textAlign: "center",
+    opacity: 0.78,
+    width: 243,
+    height: 29,
+    marginTop: 29,
+    marginLeft: 39
+  },
+  fecha_tag: {
+    fontFamily: "roboto-regular",
+    color: "#121212",
+    fontSize: 12,
+    opacity: 0.6,
+    marginTop: 35,
+    marginLeft: 30
+  },
+  fecha2: {
+    color: "#121212",
+    opacity: 0.6,
+    borderBottomWidth: 1,
+    borderColor: "rgba(1,123,146,255)",
+    width: 89,
+    height: 19,
+    textAlign: "center",
+    marginTop: 2
   },
   icon: {
     color: "rgba(128,128,128,1)",
@@ -50,52 +74,96 @@ export default StyleSheet.create({
     width: 21,
     opacity: 0.84,
     height: 21,
-    marginLeft: 5,
-    marginTop: 30
+    marginLeft: 23
   },
-  fechaRow: {
-    height: 60,
+  fecha2Row: {
+    height: 21,
     flexDirection: "row",
-    marginTop: 42,
-    marginLeft: 22,
-    marginRight: 160
+    marginTop: 5,
+    marginLeft: 30,
+    marginRight: 158
   },
-  hora: {
-    width: 113,
-    height: 35,
-    marginTop: -1
+  hora_tag: {
+    fontFamily: "roboto-regular",
+    color: "#121212",
+    opacity: 0.6,
+    fontSize: 12,
+    marginTop: 7,
+    marginLeft: 30
+  },
+  hora2: {
+
+    color: "#121212",
+    height: 19,
+    width: 89,
+    opacity: 0.6,
+    borderBottomWidth: 1,
+    borderColor: "rgba(1,123,146,255)",
+    textAlign: "center",
+    marginTop: 2
   },
   icon2: {
     color: "rgba(128,128,128,1)",
     fontSize: 23,
     height: 23,
     width: 23,
-    marginLeft: 3,
-    marginTop: 6
+    marginLeft: 21
   },
-  horaRow: {
-    height: 35,
+  hora2Row: {
+    height: 23,
     flexDirection: "row",
-    marginTop: 13,
-    marginLeft: 22,
-    marginRight: 160
+    marginTop: 8,
+    marginLeft: 30,
+    marginRight: 158
   },
-  superIntendenteInput: {
-    height: 96,
-    width: 275,
-    marginTop: 13,
-    marginLeft: 23
+  superintendente: {
+    fontFamily: "roboto-regular",
+    color: "#121212",
+    opacity: 0.7,
+    marginTop: 30,
+    marginLeft: 30
+  },
+  textInput: {
+    fontFamily: "roboto-regular",
+    color: "#121212",
+    height: 36,
+    width: 263,
+    borderBottomWidth: 1,
+    borderColor: "rgba(1,123,146,255)",
+    marginTop: 6,
+    marginLeft: 30
   },
   supervisores: {
-    height: 90,
-    width: 275,
-    marginTop: 26,
-    marginLeft: 23
+    fontFamily: "roboto-regular",
+    color: "#121212",
+    opacity: 0.7,
+    marginTop: 21,
+    marginLeft: 30
+  },
+  textInput2: {
+    fontFamily: "roboto-regular",
+    color: "#121212",
+    width: 263,
+    borderBottomWidth: 1,
+    borderColor: "rgba(1,123,146,255)",
+    marginTop: 9,
+    marginLeft: 30
   },
   operadores: {
-    height: 90,
-    width: 275,
-    marginTop: 16,
-    marginLeft: 23
+    fontFamily: "roboto-regular",
+    color: "#121212",
+    opacity: 0.7,
+    marginTop: 20,
+    marginLeft: 30
+  },
+  textInput3: {
+    fontFamily: "roboto-regular",
+    color: "#121212",
+    width: 263,
+    borderBottomWidth: 1,
+    borderColor: "rgba(1,123,146,255)",
+    marginTop: 15,
+    marginLeft: 30
   }
 });
+
