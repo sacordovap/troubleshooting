@@ -1,8 +1,14 @@
-import React, { Component } from "react";
-import { StyleSheet, View, Image, ImageBackground, Text } from "react-native";
+import React, { Component, useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Image,
+  ImageBackground,
+  Text,
+  TextInput,
+  TouchableOpacity
+} from "react-native";
 import Header from "../../../../components/Header";
-import EventoCausa from "../../../../components/EventoCausa";
-import DetalleImputResultadoConcluciones from "../../../../components/DetalleImputResultadoConcluciones";
 import styles from './styleEventoCausa'
 
 function EventoCausaScreen(props) {
@@ -16,10 +22,21 @@ function EventoCausaScreen(props) {
         imageStyle={styles.image1_imageStyle}
       >
         <View style={styles.contenedorDatos1}>
-          <EventoCausa style={styles.resultados}></EventoCausa>
+        <Text style={styles.evento}>Evento</Text>
+        <TextInput
+            placeholder="Ingrese Detalles"
+            style={styles.textInput}
+          ></TextInput>
+          <Text style={styles.causas}>Causas</Text>
+        <TextInput
+            placeholder="Ingrese Detalles"
+            style={styles.textInput}
+          ></TextInput>
         </View>
       </ImageBackground>
     </View>
   );
 }
+
+
 export default EventoCausaScreen; 

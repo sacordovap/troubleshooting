@@ -1,7 +1,14 @@
-import React, { Component } from "react";
-import { StyleSheet, View, Image, ImageBackground, Text } from "react-native";
+import React, { Component, useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Image,
+  ImageBackground,
+  Text,
+  TextInput,
+  TouchableOpacity
+} from "react-native";
 import Header from "../../../../components/Header";
-import ResultadoConclusion from "../../../../components/ResultadoConclusion";
 import styles from './styleResultadoConcluciones'
 
 function ResultadoconclusionScreen(props) {
@@ -15,10 +22,22 @@ function ResultadoconclusionScreen(props) {
         imageStyle={styles.image1_imageStyle}
       >
         <View style={styles.contenedorDatos1}>
-          <ResultadoConclusion style={styles.resultados}></ResultadoConclusion>
+        <Text style={styles.resultados}>Resultados</Text>
+        <TextInput
+            placeholder="Ingrese Detalles"
+            style={styles.textInput}
+          ></TextInput>
+          <Text style={styles.concluciones}>Concluciones</Text>
+        <TextInput
+            placeholder="Ingrese Detalles"
+            style={styles.textInput}
+          ></TextInput>
         </View>
       </ImageBackground>
     </View>
   );
 }
+
+  
+
 export default  ResultadoconclusionScreen; 

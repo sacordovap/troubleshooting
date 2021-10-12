@@ -1,8 +1,14 @@
-import React, { Component } from "react";
-import { StyleSheet, View, Image, ImageBackground, Text } from "react-native";
+import React, { Component, useState } from "react";
+import {
+  StyleSheet,
+  View,
+  Image,
+  ImageBackground,
+  Text,
+  TextInput,
+  TouchableOpacity
+} from "react-native";
 import Header from "../../../../components/Header";
-import AccionesTomadas from "../../../../components/AccionesTomadas";
-import AccionesDetalles from "../../../../components/AccionesDetalles";
 import styles from './styleAcciones'
 
 function AccionestomadasScreen(props) {
@@ -15,12 +21,18 @@ function AccionestomadasScreen(props) {
         style={styles.image1}
         imageStyle={styles.image1_imageStyle}
       >
+        
         <View style={styles.contenedorDatos1}>
-          <AccionesTomadas style={styles.acciones}></AccionesTomadas> 
-          <AccionesDetalles style={styles.detalles_Input}></AccionesDetalles>
+        <Text style={styles.titulo1}>Acciones Tomadas</Text>
+        <TextInput
+            placeholder="Ingrese Detalles"
+            style={styles.textInput}
+          ></TextInput>
         </View>
       </ImageBackground>
     </View>
   );
 }
+
+
 export default  AccionestomadasScreen; 
