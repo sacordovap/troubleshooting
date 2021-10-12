@@ -69,7 +69,6 @@ export default StyleSheet.create({
   textInput: {
     fontFamily: "roboto-regular",
     color: "#121212",
-    height: 31,
     width: 282,
     borderBottomWidth: 1,
     borderColor: "rgba(1,123,146,255)",

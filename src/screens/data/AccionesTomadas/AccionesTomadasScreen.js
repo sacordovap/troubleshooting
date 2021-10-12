@@ -14,7 +14,8 @@ import styles from './styleAcciones'
 function AccionestomadasScreen(props) {
   return (
     <View style={styles.container}>
-      <Header style={styles.header_Registro}></Header>
+      <Header 
+      style={styles.header_Registro}></Header>
       <ImageBackground
         source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
         resizeMode="cover"
@@ -26,6 +27,7 @@ function AccionestomadasScreen(props) {
         <Text style={styles.titulo1}>Acciones Tomadas</Text>
         <TextInput
             placeholder="Ingrese Detalles"
+            multiline={true}
             style={styles.textInput}
           ></TextInput>
         </View>

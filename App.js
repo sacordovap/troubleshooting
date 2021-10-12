@@ -25,44 +25,11 @@ function MyStack() {
       headerShown: false
     }}>
       <Stack.Screen name="Acciones Tomadas"
-        component={AccionesTomadasScreen} />
-      <Stack.Screen name="Resultado Conclusion"
-        component={ResultadoConclusion} />
-      <Stack.Screen name="Evento Causa"
-        component={EventoCausa} />
-
-
-      <Stack.Screen name=" Datos Equipo"
-        component={DataEquipo} />
-
-
-
-      <Stack.Screen name="Login"
-        component={Login} />
-
-
-      <Stack.Screen name="Datos Iniciales"
-        component={DatosInicialesScreen} />
-
-
-
+        component={AccionesTomadasScreen} />      
       <Stack.Screen name="Home"
         component={HomeScreen}
         options={{ title: 'Home' }} />
-      <Stack.Screen name="Evidencia Foto"
-        component={EvidenciaFoto} />
-
-
-
-      <Stack.Screen name="Resultado Conclusion"
-        component={ResultadoConclusion} />
-      <Stack.Screen name="Evento Causa"
-        component={EventoCausa} />
-
-      <Stack.Screen name=" Datos Equipo"
-        component={DataEquipo} />
-
-
+     
 
     </Stack.Navigator>
   )

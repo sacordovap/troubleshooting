@@ -6,8 +6,12 @@ function Header(props) {
   return (
     <View style={[styles.container, props.style]}>
       <View style={styles.leftWrapper}>
-        <TouchableOpacity style={styles.leftIconButton}>
-          <Icon name="ios-arrow-back" style={styles.leftIcon}></Icon>
+        <TouchableOpacity style={styles.leftIconButton}
+        onPress={()=>props.navigation.navigate('Home')
+      }
+        >
+          <Icon name="ios-arrow-back" style={styles.leftIcon}
+           ></Icon>
           <Text style={styles.leftText}>Back</Text>
         </TouchableOpacity>
       </View>
