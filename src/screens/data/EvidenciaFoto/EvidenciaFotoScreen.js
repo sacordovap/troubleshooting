@@ -16,7 +16,7 @@ import BotonGuardarInicial from "../../../../components/BotonGuardarInicial";
 import * as ImagePicker from 'expo-image-picker';
 
 
-  function EvidenciaFotoScreen(props) {
+function EvidenciaFotoScreen(props) {
   const [image, setImage] = useState(null);
   const [image2, setImage2] = useState(null);
   useEffect(() => {
@@ -36,7 +36,7 @@ import * as ImagePicker from 'expo-image-picker';
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      
+
       quality: 1,
     });
 
@@ -50,7 +50,7 @@ import * as ImagePicker from 'expo-image-picker';
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      
+
       quality: 1,
     });
 
@@ -65,7 +65,7 @@ import * as ImagePicker from 'expo-image-picker';
   return (
     <View style={styles.container}>
       <View style={[styles.container1, props.style]}>
-       <View style={styles.leftWrapper}>
+        <View style={styles.leftWrapper}>
           <TouchableOpacity style={styles.leftIconButton}
             onPress={() =>
               props.navigation.navigate('Home')}
@@ -84,7 +84,7 @@ import * as ImagePicker from 'expo-image-picker';
         <View style={styles.rightWrapper}>
           <TouchableOpacity style={styles.rightIconButton}></TouchableOpacity>
         </View>
-    </View>
+      </View>
       <ImageBackground
         source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
         resizeMode="cover"
@@ -107,13 +107,14 @@ import * as ImagePicker from 'expo-image-picker';
               <Icon onPress={pickImage}
                 name="upload" style={styles.icon1}></Icon>
             </View>
-            <View style={styles.rect2}>             
-            {image&&( 
-              <Image source={{ uri: image }}
-              style={{
-              width: 164,
-              height: 106}} />
-            )}</View>
+            <View style={styles.rect2}>
+              {image && (
+                <Image source={{ uri: image }}
+                  style={{
+                    width: 164,
+                    height: 106
+                  }} />
+              )}</View>
           </View>
 
           <View style={styles.fotosConjunto}>
@@ -149,11 +150,11 @@ const styles = StyleSheet.create({
   },
   headerRegistro1: {
     height: 39,
-    marginTop:21,
+    marginTop: 21,
     borderBottomWidth: 1,
     borderColor: "rgba(1,123,146,1)",
     backgroundColor: "rgba(1,123,146,1)",
-  
+
   },
   camera: {
     color: "rgba(128,128,128,0.65)",
@@ -295,7 +296,7 @@ const styles = StyleSheet.create({
   header_Registro: {
     height: 39,
     borderWidth: 1,
-    borderColor:"rgba(1,123,146,255)",
+    borderColor: "rgba(1,123,146,255)",
     backgroundColor: "rgba(1,123,146,255)",
   },
   leftWrapper: {
@@ -325,7 +326,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontFamily: "roboto-regular",
     lineHeight: 17,
-    color:  "rgba(255,255,255,255)",
+    color: "rgba(255,255,255,255)",
     textAlign: "center"
   },
   rightWrapper: {
