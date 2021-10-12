@@ -15,10 +15,11 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import FeatherIcon from "react-native-vector-icons/Feather";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import InputScrollView from 'react-native-input-scroll-view';
+import Icon from "react-native-vector-icons/Ionicons";
 
 import styles from "./sylesDatosIniciales";
 
-export const DatosInicialesScreen = () => {
+function DatosInicialesScreen (props) {
 
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
@@ -73,68 +74,89 @@ export const DatosInicialesScreen = () => {
   };
 
   return (
-    <><Header style={styles.header_Registro_Info_1}></Header>
-      <ScrollView style={styles.container}>
-      <ImageBackground
-        source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
-        resizeMode="cover"
-        style={styles.image}
-        imageStyle={styles.image_imageStyle}
-      >
-        <View style={styles.rect} multiline>
-          <Text style={styles.titulo}>Registro de Incidentes</Text>
-          <Text style={styles.fecha_tag}>Fecha</Text>
-          <View style={styles.fecha2Row}>
-            <Text style={styles.fecha2}>{date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()}</Text>
-            <TouchableOpacity onPress={showDatepicker}>
-              <FontAwesomeIcon
-                name="calendar-times-o"
-                style={styles.icon}
-              ></FontAwesomeIcon></TouchableOpacity>
-          </View>
-          <Text style={styles.hora_tag}>Hora</Text>
-          <View style={styles.hora2Row}>
-            <Text style={styles.hora2}>{date.getHours() + ':' + date.getMinutes()}</Text>
-            <TouchableOpacity onPress={showTimepicker}>
-              <FeatherIcon name="clock" style={styles.icon2}></FeatherIcon>
-            </TouchableOpacity>
-          </View>
-          <Text style={styles.superintendente}>Supeintendente</Text>
-          <TextInput
-            autoFocus
-            placeholder="Ingrese SuperIntendente"
-            style={styles.textInput}
-          ></TextInput>
-          <Text style={styles.supervisores}>Supervisores</Text>
-          <TextInput
-            autoFocus
-            placeholder="Ingrese Supervisores"
-            multiline={true}
-            style={styles.textInput2}
-          ></TextInput>
-          <Text style={styles.operadores}>Operadores</Text>
+    <>
+      <View style={[styles.container1,, props.style]}>
+        <View style={styles.leftWrapper}>
+          <TouchableOpacity style={styles.leftIconButton}
+            onPress={() =>props.navigation.navigate('Home')}
+          >
+            <Icon name="ios-arrow-back" style={styles.leftIcon}
 
-          <TextInput
-            autoFocus
-            placeholder="Ingrese Operadores"
-            multiline={true}
-            onChangeText={(value) => handleChangeText('nombre', value)}
-            style={styles.textInput3}
-          ></TextInput>
-
-
-          {show && (
-            <DateTimePicker
-              testID="dateTimePicker"
-              value={date}
-              mode={mode}
-              is24Hour={true}
-              display="default"
-              onChange={onChange} />
-          )}
+            ></Icon>
+            <Text style={styles.leftText}>Back</Text>
+          </TouchableOpacity>
         </View>
-      </ImageBackground>
-    </ScrollView></>
+        <View style={styles.textWrapper}>
+          <Text numberOfLines={1} style={styles.ingresoDeDatos}>
+            Ingreso de Datos
+          </Text>
+        </View>
+        <View style={styles.rightWrapper}>
+          <TouchableOpacity style={styles.rightIconButton}></TouchableOpacity>
+        </View>
+      </View>
+
+      <ScrollView style={styles.container}>
+        <ImageBackground
+          source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
+          resizeMode="cover"
+          style={styles.image}
+          imageStyle={styles.image_imageStyle}
+        >
+          <View style={styles.rect} multiline>
+            <Text style={styles.titulo}>Registro de Incidentes</Text>
+            <Text style={styles.fecha_tag}>Fecha</Text>
+            <View style={styles.fecha2Row}>
+              <Text style={styles.fecha2}>{date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()}</Text>
+              <TouchableOpacity onPress={showDatepicker}>
+                <FontAwesomeIcon
+                  name="calendar-times-o"
+                  style={styles.icon}
+                ></FontAwesomeIcon></TouchableOpacity>
+            </View>
+            <Text style={styles.hora_tag}>Hora</Text>
+            <View style={styles.hora2Row}>
+              <Text style={styles.hora2}>{date.getHours() + ':' + date.getMinutes()}</Text>
+              <TouchableOpacity onPress={showTimepicker}>
+                <FeatherIcon name="clock" style={styles.icon2}></FeatherIcon>
+              </TouchableOpacity>
+            </View>
+            <Text style={styles.superintendente}>Supeintendente</Text>
+            <TextInput
+              autoFocus
+              placeholder="Ingrese SuperIntendente"
+              style={styles.textInput}
+            ></TextInput>
+            <Text style={styles.supervisores}>Supervisores</Text>
+            <TextInput
+              autoFocus
+              placeholder="Ingrese Supervisores"
+              multiline={true}
+              style={styles.textInput2}
+            ></TextInput>
+            <Text style={styles.operadores}>Operadores</Text>
+
+            <TextInput
+              autoFocus
+              placeholder="Ingrese Operadores"
+              multiline={true}
+              onChangeText={(value) => handleChangeText('nombre', value)}
+              style={styles.textInput3}
+            ></TextInput>
+
+
+            {show && (
+              <DateTimePicker
+                testID="dateTimePicker"
+                value={date}
+                mode={mode}
+                is24Hour={true}
+                display="default"
+                onChange={onChange} />
+            )}
+          </View>
+        </ImageBackground>
+      </ScrollView></>
   );
 }
 

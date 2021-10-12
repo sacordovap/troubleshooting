@@ -4,12 +4,56 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff"
   },
+  container1: {
+    flexDirection: "row",
+    backgroundColor: "rgba(1,123,146,1)",
+    height: 40,
+    paddingRight: 8,
+    paddingLeft: 8
+  },
   header_Registro: {
     height: 39,
     borderWidth: 1,
     borderColor:"rgba(1,123,146,255)",
     backgroundColor: "rgba(1,123,146,255)",
   },
+  leftWrapper: {
+    flex: 0.28,
+    alignItems: "flex-start",
+    justifyContent: "center"
+  },
+  leftIconButton: {
+    flexDirection: "row"
+  },
+  leftIcon: {
+    color: "rgba(255,255,255,255)",
+    fontSize: 23
+  },
+  leftText: {
+    fontSize: 15,
+    color: "rgba(255,255,255,255)",
+    paddingLeft: 5,
+    alignSelf: "center"
+  },
+  textWrapper: {
+    flex: 0.44,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  ingresoDeDatos: {
+    fontSize: 15,
+    fontFamily: "roboto-regular",
+    lineHeight: 17,
+    color:  "rgba(255,255,255,255)",
+    textAlign: "center"
+  },
+  rightWrapper: {
+    flex: 0.28,
+    alignItems: "flex-end",
+    justifyContent: "center"
+  },
+  rightIconButton: {},
+
   image1: {
     width: 360,
     backgroundColor: "rgba(15,15, 15,0.0732)",

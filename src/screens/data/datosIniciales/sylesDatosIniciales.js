@@ -4,6 +4,29 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: "rgba(230, 230, 230,1)"
   },
+  leftWrapper: {
+    flex: 0.28,
+    alignItems: "flex-start",
+    justifyContent: "center"
+  },
+  leftIconButton: {
+    flexDirection: "row"
+  },
+  leftIcon: {
+    color: "rgba(255,255,255,255)",
+    fontSize: 23
+  },
+  leftText: {
+    fontSize: 15,
+    color: "rgba(255,255,255,255)",
+    paddingLeft: 5,
+    alignSelf: "center"
+  },
+  textWrapper: {
+    flex: 0.44,
+    alignItems: "center",
+    justifyContent: "center"
+  },
   header_Registro_Info_1: {
     height: 39,
     borderBottomWidth: 1,
@@ -164,6 +187,55 @@ export default StyleSheet.create({
     borderColor: "rgba(1,123,146,255)",
     marginTop: 15,
     marginLeft: 30
-  }
+  },
+  container1: {
+    flexDirection: "row",
+    backgroundColor: "rgba(1,123,146,1)",
+    height: 40,
+    paddingRight: 8,
+    paddingLeft: 8
+  },
+  header_Registro: {
+    height: 39,
+    borderWidth: 1,
+    borderColor:"rgba(1,123,146,255)",
+    backgroundColor: "rgba(1,123,146,255)",
+  },
+  leftWrapper: {
+    flex: 0.28,
+    alignItems: "flex-start",
+    justifyContent: "center"
+  },
+  leftIconButton: {
+    flexDirection: "row"
+  },
+  leftIcon: {
+    color: "rgba(255,255,255,255)",
+    fontSize: 23
+  },
+  leftText: {
+    fontSize: 15,
+    color: "rgba(255,255,255,255)",
+    paddingLeft: 5,
+    alignSelf: "center"
+  },
+  textWrapper: {
+    flex: 0.44,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  ingresoDeDatos: {
+    fontSize: 15,
+    fontFamily: "roboto-regular",
+    lineHeight: 17,
+    color:  "rgba(255,255,255,255)",
+    textAlign: "center"
+  },
+  rightWrapper: {
+    flex: 0.28,
+    alignItems: "flex-end",
+    justifyContent: "center"
+  },
+  rightIconButton: {}
 });
 
