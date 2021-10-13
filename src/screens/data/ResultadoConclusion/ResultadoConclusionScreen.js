@@ -10,15 +10,14 @@ import {
 } from "react-native";
 import Header from "../../../../components/Header";
 import styles from './styleResultadoConcluciones'
-
+import Icon from "react-native-vector-icons/Ionicons";
 function ResultadoconclusionScreen(props) {
   return (
     <View style={styles.container}>
-      <View style={[styles.container1, props.style]}>
-       <View style={styles.leftWrapper}>
+       <View style={[styles.container1,, props.style]}>
+        <View style={styles.leftWrapper}>
           <TouchableOpacity style={styles.leftIconButton}
-            onPress={() =>
-              props.navigation.navigate('Home')}
+            onPress={() =>props.navigation.navigate('Home')}
           >
             <Icon name="ios-arrow-back" style={styles.leftIcon}
 
@@ -34,7 +33,7 @@ function ResultadoconclusionScreen(props) {
         <View style={styles.rightWrapper}>
           <TouchableOpacity style={styles.rightIconButton}></TouchableOpacity>
         </View>
-    </View>
+      </View>
       <ImageBackground
         source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
         resizeMode="cover"

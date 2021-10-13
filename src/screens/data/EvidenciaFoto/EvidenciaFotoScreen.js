@@ -107,12 +107,13 @@ function EvidenciaFotoScreen(props) {
               <Icon onPress={pickImage}
                 name="upload" style={styles.icon1}></Icon>
             </View>
-            <View style={styles.rect2}>
+            <View style={styles.Foto1}>
               {image && (
                 <Image source={{ uri: image }}
                   style={{
                     width: 164,
-                    height: 106
+                    height: 106,
+                    opacity: 0.9,
                   }} />
               )}</View>
           </View>
@@ -128,7 +129,8 @@ function EvidenciaFotoScreen(props) {
               <Image source={{ uri: image2 }}
                 style={{
                   width: 164,
-                  height: 106,
+                  height: 106,                  
+                  opacity: 0.9,
                 }} />
             )}</View>
           </View>
@@ -198,8 +200,7 @@ const styles = StyleSheet.create({
   fotoTomada: {
     width: 164,
     height: 106,
-    opacity: 0.9,
-    backgroundColor: "#E6E6E6",
+    backgroundColor: "#FFFFFF",
     marginLeft: 27
   },
   image1_imageStyle: {
@@ -229,11 +230,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 8
   },
-  rect2: {
+Foto1: {
     width: 164,
     height: 106,
-    opacity: 0.9,
-    backgroundColor: "#E6E6E6",
+    backgroundColor: "#FFFFFF",
     marginLeft: 27
   },
   titulo1: {

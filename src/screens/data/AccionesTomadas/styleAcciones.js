@@ -9,7 +9,8 @@ export default StyleSheet.create({
     backgroundColor: "rgba(1,123,146,1)",
     height: 40,
     paddingRight: 8,
-    paddingLeft: 8
+    paddingLeft: 8,
+    marginTop:21
   },
   header_Registro: {
     height: 39,

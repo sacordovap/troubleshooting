@@ -11,7 +11,7 @@ import {
 import Header from "../../../../components/Header";
 
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
-
+import Icon from "react-native-vector-icons/Ionicons";
 function DataEquipoScreen(props) {
   const [Horas, setHoras] =useState(0);
   
@@ -21,8 +21,7 @@ function DataEquipoScreen(props) {
        <View style={styles.leftWrapper}>
           <TouchableOpacity style={styles.leftIconButton}
             onPress={() =>
-              props.navigation.navigate('Home')}
-          >
+              props.navigation.navigate('Home')}          >
             <Icon name="ios-arrow-back" style={styles.leftIcon}
 
             ></Icon>
