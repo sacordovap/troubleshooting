@@ -26,18 +26,16 @@ function MyStack() {
     <Stack.Navigator screenOptions={{
       headerShown: false
     }}> 
-<Stack.Screen name="Acciones Tomadas"
-        component={AccionesTomadasScreen} />
+    
 <Stack.Screen name="Resultado Conclusion"
         component={ResultadoConclusion} />
- <Stack.Screen name="Evento Causa"
-        component={EventoCausa} /> 
-
-
+<Stack.Screen name="Acciones Tomadas"
+        component={AccionesTomadasScreen} />
 <Stack.Screen name=" Datos Equipo"
         component={DataEquipo} />
 
-
+ <Stack.Screen name="Evento Causa"
+        component={EventoCausa} /> 
    
  <Stack.Screen name="Login"
         component={Login} />
