@@ -1,13 +1,22 @@
 import React, { Component } from "react";
-import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
+import { 
+  StyleSheet, 
+  View, 
+  TouchableOpacity, 
+  Text,
+  Image,
+  ImageBackground,
+  TextInput } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
 function Header(props) {
   return (
     <View style={[styles.container, props.style]}>
       <View style={styles.leftWrapper}>
-        <TouchableOpacity style={styles.leftIconButton}>
-          <Icon name="ios-arrow-back" style={styles.leftIcon}></Icon>
+        <TouchableOpacity style={styles.leftIconButton}
+        >
+          <Icon name="ios-arrow-back" style={styles.leftIcon}
+          ></Icon>
           <Text style={styles.leftText}>Back</Text>
         </TouchableOpacity>
       </View>
@@ -57,7 +66,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontFamily: "roboto-regular",
     lineHeight: 17,
-    color:  "rgba(255,255,255,255)",
+    color: "rgba(255,255,255,255)",
     textAlign: "center"
   },
   rightWrapper: {

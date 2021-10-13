@@ -1,4 +1,4 @@
-import React, {  useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -7,19 +7,21 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  Platform 
+  Platform,
+  Dimensions
 } from "react-native";
 import Header from "../../../../components/Header";
 import Icon from "react-native-vector-icons/Entypo";
 import BotonGuardarInicial from "../../../../components/BotonGuardarInicial";
 import * as ImagePicker from 'expo-image-picker';
 
+
 function EvidenciaFotoScreen(props) {
   const [image, setImage] = useState(null);
   const [image2, setImage2] = useState(null);
   useEffect(() => {
     (async () => {
-      if (Platform.OS !== 'android') {
+      if (Platform.OS !== 'web') {
         const {
           status,
         } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -34,7 +36,7 @@ function EvidenciaFotoScreen(props) {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [18, 10],
+
       quality: 1,
     });
 
@@ -48,7 +50,7 @@ function EvidenciaFotoScreen(props) {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [18, 10],
+
       quality: 1,
     });
 
@@ -62,7 +64,27 @@ function EvidenciaFotoScreen(props) {
 
   return (
     <View style={styles.container}>
-      <Header style={styles.headerRegistro1}></Header>
+      <View style={[styles.container1, props.style]}>
+        <View style={styles.leftWrapper}>
+          <TouchableOpacity style={styles.leftIconButton}
+            onPress={() =>
+              props.navigation.navigate('Home')}
+          >
+            <Icon name="ios-arrow-back" style={styles.leftIcon}
+
+            ></Icon>
+            <Text style={styles.leftText}>Back</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.textWrapper}>
+          <Text numberOfLines={1} style={styles.ingresoDeDatos}>
+            Ingreso de Datos
+          </Text>
+        </View>
+        <View style={styles.rightWrapper}>
+          <TouchableOpacity style={styles.rightIconButton}></TouchableOpacity>
+        </View>
+      </View>
       <ImageBackground
         source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
         resizeMode="cover"
@@ -78,33 +100,38 @@ function EvidenciaFotoScreen(props) {
           ></TextInput>
           <View style={styles.iconoFoto}>
             <View style={styles.iconStack}>
-              <Icon 
+              <Icon
                 name="camera"
                 style={styles.icon}>
               </Icon>
               <Icon onPress={pickImage}
-              name="upload" style={styles.icon1}></Icon>
+                name="upload" style={styles.icon1}></Icon>
             </View>
-            <View style={styles.rect2}>{image&&(
-            <Image source={{ uri: image }} 
-            style={{  
-              width: 164,
-                height: 106}} />
-            )}</View>
+            <View style={styles.Foto1}>
+              {image && (
+                <Image source={{ uri: image }}
+                  style={{
+                    width: 164,
+                    height: 106,
+                    opacity: 0.9,
+                  }} />
+              )}</View>
           </View>
 
           <View style={styles.fotosConjunto}>
             <View style={styles.iconos}>
-              <Icon  
-              name="camera" style={styles.camera}></Icon>
+              <Icon
+                name="camera" style={styles.camera}></Icon>
               <Icon onPress={pickImage2}
-              name="upload" style={styles.archivos}></Icon>
+                name="upload" style={styles.archivos}></Icon>
             </View>
-            <View style={styles.fotoTomada}>{image2&&(
-            <Image source={{ uri: image2 }} 
-            style={{  
-              width: 164,
-                height: 106,}} />
+            <View style={styles.fotoTomada}>{image2 && (
+              <Image source={{ uri: image2 }}
+                style={{
+                  width: 164,
+                  height: 106,                  
+                  opacity: 0.9,
+                }} />
             )}</View>
           </View>
 
@@ -120,14 +147,16 @@ function EvidenciaFotoScreen(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom:50
-   
+    marginBottom: 50
+
   },
   headerRegistro1: {
     height: 39,
+    marginTop: 21,
     borderBottomWidth: 1,
-    borderColor:  "rgba(1,123,146,1)",
-    backgroundColor: "rgba(1,123,146,1)"
+    borderColor: "rgba(1,123,146,1)",
+    backgroundColor: "rgba(1,123,146,1)",
+
   },
   camera: {
     color: "rgba(128,128,128,0.65)",
@@ -146,7 +175,7 @@ const styles = StyleSheet.create({
     marginTop: 9,
     marginBottom: 9
   },
-  fotosConjunto:{
+  fotosConjunto: {
     height: 106,
     flexDirection: "row",
     marginTop: 25,
@@ -158,8 +187,8 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(15,15, 15,0.0732)",
     height: 679,
     marginTop: 1,
-    paddingBottom:5
-    
+    paddingBottom: 5
+
   },
   iconoFoto: {
     height: 106,
@@ -171,8 +200,7 @@ const styles = StyleSheet.create({
   fotoTomada: {
     width: 164,
     height: 106,
-    opacity: 0.9,
-    backgroundColor: "#E6E6E6",
+    backgroundColor: "#FFFFFF",
     marginLeft: 27
   },
   image1_imageStyle: {
@@ -195,18 +223,17 @@ const styles = StyleSheet.create({
     shadowRadius: 0,
     marginTop: 30,
     marginLeft: 20,
-    marginBottom:5
-  }, 
+    marginBottom: 5
+  },
   iconStack: {
     width: 40,
     marginTop: 10,
     marginBottom: 8
   },
-  rect2: {
+Foto1: {
     width: 164,
     height: 106,
-    opacity: 0.9,
-    backgroundColor: "#E6E6E6",
+    backgroundColor: "#FFFFFF",
     marginLeft: 27
   },
   titulo1: {
@@ -254,11 +281,60 @@ const styles = StyleSheet.create({
   },
   cupertinoButtonSuccess: {
     height: 50,
-    marginLeft:20,
-    marginRight:20,
+    marginLeft: 20,
+    marginRight: 20,
     marginTop: 92,
 
-  }
+  },
+  container1: {
+    flexDirection: "row",
+    backgroundColor: "rgba(1,123,146,1)",
+    height: 40,
+    paddingRight: 8,
+    paddingLeft: 8
+  },
+  header_Registro: {
+    height: 39,
+    borderWidth: 1,
+    borderColor: "rgba(1,123,146,255)",
+    backgroundColor: "rgba(1,123,146,255)",
+  },
+  leftWrapper: {
+    flex: 0.28,
+    alignItems: "flex-start",
+    justifyContent: "center"
+  },
+  leftIconButton: {
+    flexDirection: "row"
+  },
+  leftIcon: {
+    color: "rgba(255,255,255,255)",
+    fontSize: 23
+  },
+  leftText: {
+    fontSize: 15,
+    color: "rgba(255,255,255,255)",
+    paddingLeft: 5,
+    alignSelf: "center"
+  },
+  textWrapper: {
+    flex: 0.44,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  ingresoDeDatos: {
+    fontSize: 15,
+    fontFamily: "roboto-regular",
+    lineHeight: 17,
+    color: "rgba(255,255,255,255)",
+    textAlign: "center"
+  },
+  rightWrapper: {
+    flex: 0.28,
+    alignItems: "flex-end",
+    justifyContent: "center"
+  },
+  rightIconButton: {}
 });
 
 export default EvidenciaFotoScreen;

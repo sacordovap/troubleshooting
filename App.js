@@ -16,10 +16,8 @@ import Login from "./src/screens/Login/Login";
 import DataEquipo from "./src/screens/data/DataEquipo/DataEquipoScreen"
 import EvidenciaFoto from "./src/screens/data/EvidenciaFoto/EvidenciaFotoScreen"
 
-
-
 const Stack = createNativeStackNavigator();
-
+//cannot read  propierties  of undefinied (reading navigate)
 function MyStack() {
   return (
     //Aqui por mientras alternas las plantallas de vista
@@ -40,28 +38,19 @@ function MyStack() {
  <Stack.Screen name="Login"
         component={Login} />
 
-     
-<Stack.Screen name="Datos Iniciales"
-        component={DatosInicialesScreen} />
- 
-       
-    
-<Stack.Screen name="Home"
+      <Stack.Screen name="Evento Causa"
+        component={EventoCausa} />
+
+      <Stack.Screen name="Login"
+        component={Login} />
+      <Stack.Screen name="Home"
         component={HomeScreen}
         options={{ title: 'Home' }} />
-      <Stack.Screen name="Evidencia Foto"
-        component={EvidenciaFoto} />
 
 
-     
-      
-    
-     
-    
     </Stack.Navigator>
   )
 }
-
 export default function App() {
   return (
     <NavigationContainer>
@@ -69,7 +58,6 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
 
 //Esto se debe de importar desde styles
 
