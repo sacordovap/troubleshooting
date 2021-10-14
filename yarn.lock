@@ -5497,6 +5497,11 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   resolved "https://registry.npmjs.org/signal-exit/-/signal-exit-3.0.4.tgz"
   integrity sha512-rqYhcAnZ6d/vTPGghdrw7iumdcbXpsk1b8IG/rz+VWV51DM0p7XCtMoJ3qhPLIbp3tvyt3pKRbaaEMZYpHto8Q==
 
+simple-parallax-js@^5.6.2:
+  version "5.6.2"
+  resolved "https://registry.yarnpkg.com/simple-parallax-js/-/simple-parallax-js-5.6.2.tgz#6515432c9e265d8e5e0f8a6691a8b0d6333b3acb"
+  integrity sha512-qJPZgg37BstDyvNqONU1YffiJ9P5n4B9IPl5h3kzZ2oEinTRwy1syxfEwTMLXYFHAFCRWXUcWD8yBnVcp8nxdA==
+
 simple-plist@^1.0.0, simple-plist@^1.1.0:
   version "1.1.1"
   resolved "https://registry.npmjs.org/simple-plist/-/simple-plist-1.1.1.tgz"
