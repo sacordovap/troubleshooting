@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
   leftWrapper: {
     flex: 0.28,
     alignItems: "flex-start",
-    justifyContent: "center"
+    justifyContent: "center",
+    fontFamily: "Constantia"
   },
   leftIconButton: {
     flexDirection: "row"
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
   },
   ingresoDeDatos: {
     fontSize: 15,
-    fontFamily: "roboto-regular",
+    fontFamily: "Constantia",
     lineHeight: 17,
     color: "rgba(255,255,255,255)",
     textAlign: "center"

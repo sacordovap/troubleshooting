@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 14,
     lineHeight: 10,
+    fontFamily: "Constantia"
   }
 });
 
