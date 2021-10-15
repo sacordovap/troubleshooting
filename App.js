@@ -1,5 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -16,8 +22,47 @@ import Login from "./src/screens/Login/Login";
 import DataEquipo from "./src/screens/data/DataEquipo/DataEquipoScreen"
 import EvidenciaFoto from "./src/screens/data/EvidenciaFoto/EvidenciaFotoScreen"
 
+
+function App() {
+  return (
+    <Router>
+        <Switch>
+          <Route path="/login" exact>
+            <Login/>
+          </Route>
+          <Route path="/datoiniciales" exact>
+            <DatosInicialesScreen/>
+          </Route>
+          <Route path="/equipo" exact>
+            < DataEquipo/>
+          </Route>
+          <Route path="/accionestomadas" exact>
+            <AccionesTomadasScreen/>
+          </Route>
+          <Route path="/eventocausa" exact>
+            <EventoCausa/>
+          </Route>
+          <Route path="/resulatdosconcluciones" exact>
+            <ResultadoConclusion/>
+          </Route>
+          <Route path="/evidencia" exact>
+            <EvidenciaFoto/>
+          </Route>
+        </Switch>
+    </Router>
+  );
+}
+
+
+
+export default App;
+
+/*
 const Stack = createNativeStackNavigator();
 //cannot read  propierties  of undefinied (reading navigate)
+
+
+
 function MyStack() {
   return (
     //Aqui por mientras alternas las plantallas de vista
@@ -57,4 +102,4 @@ export default function App() {
 }
 
 //Esto se debe de importar desde styles
-
+*/
