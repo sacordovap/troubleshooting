@@ -19,7 +19,7 @@ import DatosInicialesScreen from "../datosIniciales/DatosInicialesScreen";
 import EvidenciaFotoScreen from "../EvidenciaFoto/EvidenciaFotoScreen";
 import EventoCausaScreen from "../EventoCausa/EventoCausaScreen";
 import ResultadoconclusionScreen from "../ResultadoConclusion/ResultadoConclusionScreen";
-
+import Registro_form from "../Registro_form/Registro_form";
 
 function DataAgrupada(props) {
   let Horas = 0;

@@ -1583,17 +1583,17 @@
     query-string "^7.0.0"
     react-is "^16.13.0"
 
-"@react-navigation/elements@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.npmjs.org/@react-navigation/elements/-/elements-1.1.2.tgz"
-  integrity sha512-PbPCleC1HpUlXtuP0DFNCNTEhRLd6lmB0KxY0SGRGqCemS3HpG/PajEQ1LDe7S51M03a1tDby1MfKTkNanUXAg==
+"@react-navigation/elements@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@react-navigation/elements/-/elements-1.2.1.tgz#86f19781c6f34a5c9dd25dca99915e0306f477d1"
+  integrity sha512-EnmAbKMsptrliRKf95rdgS6BhMjML+mIns06+G1Vdih6BrEo7/0iytThUv3WBf99AI76dyEq/cqLUwHPiFzXWg==
 
-"@react-navigation/native-stack@^6.2.2":
-  version "6.2.2"
-  resolved "https://registry.npmjs.org/@react-navigation/native-stack/-/native-stack-6.2.2.tgz"
-  integrity sha512-OhWW1R0ZgAnWAvuhPZaBiEuMF13j7+BaNB8KmxQTTjG41EdzUi5yvz5MbHvzLjhF3yJ3qHxr6HjxFRMbugWvjw==
+"@react-navigation/native-stack@^6.2.5":
+  version "6.2.5"
+  resolved "https://registry.yarnpkg.com/@react-navigation/native-stack/-/native-stack-6.2.5.tgz#bfa19516cf434f831e6d4ba28d32b9bc5436d181"
+  integrity sha512-XCtwl4LEr06nzxMG4aXbYfbO/pAjyhGOR3QtBVBq/uGfVGkeK8utKUe925reqd1x099CiEfSJLpgeR2KzzYp+Q==
   dependencies:
-    "@react-navigation/elements" "^1.1.2"
+    "@react-navigation/elements" "^1.2.1"
     warn-once "^0.1.0"
 
 "@react-navigation/native@^6.0.4":
@@ -5107,19 +5107,6 @@ react-refresh@^0.4.0:
   resolved "https://registry.npmjs.org/react-refresh/-/react-refresh-0.4.3.tgz"
   integrity sha512-Hwln1VNuGl/6bVwnd0Xdn1e84gT/8T9aYNL+HAKDArLCS7LWjwr7StE30IEYbIkx0Vi3vs+coQxe+SQDbGbbpA==
 
-react-router-dom@^5.3.0:
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-5.3.0.tgz#da1bfb535a0e89a712a93b97dd76f47ad1f32363"
-  integrity sha512-ObVBLjUZsphUUMVycibxgMdh5jJ1e3o+KpAZBVeHcNQZ4W+uUGGWsokurzlF4YOldQYRQL4y6yFRWM4m3svmuQ==
-  dependencies:
-    "@babel/runtime" "^7.12.13"
-    history "^4.9.0"
-    loose-envify "^1.3.1"
-    prop-types "^15.6.2"
-    react-router "5.2.1"
-    tiny-invariant "^1.0.2"
-    tiny-warning "^1.0.0"
-
 react-router-native@^5.2.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/react-router-native/-/react-router-native-5.2.1.tgz#ea922db8e7e413a45860c167656769a9e5b9720c"
@@ -5523,11 +5510,6 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.4"
   resolved "https://registry.npmjs.org/signal-exit/-/signal-exit-3.0.4.tgz"
   integrity sha512-rqYhcAnZ6d/vTPGghdrw7iumdcbXpsk1b8IG/rz+VWV51DM0p7XCtMoJ3qhPLIbp3tvyt3pKRbaaEMZYpHto8Q==
-
-simple-parallax-js@^5.6.2:
-  version "5.6.2"
-  resolved "https://registry.yarnpkg.com/simple-parallax-js/-/simple-parallax-js-5.6.2.tgz#6515432c9e265d8e5e0f8a6691a8b0d6333b3acb"
-  integrity sha512-qJPZgg37BstDyvNqONU1YffiJ9P5n4B9IPl5h3kzZ2oEinTRwy1syxfEwTMLXYFHAFCRWXUcWD8yBnVcp8nxdA==
 
 simple-plist@^1.0.0, simple-plist@^1.1.0:
   version "1.1.1"

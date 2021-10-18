@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
+import Icon from "react-native-vector-icons/Ionicons";
 
-class DataAgrupada extends React.Component {
-  render() {
+function DataAgrupada(props){
+  
     return (
       <><View style={[styles.container1, props.style]}>
         <View style={styles.leftWrapper}>
@@ -27,7 +28,7 @@ class DataAgrupada extends React.Component {
           <Text>Aqui va el codigo de vista</Text>
         </View></>
     );
-  }
+  
 }
 
 //Esto se debe de importar desde styles
