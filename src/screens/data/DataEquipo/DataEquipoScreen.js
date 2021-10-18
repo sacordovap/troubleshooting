@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     marginLeft: 23
   },
   titulo1: {
-    fontFamily: "roboto-regular",
+    fontFamily: "Constantia",
     color: "#121212",
     fontSize: 24,
     textAlign: "center",
@@ -139,17 +139,17 @@ const styles = StyleSheet.create({
     marginLeft: 39
   },
   equipo: {
-    fontFamily: "roboto-regular",
+    fontFamily: "Constantia",
     color: "#121212",
     height: 13,
     width: 83,
     opacity: 0.6,
-    fontSize: 12,
+    fontSize: 14,
     marginTop: 32,
     marginLeft: 19
   },
   textInput: {
-    fontFamily: "roboto-regular",
+    fontFamily: "Constantia",
     color: "#121212",
     height: 31,
     width: 282,
@@ -159,15 +159,16 @@ const styles = StyleSheet.create({
     marginLeft: 19
   },
   tiempoDeParada: {
-    fontFamily: "roboto-regular",
+    fontFamily: "Constantia",
     color: "#121212",
     lineHeight: 12,
     opacity: 0.6,
     marginTop: 27,
-    marginLeft: 19
+    marginLeft: 19,
+    fontSize: 14,
   },
   textInput2: {
-    fontFamily: "roboto-regular",
+    fontFamily: "Constantia",
     color: "#121212",
     height: 23,
     width: 113,
@@ -190,7 +191,7 @@ const styles = StyleSheet.create({
     marginRight: 75
   },
   detalleDeParada: {
-    fontFamily: "roboto-regular",
+    fontFamily: "Constantia",
     color: "#121212",
     width: 110,
     height: 17,
@@ -200,7 +201,7 @@ const styles = StyleSheet.create({
     marginLeft: 19
   },
   textInput3: {
-    fontFamily: "roboto-regular",
+    fontFamily: "Constantia",
     color: "#121212",
   
     width: 282,
@@ -247,7 +248,7 @@ const styles = StyleSheet.create({
   },
   ingresoDeDatos: {
     fontSize: 15,
-    fontFamily: "roboto-regular",
+    fontFamily: "Constantia",
     lineHeight: 17,
     color:  "rgba(255,255,255,255)",
     textAlign: "center"

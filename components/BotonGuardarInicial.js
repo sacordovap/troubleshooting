@@ -18,10 +18,12 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingLeft: 16,
     paddingRight: 16
+    
   },
   guardarInformacion: {
     color: "#fff",
-    fontSize: 17
+    fontSize: 17,
+    fontFamily: "Constantia"
   }
 });
 

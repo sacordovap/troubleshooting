@@ -237,7 +237,7 @@ Foto1: {
     marginLeft: 27
   },
   titulo1: {
-    fontFamily: "roboto-regular",
+    fontFamily: "Constantia",
     color: "#121212",
     fontSize: 24,
     textAlign: "center",
@@ -248,7 +248,7 @@ Foto1: {
     marginLeft: 39
   },
   evidencias: {
-    fontFamily: "roboto-regular",
+    fontFamily: "Constantia",
     color: "#121212",
     opacity: 0.6,
     fontSize: 12,
@@ -256,7 +256,7 @@ Foto1: {
     marginLeft: 20
   },
   textInput: {
-    fontFamily: "roboto-regular",
+    fontFamily: "Constantia",
     color: "#121212",
     height: 30,
     width: 268,
@@ -324,7 +324,7 @@ Foto1: {
   },
   ingresoDeDatos: {
     fontSize: 15,
-    fontFamily: "roboto-regular",
+    fontFamily: "Constantia",
     lineHeight: 17,
     color: "rgba(255,255,255,255)",
     textAlign: "center"
