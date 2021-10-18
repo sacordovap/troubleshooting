@@ -9,7 +9,10 @@ import {
   TouchableOpacity
 } from "react-native";
 import Header from "../../../../components/Header";
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import Icon from "react-native-vector-icons/Ionicons";
 import styles from './styleEventoCausa'
+
 
 function EventoCausaScreen(props) {
   return (

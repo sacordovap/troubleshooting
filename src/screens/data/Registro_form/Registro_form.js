@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -6,79 +6,95 @@ import {
   ImageBackground,
   Text,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  Button
 } from "react-native";
-import Header from "../../../../components/Header";
 
+import Swiper from "react-native-web-swiper";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import Icon from "react-native-vector-icons/Ionicons";
-function DataEquipoScreen(props) {
-  console.log(props);
-  const [Horas, setHoras] =useState(0);
-  console.log(Horas)
-  
-  return (
-    <View style={styles.container}>
-      <View style={[styles.container1, props.style]}>
-       <View style={styles.leftWrapper}>
-          <TouchableOpacity style={styles.leftIconButton}
-            onPress={() =>
-              props.navigation.navigate('Home')}          >
-            <Icon name="ios-arrow-back" style={styles.leftIcon}
+import DataEquipoScreen from "../DataEquipo/DataEquipoScreen";
+import AccionestomadasScreen from "../AccionesTomadas/AccionesTomadasScreen";
+import DatosInicialesScreen from "../datosIniciales/DatosInicialesScreen";
+import EvidenciaFotoScreen from "../EvidenciaFoto/EvidenciaFotoScreen";
+import EventoCausaScreen from "../EventoCausa/EventoCausaScreen";
+import ResultadoconclusionScreen from "../ResultadoConclusion/ResultadoConclusionScreen";
 
-            ></Icon>
-            <Text style={styles.leftText}>Back</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.textWrapper}>
-          <Text numberOfLines={1} style={styles.ingresoDeDatos}>
-            Ingreso de Datos
-          </Text>
-        </View>
-        <View style={styles.rightWrapper}>
-          <TouchableOpacity style={styles.rightIconButton}></TouchableOpacity>
-        </View>
-    </View>
-      <ImageBackground
-        source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
-        resizeMode="cover"
-        style={styles.image1}
-        imageStyle={styles.image1_imageStyle}
-      >
-        <View style={styles.contenedorDatos1}>
-          <Text style={styles.titulo1}>Registro de Incidentes</Text>
-          <Text style={styles.equipo}>Equipo</Text>
-          <TextInput
-            placeholder="Ingrese Equipo"
-            style={styles.textInput}
-          ></TextInput>
-          <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
-          <View style={styles.textInput2Row}>
-            <Text style={styles.textInput2}>{Horas} Horas</Text>
-            <TouchableOpacity onPress={()=>setHoras(Horas-1)}>
-              <FontAwesomeIcon
-                name="minus"
-                style={styles.icon}
-              ></FontAwesomeIcon></TouchableOpacity>
-            <TouchableOpacity  onPress={()=>setHoras(Horas+1)}>
-              <FontAwesomeIcon
-                name="plus"
-                style={styles.icon}
-              ></FontAwesomeIcon></TouchableOpacity>
+
+function DataAgrupada(props) {
+  let Horas = 0;
+  /*const [Horas, setHoras] = useState(0);*/
+  console.log(Horas)
+  /*useEffect(() => {
+   
+  },[hora] )
+  */
+
+  function disminuirHoras() {
+    if (Horas === 0) {
+      Horas = 0
+    }
+    else setHora(Horas - 1)
+    console.log(Horas)
+  }
+  function aumentarHoras() {
+    setHora(Horas + 1)
+    console.log(Horas)
+  }
+
+
+
+  return (
+    <View style={{ flex: 1, marginTop:21 }}>
+      <View style={{ flex: 1 }}>
+        <Swiper
+          from={1}
+          minDistanceForAction={0.1}
+          controlsProps={{
+            dotsTouchable: true,
+            prevPos: 'left',
+            nextPos: 'right',
+            nextTitle: '>',
+            nextTitleStyle: { color: 'red', fontSize: 24, fontWeight: '500' },
+            PrevComponent: ({ onPress }) => (
+              <TouchableOpacity onPress={onPress}>
+                <Text style={{ color: 'white', fontSize: 24, fontWeight: '500' }}>
+                  {'<'}
+                </Text>
+              </TouchableOpacity>
+            ),
+          }}
+        >
+          <View style={{ flex: 1, alignItems: "center", justifyContent: "center"}}>
+            <DatosInicialesScreen />
           </View>
-          <Text style={styles.detalleDeParada}>Detalle de Parada</Text>
-          <TextInput
-            placeholder="Ingrese Detalles"
-            multiline={true}
-            autoFocus={true}
-            selectTextOnFocus={true}
-            disableFullscreenUI={true}
-            style={styles.textInput3}
-          ></TextInput>
-        </View>
-      </ImageBackground>
+
+          <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+            <DataEquipoScreen />
+          </View>
+
+          <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+            <EventoCausaScreen />
+          </View>
+
+          <View style={{ flex: 1, alignItems: "center", justifyContent: "center"}}>
+            <AccionestomadasScreen />
+          </View>
+          <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+            <ResultadoconclusionScreen />
+          </View>
+          <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+            <EvidenciaFotoScreen />
+          </View>
+
+
+
+        </Swiper>
+      </View>
+
     </View>
-  );
+  )
+
 }
 
 const styles = StyleSheet.create({
@@ -89,7 +105,7 @@ const styles = StyleSheet.create({
   header_Registro: {
     height: 39,
     borderWidth: 1,
-    borderColor:"rgba(1,123,146,255)",
+    borderColor: "rgba(1,123,146,255)",
     backgroundColor: "rgba(1,123,146,255)",
   },
   image1: {
@@ -108,7 +124,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(197,196,196,1)",
     borderRadius: 36,
-    shadowColor:"rgba(1,123,146,255)",
+    shadowColor: "rgba(1,123,146,255)",
     shadowOffset: {
       width: 0,
       height: 3
@@ -202,10 +218,10 @@ const styles = StyleSheet.create({
   textInput3: {
     fontFamily: "roboto-regular",
     color: "#121212",
-  
+
     width: 282,
     borderBottomWidth: 1,
-    borderColor:"rgba(1,123,146,255)",
+    borderColor: "rgba(1,123,146,255)",
     marginTop: 12,
     marginLeft: 19
   },
@@ -219,7 +235,7 @@ const styles = StyleSheet.create({
   header_Registro: {
     height: 39,
     borderWidth: 1,
-    borderColor:"rgba(1,123,146,255)",
+    borderColor: "rgba(1,123,146,255)",
     backgroundColor: "rgba(1,123,146,255)",
   },
   leftWrapper: {
@@ -249,7 +265,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontFamily: "roboto-regular",
     lineHeight: 17,
-    color:  "rgba(255,255,255,255)",
+    color: "rgba(255,255,255,255)",
     textAlign: "center"
   },
   rightWrapper: {
@@ -260,4 +276,4 @@ const styles = StyleSheet.create({
   rightIconButton: {}
 });
 
-export default DataEquipoScreen;
+export default DataAgrupada;

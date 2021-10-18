@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { StyleSheet, TouchableOpacity, Text } from "react-native";
 
 function BotonIniciarSesion(props) {
+  console.log(props)
   return (
-    <TouchableOpacity style={[styles.container, props.style]}>
+    <TouchableOpacity style={[styles.container, props.style]}  onPress={() =>
+              props.navigation.navigate('Home')}>
       <Text style={styles.iniciarSesion}>Iniciar Sesión</Text>
     </TouchableOpacity>
   );

@@ -19,7 +19,7 @@ function Login(props) {
           style={styles.background1}
           imageStyle={styles.background1_imageStyle}
         >
-          <BotonIniciarSesion
+          <BotonIniciarSesion 
             style={styles.boton_iniciar}
           ></BotonIniciarSesion>
         </ImageBackground>

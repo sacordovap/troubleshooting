@@ -15,6 +15,7 @@ import EventoCausa from "./src/screens/data/EventoCausa/EventoCausaScreen";
 import Login from "./src/screens/Login/Login";
 import DataEquipo from "./src/screens/data/DataEquipo/DataEquipoScreen"
 import EvidenciaFoto from "./src/screens/data/EvidenciaFoto/EvidenciaFotoScreen"
+import DataAgrupada from "./src/screens/data/Reporte/DataAgrupada"
 
 const Stack = createNativeStackNavigator();
 //cannot read  propierties  of undefinied (reading navigate)
@@ -24,7 +25,11 @@ function MyStack() {
     <Stack.Navigator screenOptions={{
       headerShown: false
     }}>
- <Stack.Screen name="Evidencia Foto"
+<Stack.Screen name=" DataAgrupada"
+        component={DataAgrupada} />
+      <Stack.Screen name=" Datos Equipo"
+        component={DataEquipo} />  
+      <Stack.Screen name="Evidencia Foto"
         component={EvidenciaFoto} />
       <Stack.Screen name="Acciones Tomadas"
         component={AccionesTomadasScreen} />
@@ -32,23 +37,18 @@ function MyStack() {
         component={DatosInicialesScreen} />
       <Stack.Screen name="Resultado Conclusion"
         component={ResultadoConclusion} />
-      <Stack.Screen name=" Datos Equipo"
-        component={DataEquipo} />
-
-
-     
 
 
 
       <Stack.Screen name="Evento Causa"
         component={EventoCausa} />
 
-      <Stack.Screen name="Login"
-        component={Login} />
+
       <Stack.Screen name="Home"
         component={HomeScreen}
         options={{ title: 'Home' }} />
-
+      <Stack.Screen name="Login"
+        component={Login} />
 
     </Stack.Navigator>
   )
