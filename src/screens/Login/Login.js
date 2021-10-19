@@ -4,7 +4,8 @@ import {
   View,
   Image,
   ImageBackground,
-  TextInput
+  TextInput,
+  Button
 } from "react-native";
 import BotonIniciarSesion from "../../../components/BotonIniciarSesion";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
@@ -19,9 +20,11 @@ function Login(props) {
           style={styles.background1}
           imageStyle={styles.background1_imageStyle}
         >
-          <BotonIniciarSesion 
-            style={styles.boton_iniciar}
+          <BotonIniciarSesion style={styles.boton_iniciar} 
           ></BotonIniciarSesion>
+          <Button style={styles.boton_iniciar}  
+        onPress={() =>
+          props.navigation.navigate('Home')}></Button>
         </ImageBackground>
         <View style={styles.rect}>
           <View style={styles.textInputStack}>

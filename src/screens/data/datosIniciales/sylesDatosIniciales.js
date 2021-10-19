@@ -149,7 +149,6 @@ export default StyleSheet.create({
   textInput: {
     fontFamily: "Constantia",
     color: "#121212",
-    height: 36,
     width: 263,
     borderBottomWidth: 1,
     borderColor: "rgba(1,123,146,255)",
@@ -191,7 +190,6 @@ export default StyleSheet.create({
   container1: {
     flexDirection: "row",
     backgroundColor: "rgba(1,123,146,1)",
-    marginTop:21,
     height: 40,
     paddingRight: 8,
     paddingLeft: 8

@@ -26,7 +26,7 @@ function DatosInicialesScreen (props) {
   const [show, setShow] = useState(false);
   const [text, setText] = useState('');
   const [horas, setHoras] = useState('');
-
+  console.log(props)
   const [operadores, setOperadores] = useState('');
 
   /*const onChange = (event, selectedDate) => {
@@ -107,7 +107,9 @@ function DatosInicialesScreen (props) {
             <Text style={styles.titulo}>Registro de Incidentes</Text>
             <Text style={styles.fecha_tag}>Fecha</Text>
             <View style={styles.fecha2Row}>
-              <Text style={styles.fecha2}>{date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()}</Text>
+              <Text style={styles.fecha2}>
+                {props.formulario.fecha=date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()}
+              </Text>
               <TouchableOpacity onPress={showDatepicker}>
                 <FontAwesomeIcon
                   name="calendar-times-o"
@@ -116,28 +118,27 @@ function DatosInicialesScreen (props) {
             </View>
             <Text style={styles.hora_tag}>Hora</Text>
             <View style={styles.hora2Row}>
-              <Text style={styles.hora2}>{date.getHours() + ':' + date.getMinutes()}</Text>
+              <Text style={styles.hora2}>
+                {props.formulario.hora=date.getHours() + ':' + date.getMinutes()}
+                </Text>
               <TouchableOpacity onPress={showTimepicker}>
                 <FeatherIcon name="clock" style={styles.icon2}></FeatherIcon>
               </TouchableOpacity>
             </View>
             <Text style={styles.superintendente}>Supeintendente</Text>
             <TextInput
-              autoFocus
+             multiline={true}
               placeholder="Ingrese SuperIntendente"
               style={styles.textInput}
             ></TextInput>
             <Text style={styles.supervisores}>Supervisores</Text>
             <TextInput
-              autoFocus
               placeholder="Ingrese Supervisores"
               multiline={true}
               style={styles.textInput2}
             ></TextInput>
             <Text style={styles.operadores}>Operadores</Text>
-
             <TextInput
-              autoFocus
               placeholder="Ingrese Operadores"
               multiline={true}
               onChangeText={(value) => handleChangeText('nombre', value)}

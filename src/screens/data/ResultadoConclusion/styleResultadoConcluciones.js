@@ -22,7 +22,6 @@ export default StyleSheet.create({
   resultados: {
     fontFamily: "Constantia",
     color: "#121212",
-    height: 13,
     width: 83,
     opacity: 0.6,
     fontSize: 15,
@@ -31,9 +30,8 @@ export default StyleSheet.create({
   },
  
   concluciones: {
-    fontFamily: "Constantia",
+    fontFamily: "Arial",
     color: "#121212",
-    height: 13,
     width: 83,
     opacity: 0.6,
     fontSize: 15,

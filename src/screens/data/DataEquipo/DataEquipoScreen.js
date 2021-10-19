@@ -6,7 +6,8 @@ import {
   ImageBackground,
   Text,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView
 } from "react-native";
 import Header from "../../../../components/Header";
 
@@ -14,70 +15,84 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import Icon from "react-native-vector-icons/Ionicons";
 function DataEquipoScreen(props) {
   console.log(props);
-  const [Horas, setHoras] =useState(0);
-  console.log(Horas)
-  
-  return (
-    <View style={styles.container}>
-      <View style={[styles.container1, props.style]}>
-       <View style={styles.leftWrapper}>
-          <TouchableOpacity style={styles.leftIconButton}
-            onPress={() =>
-              props.navigation.navigate('Home')}          >
-            <Icon name="ios-arrow-back" style={styles.leftIcon}
+  const [Horas, setHoras] = useState(0);
+  const initialState={ 
+    equipo: '',
+    tiempoParada: '',
+    detalleParada: '',
+}
 
-            ></Icon>
-            <Text style={styles.leftText}>Back</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.textWrapper}>
-          <Text numberOfLines={1} style={styles.ingresoDeDatos}>
-            Ingreso de Datos
-          </Text>
-        </View>
-        <View style={styles.rightWrapper}>
-          <TouchableOpacity style={styles.rightIconButton}></TouchableOpacity>
-        </View>
-    </View>
-      <ImageBackground
-        source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
-        resizeMode="cover"
-        style={styles.image1}
-        imageStyle={styles.image1_imageStyle}
-      >
-        <View style={styles.contenedorDatos1}>
-          <Text style={styles.titulo1}>Registro de Incidentes</Text>
-          <Text style={styles.equipo}>Equipo</Text>
-          <TextInput
-            placeholder="Ingrese Equipo"
-            style={styles.textInput}
-          ></TextInput>
-          <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
-          <View style={styles.textInput2Row}>
-            <Text style={styles.textInput2}>{Horas} Horas</Text>
-            <TouchableOpacity onPress={()=>setHoras(Horas-1)}>
-              <FontAwesomeIcon
-                name="minus"
-                style={styles.icon}
-              ></FontAwesomeIcon></TouchableOpacity>
-            <TouchableOpacity  onPress={()=>setHoras(Horas+1)}>
-              <FontAwesomeIcon
-                name="plus"
-                style={styles.icon}
-              ></FontAwesomeIcon></TouchableOpacity>
+const [equipo, setEquipo] = useState(initialState);
+console.log(equipo.equipo);
+  const handleChangeText = (nombre, value) => {
+    setEquipo({ ...equipo, [nombre]: value })
+    
+    props.formulario.detalleParada=equipo.detalleParada;
+};
+  return (
+
+    <><View style={[styles.container1, props.style]}>
+      <View style={styles.leftWrapper}>
+        <TouchableOpacity style={styles.leftIconButton}
+          onPress={() => props.navigation.navigate('Home')}>
+          <Icon name="ios-arrow-back" style={styles.leftIcon}
+
+          ></Icon>
+          <Text style={styles.leftText}>Back</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.textWrapper}>
+        <Text numberOfLines={1} style={styles.ingresoDeDatos}>
+          Ingreso de Datos
+        </Text>
+      </View>
+      <View style={styles.rightWrapper}>
+        <TouchableOpacity style={styles.rightIconButton}></TouchableOpacity>
+      </View>
+    </View><ScrollView style={styles.container}>
+        <ImageBackground
+          source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
+          resizeMode="cover"
+          style={styles.image1}
+          imageStyle={styles.image1_imageStyle}
+        >
+          <View style={styles.contenedorDatos1}>
+            <Text style={styles.titulo1}>Registro de Incidentes</Text>
+            <Text style={styles.equipo}>Equipo</Text>
+            <TextInput
+              placeholder="Ingrese Equipo"
+              style={styles.textInput}
+              onChangeText={(value)=>handleChangeText('equipo', value)}
+            ></TextInput>
+            <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
+            <View style={styles.textInput2Row}>
+              <Text style={styles.textInput2} 
+              onChangeText={(value)=>handleChangeText('tiempoParada', value)} 
+              >{props.formulario.tiempoParada=Horas} Horas</Text>
+              <TouchableOpacity onPress={() => setHoras(Horas - 1)}>
+                <FontAwesomeIcon
+                  name="minus"
+                  style={styles.icon}
+                ></FontAwesomeIcon></TouchableOpacity>
+              <TouchableOpacity onPress={() => setHoras(Horas + 1)}>
+                <FontAwesomeIcon
+                  name="plus"
+                  style={styles.icon}
+                ></FontAwesomeIcon></TouchableOpacity>
+            </View>
+            <Text style={styles.detalleDeParada}>Detalle de Parada</Text>
+            <TextInput
+              placeholder="Ingrese Detalles"
+              onChangeText={(value)=>handleChangeText('detalleParada', value)}
+              multiline={true}
+              selectTextOnFocus={true}
+              
+              disableFullscreenUI={true}
+              style={styles.textInput3}
+            >{props.formulario.equipo=equipo.equipo}</TextInput>
           </View>
-          <Text style={styles.detalleDeParada}>Detalle de Parada</Text>
-          <TextInput
-            placeholder="Ingrese Detalles"
-            multiline={true}
-            autoFocus={true}
-            selectTextOnFocus={true}
-            disableFullscreenUI={true}
-            style={styles.textInput3}
-          ></TextInput>
-        </View>
-      </ImageBackground>
-    </View>
+        </ImageBackground>
+      </ScrollView></>
   );
 }
 
@@ -89,7 +104,7 @@ const styles = StyleSheet.create({
   header_Registro: {
     height: 39,
     borderWidth: 1,
-    borderColor:"rgba(1,123,146,255)",
+    borderColor: "rgba(1,123,146,255)",
     backgroundColor: "rgba(1,123,146,255)",
   },
   image1: {
@@ -108,7 +123,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(197,196,196,1)",
     borderRadius: 36,
-    shadowColor:"rgba(1,123,146,255)",
+    shadowColor: "rgba(1,123,146,255)",
     shadowOffset: {
       width: 0,
       height: 3
@@ -141,7 +156,6 @@ const styles = StyleSheet.create({
   equipo: {
     fontFamily: "Constantia",
     color: "#121212",
-    height: 13,
     width: 83,
     opacity: 0.6,
     fontSize: 14,
@@ -151,7 +165,6 @@ const styles = StyleSheet.create({
   textInput: {
     fontFamily: "Constantia",
     color: "#121212",
-    height: 31,
     width: 282,
     borderBottomWidth: 1,
     borderColor: "rgba(1,123,146,255)",
@@ -161,9 +174,8 @@ const styles = StyleSheet.create({
   tiempoDeParada: {
     fontFamily: "Constantia",
     color: "#121212",
-    lineHeight: 12,
     opacity: 0.6,
-    marginTop: 27,
+    marginTop: 30,
     marginLeft: 19,
     fontSize: 14,
   },
@@ -195,7 +207,7 @@ const styles = StyleSheet.create({
     color: "#121212",
     width: 110,
     height: 17,
-    fontSize: 12,
+    fontSize: 14,
     opacity: 0.6,
     marginTop: 18,
     marginLeft: 19
@@ -203,10 +215,10 @@ const styles = StyleSheet.create({
   textInput3: {
     fontFamily: "Constantia",
     color: "#121212",
-  
+
     width: 282,
     borderBottomWidth: 1,
-    borderColor:"rgba(1,123,146,255)",
+    borderColor: "rgba(1,123,146,255)",
     marginTop: 12,
     marginLeft: 19
   },
@@ -220,7 +232,7 @@ const styles = StyleSheet.create({
   header_Registro: {
     height: 39,
     borderWidth: 1,
-    borderColor:"rgba(1,123,146,255)",
+    borderColor: "rgba(1,123,146,255)",
     backgroundColor: "rgba(1,123,146,255)",
   },
   leftWrapper: {
@@ -250,7 +262,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontFamily: "Constantia",
     lineHeight: 17,
-    color:  "rgba(255,255,255,255)",
+    color: "rgba(255,255,255,255)",
     textAlign: "center"
   },
   rightWrapper: {

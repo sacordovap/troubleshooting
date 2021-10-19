@@ -11,7 +11,7 @@
     "@expo/android-manifest": "^0.2.5",
     "@react-native-community/datetimepicker": "3.5.2",
     "@react-native-community/masked-view": "0.1.10",
-    "@react-navigation/native": "^6.0.4",
+    "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
     "@react-navigation/stack": "5.9.0",
     "expo": "~42.0.1",
@@ -35,6 +35,7 @@
     "react-native-screens": "~3.4.0",
     "react-native-sideswipe": "^1.5.0",
     "react-native-step-indicator": "^1.0.3",
+    "react-native-swiper": "^1.6.0",
     "react-native-web": "~0.13.12",
     "react-native-web-swiper": "^2.2.1",
     "react-router-native": "^5.2.1"

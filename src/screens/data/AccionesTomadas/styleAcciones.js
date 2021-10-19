@@ -10,7 +10,6 @@ export default StyleSheet.create({
     height: 40,
     paddingRight: 8,
     paddingLeft: 8,
-    marginTop:21
   },
   header_Registro: {
     height: 39,

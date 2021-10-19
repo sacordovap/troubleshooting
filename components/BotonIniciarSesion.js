@@ -4,12 +4,11 @@ import { StyleSheet, TouchableOpacity, Text } from "react-native";
 function BotonIniciarSesion(props) {
   console.log(props)
   return (
-    <TouchableOpacity style={[styles.container, props.style]}  onPress={() =>
-              props.navigation.navigate('Home')}>
+    <TouchableOpacity style={[styles.container, props.style]}  >
       <Text style={styles.iniciarSesion}>Iniciar Sesión</Text>
     </TouchableOpacity>
   );
-}
+} 
 
 const styles = StyleSheet.create({
   container: {

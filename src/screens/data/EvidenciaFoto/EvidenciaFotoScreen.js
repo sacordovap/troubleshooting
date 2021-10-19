@@ -8,13 +8,14 @@ import {
   TextInput,
   TouchableOpacity,
   Platform,
-  Dimensions
+  Dimensions,
+  ScrollView
 } from "react-native";
 import Header from "../../../../components/Header";
 import Icon from "react-native-vector-icons/Entypo";
 import BotonGuardarInicial from "../../../../components/BotonGuardarInicial";
 import * as ImagePicker from 'expo-image-picker';
-
+import Icons from "react-native-vector-icons/Ionicons";
 
 function EvidenciaFotoScreen(props) {
   const [image, setImage] = useState(null);
@@ -63,91 +64,89 @@ function EvidenciaFotoScreen(props) {
 
 
   return (
-    <View style={styles.container}>
-      <View style={[styles.container1, props.style]}>
-        <View style={styles.leftWrapper}>
-          <TouchableOpacity style={styles.leftIconButton}
-            onPress={() =>
-              props.navigation.navigate('Home')}
-          >
-            <Icon name="ios-arrow-back" style={styles.leftIcon}
+    
+      <><View style={[styles.container1, props.style]}>
+      <View style={styles.leftWrapper}>
+        <TouchableOpacity style={styles.leftIconButton}
+          onPress={() => props.navigation.navigate('Home')}
+        >
+          <Icons name="ios-arrow-back" style={styles.leftIcon}
 
-            ></Icon>
-            <Text style={styles.leftText}>Back</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.textWrapper}>
-          <Text numberOfLines={1} style={styles.ingresoDeDatos}>
-            Ingreso de Datos
-          </Text>
-        </View>
-        <View style={styles.rightWrapper}>
-          <TouchableOpacity style={styles.rightIconButton}></TouchableOpacity>
-        </View>
+          ></Icons>
+          <Text style={styles.leftText}>Back</Text>
+        </TouchableOpacity>
       </View>
-      <ImageBackground
-        source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
-        resizeMode="cover"
-        style={styles.image1}
-        imageStyle={styles.image1_imageStyle}
-      >
-        <View style={styles.rect}>
-          <Text style={styles.titulo1}>Registro de Incidentes</Text>
-          <Text style={styles.evidencias}>Evidencias</Text>
-          <TextInput
-            placeholder="Detalles de las Evidencias"
-            style={styles.textInput}
-          ></TextInput>
-          <View style={styles.iconoFoto}>
-            <View style={styles.iconStack}>
-              <Icon
-                name="camera"
-                style={styles.icon}>
-              </Icon>
-              <Icon onPress={pickImage}
-                name="upload" style={styles.icon1}></Icon>
+      <View style={styles.textWrapper}>
+        <Text numberOfLines={1} style={styles.ingresoDeDatos}>
+          Ingreso de Datos
+        </Text>
+      </View>
+      <View style={styles.rightWrapper}>
+        <TouchableOpacity style={styles.rightIconButton}></TouchableOpacity>
+      </View>
+    </View><ScrollView style={styles.container}>
+        <ImageBackground
+          source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
+          resizeMode="cover"
+          style={styles.image1}
+          imageStyle={styles.image1_imageStyle}
+        >
+          <View style={styles.rect}>
+            <Text style={styles.titulo1}>Registro de Incidentes</Text>
+            <Text style={styles.evidencias}>Evidencias</Text>
+            <TextInput
+              placeholder="Detalles de las Evidencias"
+              style={styles.textInput}
+            ></TextInput>
+            <View style={styles.iconoFoto}>
+              <View style={styles.iconStack}>
+                <Icon
+                  name="camera"
+                  style={styles.icon}>
+                </Icon>
+                <Icon onPress={pickImage}
+                  name="upload" style={styles.icon1}></Icon>
+              </View>
+              <View style={styles.Foto1}>
+                {image && (
+                  <Image source={{ uri: image }}
+                    style={{
+                      width: 164,
+                      height: 106,
+                      opacity: 0.9,
+                    }} />
+                )}</View>
             </View>
-            <View style={styles.Foto1}>
-              {image && (
-                <Image source={{ uri: image }}
+
+            <View style={styles.fotosConjunto}>
+              <View style={styles.iconos}>
+                <Icon
+                  name="camera" style={styles.camera}></Icon>
+                <Icon onPress={pickImage2}
+                  name="upload" style={styles.archivos}></Icon>
+              </View>
+              <View style={styles.fotoTomada}>{image2 && (
+                <Image source={{ uri: image2 }}
                   style={{
                     width: 164,
                     height: 106,
                     opacity: 0.9,
                   }} />
               )}</View>
-          </View>
-
-          <View style={styles.fotosConjunto}>
-            <View style={styles.iconos}>
-              <Icon
-                name="camera" style={styles.camera}></Icon>
-              <Icon onPress={pickImage2}
-                name="upload" style={styles.archivos}></Icon>
             </View>
-            <View style={styles.fotoTomada}>{image2 && (
-              <Image source={{ uri: image2 }}
-                style={{
-                  width: 164,
-                  height: 106,                  
-                  opacity: 0.9,
-                }} />
-            )}</View>
-          </View>
 
-          <BotonGuardarInicial
-            style={styles.cupertinoButtonSuccess}
-          ></BotonGuardarInicial>
-        </View>
-      </ImageBackground>
-    </View>
+            <BotonGuardarInicial
+              style={styles.cupertinoButtonSuccess}
+            ></BotonGuardarInicial>
+          </View>
+        </ImageBackground>
+      </ScrollView></>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom: 50
 
   },
   headerRegistro1: {
