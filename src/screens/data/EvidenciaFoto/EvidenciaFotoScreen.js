@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Platform,
   Dimensions,
+  Button,
   ScrollView
 } from "react-native";
 import Header from "../../../../components/Header";
@@ -16,6 +17,7 @@ import Icon from "react-native-vector-icons/Entypo";
 import BotonGuardarInicial from "../../../../components/BotonGuardarInicial";
 import * as ImagePicker from 'expo-image-picker';
 import Icons from "react-native-vector-icons/Ionicons";
+import { Link } from "react-router-native";
 
 function EvidenciaFotoScreen(props) {
   const [image, setImage] = useState(null);
@@ -37,7 +39,6 @@ function EvidenciaFotoScreen(props) {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-
       quality: 1,
     });
 
@@ -62,10 +63,46 @@ function EvidenciaFotoScreen(props) {
     }
   };
 
+  const initialState = {
+    evidenciaDetalle: ''
+  }
+
+  const [evidencia, setEvidencia] = useState(initialState);
+
+  const handleChangeText = (nombre, value) => {
+    setEvidencia({ ...evidencia, [nombre]: value })
+    // props.formulario.equipo=equipo.equipo
+    // props.formulario.detalleParada=equipo.detalleParada;
+    props.formulario.evidenciaDetalle = evidencia.evidenciaDetalle
+  };
+  console.log(props)
+
+  const [data, setData] = useState({
+    fecha: props.formulario.fecha,
+    hora: '',
+    superintendente: '',
+    supervisores: '',
+    operadores: '',
+    equipo: '',
+    tiempoParada: '',
+    detalleParada: '',
+    evento: '',
+    causa: '',
+    accionesTomadas: '', 
+    resultado: '',
+    conclusiones: '',
+    evidenciaDetalle: '',
+  })
+
+
+const consola =()=>{
+  console.log("s")
+}
+
 
   return (
-    
-      <><View style={[styles.container1, props.style]}>
+
+    <><View style={[styles.container1, props.style]}>
       <View style={styles.leftWrapper}>
         <TouchableOpacity style={styles.leftIconButton}
           onPress={() => props.navigation.navigate('Home')}
@@ -96,6 +133,7 @@ function EvidenciaFotoScreen(props) {
             <Text style={styles.evidencias}>Evidencias</Text>
             <TextInput
               placeholder="Detalles de las Evidencias"
+              onChangeText={(value) => handleChangeText('evidenciaDetalle', value)}
               style={styles.textInput}
             ></TextInput>
             <View style={styles.iconoFoto}>
@@ -135,9 +173,12 @@ function EvidenciaFotoScreen(props) {
               )}</View>
             </View>
 
+              
+            <Link to="/preview" data={data}><Text>Enviar</Text>
+            </Link>
             <BotonGuardarInicial
-              style={styles.cupertinoButtonSuccess}
-            ></BotonGuardarInicial>
+                style={styles.cupertinoButtonSuccess}
+              ></BotonGuardarInicial>
           </View>
         </ImageBackground>
       </ScrollView></>
@@ -148,6 +189,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
 
+  },
+
+  containerButton: {
+    backgroundColor: "rgba(1,123,146,1)",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    borderRadius: 5,
+    paddingLeft: 16,
+    paddingRight: 16
+
+  },
+  guardarInformacion: {
+    color: "#fff",
+    fontSize: 17,
+    fontFamily: "Constantia"
   },
   headerRegistro1: {
     height: 39,
@@ -229,7 +286,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 8
   },
-Foto1: {
+  Foto1: {
     width: 164,
     height: 106,
     backgroundColor: "#FFFFFF",

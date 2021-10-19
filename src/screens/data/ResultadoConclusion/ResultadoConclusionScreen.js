@@ -12,9 +12,29 @@ import {
 import Header from "../../../../components/Header";
 import styles from './styleResultadoConcluciones'
 import Icon from "react-native-vector-icons/Ionicons";
-function ResultadoconclusionScreen(props) {
-  return (
 
+function ResultadoconclusionScreen(props) {
+
+  const initialState = {
+    resultado: '',
+    conclusiones: ''
+  }
+
+  const [resultadoConclusion, setResultadoConclusion] = useState(initialState);
+
+  const handleChangeText = (nombre, value) => {
+    setResultadoConclusion({ ...resultadoConclusion, [nombre]: value })
+    // props.formulario.equipo=equipo.equipo
+    // props.formulario.detalleParada=equipo.detalleParada;
+    props.formulario.resultado = resultadoConclusion.resultado
+    props.formulario.conclusiones = resultadoConclusion.conclusiones
+  };
+
+  console.log(props)
+   
+
+
+  return(
     <><View style={[styles.container1, , props.style]}>
       <View style={styles.leftWrapper}>
         <TouchableOpacity style={styles.leftIconButton}
@@ -45,11 +65,14 @@ function ResultadoconclusionScreen(props) {
             <Text style={styles.resultados}>Resultados</Text>
             <TextInput
               placeholder="Ingrese Detalles"
+              onChangeText={(value)=>handleChangeText('resultado', value)}
               style={styles.textInput}
             ></TextInput>
-            <Text style={styles.concluciones}>Concluciones</Text>
+            <Text style={styles.concluciones}>Conclusiones</Text>
             <TextInput
               placeholder="Ingrese Detalles"
+          
+              onChangeText={(value)=>handleChangeText('conclusiones', value)}
               style={styles.textInput}
             ></TextInput>
           </View>

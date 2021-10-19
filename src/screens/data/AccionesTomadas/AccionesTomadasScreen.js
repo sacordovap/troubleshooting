@@ -12,8 +12,29 @@ import {
 import Header from "../../../../components/Header";
 import styles from './styleAcciones'
 import Icon from "react-native-vector-icons/Ionicons";
+
 function AccionestomadasScreen(props) {
+
+  const initialState={ 
+    accionesTomadas: '',
+}
+
+const [accionesTomadas, setAccionesTomadas] = useState(initialState);
+console.log(props)
+  const handleChangeText = (nombre, value) => {
+    setAccionesTomadas({ ...accionesTomadas, [nombre]: value })
+   // props.formulario.equipo=equipo.equipo
+   // props.formulario.detalleParada=equipo.detalleParada;
+   
+ props.formulario.accionesTomadas=accionesTomadas.accionesTomadas
+};
+
+
+
+
+
   return (    
+
       <><View style={[styles.container1, props.style]}>
       <View style={styles.leftWrapper}>
         <TouchableOpacity style={styles.leftIconButton}
@@ -46,6 +67,7 @@ function AccionestomadasScreen(props) {
             <TextInput
               placeholder="Ingrese Detalles"
               multiline={true}
+              onChangeText={(value)=>handleChangeText('accionesTomadas', value)}
               style={styles.textInput}
             ></TextInput>
           </View>

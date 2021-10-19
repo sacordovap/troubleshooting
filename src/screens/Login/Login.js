@@ -5,12 +5,15 @@ import {
   Image,
   ImageBackground,
   TextInput,
-  Button
+  Button,
+  Text
 } from "react-native";
 import BotonIniciarSesion from "../../../components/BotonIniciarSesion";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import { Link } from "react-router-native";
 
 function Login(props) {
+
   return (
     <View style={styles.container}>
       <View style={styles.background1Stack}>
@@ -19,13 +22,10 @@ function Login(props) {
           resizeMode="cover"
           style={styles.background1}
           imageStyle={styles.background1_imageStyle}
-        >
-          <BotonIniciarSesion style={styles.boton_iniciar} 
-          ></BotonIniciarSesion>
-          <Button style={styles.boton_iniciar}  
-        onPress={() =>
-          props.navigation.navigate('Home')}></Button>
+        >       
         </ImageBackground>
+        <Link style={[styles.containerButton, props.style, styles.boton_iniciar]}
+        to="/boton-iniciar"><Text  style={styles.iniciarSesionButton}>Iniciar Sesion</Text></Link>
         <View style={styles.rect}>
           <View style={styles.textInputStack}>
             <TextInput
@@ -62,6 +62,22 @@ function Login(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  containerButton: {
+    backgroundColor: "rgba(1,123,146,1)",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    borderRadius: 5,
+    paddingLeft: 16,
+    paddingRight: 16,
+
+  },
+  iniciarSesionButton: {
+    color: "#fff",
+    fontSize: 14,
+    lineHeight: 10,
+    fontFamily: "Constantia"
   },
   background1: {
     top: 0,

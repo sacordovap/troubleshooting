@@ -1,7 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  NativeRouter,
+  Route,
+  Link,
+  Switch,
+  Redirect
+} from "react-router-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -18,30 +25,45 @@ import Login from "./src/screens/Login/Login";
 import DataEquipo from "./src/screens/data/DataEquipo/DataEquipoScreen"
 import EvidenciaFoto from "./src/screens/data/EvidenciaFoto/EvidenciaFotoScreen"
 import DataAgrupada from "./src/screens/data/Reporte/DataAgrupada"
-import Registro_form from "./src/screens/data/Registro_form/Registro_form"; 
+import Preview from "./src/screens/data/Preview/Preview"
+import Registro_form from "./src/screens/data/Registro_form/Registro_form";
 
-const Stack = createNativeStackNavigator();
+
+function App() {
+  return (
+    <NativeRouter>
+        <Switch>          
+          <Route path="/home" component={HomeScreen} />
+          <Route path="/boton-iniciar" component={BotonIniciarSesion} />
+          <Route path="/llenar-formulario" component={Registro_form} />
+          <Route path="/preview" component={Preview} />
+          <Route component={HomeScreen} />
+        </Switch>
+    </NativeRouter>
+  );
+}
+
+export default App
+
+
 //cannot read  propierties  of undefinied (reading navigate)
-
+/*
 function MyStack() {
   return (
     //Aqui por mientras alternas las plantallas de vista
     <Stack.Navigator screenOptions={{
       headerShown: false
     }}>
- <Stack.Screen name=" Registro_form"
+      <Stack.Screen name=" Registro_form"
         component={Registro_form} />
       <Stack.Screen name="Login"
         component={Login} />
-     
       <Stack.Screen name=" DataAgrupada"
         component={DataAgrupada} />
       <Stack.Screen name=" Datos Equipo"
         component={DataEquipo} />
       <Stack.Screen name="Evidencia Foto"
         component={EvidenciaFoto} />
- 
-
       <Stack.Screen name="Resultado Conclusion"
         component={ResultadoConclusion} />
 
@@ -63,6 +85,6 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
+*/
 //Esto se debe de importar desde styles
 

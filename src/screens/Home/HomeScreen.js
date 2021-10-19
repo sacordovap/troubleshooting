@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Image, ImageBackground } from "react-native";
+import { StyleSheet, View, Image, ImageBackground, TouchableOpacity, Text } from "react-native";
 import NewSpeech from "../../../components/NewSpeech";
 import DocumentosRecientes from "../../../components/DocumentosRecientes";
 
@@ -13,16 +13,20 @@ function HomeScreen(props) {
           style={styles.background}
           imageStyle={styles.background_imageStyle}
         >
-          <NewSpeech style={styles.cupertinoButtonInfo}></NewSpeech>
+          <TouchableOpacity style={[styles.containerSpeech, props.style, styles.cupertinoButtonInfo]}>
+            <Text style={styles.nuevoReporte}>Nuevo Reporte</Text>
+          </TouchableOpacity>
+
         </ImageBackground>
         <Image
           source={require("../../../assets/images/antapaccay.png")}
           resizeMode="contain"
           style={styles.logo}
         ></Image>
-        <DocumentosRecientes
-          style={styles.documentos_Recientes}
-        ></DocumentosRecientes>
+        
+        <TouchableOpacity style={[styles.containerDocumentosRecientes, props.style,styles.documentos_Recientes]}>
+          <Text style={styles.buscarDocumentos}>Buscar Documentos</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -31,6 +35,33 @@ function HomeScreen(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  containerDocumentosRecientes: {
+    backgroundColor: "rgba(239,173,51,1)",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    borderRadius: 5,
+    paddingLeft: 16,
+    paddingRight: 16
+  },
+  buscarDocumentos: {
+    color: "#fff",
+    fontSize: 14,
+    fontFamily: "Constantia"
+  },
+  containerSpeech: {
+    backgroundColor: "rgba(1,123,146,1)",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    borderRadius: 5,
+    paddingLeft: 16,
+    paddingRight: 16
+  },
+  nuevoReporte: {
+    color: "#fff",
+    fontSize: 14
   },
   background: {
     top: 0,
@@ -55,7 +86,7 @@ const styles = StyleSheet.create({
     height: 270,
     position: "absolute",
     left: 20,
-    
+
   },
   documentos_Recientes: {
     height: 32,

@@ -35,7 +35,7 @@ function DataAgrupada(props) {
     hora: '',
     superintendente: '',
     supervisores: '',
-    operadores: '',
+    operadores: operador,
     equipo: '',
     tiempoParada: '',
     detalleParada: '',
@@ -46,6 +46,7 @@ function DataAgrupada(props) {
     conclusiones: '',
     evidenciaDetalle: '',
   })
+ 
 
   const actualizarFormulario = () => {
     setFormulario({
@@ -53,7 +54,7 @@ function DataAgrupada(props) {
       hora: '',
       superintendente: '',
       supervisores: '',
-      operadores: '',
+      operadores: operador,
       equipo: '',
       tiempoParada: '',
       detalleParada: '',
@@ -66,12 +67,13 @@ function DataAgrupada(props) {
     })
   }
 
+  const [operador, setOperador] = useState('')
 
-useEffect(() => {
+/*useEffect(() => {
   setFormulario(formulario=>({
     ...formulario
   }))
-}, [formulario])
+}, [formulario])*/
 
 return (
   <View style={{ flex: 1, marginTop: 21 }}>
@@ -95,7 +97,7 @@ return (
         }}
       >
         <View style={{ flex: 1, justifyContent: "center" }}>
-          <DatosInicialesScreen formulario={formulario} />
+          <DatosInicialesScreen formulario={formulario}  />
         </View>
 
         <View style={{ flex: 1, justifyContent: "center" }}>
@@ -107,10 +109,10 @@ return (
         </View>
 
         <View style={{ flex: 1, justifyContent: "center" }}>
-          <AccionestomadasScreen formulario={formulario} />
+          <AccionestomadasScreen formulario={formulario}/>
         </View>
         <View style={{ flex: 1, justifyContent: "center" }}>
-          <ResultadoconclusionScreen formulario={formulario} />
+          <ResultadoconclusionScreen formulario={formulario}/>
         </View>
         <View style={{ flex: 1, justifyContent: "center" }}>
           <EvidenciaFotoScreen formulario={formulario} />

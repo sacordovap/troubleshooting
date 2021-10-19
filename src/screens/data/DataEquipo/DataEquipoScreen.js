@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -16,19 +16,36 @@ import Icon from "react-native-vector-icons/Ionicons";
 function DataEquipoScreen(props) {
   console.log(props);
   const [Horas, setHoras] = useState(0);
-  const initialState={ 
+
+  const initialState = {
     equipo: '',
     tiempoParada: '',
     detalleParada: '',
-}
+  }
 
-const [equipo, setEquipo] = useState(initialState);
-console.log(equipo.equipo);
+  const [equipo, setEquipo] = useState(initialState);
+  console.log(equipo.equipo);
+
+  useEffect(() => {
+    console.log(equipo.detalleParada)
+}, [props.formulario.detalleParada])
+
   const handleChangeText = (nombre, value) => {
     setEquipo({ ...equipo, [nombre]: value })
-    
-    props.formulario.detalleParada=equipo.detalleParada;
-};
+    cambiarTexto()
+  };
+
+  const cambiarTexto = () => {
+    props.formulario.equipo = equipo.equipo
+    props.formulario.tiempoParada = Horas
+    props.formulario.detalleParada = equipo.detalleParada
+  }
+
+
+
+
+
+
   return (
 
     <><View style={[styles.container1, props.style]}>
@@ -62,13 +79,13 @@ console.log(equipo.equipo);
             <TextInput
               placeholder="Ingrese Equipo"
               style={styles.textInput}
-              onChangeText={(value)=>handleChangeText('equipo', value)}
+              onChangeText={(value) => handleChangeText('equipo', value)}
             ></TextInput>
             <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
             <View style={styles.textInput2Row}>
-              <Text style={styles.textInput2} 
-              onChangeText={(value)=>handleChangeText('tiempoParada', value)} 
-              >{props.formulario.tiempoParada=Horas} Horas</Text>
+              <Text style={styles.textInput2}
+                onChangeText={(value) => handleChangeText('tiempoParada', value)}
+              >{Horas} Horas</Text>
               <TouchableOpacity onPress={() => setHoras(Horas - 1)}>
                 <FontAwesomeIcon
                   name="minus"
@@ -83,13 +100,12 @@ console.log(equipo.equipo);
             <Text style={styles.detalleDeParada}>Detalle de Parada</Text>
             <TextInput
               placeholder="Ingrese Detalles"
-              onChangeText={(value)=>handleChangeText('detalleParada', value)}
+              onChangeText={(value) => handleChangeText('detalleParada', value)}
               multiline={true}
               selectTextOnFocus={true}
-              
               disableFullscreenUI={true}
               style={styles.textInput3}
-            >{props.formulario.equipo=equipo.equipo}</TextInput>
+            ></TextInput>
           </View>
         </ImageBackground>
       </ScrollView></>

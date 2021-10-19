@@ -32,7 +32,6 @@ export default StyleSheet.create({
   concluciones: {
     fontFamily: "Arial",
     color: "#121212",
-    width: 83,
     opacity: 0.6,
     fontSize: 15,
     marginTop: 32,

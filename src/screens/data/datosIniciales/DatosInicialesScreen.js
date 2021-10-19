@@ -46,7 +46,7 @@ function DatosInicialesScreen (props) {
     hora: '',
     superintendente: '',
     supervisores: '',
-    operarios: ''
+    operadores: ''
 
   });
 
@@ -71,7 +71,15 @@ function DatosInicialesScreen (props) {
 
   const handleChangeText = (nombre, value) => {
     setState({ ...state, [nombre]: value })
+    props.formulario.superintendente=state.superintendente
+    props.formulario.supervisores=state.supervisores
+    props.formulario.operadores=state.operadores
   };
+  
+    
+   
+
+  
 
   return (
     <>
@@ -129,19 +137,22 @@ function DatosInicialesScreen (props) {
             <TextInput
              multiline={true}
               placeholder="Ingrese SuperIntendente"
+              onChangeText={(value) => handleChangeText('superintendente', value)}
+              
               style={styles.textInput}
             ></TextInput>
             <Text style={styles.supervisores}>Supervisores</Text>
             <TextInput
               placeholder="Ingrese Supervisores"
               multiline={true}
+              onChangeText={(value) => handleChangeText('supervisores', value)}
               style={styles.textInput2}
             ></TextInput>
             <Text style={styles.operadores}>Operadores</Text>
             <TextInput
               placeholder="Ingrese Operadores"
               multiline={true}
-              onChangeText={(value) => handleChangeText('nombre', value)}
+              onChangeText={(value) => handleChangeText('operadores', value)}
               style={styles.textInput3}
             ></TextInput>
 
