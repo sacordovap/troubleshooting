@@ -65,13 +65,14 @@ function ResultadoconclusionScreen(props) {
             <Text style={styles.resultados}>Resultados</Text>
             <TextInput
               placeholder="Ingrese Detalles"
+              multiline
               onChangeText={(value)=>handleChangeText('resultado', value)}
               style={styles.textInput}
             ></TextInput>
             <Text style={styles.concluciones}>Conclusiones</Text>
             <TextInput
               placeholder="Ingrese Detalles"
-          
+              multiline
               onChangeText={(value)=>handleChangeText('conclusiones', value)}
               style={styles.textInput}
             ></TextInput>

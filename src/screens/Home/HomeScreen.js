@@ -4,6 +4,10 @@ import NewSpeech from "../../../components/NewSpeech";
 import DocumentosRecientes from "../../../components/DocumentosRecientes";
 
 function HomeScreen(props) {
+  const ReportesPasados=()=>{    
+        alert('en Construcción -> disculpe las molestias')
+    }
+  console.log(props)
   return (
     <View style={styles.container}>
       <View style={styles.backgroundStack}>
@@ -13,7 +17,10 @@ function HomeScreen(props) {
           style={styles.background}
           imageStyle={styles.background_imageStyle}
         >
-          <TouchableOpacity style={[styles.containerSpeech, props.style, styles.cupertinoButtonInfo]}>
+          <TouchableOpacity style={[styles.containerSpeech, props.style, styles.cupertinoButtonInfo]}
+          onPress={() =>
+            props.navigation.navigate('Registro-form')}
+          >
             <Text style={styles.nuevoReporte}>Nuevo Reporte</Text>
           </TouchableOpacity>
 
@@ -24,7 +31,8 @@ function HomeScreen(props) {
           style={styles.logo}
         ></Image>
         
-        <TouchableOpacity style={[styles.containerDocumentosRecientes, props.style,styles.documentos_Recientes]}>
+        <TouchableOpacity style={[styles.containerDocumentosRecientes, props.style,styles.documentos_Recientes]}
+         onPress={()=>ReportesPasados()} >
           <Text style={styles.buscarDocumentos}>Buscar Documentos</Text>
         </TouchableOpacity>
       </View>
@@ -47,8 +55,7 @@ const styles = StyleSheet.create({
   },
   buscarDocumentos: {
     color: "#fff",
-    fontSize: 14,
-    fontFamily: "Constantia"
+    fontSize: 14
   },
   containerSpeech: {
     backgroundColor: "rgba(1,123,146,1)",

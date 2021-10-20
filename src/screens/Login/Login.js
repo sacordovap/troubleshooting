@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -6,34 +6,65 @@ import {
   ImageBackground,
   TextInput,
   Button,
-  Text
+  Text,
+  TouchableOpacity,
+  Alert
 } from "react-native";
 import BotonIniciarSesion from "../../../components/BotonIniciarSesion";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { Link } from "react-router-native";
 
 function Login(props) {
+  const initialState = {
+    usuario: '',
+    contrasenia:''
+  }
 
+  const [datos, setDatos] = useState(initialState);
+
+  const handleChangeText = (nombre, value) => {
+    setDatos({ ...datos, [nombre]: value })
+    
+  };
+  const inicioSesion=()=>{
+    if(datos.usuario === ''){
+        alert('Ingresa datos -> complete campo usuario')
+    } else if (datos.contrasenia === '') {
+      alert('Ingresa datos -> complete campo contraseña')
+    } else {
+      alert ('Bienvenido')
+      props.navigation.navigate('Home')
+    }       
+  }
+console.log(props)
   return (
     <View style={styles.container}>
       <View style={styles.background1Stack}>
         <ImageBackground
           source={require("../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
           resizeMode="cover"
+          required="required" 
           style={styles.background1}
           imageStyle={styles.background1_imageStyle}
         >       
         </ImageBackground>
-        <Link style={[styles.containerButton, props.style, styles.boton_iniciar]}
-        to="/boton-iniciar"><Text  style={styles.iniciarSesionButton}>Iniciar Sesion</Text></Link>
+        <TouchableOpacity style={[styles.containerButton, props.style, styles.boton_iniciar]}
+        
+        onPress={()=>inicioSesion()}         
+         
+        >         
+          
+        <Text  style={styles.iniciarSesionButton}>Iniciar Sesion</Text></TouchableOpacity>
         <View style={styles.rect}>
           <View style={styles.textInputStack}>
             <TextInput
               placeholder="Usuario"
               placeholderTextColor="rgba(41,39,39,1)"
+              required="required" 
+              onChangeText={(value) => handleChangeText('usuario', value)}
               selectionColor="rgba(41,38,38,1)"
               style={styles.textInput}
-            ></TextInput>
+            ></TextInput>           
             <FontAwesomeIcon name="user" style={styles.icon}></FontAwesomeIcon>
           </View>
         </View>
@@ -45,6 +76,7 @@ function Login(props) {
               placeholderTextColor="rgba(41,39,39,1)"
               selectionColor="rgba(41,39,39,1)"
               secureTextEntry={true}
+              onChangeText={(value) => handleChangeText('contrasenia', value)}
               style={styles.textInput2}
             ></TextInput>
           </View>
@@ -77,7 +109,6 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 14,
     lineHeight: 10,
-    fontFamily: "Constantia"
   },
   background1: {
     top: 0,
@@ -115,7 +146,6 @@ const styles = StyleSheet.create({
     top: 4,
     left: 28,
     position: "absolute",
-    fontFamily: "roboto-regular",
     color: "rgba(45,42,42,1)",
     height: 20,
     width: 150,
@@ -156,7 +186,6 @@ const styles = StyleSheet.create({
     width: 18
   },
   textInput2: {
-    fontFamily: "roboto-regular",
     color: "#121212",
     height: 22,
     width: 128,

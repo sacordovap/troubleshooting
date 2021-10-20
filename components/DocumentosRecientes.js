@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
   buscarDocumentos: {
     color: "#fff",
     fontSize: 14,
-    fontFamily: "Constantia"
   }
 });
 

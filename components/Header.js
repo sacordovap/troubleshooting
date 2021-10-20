@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
     flex: 0.28,
     alignItems: "flex-start",
     justifyContent: "center",
-    fontFamily: "Constantia"
   },
   leftIconButton: {
     flexDirection: "row"
@@ -65,7 +64,6 @@ const styles = StyleSheet.create({
   },
   ingresoDeDatos: {
     fontSize: 15,
-    fontFamily: "Constantia",
     lineHeight: 17,
     color: "rgba(255,255,255,255)",
     textAlign: "center"

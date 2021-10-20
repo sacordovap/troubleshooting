@@ -46,7 +46,6 @@ export default StyleSheet.create({
     marginLeft: 18
   },
   tiempoDeParada: {
-    fontFamily: "Constantia",
     color: "#121212",
     lineHeight: 12,
     opacity: 0.6,

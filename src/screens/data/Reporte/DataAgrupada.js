@@ -83,7 +83,6 @@ const styles = StyleSheet.create({
     },
     ingresoDeDatos: {
       fontSize: 15,
-      fontFamily: "Constantia",
       lineHeight: 17,
       color:  "rgba(255,255,255,255)",
       textAlign: "center"

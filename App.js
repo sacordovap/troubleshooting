@@ -29,7 +29,7 @@ import Preview from "./src/screens/data/Preview/Preview"
 import Registro_form from "./src/screens/data/Registro_form/Registro_form";
 
 
-function App() {
+/*function App() {
   return (
     <NativeRouter>
         <Switch>          
@@ -43,37 +43,36 @@ function App() {
   );
 }
 
-export default App
+export default App*/
 
-
+const Stack = createNativeStackNavigator();
 //cannot read  propierties  of undefinied (reading navigate)
-/*
+
 function MyStack() {
   return (
     //Aqui por mientras alternas las plantallas de vista
     <Stack.Navigator screenOptions={{
       headerShown: false
-    }}>
-      <Stack.Screen name=" Registro_form"
-        component={Registro_form} />
-      <Stack.Screen name="Login"
+    }}>  
+     <Stack.Screen name="Login"
         component={Login} />
-      <Stack.Screen name=" DataAgrupada"
-        component={DataAgrupada} />
-      <Stack.Screen name=" Datos Equipo"
-        component={DataEquipo} />
-      <Stack.Screen name="Evidencia Foto"
-        component={EvidenciaFoto} />
-      <Stack.Screen name="Resultado Conclusion"
-        component={ResultadoConclusion} />
-
-      <Stack.Screen name="Evento Causa"
-        component={EventoCausa} />
-
       <Stack.Screen name="Home"
         component={HomeScreen}
-        options={{ title: 'Home' }} />
-
+        options={{ title: 'Home' }} />      
+        <Stack.Screen name="Registro-form"
+        component={Registro_form} />  
+         <Stack.Screen name="Preview"
+        component={Preview} />      
+      <Stack.Screen name="Datos-Equipo"
+        component={DataEquipo} />
+         <Stack.Screen name="DataAgrupada"
+        component={DataAgrupada} />      
+      <Stack.Screen name="Evidencia-Foto"
+        component={EvidenciaFoto} />
+      <Stack.Screen name="Resultado-Conclusion"
+        component={ResultadoConclusion} />
+      <Stack.Screen name="Evento-Causa"
+        component={EventoCausa} />
 
     </Stack.Navigator>
   )
@@ -85,6 +84,6 @@ export default function App() {
     </NavigationContainer>
   );
 }
-*/
+
 //Esto se debe de importar desde styles
 

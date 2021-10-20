@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
   guardarInformacion: {
     color: "#fff",
     fontSize: 17,
-    fontFamily: "Constantia"
   }
 });
 

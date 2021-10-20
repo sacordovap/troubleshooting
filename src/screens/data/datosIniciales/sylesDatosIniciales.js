@@ -63,7 +63,6 @@ export default StyleSheet.create({
     marginLeft: 20
   },
   titulo: {
-    fontFamily: "Constantia",
     color: "#121212",
     fontSize: 24,
     textAlign: "center",
@@ -74,7 +73,6 @@ export default StyleSheet.create({
     marginLeft: 39
   },
   fecha_tag: {
-    fontFamily: "Constantia",
     color: "#121212",
     fontSize: 12,
     opacity: 0.6,
@@ -107,7 +105,6 @@ export default StyleSheet.create({
     marginRight: 158
   },
   hora_tag: {
-    fontFamily: "Constantia",
     color: "#121212",
     opacity: 0.6,
     fontSize: 12,
@@ -140,14 +137,12 @@ export default StyleSheet.create({
     marginRight: 158
   },
   superintendente: {
-    fontFamily: "Constantia",
     color: "#121212",
     opacity: 0.7,
     marginTop: 30,
     marginLeft: 30
   },
   textInput: {
-    fontFamily: "Constantia",
     color: "#121212",
     width: 263,
     borderBottomWidth: 1,
@@ -156,14 +151,12 @@ export default StyleSheet.create({
     marginLeft: 30
   },
   supervisores: {
-    fontFamily: "Constantia",
     color: "#121212",
     opacity: 0.7,
     marginTop: 21,
     marginLeft: 30
   },
   textInput2: {
-    fontFamily: "Constantia",
     color: "#121212",
     width: 263,
     borderBottomWidth: 1,
@@ -172,14 +165,12 @@ export default StyleSheet.create({
     marginLeft: 30
   },
   operadores: {
-    fontFamily: "Constantia",
     color: "#121212",
     opacity: 0.7,
     marginTop: 20,
     marginLeft: 30
   },
   textInput3: {
-    fontFamily: "Constantia",
     color: "#121212",
     width: 263,
     borderBottomWidth: 1,
@@ -225,7 +216,6 @@ export default StyleSheet.create({
   },
   ingresoDeDatos: {
     fontSize: 15,
-    fontFamily: "Constantia",
     lineHeight: 17,
     color:  "rgba(255,255,255,255)",
     textAlign: "center"

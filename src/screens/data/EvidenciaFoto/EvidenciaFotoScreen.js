@@ -10,14 +10,13 @@ import {
   Platform,
   Dimensions,
   Button,
-  ScrollView
+  ScrollView,
+  Alert
 } from "react-native";
-import Header from "../../../../components/Header";
 import Icon from "react-native-vector-icons/Entypo";
-import BotonGuardarInicial from "../../../../components/BotonGuardarInicial";
 import * as ImagePicker from 'expo-image-picker';
 import Icons from "react-native-vector-icons/Ionicons";
-import { Link } from "react-router-native";
+
 
 function EvidenciaFotoScreen(props) {
   const [image, setImage] = useState(null);
@@ -71,34 +70,51 @@ function EvidenciaFotoScreen(props) {
 
   const handleChangeText = (nombre, value) => {
     setEvidencia({ ...evidencia, [nombre]: value })
-    // props.formulario.equipo=equipo.equipo
-    // props.formulario.detalleParada=equipo.detalleParada;
     props.formulario.evidenciaDetalle = evidencia.evidenciaDetalle
+    data.fecha= props.formulario.fecha
+    data.hora= props.formulario.hora
+    data.superintendente= props.formulario.superintendente
+    data.supervisores= props.formulario.supervisores
+    data.operadores= props.formulario.operadores
+    data.equipo= props.formulario.equipo
+    data.tiempoParada= props.formulario.tiempoParada
+    data.detalleParada= props.formulario.detalleParada
+    data.evento= props.formulario.evento
+    data.causa= props.formulario.causa
+    data.accionesTomadas= props.formulario.accionesTomadas
+    data.resultado= props.formulario.resultado
+    data.conclusiones=props.formulario.conclusiones
+    data.evidenciaDetalle= props.formulario.evidenciaDetalle
   };
   console.log(props)
 
   const [data, setData] = useState({
-    fecha: props.formulario.fecha,
-    hora: '',
+    fecha: '',
+    hora:'',
     superintendente: '',
     supervisores: '',
     operadores: '',
     equipo: '',
     tiempoParada: '',
-    detalleParada: '',
-    evento: '',
+    detalleParada:'',
+    evento:'',
     causa: '',
-    accionesTomadas: '', 
+    accionesTomadas:'',
     resultado: '',
     conclusiones: '',
     evidenciaDetalle: '',
   })
+console.log('data'+data.fecha)
 
-
-const consola =()=>{
-  console.log("s")
+  const guardarData=()=>{
+    Alert.alert('ya no se podrán realizar cambios', 'estas seguro?',[
+      {text:'yes', onPress:()=>aceptarSolicitud()},
+      {text:'No', onPress:()=>Console.log(false)},
+  ])    
+  }
+  const aceptarSolicitud =()=>{
+    props.props.navigation.navigate('Home');
 }
-
 
   return (
 
@@ -172,13 +188,11 @@ const consola =()=>{
                   }} />
               )}</View>
             </View>
-
-              
-            <Link to="/preview" data={data}><Text>Enviar</Text>
-            </Link>
-            <BotonGuardarInicial
-                style={styles.cupertinoButtonSuccess}
-              ></BotonGuardarInicial>
+            {/* <TouchableOpacity 
+            style={[styles.containerGuardarDataInicial, props.style, styles.cupertinoButtonSuccess]}                  
+              onPress={()=>guardarData()}>
+                <Text style={styles.guardarInformacion}>GUARDAR INFORMACION</Text>
+            </TouchableOpacity> */}
           </View>
         </ImageBackground>
       </ScrollView></>
@@ -190,8 +204,7 @@ const styles = StyleSheet.create({
     flex: 1,
 
   },
-
-  containerButton: {
+  containerGuardarDataInicial: {
     backgroundColor: "rgba(1,123,146,1)",
     justifyContent: "center",
     alignItems: "center",
@@ -204,7 +217,17 @@ const styles = StyleSheet.create({
   guardarInformacion: {
     color: "#fff",
     fontSize: 17,
-    fontFamily: "Constantia"
+  },
+
+  containerButton: {
+    backgroundColor: "rgba(1,123,146,1)",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    borderRadius: 5,
+    paddingLeft: 16,
+    paddingRight: 16
+
   },
   headerRegistro1: {
     height: 39,
@@ -293,7 +316,6 @@ const styles = StyleSheet.create({
     marginLeft: 27
   },
   titulo1: {
-    fontFamily: "Constantia",
     color: "#121212",
     fontSize: 24,
     textAlign: "center",
@@ -304,7 +326,6 @@ const styles = StyleSheet.create({
     marginLeft: 39
   },
   evidencias: {
-    fontFamily: "Constantia",
     color: "#121212",
     opacity: 0.6,
     fontSize: 12,
@@ -312,7 +333,6 @@ const styles = StyleSheet.create({
     marginLeft: 20
   },
   textInput: {
-    fontFamily: "Constantia",
     color: "#121212",
     height: 30,
     width: 268,
@@ -380,7 +400,6 @@ const styles = StyleSheet.create({
   },
   ingresoDeDatos: {
     fontSize: 15,
-    fontFamily: "Constantia",
     lineHeight: 17,
     color: "rgba(255,255,255,255)",
     textAlign: "center"

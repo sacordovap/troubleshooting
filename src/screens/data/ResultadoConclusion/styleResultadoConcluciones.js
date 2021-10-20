@@ -20,7 +20,6 @@ export default StyleSheet.create({
     opacity: 0.61
   },
   resultados: {
-    fontFamily: "Constantia",
     color: "#121212",
     width: 83,
     opacity: 0.6,
@@ -30,7 +29,6 @@ export default StyleSheet.create({
   },
  
   concluciones: {
-    fontFamily: "Arial",
     color: "#121212",
     opacity: 0.6,
     fontSize: 15,
@@ -64,7 +62,6 @@ export default StyleSheet.create({
     marginLeft: 23
   },
   titulo1: {
-    fontFamily: "Constantia",
     color: "#121212",
     fontSize: 24,
     textAlign: "center",
@@ -75,7 +72,6 @@ export default StyleSheet.create({
     marginLeft: 39
   },
   equipo: {
-    fontFamily: "Constantia",
     color: "#121212",
     height: 13,
     width: 83,
@@ -85,9 +81,7 @@ export default StyleSheet.create({
     marginLeft: 19
   },
   textInput: {
-    fontFamily: "Constantia",
     color: "#121212",
-    height: 31,
     width: 282,
     borderBottomWidth: 1,
     borderColor: "rgba(1,123,146,255)",
@@ -95,7 +89,6 @@ export default StyleSheet.create({
     marginLeft: 19
   },
   tiempoDeParada: {
-    fontFamily: "Constantia",
     color: "#121212",
     lineHeight: 12,
     opacity: 0.6,
@@ -103,9 +96,7 @@ export default StyleSheet.create({
     marginLeft: 19
   },
   textInput2: {
-    fontFamily: "Constantia",
     color: "#121212",
-    height: 23,
     width: 113,
     textAlign: "center",
     borderBottomWidth: 1,
@@ -126,7 +117,6 @@ export default StyleSheet.create({
     marginRight: 75
   },
   detalleDeParada: {
-    fontFamily: "Constantia",
     color: "#121212",
     width: 110,
     height: 17,
@@ -136,7 +126,6 @@ export default StyleSheet.create({
     marginLeft: 19
   },
   textInput3: {
-    fontFamily: "Constantia",
     color: "#121212",
   
     width: 282,
@@ -183,7 +172,6 @@ export default StyleSheet.create({
   },
   ingresoDeDatos: {
     fontSize: 15,
-    fontFamily: "Constantia",
     lineHeight: 17,
     color:  "rgba(255,255,255,255)",
     textAlign: "center"
