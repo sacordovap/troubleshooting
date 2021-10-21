@@ -1,7 +1,22 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text, ScrollView, TouchableOpacity,ImageBackground } from "react-native";
+import { StyleSheet, View, Text, ScrollView, TouchableOpacity,ImageBackground, Alert, Image } from "react-native";
 
 function Preview(props) {
+
+console.log(props)
+    
+const guardarFormulario = () => {
+    Alert.alert('se guardará la información', 'espere por favor', [
+      { text: 'Si', onPress: () => aceptarSolicitud() },
+      { text: 'Cancelar', onPress: () => cancelarFormulario() },
+    ])
+  }
+  const aceptarSolicitud = () => {
+    props.navigation.navigate('Home');
+  }
+  const cancelarFormulario = () => {
+    props.navigation.navigate('Home');
+  }
     return (
         <ScrollView style={styles.container}>
             <ImageBackground
@@ -20,7 +35,7 @@ function Preview(props) {
                 <Text style={styles.hora2}>{props.route.params.formulario.hora}</Text>
 
                 <Text style={styles.supeintendente1}>Supeintendente</Text>
-                <Text style={styles.text6}>{props.route.params.formulario.superintendente}</Text>
+                <Text style={styles.superintendenteEntrada}>{props.route.params.formulario.superintendente}</Text>
 
                 <Text style={styles.supervisores1}>Supervisores</Text>
                 <Text style={styles.ingreseSupervisores}>{props.route.params.formulario.supervisores}</Text>
@@ -56,10 +71,26 @@ function Preview(props) {
                 <Text style={styles.detallesDeLaFotos}>{props.route.params.formulario.evidenciaDetalle}</Text>
 
 
-                <View style={styles.imagen_1}></View>
-                <View style={styles.imagen_2}></View>
+                <View style={styles.imagen_1}>{props.route.params.formulario.foto1 && (
+                <Image source={{ uri: props.route.params.formulario.foto1 }}
+                  style={{
+                    width: 184,
+                    height: 143,
+                    opacity: 0.9,
+                  }} />
+              )}</View>
+                <View style={styles.imagen_2}>{props.route.params.formulario.foto2 && (
+                <Image source={{ uri: props.route.params.formulario.foto2 }}
+                  style={{
+                    width: 184,
+                    height: 143,
+                    opacity: 0.9,
+                  }} />
+              )}</View>
 
-                <TouchableOpacity style={[styles.containerBotonGuardar, props.style, styles.guardarDataReporte]}>
+                <TouchableOpacity 
+                style={[styles.containerBotonGuardar, props.style, styles.guardarDataReporte]}
+                onPress={() => guardarFormulario()}>
                     <Text style={styles.guardarReporte}>Guardar Reporte</Text>
                 </TouchableOpacity>
             </View>
@@ -91,7 +122,7 @@ const styles = StyleSheet.create({
         marginLeft: 8
     },
     tituloIncidente: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         fontSize: 24,
         opacity: 0.75,
@@ -99,7 +130,7 @@ const styles = StyleSheet.create({
         marginLeft: 38
     },
     fechaTag1: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         fontSize: 12,
         opacity: 0.6,
@@ -107,7 +138,7 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     fecha2: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         opacity: 0.8,
         borderBottomWidth: 1,
@@ -121,7 +152,7 @@ const styles = StyleSheet.create({
 
     },
     horaTag1: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         opacity: 0.6,
         fontSize: 12,
@@ -129,7 +160,7 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     hora2: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         height: 21,
         opacity: 0.8,
@@ -143,14 +174,14 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     supeintendente1: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         opacity: 0.7,
         marginTop: 20,
         marginLeft: 30
     },
-    text6: {
-        fontFamily: "roboto-regular",
+    superintendenteEntrada: {
+       
         color: "#121212",
         width: 282,
         borderBottomWidth: 1,
@@ -160,14 +191,14 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     supervisores1: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         opacity: 0.7,
         marginTop: 20,
         marginLeft: 30
     },
     ingreseSupervisores: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         width: 282,
         borderBottomWidth: 1,
@@ -177,14 +208,14 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     operadores1: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         opacity: 0.7,
         marginTop: 20,
         marginLeft: 30
     },
     ingreseOperadores: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         width: 282,
         borderBottomWidth: 1,
@@ -194,7 +225,7 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     equipo1: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         width: 83,
         opacity: 0.6,
@@ -203,7 +234,7 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     ingreseEquipo: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         width: 282,
         borderBottomWidth: 1,
@@ -213,7 +244,7 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     tiempoDeParada: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         lineHeight: 12,
         opacity: 0.6,
@@ -223,7 +254,7 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     horas: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         width: 83,
         textAlign: "center",
@@ -234,7 +265,7 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     detalleDeParada1: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         width: 110,
         fontSize: 12,
@@ -243,7 +274,7 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     ingreseDetalles: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         width: 282,
         borderBottomWidth: 1,
@@ -253,7 +284,7 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     evento: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         width: 113,
         opacity: 0.6,
@@ -262,7 +293,7 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     detallesEvento: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         width: 282,
         opacity: 0.6,
@@ -272,7 +303,7 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     causa: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         width: 282,
         opacity: 0.6,
@@ -281,7 +312,7 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     detallesCausa: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         width: 282,
         opacity: 0.6,
@@ -291,7 +322,7 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     accionesTomadas: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         width: 200,
         opacity: 0.6,
@@ -300,7 +331,7 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     accionesDetalle: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         width: 282,
         opacity: 0.6,
@@ -310,7 +341,7 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     resultados: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         width: 113,
         opacity: 0.6,
@@ -319,7 +350,7 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     resultadosDetalle: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         width: 282,
         opacity: 0.6,
@@ -329,7 +360,7 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     conclusiones: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         width: 120,
         opacity: 0.6,
@@ -338,7 +369,7 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     conclusionesDetalle: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         width: 282,
         opacity: 0.6,
@@ -348,7 +379,7 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     detallesDeCapturas: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         width: 282,
         fontSize: 14,
@@ -357,7 +388,7 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     detallesDeLaFotos: {
-        fontFamily: "roboto-regular",
+       
         color: "#121212",
         width: 282,
         borderBottomWidth: 1,

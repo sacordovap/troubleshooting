@@ -45,20 +45,19 @@ function EvidenciaFotoScreen(props) {
 
     if (!result.cancelled) {
       setImage(result.uri);
+      props.formulario.foto1=result.uri
     }
   };
   const pickImage2 = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-
       quality: 1,
     });
-
-    console.log(result);
-
+ 
     if (!result.cancelled) {
       setImage2(result.uri);
+      props.formulario.foto2=result.uri
     }
   };
 
@@ -66,25 +65,13 @@ function EvidenciaFotoScreen(props) {
     evidenciaDetalle: ''
   }
 
+  
   const [evidencia, setEvidencia] = useState(initialState);
 
   const handleChangeText = (nombre, value) => {
     setEvidencia({ ...evidencia, [nombre]: value })
     props.formulario.evidenciaDetalle = evidencia.evidenciaDetalle
-    data.fecha= props.formulario.fecha
-    data.hora= props.formulario.hora
-    data.superintendente= props.formulario.superintendente
-    data.supervisores= props.formulario.supervisores
-    data.operadores= props.formulario.operadores
-    data.equipo= props.formulario.equipo
-    data.tiempoParada= props.formulario.tiempoParada
-    data.detalleParada= props.formulario.detalleParada
-    data.evento= props.formulario.evento
-    data.causa= props.formulario.causa
-    data.accionesTomadas= props.formulario.accionesTomadas
-    data.resultado= props.formulario.resultado
-    data.conclusiones=props.formulario.conclusiones
-    data.evidenciaDetalle= props.formulario.evidenciaDetalle
+  
   };
   console.log(props)
 
@@ -104,7 +91,6 @@ function EvidenciaFotoScreen(props) {
     conclusiones: '',
     evidenciaDetalle: '',
   })
-console.log('data'+data.fecha)
 
   const guardarData=()=>{
     Alert.alert('ya no se podrán realizar cambios', 'estas seguro?',[
@@ -118,26 +104,7 @@ console.log('data'+data.fecha)
 
   return (
 
-    <><View style={[styles.container1, props.style]}>
-      <View style={styles.leftWrapper}>
-        <TouchableOpacity style={styles.leftIconButton}
-          onPress={() => props.navigation.navigate('Home')}
-        >
-          <Icons name="ios-arrow-back" style={styles.leftIcon}
-
-          ></Icons>
-          <Text style={styles.leftText}>Back</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.textWrapper}>
-        <Text numberOfLines={1} style={styles.ingresoDeDatos}>
-          Ingreso de Datos
-        </Text>
-      </View>
-      <View style={styles.rightWrapper}>
-        <TouchableOpacity style={styles.rightIconButton}></TouchableOpacity>
-      </View>
-    </View><ScrollView style={styles.container}>
+    <><ScrollView style={styles.container}>
         <ImageBackground
           source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
           resizeMode="cover"

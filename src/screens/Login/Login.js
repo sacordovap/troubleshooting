@@ -32,8 +32,15 @@ function Login(props) {
     } else if (datos.contrasenia === '') {
       alert('Ingresa datos -> complete campo contraseña')
     } else {
-      alert ('Bienvenido')
-      props.navigation.navigate('Home')
+      Alert.alert(
+        "Bienvenido",
+        "My Alert Msg",
+        [
+          
+          { text: "OK", onPress: () =>    props.navigation.navigate('Home') }
+        ]
+      );
+  
     }       
   }
 console.log(props)
@@ -46,11 +53,10 @@ console.log(props)
           required="required" 
           style={styles.background1}
           imageStyle={styles.background1_imageStyle}
-        >       
-        </ImageBackground>
-        <TouchableOpacity style={[styles.containerButton, props.style, styles.boton_iniciar]}
+        >      
+          <TouchableOpacity style={[styles.containerButton, props.style, styles.boton_iniciar]}
         
-        onPress={()=>inicioSesion()}         
+        onPress={()=>props.navigation.navigate('Home')}         
          
         >         
           
@@ -60,7 +66,8 @@ console.log(props)
             <TextInput
               placeholder="Usuario"
               placeholderTextColor="rgba(41,39,39,1)"
-              required="required" 
+              
+              multiline={true}
               onChangeText={(value) => handleChangeText('usuario', value)}
               selectionColor="rgba(41,38,38,1)"
               style={styles.textInput}
@@ -73,7 +80,7 @@ console.log(props)
             <FontAwesomeIcon name="lock" style={styles.icon2}></FontAwesomeIcon>
             <TextInput
               placeholder="Contraseña"
-              placeholderTextColor="rgba(41,39,39,1)"
+              placeholderTextColor="rgba(41,39,39,1)"    
               selectionColor="rgba(41,39,39,1)"
               secureTextEntry={true}
               onChangeText={(value) => handleChangeText('contrasenia', value)}
@@ -86,6 +93,9 @@ console.log(props)
           resizeMode="contain"
           style={styles.logo1}
         ></Image>
+
+        </ImageBackground>
+      
       </View>
     </View>
   );
@@ -108,7 +118,6 @@ const styles = StyleSheet.create({
   iniciarSesionButton: {
     color: "#fff",
     fontSize: 14,
-    lineHeight: 10,
   },
   background1: {
     top: 0,
