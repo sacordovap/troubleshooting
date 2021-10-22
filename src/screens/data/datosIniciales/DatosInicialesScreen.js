@@ -85,7 +85,7 @@ function DatosInicialesScreen (props) {
           style={styles.image}
           imageStyle={styles.image_imageStyle}
         >
-          <View style={styles.rect} multiline>
+          <View style={styles.rect}>
             <Text style={styles.titulo}>Registro de Incidentes</Text>
             <Text style={styles.fecha_tag}>Fecha</Text>
             <View style={styles.fecha2Row}>

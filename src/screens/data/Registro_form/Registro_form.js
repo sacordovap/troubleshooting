@@ -22,6 +22,7 @@ import ResultadoconclusionScreen from "../ResultadoConclusion/ResultadoConclusio
 import Icon from "react-native-vector-icons/Entypo";
 import Icons from "react-native-vector-icons/Ionicons";
 import AwesomeAlert from 'react-native-awesome-alerts';
+import EvidenciacameraScreen from "../EvidenciaFoto/EvidenciacameraScreen";
 
 function Registro_form(props) {
 
@@ -40,8 +41,8 @@ function Registro_form(props) {
     resultado: '',
     conclusiones: '',
     evidenciaDetalle: '',
-    foto1: null,
-    foto2: null
+    foto1: '',
+    foto2: ''
   })
   const guardarData = () => {
     Alert.alert('ya no se podrán realizar cambios', 'estas seguro?', [
@@ -67,16 +68,16 @@ function Registro_form(props) {
     return () => clearInterval(interval)
   }, []);
 
-const [Alerta, setAlerta] = useState(false)
+  const [Alerta, setAlerta] = useState(false)
 
-const showAlerta =()=>{
-  setAlerta(true)
-}
-const hideAlerta =()=>{
-  setAlerta(false)
-}
- const nuevo = Alerta
- console.log(nuevo);
+  const showAlerta = () => {
+    setAlerta(true)
+  }
+  const hideAlerta = () => {
+    setAlerta(false)
+  }
+  const nuevo = Alerta
+  console.log(nuevo);
 
   return (
     <><View style={[styles.container1, props.style]}>
@@ -99,7 +100,7 @@ const hideAlerta =()=>{
         <TouchableOpacity style={styles.rightIconButton}></TouchableOpacity>
       </View>
     </View>
-    <View style={{ flex: 1 }}>
+      <View style={{ flex: 1 }}>
         <View style={{ flex: 1 }}>
           <Swiper
             from={0}
@@ -139,13 +140,10 @@ const hideAlerta =()=>{
 
             <View style={{ flex: 1, justifyContent: "center" }}>
 
-              <EvidenciaFotoScreen formulario={formulario}>
-
-
-              </EvidenciaFotoScreen>
+              <EvidenciacameraScreen formulario={formulario} />
               <TouchableOpacity
                 style={[styles.containerGuardarDataInicial, styles.cupertinoButtonSuccess]}
-                onPress={() => guardarData()}
+                onPress={() => props.navigation.navigate('Preview', { formulario })}
               >
                 <Text style={styles.guardarInformacion}>GUARDAR INFORMACION</Text>
               </TouchableOpacity>
@@ -219,7 +217,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(1,123,146,1)",
     height: 40,
     paddingRight: 8,
-    marginTop:21,
+    marginTop: 21,
     paddingLeft: 8
   },
   header_Registro: {

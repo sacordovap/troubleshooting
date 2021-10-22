@@ -45,7 +45,6 @@ export default StyleSheet.create({
     opacity: 0.61
   },
   rect: {
-    width: 321,
     height: 608,
     backgroundColor: "rgba(255,255,255,1)",
     borderWidth: 1,
@@ -60,7 +59,8 @@ export default StyleSheet.create({
     shadowOpacity: 0.41,
     shadowRadius: 0,
     marginTop: 27,
-    marginLeft: 20
+    marginLeft: 20,
+    marginRight:20
   },
   titulo: {
     color: "#121212",

@@ -1,98 +1,151 @@
-import React from 'react';
-import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
-import Icon from "react-native-vector-icons/Ionicons";
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Image, Button, ScrollView } from 'react-native';
 
-function DataAgrupada(props){
-  
-    return (
-      <><View style={[styles.container1, props.style]}>
-        <View style={styles.leftWrapper}>
-          <TouchableOpacity style={styles.leftIconButton}
-            onPress={() => props.navigation.navigate('Home')}
-          >
-            <Icon name="ios-arrow-back" style={styles.leftIcon}
+import * as ImagePicker from 'expo-image-picker';
 
-            ></Icon>
-            <Text style={styles.leftText}>Back</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.textWrapper}>
-          <Text numberOfLines={1} style={styles.ingresoDeDatos}>
-            Ingreso de Datos
-          </Text>
-        </View>
-        <View style={styles.rightWrapper}>
-          <TouchableOpacity style={styles.rightIconButton}></TouchableOpacity>
-        </View>
-      </View><View style={styles.container}>
-          <Text>Aqui va el codigo de vista</Text>
-        </View></>
-    );
-  
+function DataAgrupada() {
+  // The path of the picked image
+  const [pickedImagePath, setPickedImagePath] = useState('');
+  const [pickedImagePath2, setPickedImagePath2] = useState('');
+
+  // This function is triggered when the "Select an image" button pressed
+  const showImagePicker = async () => {
+    // Ask the user for the permission to access the media library 
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      alert("You've refused to allow this appp to access your photos!");
+      return;
+    }
+
+    const result = await ImagePicker.launchImageLibraryAsync();
+
+    // Explore the result
+    console.log(result);
+
+    if (!result.cancelled) {
+      setPickedImagePath(result.uri);
+      console.log(result.uri);
+    }
+  }
+
+  // This function is triggered when the "Open camera" button pressed
+  const openCamera = async () => {
+    // Ask the user for the permission to access the camera
+    const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      alert("You've refused to allow this appp to access your camera!");
+      return;
+    }
+
+    const result = await ImagePicker.launchCameraAsync();
+
+    // Explore the result
+    console.log(result);
+
+    if (!result.cancelled) {
+      setPickedImagePath(result.uri);
+      console.log(result.uri);
+    }
+  }
+  const showImagePicker2 = async () => {
+    // Ask the user for the permission to access the media library 
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      alert("You've refused to allow this appp to access your photos!");
+      return;
+    }
+
+    const result = await ImagePicker.launchImageLibraryAsync();
+
+    // Explore the result
+    console.log(result);
+
+    if (!result.cancelled) {
+      setPickedImagePath2(result.uri);
+      console.log(result.uri);
+    }
+  }
+
+  // This function is triggered when the "Open camera" button pressed
+  const openCamera2 = async () => {
+    // Ask the user for the permission to access the camera
+    const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      alert("You've refused to allow this appp to access your camera!");
+      return;
+    }
+
+    const result = await ImagePicker.launchCameraAsync();
+
+    // Explore the result
+    console.log(result);
+
+    if (!result.cancelled) {
+      setPickedImagePath2(result.uri);
+      console.log(result.uri);
+    }
+  }
+
+  return (
+    <View style={styles.screen}>
+      <ScrollView style={styles.Scrollview}>
+      <View style={styles.buttonContainer}>
+        <Button onPress={showImagePicker} title="Select an image" />
+        <Button onPress={openCamera} title="Open camera" />
+      </View>
+      <View style={styles.imageContainer}>
+        {
+          pickedImagePath !== '' && <Image
+            source={{ uri: pickedImagePath }}
+            style={styles.image}
+          />
+        }
+      </View>
+      <View style={styles.buttonContainer}>
+        <Button onPress={showImagePicker2} title="Select an image" />
+        <Button onPress={openCamera2} title="Open camera" />
+      </View>
+      <View style={styles.imageContainer}>
+        {
+          pickedImagePath2!== '' && <Image
+            source={{ uri: pickedImagePath2 }}
+            style={styles.image}
+          />
+        }
+      </View>
+      </ScrollView>
+    </View>
+  );
 }
 
-//Esto se debe de importar desde styles
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 35,
-    },
-    inputGroups: {
-        flex: 1,
-        padding: 0,
-        marginBottom: 15,
-        borderBottomWidth: 1,
-        alignItems: "center",
-        borderBottomColor: '#cccccc'
-    },
-    container1: {
-      flexDirection: "row",
-      backgroundColor: "rgba(1,123,146,1)",
-      height: 40,
-      paddingRight: 8,
-      paddingLeft: 8
-    },
-    header_Registro: {
-      height: 39,
-      borderWidth: 1,
-      borderColor:"rgba(1,123,146,255)",
-      backgroundColor: "rgba(1,123,146,255)",
-    },
-    leftWrapper: {
-      flex: 0.28,
-      alignItems: "flex-start",
-      justifyContent: "center"
-    },
-    leftIconButton: {
-      flexDirection: "row"
-    },
-    leftIcon: {
-      color: "rgba(255,255,255,255)",
-      fontSize: 23
-    },
-    leftText: {
-      fontSize: 15,
-      color: "rgba(255,255,255,255)",
-      paddingLeft: 5,
-      alignSelf: "center"
-    },
-    textWrapper: {
-      flex: 0.44,
-      alignItems: "center",
-      justifyContent: "center"
-    },
-    ingresoDeDatos: {
-      fontSize: 15,
-      lineHeight: 17,
-      color:  "rgba(255,255,255,255)",
-      textAlign: "center"
-    },
-    rightWrapper: {
-      flex: 0.28,
-      alignItems: "flex-end",
-      justifyContent: "center"
-    },
-    rightIconButton: {}
-});
-
 export default DataAgrupada;
+
+// Kindacode.com
+// Just some styles
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  Scrollview: {
+    marginTop:30,
+  },
+  buttonContainer: {
+    width: 400,
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  },
+  imageContainer: {
+    padding: 30
+  },
+  image: {
+    width: 400,
+    height: 300,
+    resizeMode: 'cover'
+  }
+});

@@ -17,18 +17,18 @@ import { Link } from "react-router-native";
 function Login(props) {
   const initialState = {
     usuario: '',
-    contrasenia:''
+    contrasenia: ''
   }
 
   const [datos, setDatos] = useState(initialState);
 
   const handleChangeText = (nombre, value) => {
     setDatos({ ...datos, [nombre]: value })
-    
+
   };
-  const inicioSesion=()=>{
-    if(datos.usuario === ''){
-        alert('Ingresa datos -> complete campo usuario')
+  const inicioSesion = () => {
+    if (datos.usuario === '') {
+      alert('Ingresa datos -> complete campo usuario')
     } else if (datos.contrasenia === '') {
       alert('Ingresa datos -> complete campo contraseña')
     } else {
@@ -36,66 +36,62 @@ function Login(props) {
         "Bienvenido",
         "My Alert Msg",
         [
-          
-          { text: "OK", onPress: () =>    props.navigation.navigate('Home') }
+
+          { text: "OK", onPress: () => props.navigation.navigate('Home') }
         ]
       );
-  
-    }       
+
+    }
   }
-console.log(props)
+  console.log(props)
   return (
     <View style={styles.container}>
       <View style={styles.background1Stack}>
         <ImageBackground
           source={require("../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
           resizeMode="cover"
-          required="required" 
+          required="required"
           style={styles.background1}
           imageStyle={styles.background1_imageStyle}
-        >      
+        >          
+          <View style={styles.rect}>
+            <View style={styles.textInputStack}>
+              <TextInput
+                placeholder="Usuario"
+                placeholderTextColor="rgba(41,39,39,1)"
+                autoFocus={true}
+                onChangeText={(value) => handleChangeText('usuario', value)}
+                selectionColor="rgba(41,38,38,1)"
+                style={styles.textInput}
+              ></TextInput>
+              <FontAwesomeIcon name="user" style={styles.icon}></FontAwesomeIcon>
+            </View>
+          </View>
+          <View style={styles.rect2}>
+            <View style={styles.icon2Row}>
+              <FontAwesomeIcon name="lock" style={styles.icon2}></FontAwesomeIcon>
+              <TextInput
+                placeholder="Contraseña"
+                placeholderTextColor="rgba(41,39,39,1)"
+                autoFocus={true}
+                selectionColor="rgba(41,39,39,1)"
+                secureTextEntry={true}
+                onChangeText={(value) => handleChangeText('contrasenia', value)}
+                style={styles.textInput2}
+              ></TextInput>
+            </View>
+          </View>
           <TouchableOpacity style={[styles.containerButton, props.style, styles.boton_iniciar]}
-        
-        onPress={()=>props.navigation.navigate('Home')}         
-         
-        >         
-          
-        <Text  style={styles.iniciarSesionButton}>Iniciar Sesion</Text></TouchableOpacity>
-        <View style={styles.rect}>
-          <View style={styles.textInputStack}>
-            <TextInput
-              placeholder="Usuario"
-              placeholderTextColor="rgba(41,39,39,1)"
-              
-              multiline={true}
-              onChangeText={(value) => handleChangeText('usuario', value)}
-              selectionColor="rgba(41,38,38,1)"
-              style={styles.textInput}
-            ></TextInput>           
-            <FontAwesomeIcon name="user" style={styles.icon}></FontAwesomeIcon>
-          </View>
-        </View>
-        <View style={styles.rect2}>
-          <View style={styles.icon2Row}>
-            <FontAwesomeIcon name="lock" style={styles.icon2}></FontAwesomeIcon>
-            <TextInput
-              placeholder="Contraseña"
-              placeholderTextColor="rgba(41,39,39,1)"    
-              selectionColor="rgba(41,39,39,1)"
-              secureTextEntry={true}
-              onChangeText={(value) => handleChangeText('contrasenia', value)}
-              style={styles.textInput2}
-            ></TextInput>
-          </View>
-        </View>
-        <Image
-          source={require("../../../assets/images/antapaccay.png")}
-          resizeMode="contain"
-          style={styles.logo1}
-        ></Image>
+            onPress={() => props.navigation.navigate('Home')}>
+            <Text style={styles.iniciarSesionButton}>Iniciar Sesion</Text></TouchableOpacity>
+          <Image
+            source={require("../../../assets/images/antapaccay.png")}
+            resizeMode="contain"
+            style={styles.logo1}
+          ></Image>
 
         </ImageBackground>
-      
+
       </View>
     </View>
   );
@@ -118,6 +114,7 @@ const styles = StyleSheet.create({
   iniciarSesionButton: {
     color: "#fff",
     fontSize: 14,
+    lineHeight: 10,
   },
   background1: {
     top: 0,

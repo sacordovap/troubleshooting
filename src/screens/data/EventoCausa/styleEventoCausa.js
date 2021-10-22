@@ -39,7 +39,6 @@ export default StyleSheet.create({
       marginLeft: 19
     },
     contenedorDatos1: {
-      width: 321,
       height: 608,
       backgroundColor: "rgba(255,255,255,1)",
       borderWidth: 1,
@@ -54,7 +53,8 @@ export default StyleSheet.create({
       shadowOpacity: 0.41,
       shadowRadius: 0,
       marginTop: 30,
-      marginLeft: 20
+      marginLeft: 20,
+      marginRight:20
     },
     icon: {
       color: "rgba(128,128,128,1)",

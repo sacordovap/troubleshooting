@@ -74,16 +74,20 @@ const guardarFormulario = () => {
                 <View style={styles.imagen_1}>{props.route.params.formulario.foto1 && (
                 <Image source={{ uri: props.route.params.formulario.foto1 }}
                   style={{
-                    width: 184,
-                    height: 143,
+                    width: 310,
+                    height: 210,
+                    marginLeft:20,
+                    marginRight:20,
                     opacity: 0.9,
                   }} />
               )}</View>
                 <View style={styles.imagen_2}>{props.route.params.formulario.foto2 && (
                 <Image source={{ uri: props.route.params.formulario.foto2 }}
                   style={{
-                    width: 184,
-                    height: 143,
+                    width: 310,
+                    height: 210,
+                    marginLeft:20,
+                    marginRight:20,
                     opacity: 0.9,
                   }} />
               )}</View>
@@ -104,7 +108,6 @@ const styles = StyleSheet.create({
         flex: 1
     },
     rect: {
-        width: 345,
         backgroundColor: "rgba(255,255,255,1)",
         borderWidth: 1,
         borderColor: "rgba(197,196,196,1)",
@@ -118,8 +121,9 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.41,
         shadowRadius: 0,
         marginBottom: 25,
-        marginTop: 30,
-        marginLeft: 8
+        marginTop: 30,        
+        marginRight:10,
+        marginLeft: 10
     },
     tituloIncidente: {
        
@@ -398,18 +402,16 @@ const styles = StyleSheet.create({
         marginLeft: 30
     },
     imagen_1: {
-        width: 184,
-        height: 143,
-        backgroundColor: "#E6E6E6",
         marginTop: 25,
-        marginLeft: 80
+        marginLeft: 40,
+        marginRight:40,
+        alignItems:'center'
     },
     imagen_2: {
-        width: 182,
-        height: 153,
-        backgroundColor: "#E6E6E6",
-        marginTop: 29,
-        marginLeft: 81
+        marginTop: 25,
+        marginLeft: 40,
+        marginRight:40,
+        alignItems:'center'
     },
     guardarDataReporte: {
         height: 36,
