@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, Button, ScrollView } from 'react-native'
 
 import * as ImagePicker from 'expo-image-picker';
 
-function DataAgrupada() {
+function Reportes() {
   // The path of the picked image
   const [pickedImagePath, setPickedImagePath] = useState('');
   const [pickedImagePath2, setPickedImagePath2] = useState('');
@@ -122,7 +122,7 @@ function DataAgrupada() {
   );
 }
 
-export default DataAgrupada;
+export default Reportes;
 
 // Kindacode.com
 // Just some styles

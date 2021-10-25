@@ -20,11 +20,9 @@ import AccionesTomadasScreen from "./src/screens/data/AccionesTomadas/AccionesTo
 import ResultadoConclusion from "./src/screens/data/ResultadoConclusion/ResultadoConclusionScreen";
 import EventoCausa from "./src/screens/data/EventoCausa/EventoCausaScreen";
 import BotonIniciarSesion from "./components/BotonIniciarSesion";
-
 import Login from "./src/screens/Login/Login";
 import DataEquipo from "./src/screens/data/DataEquipo/DataEquipoScreen"
 import EvidenciaFoto from "./src/screens/data/EvidenciaFoto/EvidenciaFotoScreen"
-import DataAgrupada from "./src/screens/data/Reporte/DataAgrupada"
 import Preview from "./src/screens/data/Preview/Preview"
 import Registro_form from "./src/screens/data/Registro_form/Registro_form";
 import EvidenciacameraScreen from './src/screens/data/EvidenciaFoto/EvidenciacameraScreen';
@@ -59,8 +57,6 @@ function MyStack() {
         component={Login} />
       <Stack.Screen name="Evidencia-Camera"
         component={EvidenciacameraScreen} />
-      <Stack.Screen name="DataAgrupada"
-        component={DataAgrupada} />
      
       <Stack.Screen name="Home"
         component={HomeScreen}
