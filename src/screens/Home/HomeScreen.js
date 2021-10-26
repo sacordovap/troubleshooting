@@ -4,9 +4,7 @@ import NewSpeech from "../../../components/NewSpeech";
 import DocumentosRecientes from "../../../components/DocumentosRecientes";
 
 function HomeScreen(props) {
-  const ReportesPasados=()=>{    
-        alert('en Construcción -> disculpe las molestias')
-    }
+
   console.log(props)
   return (
     <View style={styles.container}>
@@ -32,7 +30,7 @@ function HomeScreen(props) {
         ></Image>
         
         <TouchableOpacity style={[styles.containerDocumentosRecientes, props.style,styles.documentos_Recientes]}
-         onPress={()=>ReportesPasados()} >
+         onPress={()=>props.navigation.navigate('HistorialReporte')} >
           <Text style={styles.buscarDocumentos}>Buscar Documentos</Text>
         </TouchableOpacity>
       </View>

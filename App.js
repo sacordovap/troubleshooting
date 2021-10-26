@@ -26,6 +26,8 @@ import EvidenciaFoto from "./src/screens/data/EvidenciaFoto/EvidenciaFotoScreen"
 import Preview from "./src/screens/data/Preview/Preview"
 import Registro_form from "./src/screens/data/Registro_form/Registro_form";
 import EvidenciacameraScreen from './src/screens/data/EvidenciaFoto/EvidenciacameraScreen';
+import HistorialReportesScreen from './src/screens/Historial/HistorialReportesScreen';
+import ReporteDetalle from './src/screens/Historial/ReporteDetalle';
 
 
 /*function App() {
@@ -56,24 +58,26 @@ function MyStack() {
  <Stack.Screen name="Login"
         component={Login} />
       <Stack.Screen name="Evidencia-Camera"
-        component={EvidenciacameraScreen} />
-     
+        component={EvidenciacameraScreen} />     
       <Stack.Screen name="Home"
         component={HomeScreen}
         options={{ title: 'Home' }} />
       <Stack.Screen name="Registro-form"
         component={Registro_form} />
+        <Stack.Screen name="HistorialReporte"
+        component={HistorialReportesScreen} />
       <Stack.Screen name="Preview"
         component={Preview} />
       <Stack.Screen name="Datos-Equipo"
         component={DataEquipo} />
-
       <Stack.Screen name="Evidencia-Foto"
         component={EvidenciaFoto} />
       <Stack.Screen name="Resultado-Conclusion"
         component={ResultadoConclusion} />
       <Stack.Screen name="Evento-Causa"
         component={EventoCausa} />
+         <Stack.Screen name="ReporteDetalle"
+        component={ReporteDetalle} />
 
     </Stack.Navigator>
   )

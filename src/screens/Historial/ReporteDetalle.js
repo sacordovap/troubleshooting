@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import {
     StyleSheet,
     View,
@@ -6,107 +6,114 @@ import {
     ScrollView,
     TouchableOpacity,
     ImageBackground,
+    
+    ActivityIndicator,
     Alert,
     Image
 } from "react-native";
 
-import firebase from "../../../../database/firebase";
-function Preview(props) {
-
+import firebase from "../../../database/firebase";
+function ReporteDetalle(props) {
+    const initialState={ 
+        id: '',
+        fecha: '',
+        hora: '',
+        superintendente: '',
+        supervisores: '',
+        operadores: '',
+        equipo: '',
+        tiempoParada: '',
+        detalleParada: '',
+        evento: '',
+        causa: '',
+        accionesTomadas: '',
+        resultado: '',
+        conclusiones: '',
+        evidenciaDetalle: '',
+        foto1: '',
+        foto2: ''
+    }
     console.log(props)
+    const [Reporte, setReporte] = useState(initialState);
 
-    const guardarFormulario = () => {
-        Alert.alert('se guardará la información', 'espere por favor', [
-            { text: 'Si', onPress: () => AddNuevoReporte() },
-            { text: 'Cancelar', onPress: () => cancelarFormulario() },
-        ])
-    }
+    const [loading, setLoading] = useState(true)
 
-    const AddNuevoReporte = async () => {
+    const getReporteById = async (id) => {
+        const dbConsulta = firebase.db.collection('Reportes').doc(id)
+        const Documento = await dbConsulta.get();
+        //Convertir los datos a manera legible
+        const Reporte = Documento.data();
 
-        try {
-            await firebase.db.collection('Reportes').add({
-                fecha: props.route.params.formulario.fecha,
-                hora: props.route.params.formulario.hora,
-                superintendente: props.route.params.formulario.superintendente,
-                supervisores: props.route.params.formulario.supervisores,
-                operadores: props.route.params.formulario.operadores,
-                equipo: props.route.params.formulario.equipo,
-                tiempoParada: props.route.params.formulario.tiempoParada,
-                detalleParada: props.route.params.formulario.detalleParada,
-                evento: props.route.params.formulario.evento,
-                causa: props.route.params.formulario.causa,
-                accionesTomadas: props.route.params.formulario.accionesTomadas,
-                resultado: props.route.params.formulario.resultado,
-                conclusiones: props.route.params.formulario.conclusiones,
-                evidenciaDetalle: props.route.params.formulario.evidenciaDetalle,
-                foto1: '',
-                foto2: ''
-            })
-            alert('guardado')
-            props.navigation.navigate('Home');
-        } catch (error) {
-            console.log(error);
-        }
+        setReporte({
+            ...Reporte,
+            id: Documento.id,
+        });
+        setLoading(false)
+    };
 
-    }
-    const cancelarFormulario = () => {
-        props.navigation.navigate('Home');
+    //usar el arreglo en Effect
+    useEffect(() => {
+        getReporteById(props.route.params.ReporteId)
+    },[]);
+
+    if (loading) {
+        <View>
+            <ActivityIndicator size="large" color="#547485" />
+        </View>
     }
     return (
         <ScrollView style={styles.container}>
             <ImageBackground
-                source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
+                source={require("../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
                 resizeMode="cover"
                 style={styles.image}
                 imageStyle={styles.image_imageStyle}
             >
                 <View style={styles.rect}>
-                    <Text style={styles.tituloIncidente}>Registro de incidente 01</Text>
-
+                    <Text style={styles.tituloIncidente}>Registro de incidente Revisión</Text>
                     <Text style={styles.fechaTag1}>Fecha</Text>
-                    <Text style={styles.fecha2}>{props.route.params.formulario.fecha}</Text>
+                    <Text style={styles.fecha2}>{Reporte.fecha}</Text>
 
                     <Text style={styles.horaTag1}>Hora</Text>
-                    <Text style={styles.hora2}>{props.route.params.formulario.hora}</Text>
+                    <Text style={styles.hora2}>{Reporte.hora}</Text>
 
                     <Text style={styles.supeintendente1}>Supeintendente</Text>
-                    <Text style={styles.superintendenteEntrada}>{props.route.params.formulario.superintendente}</Text>
+                    <Text style={styles.superintendenteEntrada}>{Reporte.superintendente}</Text>
 
                     <Text style={styles.supervisores1}>Supervisores</Text>
-                    <Text style={styles.ingreseSupervisores}>{props.route.params.formulario.supervisores}</Text>
+                    <Text style={styles.ingreseSupervisores}>{Reporte.supervisores}</Text>
 
                     <Text style={styles.operadores1}>Operadores</Text>
-                    <Text style={styles.ingreseOperadores}>{props.route.params.formulario.operadores}</Text>
+                    <Text style={styles.ingreseOperadores}>{Reporte.operadores}</Text>
 
                     <Text style={styles.equipo1}>Equipo</Text>
-                    <Text style={styles.ingreseEquipo}>{props.route.params.formulario.equipo}</Text>
+                    <Text style={styles.ingreseEquipo}>{Reporte.equipo}</Text>
 
                     <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
-                    <Text style={styles.horas}>{props.route.params.formulario.tiempoParada}</Text>
+                    <Text style={styles.horas}>{Reporte.tiempoParada}</Text>
 
                     <Text style={styles.detalleDeParada1}>Detalle de Parada</Text>
-                    <Text style={styles.ingreseDetalles}>{props.route.params.formulario.detalleParada}</Text>
+                    <Text style={styles.ingreseDetalles}>{Reporte.detalleParada}</Text>
 
                     <Text style={styles.evento}>Evento</Text>
-                    <Text style={styles.detallesEvento}>{props.route.params.formulario.evento}</Text>
+                    <Text style={styles.detallesEvento}>{Reporte.evento}</Text>
 
                     <Text style={styles.causa}>Causa</Text>
-                    <Text style={styles.detallesCausa}>{props.route.params.formulario.causa}</Text>
+                    <Text style={styles.detallesCausa}>{Reporte.causa}</Text>
 
                     <Text style={styles.accionesTomadas}>Acciones Tomadas</Text>
-                    <Text style={styles.accionesDetalle}>{props.route.params.formulario.accionesTomadas}</Text>
+                    <Text style={styles.accionesDetalle}>{Reporte.accionesTomadas}</Text>
 
                     <Text style={styles.resultados}>Resultados</Text>
-                    <Text style={styles.resultadosDetalle}>{props.route.params.formulario.resultado}</Text>
+                    <Text style={styles.resultadosDetalle}>{Reporte.resultado}</Text>
 
                     <Text style={styles.conclusiones}>Conclusiones</Text>
-                    <Text style={styles.conclusionesDetalle}>{props.route.params.formulario.conclusiones}</Text>
+                    <Text style={styles.conclusionesDetalle}>{Reporte.conclusiones}</Text>
 
                     <Text style={styles.detallesDeCapturas}>Detalles de capturas</Text>
-                    <Text style={styles.detallesDeLaFotos}>{props.route.params.formulario.evidenciaDetalle}</Text>
+                    <Text style={styles.detallesDeLaFotos}>{Reporte.evidenciaDetalle}</Text>
 
-
+{/* 
                     <View style={styles.imagen_1}>{props.route.params.formulario.foto1 && (
                         <Image source={{ uri: props.route.params.formulario.foto1 }}
                             style={{
@@ -126,12 +133,12 @@ function Preview(props) {
                                 marginRight: 20,
                                 opacity: 0.9,
                             }} />
-                    )}</View>
+                    )}</View> */}
 
                     <TouchableOpacity
                         style={[styles.containerBotonGuardar, props.style, styles.guardarDataReporte]}
-                        onPress={() => AddNuevoReporte()}>
-                        <Text style={styles.guardarReporte}>Guardar Reporte</Text>
+                        onPress={() => props.navigation.goBack()}>
+                        <Text style={styles.guardarReporte}>Terminar Revision</Text>
                     </TouchableOpacity>
                 </View>
             </ImageBackground>
@@ -162,12 +169,11 @@ const styles = StyleSheet.create({
         marginLeft: 10
     },
     tituloIncidente: {
-
+        textAlign:"center",
         color: "#121212",
         fontSize: 24,
         opacity: 0.75,
         marginTop: 30,
-        marginLeft: 38
     },
     fechaTag1: {
 
@@ -488,4 +494,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Preview;
+export default ReporteDetalle;

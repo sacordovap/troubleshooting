@@ -1,49 +1,107 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from "react";
+import {
+  View, Text, ScrollView, Button, StyleSheet,
+  TextInput
+} from "react-native";
 
-class HistorialReportesScreen extends React.Component {
-  render() {
-    return (
-      <><View style={[styles.container1, props.style]}>
-        <View style={styles.leftWrapper}>
-          <TouchableOpacity style={styles.leftIconButton}
-            onPress={() => props.navigation.navigate('Home')}
-          >
-            <Icon name="ios-arrow-back" style={styles.leftIcon}
+import firebase from "../../../database/firebase";
+import { ListItem, Avatar, Divider } from "react-native-elements";
+export default function HistorialReportesScreen(props) {
 
-            ></Icon>
-            <Text style={styles.leftText}>Back</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.textWrapper}>
-          <Text numberOfLines={1} style={styles.ingresoDeDatos}>
-            Ingreso de Datos
-          </Text>
-        </View>
-        <View style={styles.rightWrapper}>
-          <TouchableOpacity style={styles.rightIconButton}></TouchableOpacity>
-        </View>
-      </View><View style={styles.container}>
-          <Text>Aqui va el codigo de vista</Text>
-        </View></>
-    );
-  }
+  const [Reportes, setReportes] = useState([])
+  useEffect(() => {
+    //querySnapshot datos actuales en la BD
+    firebase.db.collection('Reportes').onSnapshot(querySnapshot => {
+      const Reportes = [];
+
+      querySnapshot.docs.forEach(doc => {
+        //doc.data visualizar datos contenidos
+        const {
+          fecha,
+          hora,
+          superintendente,
+          supervisores,
+          operadores,
+          equipo,
+          tiempoParada,
+          detalleParada,
+          evento,
+          causa,
+          accionesTomadas,
+          resultado,
+          conclusiones,
+          evidenciaDetalle,
+          foto1,
+          foto2 } = doc.data()
+        Reportes.push({
+          id: doc.id, //propiedad
+          fecha,
+          hora,
+          superintendente,
+          supervisores,
+          operadores,
+          equipo,
+          tiempoParada,
+          detalleParada,
+          evento,
+          causa,
+          accionesTomadas,
+          resultado,
+          conclusiones,
+          evidenciaDetalle,
+          foto1,
+          foto2 
+        })
+      });
+      setReportes(Reportes) //guarda y muestra
+    });
+  }, []);
+
+  return (
+    <ScrollView style={styles.container} >
+      {/* <Button title="Crear Usuario"
+        onPress={() =>
+          props.navigation.navigate('Crear Usuario')}>
+      </Button> */}
+      {   //recorrer usuarios
+        Reportes.map(Reportes => {
+          return (
+            <ListItem style={styles.inputGroups} key={Reportes.id} buttonDivider
+              onPress={() => props.navigation.navigate('ReporteDetalle', {
+                ReporteId: Reportes.id
+              })
+              }>
+              <ListItem.Chevron /*es el icono*/ />
+              <Avatar source={{
+                uri:
+                  'https://icons555.com/images/icons-orange/image_icon_report_pic_512x512.png'
+              }}
+                rounded
+              />
+              <ListItem.Content>
+                <ListItem.Title>{Reportes.evento}</ListItem.Title>
+                <ListItem.Subtitle>Fecha:{Reportes.fecha} Hora:{Reportes.hora}</ListItem.Subtitle>
+              </ListItem.Content>
+
+            </ListItem>
+          )
+        })
+      }
+    </ScrollView>
+  )
 }
 
-//Esto se debe de importar desde styles
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 35,
-    },
-    inputGroups: {
-        flex: 1,
-        padding: 0,
-        marginBottom: 15,
-        borderBottomWidth: 1,
-        alignItems: "center",
-        borderBottomColor: '#cccccc'
-    }
+  container: {
+    flex: 1,
+    padding: 35,
+  },
+  inputGroups: {
+    flex: 1,
+    marginBottom: 15,
+    marginLeft:1,
+    marginRight:1,
+    borderBottomWidth: 1,
+    borderBottomColor: '#cccccc'
+  }
 });
-
-export default HistorialReportesScreen;
