@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -21,17 +21,17 @@ const initialState={
     evento: '',
     causa: '',
 }
-console.log(props)
 const [eventoCausa, setEventoCausa] = useState(initialState);
 
   const handleChangeText = (nombre, value) => {
     setEventoCausa({ ...eventoCausa, [nombre]: value })
-   // props.formulario.equipo=equipo.equipo
-   // props.formulario.detalleParada=equipo.detalleParada;
-   props.formulario.evento=eventoCausa.evento
-   props.formulario.causa=eventoCausa.causa
- 
+    if (nombre==='evento') {
+      props.formulario.evento=value
+     } else if (nombre==='causa') {
+      props.formulario.causa=value
+     } 
 };
+
 
 
 
@@ -46,15 +46,18 @@ const [eventoCausa, setEventoCausa] = useState(initialState);
           imageStyle={styles.image1_imageStyle}
         >
           <View style={styles.contenedorDatos1}>
+          <Text style={styles.titulo1}>Evento y causas Asociadas</Text>
             <Text style={styles.evento}>Evento</Text>
             <TextInput
-              placeholder="Ingrese Detalles"
+              placeholder="Ingrese el Evento ocurrido"
+              multiline
               onChangeText={(value)=>handleChangeText('evento', value)}
               style={styles.textInput}
             ></TextInput>
             <Text style={styles.causas}>Causas</Text>
             <TextInput
-              placeholder="Ingrese Detalles"
+              placeholder="Ingrese Causas encontradas"
+              multiline
               onChangeText={(value)=>handleChangeText('causa', value)}
               style={styles.textInput}
             ></TextInput>

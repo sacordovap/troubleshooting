@@ -9,10 +9,12 @@ import {
     
     ActivityIndicator,
     Alert,
-    Image
+    Image,
+    LogBox
 } from "react-native";
 
 import firebase from "../../../database/firebase";
+//LogBox.ignoreLogs(['Setting a timer']);
 function ReporteDetalle(props) {
     const initialState={ 
         id: '',
@@ -73,72 +75,56 @@ function ReporteDetalle(props) {
                     <Text style={styles.tituloIncidente}>Registro de incidente Revisión</Text>
                     <Text style={styles.fechaTag1}>Fecha</Text>
                     <Text style={styles.fecha2}>{Reporte.fecha}</Text>
-
                     <Text style={styles.horaTag1}>Hora</Text>
                     <Text style={styles.hora2}>{Reporte.hora}</Text>
-
                     <Text style={styles.supeintendente1}>Supeintendente</Text>
                     <Text style={styles.superintendenteEntrada}>{Reporte.superintendente}</Text>
-
                     <Text style={styles.supervisores1}>Supervisores</Text>
                     <Text style={styles.ingreseSupervisores}>{Reporte.supervisores}</Text>
-
                     <Text style={styles.operadores1}>Operadores</Text>
                     <Text style={styles.ingreseOperadores}>{Reporte.operadores}</Text>
-
                     <Text style={styles.equipo1}>Equipo</Text>
                     <Text style={styles.ingreseEquipo}>{Reporte.equipo}</Text>
-
                     <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
                     <Text style={styles.horas}>{Reporte.tiempoParada}</Text>
-
                     <Text style={styles.detalleDeParada1}>Detalle de Parada</Text>
                     <Text style={styles.ingreseDetalles}>{Reporte.detalleParada}</Text>
-
                     <Text style={styles.evento}>Evento</Text>
                     <Text style={styles.detallesEvento}>{Reporte.evento}</Text>
-
                     <Text style={styles.causa}>Causa</Text>
                     <Text style={styles.detallesCausa}>{Reporte.causa}</Text>
-
                     <Text style={styles.accionesTomadas}>Acciones Tomadas</Text>
                     <Text style={styles.accionesDetalle}>{Reporte.accionesTomadas}</Text>
-
                     <Text style={styles.resultados}>Resultados</Text>
                     <Text style={styles.resultadosDetalle}>{Reporte.resultado}</Text>
-
                     <Text style={styles.conclusiones}>Conclusiones</Text>
                     <Text style={styles.conclusionesDetalle}>{Reporte.conclusiones}</Text>
-
                     <Text style={styles.detallesDeCapturas}>Detalles de capturas</Text>
                     <Text style={styles.detallesDeLaFotos}>{Reporte.evidenciaDetalle}</Text>
-
-{/* 
-                    <View style={styles.imagen_1}>{props.route.params.formulario.foto1 && (
-                        <Image source={{ uri: props.route.params.formulario.foto1 }}
+                    <View style={styles.imagen_1}>{!!Reporte.foto1 && (
+                    <Image source={{ uri: Reporte.foto1 }}
                             style={{
                                 width: 310,
                                 height: 210,
                                 marginLeft: 20,
                                 marginRight: 20,
                                 opacity: 0.9,
-                            }} />
-                    )}</View>
-                    <View style={styles.imagen_2}>{props.route.params.formulario.foto2 && (
-                        <Image source={{ uri: props.route.params.formulario.foto2 }}
+                            }} />)}
+                    </View>
+                    <View style={styles.imagen_2}>{!!Reporte.foto2&& (
+                    <Image source={{ uri: Reporte.foto2  }}
                             style={{
                                 width: 310,
                                 height: 210,
                                 marginLeft: 20,
                                 marginRight: 20,
                                 opacity: 0.9,
-                            }} />
-                    )}</View> */}
-
+                            }} />)}
+                    </View>
                     <TouchableOpacity
                         style={[styles.containerBotonGuardar, props.style, styles.guardarDataReporte]}
                         onPress={() => props.navigation.goBack()}>
-                        <Text style={styles.guardarReporte}>Terminar Revision</Text>
+                        <Text style={styles.guardarReporte}>Finalizar Revision</Text>
                     </TouchableOpacity>
                 </View>
             </ImageBackground>

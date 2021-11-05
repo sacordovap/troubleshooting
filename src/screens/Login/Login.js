@@ -46,177 +46,173 @@ function Login(props) {
   console.log(props)
   return (
     <View style={styles.container}>
-      <View style={styles.background1Stack}>
-        <ImageBackground
-          source={require("../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
-          resizeMode="cover"
-          required="required"
-          style={styles.background1}
-          imageStyle={styles.background1_imageStyle}
-        >          
-          <View style={styles.rect}>
-            <View style={styles.textInputStack}>
-              <TextInput
-                placeholder="Usuario"
-                placeholderTextColor="rgba(41,39,39,1)"
-                autoFocus={true}
-                onChangeText={(value) => handleChangeText('usuario', value)}
-                selectionColor="rgba(41,38,38,1)"
-                style={styles.textInput}
-              ></TextInput>
-              <FontAwesomeIcon name="user" style={styles.icon}></FontAwesomeIcon>
-            </View>
+      <ImageBackground
+        source={require("../../../assets/images/fondo3.png")}
+        resizeMode="stretch"
+        style={styles.background}
+        imageStyle={styles.background_imageStyle}
+      >
+        <Text style={styles.antapaccay}>ANTAPACCAY</Text>
+        <View style={styles.lineIzquierdaRow}>
+          <View style={styles.lineIzquierda}></View>
+          <View style={styles.lineIzquierdaFiller}>
+            <Image
+              source={require("../../../assets/images/LogoNuevo.png")}
+              resizeMode="contain"
+              style={styles.logoNuevo}
+            ></Image>
           </View>
-          <View style={styles.rect2}>
-            <View style={styles.icon2Row}>
-              <FontAwesomeIcon name="lock" style={styles.icon2}></FontAwesomeIcon>
-              <TextInput
-                placeholder="Contraseña"
-                placeholderTextColor="rgba(41,39,39,1)"
-                autoFocus={true}
-                selectionColor="rgba(41,39,39,1)"
-                secureTextEntry={true}
-                onChangeText={(value) => handleChangeText('contrasenia', value)}
-                style={styles.textInput2}
-              ></TextInput>
-            </View>
-          </View>
-          <TouchableOpacity style={[styles.containerButton, props.style, styles.boton_iniciar]}
-            onPress={() => props.navigation.navigate('Home')}>
-            <Text style={styles.iniciarSesionButton}>Iniciar Sesion</Text></TouchableOpacity>
-          <Image
-            source={require("../../../assets/images/antapaccay.png")}
-            resizeMode="contain"
-            style={styles.logo1}
-          ></Image>
-
-        </ImageBackground>
-
-      </View>
+          <View style={styles.lineDerecha}></View>
+        </View>
+        <View style={styles.iconRow}>
+          <FontAwesomeIcon name="user" style={styles.icon}></FontAwesomeIcon>
+          <TextInput
+            placeholder="Ingrese Usuario"
+            placeholderTextColor="rgba(251,249,249,1)"
+            selectionColor="rgba(255,253,253,1)"
+            style={styles.usuario}
+          ></TextInput>
+        </View>
+        <View style={styles.lineaSeparadora}></View>
+        <View style={styles.icon2Row}>
+          <FontAwesomeIcon name="key" style={styles.icon2}></FontAwesomeIcon>
+          <TextInput
+            placeholder="Ingrese Contraseña"
+            placeholderTextColor="rgba(251,249,249,1)"
+            selectionColor="rgba(255,253,253,1)"
+            secureTextEntry={true}
+            style={styles.password}
+          ></TextInput>
+        </View>
+        <TouchableOpacity
+          onPress={() => props.navigation.navigate("Home")}
+          style={styles.button}
+        >
+          <Text style={styles.iniciarSesion}>INICIAR SESION</Text>
+        </TouchableOpacity>
+      </ImageBackground>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    backgroundColor: "rgba(251,251,251,1)"
+  },
+  background: {
     flex: 1
   },
-  containerButton: {
-    backgroundColor: "rgba(1,123,146,1)",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "row",
-    borderRadius: 5,
-    paddingLeft: 16,
-    paddingRight: 16,
-
+  background_imageStyle: {},
+  antapaccay: {
+    color: "rgba(255,255,255,1)",
+    fontSize: 32,
+    marginTop: 83,
+    alignSelf: "center"
   },
-  iniciarSesionButton: {
-    color: "#fff",
-    fontSize: 14,
-    lineHeight: 10,
+  lineIzquierda: {
+    width: 127,
+    height: 1,
+    backgroundColor: "#E6E6E6",
+    opacity: 0.57,
+    marginTop: 51
   },
-  background1: {
-    top: 0,
-    left: 0,
-    width: 360,
-    position: "absolute",
-    backgroundColor: "rgba(15,15, 15,0.10079999999999999)",
-    bottom: 0
-  },
-  background1_imageStyle: {
-    opacity: 0.84
-  },
-  boton_iniciar: {
-    height: 42,
-    width: 158,
+  logoNuevo: {
+    width: 106,
+    height: 103,
     borderWidth: 1,
-    borderColor: "rgba(1,123,146,1)",
-    borderRadius: 19,
-    marginTop: 446,
-    marginLeft: 105
+    borderColor: "rgba(250,248,248,1)",
+    borderRadius: 100,
   },
-  rect: {
-    top: 313,
-   marginLeft:60,
-   marginRight:40,
-    width: 240,
-    height: 44,
-    position: "absolute",
-    backgroundColor: "rgba(255,255,255,0.63)",
-    borderWidth: 2,
-    borderColor: "rgba(255,255,255,1)",
-    borderRadius: 19
+  lineIzquierdaFiller: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center"
   },
-  textInput: {
-    top: 4,
-    left: 28,
-    position: "absolute",
-    color: "rgba(45,42,42,1)",
-    height: 20,
-    width: 150,
-    textAlign: "center",
-    lineHeight: 16
+  lineDerecha: {
+    width: 127,
+    height: 1,
+    backgroundColor: "#E6E6E6",
+    opacity: 0.57,
+    marginTop: 51
+  },
+  lineIzquierdaRow: {
+    height: 103,
+    flexDirection: "row",
+    marginTop: 19
   },
   icon: {
-    top: 0,
-    left: 0,
-    position: "absolute",
-    color: "rgba(128,128,128,0.6)",
-    fontSize: 29,
-    height: 29,
-    width: 20
+    color: "rgba(255,255,255,0.57)",
+    fontSize: 27,
+    height: 27,
+    width: 19
   },
-  textInputStack: {
-    width: 168,
-    height: 29,
-    marginTop: 7,
-    marginLeft: 27
+  usuario: {
+    color: "#121212",
+    height: 21,
+    width: 179,
+    opacity: 0.8,
+    textAlign: "center",
+    marginLeft: 18,
+    marginTop: 6
   },
-  rect2: {
-    top: 374, marginLeft:60,
-    marginRight:40,
-    width: 240,
-    height: 43,
-    position: "absolute",
-    backgroundColor: "rgba(230,230, 230,0.71)",
-    borderWidth: 2,
-    borderColor: "rgba(255,255,255,1)",
-    borderRadius: 19,
-    flexDirection: "row"
+  iconRow: {
+    height: 27,
+    flexDirection: "row",
+    marginTop: 50,
+    marginLeft: 54,
+    marginRight: 90,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  lineaSeparadora: {
+    width: 290,
+    height: 3,
+    backgroundColor: "#E6E6E6",
+    opacity: 0.53,
+    marginTop: 25,
+    alignSelf: "center"
   },
   icon2: {
-    color: "rgba(128,128,128,0.6)",
-    fontSize: 29,
-    height: 29,
-    width: 18
+    color: "rgba(255,255,255,0.57)",
+    fontSize: 27,
+    height: 27,
+    width: 27
   },
-  textInput2: {
+  password: {
     color: "#121212",
-    height: 22,
-    width: 128,
-    marginLeft:22,
+    height: 21,
+    width: 179,
+    opacity: 0.8,
     textAlign: "center",
-    lineHeight: 16
+    marginLeft: 14,
+    marginTop: 10
   },
   icon2Row: {
-    height: 29,
+    height: 27,
     flexDirection: "row",
-    flex: 1,
-    marginRight: 45,
-    marginLeft: 27,
-    marginTop: 7
+    marginTop: 10,
+    marginLeft: 54,
+    marginRight: 90,
+    justifyContent: "center",
+    alignItems: "center"
   },
-  logo1: {
-    top: 25,
-    width: 270,
-    height: 251,
-    position: "absolute",
-    left: 55
+ button: {
+    width: 313,
+    height: 53,
+    backgroundColor: "rgba(186,184,184,0.38)",
+    borderWidth: 3,
+    borderColor: "rgba(255,255,255,0.38)",
+    marginTop: 33,
+    alignSelf: "center"
   },
-  background1Stack: {
-    width: 360,
-    flex: 1
+  iniciarSesion: {
+    color: "rgba(255,255,255,1)",
+    textAlign: "center",
+    lineHeight: 30,
+    fontSize: 18,
+    marginTop: 8,
+    alignSelf: "center"
   }
 });
 

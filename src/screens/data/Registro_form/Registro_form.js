@@ -12,7 +12,7 @@ import {
   ActivityIndicator
 } from "react-native";
 
-import Swiper from "react-native-web-swiper";
+import Swiper from "react-native-swiper";
 import DataEquipoScreen from "../DataEquipo/DataEquipoScreen";
 import AccionestomadasScreen from "../AccionesTomadas/AccionesTomadasScreen";
 import DatosInicialesScreen from "../datosIniciales/DatosInicialesScreen";
@@ -79,27 +79,34 @@ function Registro_form(props) {
   const nuevo = Alerta
   console.log(nuevo);
 
-  return (
-    <><View style={[styles.container1, props.style]}>
-      <View style={styles.leftWrapper}>
-        <TouchableOpacity style={styles.leftIconButton}
-          onPress={() => props.navigation.navigate('Home')}
-        >
-          <Icons name="ios-arrow-back" style={styles.leftIcon}
+  const [ActivarBoton, setActivarBoton] = useState(false)
 
-          ></Icons>
-          <Text style={styles.leftText}>Back</Text>
-        </TouchableOpacity>
+  return (
+    <>
+      <View style={[styles.container1, props.style]}>
+        <View style={styles.leftWrapper}>
+          <TouchableOpacity style={styles.leftIconButton}
+            onPress={() => props.navigation.navigate('Home')}
+          ><Icons name="ios-arrow-back" style={styles.leftIcon}
+            ></Icons>
+            <Text style={styles.leftText}>Back</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.textWrapper}>
+          <Text numberOfLines={1} style={styles.ingresoDeDatos}>
+            Ingreso de Datos
+          </Text>
+        </View>
+        <View style={styles.rightWrapper}>
+       {ActivarBoton?(<TouchableOpacity style={styles.leftIconButton}
+            onPress={() => props.navigation.navigate('Preview', { formulario })}
+          ><Icon name="save" style={styles.leftIcon}
+            ></Icon>
+            <Text style={styles.leftText}>Guardar</Text>
+          </TouchableOpacity>):null}      
+        </View>
+
       </View>
-      <View style={styles.textWrapper}>
-        <Text numberOfLines={1} style={styles.ingresoDeDatos}>
-          Ingreso de Datos
-        </Text>
-      </View>
-      <View style={styles.rightWrapper}>
-        <TouchableOpacity style={styles.rightIconButton}></TouchableOpacity>
-      </View>
-    </View>
       <View style={{ flex: 1 }}>
         <View style={{ flex: 1 }}>
           <Swiper
@@ -139,45 +146,10 @@ function Registro_form(props) {
             </View>
 
             <View style={{ flex: 1, justifyContent: "center" }}>
-
-              <EvidenciacameraScreen formulario={formulario} />
-              <TouchableOpacity
-                style={[styles.containerGuardarDataInicial, styles.cupertinoButtonSuccess]}
-                onPress={() => props.navigation.navigate('Preview', { formulario })}
-              >
-                <Text style={styles.guardarInformacion}>GUARDAR INFORMACION</Text>
-              </TouchableOpacity>
-              {/* <AwesomeAlert
-      show={false}
-      showProgress={false}
-      title="Friend Request"
-      titleStyle={{ fontSize: 22, marginBottom: 10 }}
-      messageStyle={{ fontSize: 18, marginBottom: 10 }}
-      message="Do you know this user?"
-      closeOnTouchOutside={true}
-      closeOnHardwareBackPress={false}
-      showCancelButton={true}
-      showConfirmButton={true}
-      cancelText="No"
-      confirmText="Yes"
-      cancelButtonStyle={{ width: 100, alignItems: 'center', marginTop: 10 }}
-      confirmButtonStyle={{ width: 100, alignItems: 'center' }}
-      confirmButtonColor="#AEDEF4"
-      cancelButtonColor="#DD6B55"
-      onCancelPressed={() => {hideAlerta()}}
-      onConfirmPressed={() => {showAlerta()}}
-    /> */}
-
-              {/* {cargando ? (<View style={[styles.container, styles.horizontal]}>
-      <ActivityIndicator />
-    </View>) : (<Text>cesd</Text>)} */}
-
+              <EvidenciacameraScreen formulario={formulario} setActivarBoton={setActivarBoton}/>
             </View>
-
-
           </Swiper>
         </View>
-
       </View></>
   )
 
@@ -214,7 +186,7 @@ const styles = StyleSheet.create({
   },
   container1: {
     flexDirection: "row",
-    backgroundColor: "rgba(1,123,146,1)",
+    backgroundColor: "rgb(37, 150, 190)",
     height: 40,
     paddingRight: 8,
     marginTop: 21,

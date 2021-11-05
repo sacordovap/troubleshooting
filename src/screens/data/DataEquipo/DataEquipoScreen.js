@@ -14,7 +14,6 @@ import Header from "../../../../components/Header";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import Icon from "react-native-vector-icons/Ionicons";
 function DataEquipoScreen(props) {
-  console.log(props);
   const [Horas, setHoras] = useState(0);
 
   const initialState = {
@@ -24,28 +23,17 @@ function DataEquipoScreen(props) {
   }
 
   const [equipo, setEquipo] = useState(initialState);
-  console.log(equipo.equipo);
-
-  useEffect(() => {
-    console.log(equipo.detalleParada)
-}, [props.formulario.detalleParada])
 
   const handleChangeText = (nombre, value) => {
     setEquipo({ ...equipo, [nombre]: value })
-    cambiarTexto()
-  };
-
-  const cambiarTexto = () => {
-    props.formulario.equipo = equipo.equipo
-    props.formulario.tiempoParada = Horas
-    props.formulario.detalleParada = equipo.detalleParada
-  }
-
-
-
-
-
-
+    if (nombre==='equipo') {
+      props.formulario.equipo=value
+     } else if (nombre==='detalleParada') {
+      props.formulario.detalleParada=value
+     } 
+     props.formulario.tiempoParada = Horas
+   };
+ 
   return (
 
     <><ScrollView style={styles.container}>
@@ -56,7 +44,7 @@ function DataEquipoScreen(props) {
           imageStyle={styles.image1_imageStyle}
         >
           <View style={styles.contenedorDatos1}>
-            <Text style={styles.titulo1}>Registro de Incidentes</Text>
+            <Text style={styles.titulo1}>Equipo y tiempo de Parada</Text>
             <Text style={styles.equipo}>Equipo</Text>
             <TextInput
               placeholder="Ingrese Equipo"
@@ -67,7 +55,7 @@ function DataEquipoScreen(props) {
             <View style={styles.textInput2Row}>
               <Text style={styles.textInput2}
                 onChangeText={(value) => handleChangeText('tiempoParada', value)}
-              >{Horas} Horas</Text>
+              >{Horas } Horas</Text>
               <TouchableOpacity onPress={() => setHoras(Horas - 1)}>
                 <FontAwesomeIcon
                   name="minus"
@@ -146,7 +134,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     opacity: 0.78,
     width: 243,
-    height: 29,
     marginTop: 26,
     marginLeft: 39
   },

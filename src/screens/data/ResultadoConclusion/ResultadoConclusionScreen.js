@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -26,9 +26,13 @@ function ResultadoconclusionScreen(props) {
     setResultadoConclusion({ ...resultadoConclusion, [nombre]: value })
     // props.formulario.equipo=equipo.equipo
     // props.formulario.detalleParada=equipo.detalleParada;
-    props.formulario.resultado = resultadoConclusion.resultado
-    props.formulario.conclusiones = resultadoConclusion.conclusiones
+    if (nombre==='resultado') {
+      props.formulario.resultado =value
+     } else if (nombre==='conclusiones') {
+      props.formulario.conclusiones = value
+     } 
   };
+
 
   console.log(props)
    
@@ -43,16 +47,17 @@ function ResultadoconclusionScreen(props) {
           imageStyle={styles.image1_imageStyle}
         >
           <View style={styles.contenedorDatos1}>
+            <Text style={styles.titulo1}>Resultado y Conclusiones</Text>
             <Text style={styles.resultados}>Resultados</Text>
             <TextInput
-              placeholder="Ingrese Detalles"
+              placeholder="Ingrese los resultados obtenidos"
               multiline
               onChangeText={(value)=>handleChangeText('resultado', value)}
               style={styles.textInput}
             ></TextInput>
             <Text style={styles.concluciones}>Conclusiones</Text>
             <TextInput
-              placeholder="Ingrese Detalles"
+              placeholder="Ingrese las conclusiones "
               multiline
               onChangeText={(value)=>handleChangeText('conclusiones', value)}
               style={styles.textInput}

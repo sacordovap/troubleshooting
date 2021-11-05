@@ -36,7 +36,6 @@ export default StyleSheet.create({
 
   },
   image: {
-    width: 360,
     backgroundColor: "rgba(15,15, 15,0.0732)",
     height: 679,
     marginTop: 1
@@ -48,7 +47,7 @@ export default StyleSheet.create({
     height: 608,
     backgroundColor: "rgba(255,255,255,1)",
     borderWidth: 1,
-    borderColor: "rgba(197,196,196,1)",
+    borderColor: "#E4E9F7",
     borderRadius: 36,
     shadowColor: "rgba(7,252,21,1)",
     shadowOffset: {
@@ -75,7 +74,7 @@ export default StyleSheet.create({
   fecha_tag: {
     color: "#121212",
     fontSize: 12,
-    opacity: 0.6,
+    opacity: 0.8,
     marginTop: 35,
     marginLeft: 30
   },
@@ -106,7 +105,7 @@ export default StyleSheet.create({
   },
   hora_tag: {
     color: "#121212",
-    opacity: 0.6,
+    opacity: 0.8,
     fontSize: 12,
     marginTop: 7,
     marginLeft: 30
@@ -138,7 +137,7 @@ export default StyleSheet.create({
   },
   superintendente: {
     color: "#121212",
-    opacity: 0.7,
+    opacity: 0.8,
     marginTop: 30,
     marginLeft: 30
   },
@@ -152,7 +151,7 @@ export default StyleSheet.create({
   },
   supervisores: {
     color: "#121212",
-    opacity: 0.7,
+    opacity: 0.8,
     marginTop: 21,
     marginLeft: 30
   },
@@ -166,7 +165,7 @@ export default StyleSheet.create({
   },
   operadores: {
     color: "#121212",
-    opacity: 0.7,
+    opacity: 0.8,
     marginTop: 20,
     marginLeft: 30
   },

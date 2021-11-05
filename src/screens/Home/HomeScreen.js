@@ -2,37 +2,51 @@ import React, { Component } from "react";
 import { StyleSheet, View, Image, ImageBackground, TouchableOpacity, Text } from "react-native";
 import NewSpeech from "../../../components/NewSpeech";
 import DocumentosRecientes from "../../../components/DocumentosRecientes";
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 function HomeScreen(props) {
 
   console.log(props)
   return (
     <View style={styles.container}>
-      <View style={styles.backgroundStack}>
-        <ImageBackground
-          source={require("../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
-          resizeMode="cover"
-          style={styles.background}
-          imageStyle={styles.background_imageStyle}
-        >
-          <TouchableOpacity style={[styles.containerSpeech, props.style, styles.cupertinoButtonInfo]}
-          onPress={() =>
-            props.navigation.navigate('Registro-form')}
-          >
-            <Text style={styles.nuevoReporte}>Nuevo Reporte</Text>
-          </TouchableOpacity>
-
-        </ImageBackground>
+      <ImageBackground
+        source={require("../../../assets/images/FondoCurvo.png")}
+        resizeMode="stretch"
+        style={styles.fondoCurvo}
+        imageStyle={styles.fondoCurvo_imageStyle}
+      >
+        <Text style={styles.bienvenido}>BIENVENIDO</Text>
         <Image
-          source={require("../../../assets/images/antapaccay.png")}
+          source={require("../../../assets/images/LogoNuevo.png")}
           resizeMode="contain"
-          style={styles.logo}
+          style={styles.logoNuevo}
         ></Image>
-        
-        <TouchableOpacity style={[styles.containerDocumentosRecientes, props.style,styles.documentos_Recientes]}
-         onPress={()=>props.navigation.navigate('HistorialReporte')} >
-          <Text style={styles.buscarDocumentos}>Buscar Documentos</Text>
-        </TouchableOpacity>
+      </ImageBackground>
+      <View style={styles.wIdgets}>
+        <View style={styles.buttonRow}>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate("Registro-form")}
+            style={styles.button}
+          > 
+            <FontAwesomeIcon
+              name="file-powerpoint-o"
+              style={styles.iconReporte}
+            ></FontAwesomeIcon>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => props.navigation.navigate("HistorialReporte")}
+            style={styles.button2}
+          >
+            <FontAwesomeIcon
+              name="list-alt"
+              style={styles.iconLista}
+            ></FontAwesomeIcon>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.nuevoReporteRow}>
+          <Text style={styles.nuevoReporte}>NUEVO REPORTE</Text>
+          <Text style={styles.reportesRealizados}>REPORTES REALIZADOS</Text>
+        </View>
       </View>
     </View>
   );
@@ -42,67 +56,83 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  containerDocumentosRecientes: {
-    backgroundColor: "rgba(239,173,51,1)",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "row",
-    borderRadius: 5,
-    paddingLeft: 16,
-    paddingRight: 16
+  fondoCurvo: {
+    width: 658,
+    height: 245,
+    alignSelf: "center"
   },
-  buscarDocumentos: {
-    color: "#fff",
-    fontSize: 14
+  fondoCurvo_imageStyle: {},
+  bienvenido: {
+    color: "rgba(255,255,255,1)",
+    fontSize: 40,
+    marginTop: 54,
+    alignSelf: "center"
   },
-  containerSpeech: {
-    backgroundColor: "rgba(1,123,146,1)",
-    justifyContent: "center",
-    alignItems: "center",
+  logoNuevo: {
+    width: 106,
+    height: 103,
+    borderRadius: 100,
+    marginTop: 4,
+    alignSelf: "center"
+  },
+  wIdgets: {
+    width: 330,
+    height: 176,
+    marginTop: 87,
+    alignSelf: "center"
+  },
+  button: {
+    width: 152,
+    height: 147,
+    backgroundColor: "rgba(16,139,76,0.61)",
+    borderRadius: 22
+  },
+  iconReporte: {
+    color: "rgba(242,234,234,1)",
+    fontSize: 94,
+    height: 94,
+    width: 80,
+    marginTop: 15,
+    marginLeft: 36
+  },
+  button2: {
+    width: 152,
+    height: 147,
+    backgroundColor: "rgba(248,164,39,0.58)",
+    borderRadius: 22,
+    marginLeft: 25
+  },
+  iconLista: {
+    color: "rgba(242,234,234,1)",
+    fontSize: 94,
+    height: 94,
+    width: 94,
+    marginTop: 15,
+    marginLeft: 29
+  },
+  buttonRow: {
+    height: 147,
     flexDirection: "row",
-    borderRadius: 5,
-    paddingLeft: 16,
-    paddingRight: 16
+    marginRight: 1
   },
   nuevoReporte: {
-    color: "#fff",
-    fontSize: 14
+    color: "#121212",
+    textAlign: "center",
+    marginLeft:3,
   },
-  background: {
-    top: 0,
-    left: 0,
-    width: 360,
-    position: "absolute",
-    backgroundColor: "rgba(15,15, 15,0.10079999999999999)",
-    bottom: 0
-  },
-  background_imageStyle: {
-    opacity: 0.84
-  },
-  cupertinoButtonInfo: {
-    height: 33,
-    width: 207,
-    marginTop: 449,
-    marginLeft: 77
-  },
-  logo: {
-    top: 16,
-    width: 310,
-    height: 270,
-    position: "absolute",
-    left: 20,
+  reportesRealizados: {
+    color: "#121212",
+    textAlign: "center",
+    marginLeft:56,
 
   },
-  documentos_Recientes: {
-    height: 32,
-    width: 205,
-    position: "absolute",
-    top: 508,
-    left: 78
-  },
-  backgroundStack: {
-    width: 360,
-    flex: 1
+  nuevoReporteRow: {
+    height: 19,
+    flexDirection: "row",
+    marginTop: 12,
+    marginLeft: 22,
+    marginRight: 6,
+    alignSelf: "center"
   }
 });
 

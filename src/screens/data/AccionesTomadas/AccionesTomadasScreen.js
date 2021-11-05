@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -25,9 +25,14 @@ function AccionestomadasScreen(props) {
     setAccionesTomadas({ ...accionesTomadas, [nombre]: value })
     // props.formulario.equipo=equipo.equipo
     // props.formulario.detalleParada=equipo.detalleParada;
+    if (nombre==='accionesTomadas') {
+      props.formulario.accionesTomadas = value
+     } 
+};
 
-    props.formulario.accionesTomadas = accionesTomadas.accionesTomadas
-  };
+  
+
+  
   return (
 
     <><ScrollView style={styles.container}>
@@ -41,7 +46,7 @@ function AccionestomadasScreen(props) {
           <View style={styles.contenedorDatos1}>
             <Text style={styles.titulo1}>Acciones Tomadas</Text>
             <TextInput
-              placeholder="Ingrese Detalles"
+              placeholder="Ingrese las acciones realizadas"
               multiline={true}
               onChangeText={(value) => handleChangeText('accionesTomadas', value)}
               style={styles.textInput}

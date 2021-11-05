@@ -66,10 +66,9 @@ export default StyleSheet.create({
     fontSize: 24,
     textAlign: "center",
     opacity: 0.78,
-    width: 243,
     height: 29,
-    marginTop: 26,
-    marginLeft: 39
+    marginTop: 26, 
+    alignSelf: "center"
   },
   equipo: {
     color: "#121212",

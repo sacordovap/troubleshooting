@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import {
     StyleSheet,
     View,
@@ -11,7 +11,11 @@ import {
 } from "react-native";
 
 import firebase from "../../../../database/firebase";
+
+import AwesomeAlert from 'react-native-awesome-alerts';
+
 function Preview(props) {
+
 
     console.log(props)
 
@@ -40,10 +44,9 @@ function Preview(props) {
                 resultado: props.route.params.formulario.resultado,
                 conclusiones: props.route.params.formulario.conclusiones,
                 evidenciaDetalle: props.route.params.formulario.evidenciaDetalle,
-                foto1: '',
-                foto2: ''
+                foto1: props.route.params.formulario.foto1,
+                foto2: props.route.params.formulario.foto2
             })
-            alert('guardado')
             props.navigation.navigate('Home');
         } catch (error) {
             console.log(error);
@@ -53,6 +56,51 @@ function Preview(props) {
     const cancelarFormulario = () => {
         props.navigation.navigate('Home');
     }
+// const [updaloading, setUpdaloading] = useState(false)
+
+//     const UploadtoFirebase = async ()=>{
+//         const blob = await new Promise ((resolve, reject)=>{
+//             const xhr =new XMLHttpRequest();
+//             xhr.onload = function () {
+//                 reject(new TypeError('fallo de red'));
+//             };
+//             xhr.responseType='blob';
+//             xhr.open('GET',{uri:props.route.params.formulario.foto1}, true);
+//             xhr.send(null);
+//         }); 
+
+//         const ref=firebase.storage().ref('usuarios').child(new Date().toISOString());
+//         const snapshot = ref.put(blob)
+
+//         snapshot.on(firebase.firebase.storage.TaskEvent.STATE_CHANGED,
+//         ()=>{
+//             setUpdaloading(true)
+//         },
+//         (error)=>{
+//             setUpdaloading(false)
+//             console.log(error );
+//             blob.close();
+//             return
+//         },
+//         ()=>{
+//             snapshot.snapshot.ref.getDownloadURL().then((url)=>{
+//                 setUpdaloading(false)
+//                 console.log("Download URL", url)
+//                 blob.close();
+//                 return url
+//             })
+//         } );
+//     }
+
+const [Estado, setEstado] = useState(false);
+const showAlert = () => {
+    setEstado(true);
+};
+const hideAlert = () => {
+    setEstado(false);
+};
+
+
     return (
         <ScrollView style={styles.container}>
             <ImageBackground
@@ -60,54 +108,37 @@ function Preview(props) {
                 resizeMode="cover"
                 style={styles.image}
                 imageStyle={styles.image_imageStyle}
-            >
-                <View style={styles.rect}>
+            ><View style={styles.rect}>
                     <Text style={styles.tituloIncidente}>Registro de incidente 01</Text>
-
                     <Text style={styles.fechaTag1}>Fecha</Text>
                     <Text style={styles.fecha2}>{props.route.params.formulario.fecha}</Text>
-
                     <Text style={styles.horaTag1}>Hora</Text>
                     <Text style={styles.hora2}>{props.route.params.formulario.hora}</Text>
-
                     <Text style={styles.supeintendente1}>Supeintendente</Text>
                     <Text style={styles.superintendenteEntrada}>{props.route.params.formulario.superintendente}</Text>
-
                     <Text style={styles.supervisores1}>Supervisores</Text>
                     <Text style={styles.ingreseSupervisores}>{props.route.params.formulario.supervisores}</Text>
-
                     <Text style={styles.operadores1}>Operadores</Text>
                     <Text style={styles.ingreseOperadores}>{props.route.params.formulario.operadores}</Text>
-
                     <Text style={styles.equipo1}>Equipo</Text>
                     <Text style={styles.ingreseEquipo}>{props.route.params.formulario.equipo}</Text>
-
                     <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
                     <Text style={styles.horas}>{props.route.params.formulario.tiempoParada}</Text>
-
                     <Text style={styles.detalleDeParada1}>Detalle de Parada</Text>
                     <Text style={styles.ingreseDetalles}>{props.route.params.formulario.detalleParada}</Text>
-
                     <Text style={styles.evento}>Evento</Text>
                     <Text style={styles.detallesEvento}>{props.route.params.formulario.evento}</Text>
-
                     <Text style={styles.causa}>Causa</Text>
                     <Text style={styles.detallesCausa}>{props.route.params.formulario.causa}</Text>
-
                     <Text style={styles.accionesTomadas}>Acciones Tomadas</Text>
                     <Text style={styles.accionesDetalle}>{props.route.params.formulario.accionesTomadas}</Text>
-
                     <Text style={styles.resultados}>Resultados</Text>
                     <Text style={styles.resultadosDetalle}>{props.route.params.formulario.resultado}</Text>
-
                     <Text style={styles.conclusiones}>Conclusiones</Text>
                     <Text style={styles.conclusionesDetalle}>{props.route.params.formulario.conclusiones}</Text>
-
                     <Text style={styles.detallesDeCapturas}>Detalles de capturas</Text>
                     <Text style={styles.detallesDeLaFotos}>{props.route.params.formulario.evidenciaDetalle}</Text>
-
-
-                    <View style={styles.imagen_1}>{props.route.params.formulario.foto1 && (
+                    <View style={styles.imagen_1}>{!!props.route.params.formulario.foto1 && (
                         <Image source={{ uri: props.route.params.formulario.foto1 }}
                             style={{
                                 width: 310,
@@ -117,7 +148,7 @@ function Preview(props) {
                                 opacity: 0.9,
                             }} />
                     )}</View>
-                    <View style={styles.imagen_2}>{props.route.params.formulario.foto2 && (
+                    <View style={styles.imagen_2}>{!!props.route.params.formulario.foto2 && (
                         <Image source={{ uri: props.route.params.formulario.foto2 }}
                             style={{
                                 width: 310,
@@ -125,14 +156,38 @@ function Preview(props) {
                                 marginLeft: 20,
                                 marginRight: 20,
                                 opacity: 0.9,
-                            }} />
-                    )}</View>
-
+                            }} />)}
+                    </View>
                     <TouchableOpacity
                         style={[styles.containerBotonGuardar, props.style, styles.guardarDataReporte]}
-                        onPress={() => AddNuevoReporte()}>
+                        onPress={() => {showAlert()}}>
                         <Text style={styles.guardarReporte}>Guardar Reporte</Text>
                     </TouchableOpacity>
+                    <AwesomeAlert
+                    show={Estado}
+                    showProgress={false}
+                    title="Registro de Incidente"
+                    titleStyle={{ fontSize: 22, marginBottom: 10 }}
+                    messageStyle={{ fontSize: 18, marginBottom: 10 }}
+                    message="Esta seguro de guardar?"
+                    closeOnTouchOutside={true}
+                    closeOnHardwareBackPress={false}
+                    showCancelButton={true}
+                    showConfirmButton={true}
+                    cancelText="No"
+                    confirmText="Si"
+                    cancelButtonStyle={{ width: 100, alignItems: 'center', marginTop: 10 }}
+                    confirmButtonStyle={{ width: 100, alignItems: 'center' }}
+                    confirmButtonColor="#AEDEF4"
+                    cancelButtonColor="#DD6B55"
+                    onCancelPressed={() => {
+                        hideAlert();
+                    }}
+                    onConfirmPressed={() => {
+                        AddNuevoReporte();
+                        hideAlert();
+                    }}
+                />
                 </View>
             </ImageBackground>
         </ScrollView>

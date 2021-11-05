@@ -69,10 +69,7 @@ export default StyleSheet.create({
       fontSize: 24,
       textAlign: "center",
       opacity: 0.78,
-      width: 243,
-      height: 29,
       marginTop: 26,
-      marginLeft: 39
     },
     equipo: {
       color: "#121212",
@@ -85,7 +82,6 @@ export default StyleSheet.create({
     },
     textInput: {
       color: "#121212",
-      height: 31,
       width: 282,
       borderBottomWidth: 1,
       borderColor: "rgba(1,123,146,255)",

@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -24,22 +24,6 @@ function DatosInicialesScreen (props) {
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
-  const [text, setText] = useState('');
-  const [horas, setHoras] = useState('');
-  console.log(props)
-  const [operadores, setOperadores] = useState('');
-
-  /*const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShow(Platform.OS === 'ios');
-    setDate(currentDate);
-    let tempDate= new Date(currentDate);
-    let fDate= tempDate.getDate()+'/'+(tempDate.getMonth()+1)+'/'+tempDate.getFullYear();
-    let fTime=tempDate.getHours()+':'+tempDate.getMinutes();
-    setText(fDate);
-    setHoras(fTime);
-  };*/
-
 
   const [state, setState] = useState({
     fecha: '',
@@ -70,12 +54,16 @@ function DatosInicialesScreen (props) {
   };
 
   const handleChangeText = (nombre, value) => {
-    setState({ ...state, [nombre]: value })
-    props.formulario.superintendente=state.superintendente
-    props.formulario.supervisores=state.supervisores
-    props.formulario.operadores=state.operadores
+   setState({ ...state, [nombre]: value })
+  //  if (nombre==='superintendente') {
+  //   props.formulario.superintendente=value
+  //  } else if (nombre==='supervisores') {
+  //   props.formulario.supervisores=value
+  //  } else if (nombre==='operadores') {       
+  //  props.formulario.operadores=value
+  //  } 
   };      
-
+ 
   return (
     <>
       <ScrollView style={styles.container}>
@@ -107,12 +95,11 @@ function DatosInicialesScreen (props) {
                 <FeatherIcon name="clock" style={styles.icon2}></FeatherIcon>
               </TouchableOpacity>
             </View>
-            <Text style={styles.superintendente}>Supeintendente</Text>
+            <Text style={styles.superintendente}>Super Intendente</Text>
             <TextInput
              multiline={true}
-              placeholder="Ingrese SuperIntendente"
+              placeholder="Ingrese Super Intendente"
               onChangeText={(value) => handleChangeText('superintendente', value)}
-              
               style={styles.textInput}
             ></TextInput>
             <Text style={styles.supervisores}>Supervisores</Text>

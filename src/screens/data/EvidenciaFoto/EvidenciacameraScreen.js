@@ -27,8 +27,11 @@ function EvidenciacameraScreen(props) {
 
   const handleChangeText = (nombre, value) => {
     setEvidencia({ ...evidencia, [nombre]: value })
-    props.formulario.evidenciaDetalle = evidencia.evidenciaDetalle
-  
+    if (nombre==='evidenciaDetalle') {
+      props.formulario.evidenciaDetalle= value
+     } 
+     props.formulario.foto1 = pickedImagePath.uri
+     props.formulario.foto2 = pickedImagePath2.uri
   };
   console.log(props)
   // el  path de las imagenes
@@ -48,6 +51,7 @@ function EvidenciacameraScreen(props) {
     const result = await ImagePicker.launchImageLibraryAsync();
     if (!result.cancelled) {
       setPickedImagePath(result.uri);
+      props.setActivarBoton(true)
       props.formulario.foto1 = result.uri
     }
   }
@@ -68,6 +72,7 @@ function EvidenciacameraScreen(props) {
 
     if (!result.cancelled) {
       setPickedImagePath(result.uri);
+      props.setActivarBoton(true)
       props.formulario.foto1 = result.uri
     }
   }
@@ -85,6 +90,7 @@ function EvidenciacameraScreen(props) {
 
     if (!result.cancelled) {
       setPickedImagePath2(result.uri);
+      props.setActivarBoton(true)
       props.formulario.foto2 = result.uri
     }
   }
@@ -100,22 +106,14 @@ function EvidenciacameraScreen(props) {
 
     if (!result.cancelled) {
       setPickedImagePath2(result.uri);
+      
+      props.setActivarBoton(true)
       props.formulario.foto2 = result.uri
     }
   }
 
-  // const guardarData = () => {
-  //   Alert.alert('ya no se podrán realizar cambios', 'estas seguro?', [
-  //     { text: 'yes', onPress: () => aceptarSolicitud() },
-  //     { text: 'No', onPress: () => Console.log(false) },
-  //   ])
-  // }
-  // const aceptarSolicitud = () => {
-  //   props.props.navigation.navigate('Home');
-  // }
 
   return (
-
     <><ScrollView style={styles.container}>
       <ImageBackground
         source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
@@ -127,15 +125,17 @@ function EvidenciacameraScreen(props) {
           <Text style={styles.titulo1}>Registro de Incidentes</Text>
           <Text style={styles.evidencias}>Evidencias</Text>
           <TextInput
-            placeholder="Detalles de las Evidencias"
+            placeholder="Detalles de las fotos"
             multiline={true}
             onChangeText={(value) => handleChangeText('evidenciaDetalle', value)}
             style={styles.textInput}
           ></TextInput>
           
           <View style={styles.buttonContainer}>
-            <Button onPress={showImagePicker} title="Subir Imagen" />
-            <Button onPress={openCamera} title="Tomar Foto" />
+            <Icon onPress={showImagePicker}
+              name="upload" style={styles.camera}></Icon>
+            <Icon onPress={openCamera}
+              name="camera" style={styles.archivos}></Icon>
           </View>
         
           <View style={styles.imageContainer}>
@@ -143,17 +143,20 @@ function EvidenciacameraScreen(props) {
             {
               pickedImagePath !== '' && <Image
                 source={{ uri: pickedImagePath }}
-                style={styles.image}
+                style={styles.image} 
               />
             }
           </View>
-          
+
           <View style={styles.buttonContainer}>
-          
-            <Button onPress={showImagePicker2} title="Subir Imagen" />
-            <Button onPress={openCamera2} title="Tomar Foto" />
-          </View>
-         
+            {/*           
+            <Button  title="Subir Imagen" />
+            <Button  title="Tomar Foto" /> */}
+            <Icon onPress={showImagePicker2}
+              name="upload" style={styles.camera}></Icon>
+            <Icon onPress={openCamera2}
+              name="camera" style={styles.archivos}></Icon>
+          </View>         
           <View style={styles.imageContainer}>
           <Text style={styles.evidenciasFoto}>Evidencia Captura 2</Text>
             {
@@ -163,11 +166,6 @@ function EvidenciacameraScreen(props) {
               />
             }
           </View>
-          {/* <TouchableOpacity 
-            style={[styles.containerGuardarDataInicial, props.style, styles.cupertinoButtonSuccess]}                  
-              onPress={()=>guardarData()}>
-                <Text style={styles.guardarInformacion}>GUARDAR INFORMACION</Text>
-            </TouchableOpacity> */}
         </View>
       </ImageBackground>
     </ScrollView></>
@@ -261,7 +259,7 @@ const styles = StyleSheet.create({
     opacity: 0.61
   },
   rect: {
-    height: 650,
+    height: 660,
     backgroundColor: "rgba(255,255,255,1)",
     borderWidth: 1,
     borderColor: "rgba(197,196,196,1)",
@@ -277,7 +275,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginLeft: 20,
     marginRight:20,
-    marginBottom: 5
+    marginBottom: 30
   },
   iconStack: {
     width: 40,
@@ -388,10 +386,10 @@ const styles = StyleSheet.create({
   },
   rightIconButton: {},
   buttonContainer: {
-    marginTop:15,
+    marginTop:10,
     width: 320,
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    justifyContent: "center",
   },
   imageContainer: {      
     alignItems: 'center',
