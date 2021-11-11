@@ -1,24 +1,33 @@
 import React, { useEffect, useState } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { Base64 } from 'js-base64';
+
 import AuthContext from './authContext';
 
 export const AuthState = (props) => {
     const [state, setState] = useState({
         status:false,
         nombre:null,
-        apellido:null,
+
         token:null,
-        cargando:null,
+        cargando:true,
     })
 
     const iniciarSesionContext = (token) => {
         AsyncStorage.setItem('token', token);
-        const payloadString = token.split('.')[1]
-        const payloadDecrypt = atob(payloadString)
-        const payloadJson = JSON.parse(payloadDecrypt)
+        
+        token = JSON.stringify(token);
+        const payloadString = token.split(".")[1]
+        
+        // const payloadDecrypt =   window.btoa(unescape(encodeURIComponent( payloadString )))
+        
+        // console.log(payloadDecrypt)
+        // const payloadJson = JSON.parse(JSON.stringify(payloadDecrypt))
+        const payloadJson = JSON.parse(token)
+        
         setState({
             status: true,
-            nombre: payloadJson.name,
-            apellido: payloadJson.apellido,
+            nombre: "Prueba",
             token: token,
             cargando: false
         })
