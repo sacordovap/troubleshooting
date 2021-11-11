@@ -20,7 +20,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import styles from "./sylesDatosIniciales";
 
 function DatosInicialesScreen (props) {
-
+console.log(props)
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
@@ -37,6 +37,8 @@ function DatosInicialesScreen (props) {
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
+    props.formulario.fecha=currentDate.getDate() + '/' + (currentDate.getMonth() + 1) + '/' + currentDate.getFullYear()
+    props.formulario.hora=currentDate.getHours() + ':' + currentDate.getMinutes()
     setDate(currentDate);
   };
 
@@ -55,15 +57,20 @@ function DatosInicialesScreen (props) {
 
   const handleChangeText = (nombre, value) => {
    setState({ ...state, [nombre]: value })
-  //  if (nombre==='superintendente') {
-  //   props.formulario.superintendente=value
-  //  } else if (nombre==='supervisores') {
-  //   props.formulario.supervisores=value
-  //  } else if (nombre==='operadores') {       
-  //  props.formulario.operadores=value
-  //  } 
+   if (nombre==='superintendente') {
+    props.formulario.superintendente=value
+   } else if (nombre==='supervisores') {
+    props.formulario.supervisores=value
+   } else if (nombre==='operadores') {       
+   props.formulario.operadores=value
+   } 
   };      
- 
+
+
+
+
+
+
   return (
     <>
       <ScrollView style={styles.container}>
@@ -78,7 +85,7 @@ function DatosInicialesScreen (props) {
             <Text style={styles.fecha_tag}>Fecha</Text>
             <View style={styles.fecha2Row}>
               <Text style={styles.fecha2}>
-                {props.formulario.fecha=date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()}
+                {date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()}
               </Text>
               <TouchableOpacity onPress={showDatepicker}>
                 <FontAwesomeIcon
@@ -89,7 +96,7 @@ function DatosInicialesScreen (props) {
             <Text style={styles.hora_tag}>Hora</Text>
             <View style={styles.hora2Row}>
               <Text style={styles.hora2}>
-                {props.formulario.hora=date.getHours() + ':' + date.getMinutes()}
+                {date.getHours() + ':' + date.getMinutes()}
                 </Text>
               <TouchableOpacity onPress={showTimepicker}>
                 <FeatherIcon name="clock" style={styles.icon2}></FeatherIcon>
@@ -116,8 +123,6 @@ function DatosInicialesScreen (props) {
               onChangeText={(value) => handleChangeText('operadores', value)}
               style={styles.textInput3}
             ></TextInput>
-
-
             {show && (
               <DateTimePicker
                 testID="dateTimePicker"

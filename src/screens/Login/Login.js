@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useContext, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -10,14 +10,17 @@ import {
   TouchableOpacity,
   Alert
 } from "react-native";
+
 import BotonIniciarSesion from "../../../components/BotonIniciarSesion";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { Link } from "react-router-native";
+import { postLogin } from "../../services/api";
+import AuthContext from "../../Context/authContext";
 
 function Login(props) {
   const initialState = {
-    usuario: '',
-    contrasenia: ''
+    email: '',
+    password: ''
   }
 
   const [datos, setDatos] = useState(initialState);
@@ -26,72 +29,84 @@ function Login(props) {
     setDatos({ ...datos, [nombre]: value })
 
   };
-  const inicioSesion = () => {
-    if (datos.usuario === '') {
-      alert('Ingresa datos -> complete campo usuario')
-    } else if (datos.contrasenia === '') {
-      alert('Ingresa datos -> complete campo contraseña')
-    } else {
-      Alert.alert(
-        "Bienvenido",
-        "My Alert Msg",
-        [
-
-          { text: "OK", onPress: () => props.navigation.navigate('Home') }
-        ]
-      );
-
-    }
-  }
+ 
   console.log(props)
+  const { iniciarSesionContext } = useContext(AuthContext)
+
+  const handleSubmit = (e) => {
+
+    e.preventDefault();
+    postLogin(datos).then((rpta) => {
+      console.log('espuesta'+rpta)
+      if (rpta.status===200) {
+        iniciarSesionContext(rpta.data.token)
+        console.log('exito')
+        props.navigation.navigate("Home")
+      }
+      else {
+        console.log('error')
+      }
+    })
+  }
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={require("../../../assets/images/fondo3.png")}
-        resizeMode="stretch"
-        style={styles.background}
-        imageStyle={styles.background_imageStyle}
-      >
-        <Text style={styles.antapaccay}>ANTAPACCAY</Text>
-        <View style={styles.lineIzquierdaRow}>
-          <View style={styles.lineIzquierda}></View>
-          <View style={styles.lineIzquierdaFiller}>
-            <Image
-              source={require("../../../assets/images/LogoNuevo.png")}
-              resizeMode="contain"
-              style={styles.logoNuevo}
-            ></Image>
-          </View>
-          <View style={styles.lineDerecha}></View>
-        </View>
-        <View style={styles.iconRow}>
-          <FontAwesomeIcon name="user" style={styles.icon}></FontAwesomeIcon>
-          <TextInput
-            placeholder="Ingrese Usuario"
-            placeholderTextColor="rgba(251,249,249,1)"
-            selectionColor="rgba(255,253,253,1)"
-            style={styles.usuario}
-          ></TextInput>
-        </View>
-        <View style={styles.lineaSeparadora}></View>
-        <View style={styles.icon2Row}>
-          <FontAwesomeIcon name="key" style={styles.icon2}></FontAwesomeIcon>
-          <TextInput
-            placeholder="Ingrese Contraseña"
-            placeholderTextColor="rgba(251,249,249,1)"
-            selectionColor="rgba(255,253,253,1)"
-            secureTextEntry={true}
-            style={styles.password}
-          ></TextInput>
-        </View>
-        <TouchableOpacity
-          onPress={() => props.navigation.navigate("Home")}
-          style={styles.button}
-        >
-          <Text style={styles.iniciarSesion}>INICIAR SESION</Text>
-        </TouchableOpacity>
-      </ImageBackground>
+
+    <View >
+      <TextInput placeholder="name" name="email" label="Email" 
+      onChangeText={(value) => handleChangeText('email', value)}/>
+      <TextInput placeholder="password" name="password" label="Password" secureTextEntry={true} 
+      onChangeText={(value) => handleChangeText('password', value)}/>
+      <Button title="Submit" onPress={handleSubmit} />
+
     </View>
+
+
+    // <View style={styles.container}>
+    //   <ImageBackground
+    //     source={require("../../../assets/images/fondo3.png")}
+    //     resizeMode="stretch"
+    //     style={styles.background}
+    //     imageStyle={styles.background_imageStyle}
+    //   >
+    //     <Text style={styles.antapaccay}>ANTAPACCAY</Text>
+    //     <View style={styles.lineIzquierdaRow}>
+    //       <View style={styles.lineIzquierda}></View>
+    //       <View style={styles.lineIzquierdaFiller}>
+    //         <Image
+    //           source={require("../../../assets/images/LogoNuevo.png")}
+    //           resizeMode="contain"
+    //           style={styles.logoNuevo}
+    //         ></Image>
+    //       </View>
+    //       <View style={styles.lineDerecha}></View>
+    //     </View>
+    //     <View style={styles.iconRow}>
+    //       <FontAwesomeIcon name="user" style={styles.icon}></FontAwesomeIcon>
+    //       <TextInput
+    //         placeholder="Ingrese Usuario"
+    //         placeholderTextColor="rgba(251,249,249,1)"
+    //         selectionColor="rgba(255,253,253,1)"
+    //         style={styles.usuario}
+    //       ></TextInput>
+    //     </View>
+    //     <View style={styles.lineaSeparadora}></View>
+    //     <View style={styles.icon2Row}>
+    //       <FontAwesomeIcon name="key" style={styles.icon2}></FontAwesomeIcon>
+    //       <TextInput
+    //         placeholder="Ingrese Contraseña"
+    //         placeholderTextColor="rgba(251,249,249,1)"
+    //         selectionColor="rgba(255,253,253,1)"
+    //         secureTextEntry={true}
+    //         style={styles.password}
+    //       ></TextInput>
+    //     </View>
+    //     <TouchableOpacity
+    //       onPress={() => props.navigation.navigate("Home")}
+    //       style={styles.button}
+    //     >
+    //       <Text style={styles.iniciarSesion}>INICIAR SESION</Text>
+    //     </TouchableOpacity>
+    //   </ImageBackground>
+    // </View>
   );
 }
 
@@ -197,7 +212,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
- button: {
+  button: {
     width: 313,
     height: 53,
     backgroundColor: "rgba(186,184,184,0.38)",

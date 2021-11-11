@@ -55,16 +55,16 @@ function MyStack() {
     <Stack.Navigator screenOptions={{
       headerShown: false
     }}>
- <Stack.Screen name="Login"
+      <Stack.Screen name="Login"
         component={Login} />
       <Stack.Screen name="Evidencia-Camera"
-        component={EvidenciacameraScreen} />     
+        component={EvidenciacameraScreen} />
       <Stack.Screen name="Home"
         component={HomeScreen}
         options={{ title: 'Home' }} />
       <Stack.Screen name="Registro-form"
         component={Registro_form} />
-        <Stack.Screen name="HistorialReporte"
+      <Stack.Screen name="HistorialReporte"
         component={HistorialReportesScreen} />
       <Stack.Screen name="Preview"
         component={Preview} />
@@ -76,7 +76,7 @@ function MyStack() {
         component={ResultadoConclusion} />
       <Stack.Screen name="Evento-Causa"
         component={EventoCausa} />
-         <Stack.Screen name="ReporteDetalle"
+      <Stack.Screen name="ReporteDetalle"
         component={ReporteDetalle} />
 
     </Stack.Navigator>
