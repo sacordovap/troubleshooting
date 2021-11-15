@@ -53,10 +53,11 @@ const Stack = createNativeStackNavigator();
 function MyStack() {
   return (
     //Aqui por mientras alternas las plantallas de vista
-    <AuthState>
-      <Stack.Navigator screenOptions={{
-        headerShown: false
-      }}>
+
+    <Stack.Navigator screenOptions={{
+      headerShown: false
+    }}>
+      <AuthState>
         <Stack.Screen name="Login"
           component={Login} />
         <Stack.Screen name="Evidencia-Camera"
@@ -80,9 +81,9 @@ function MyStack() {
           component={EventoCausa} />
         <Stack.Screen name="ReporteDetalle"
           component={ReporteDetalle} />
+      </AuthState>
+    </Stack.Navigator>
 
-      </Stack.Navigator>
-    </AuthState>
 
   )
 }

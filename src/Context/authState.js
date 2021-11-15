@@ -36,7 +36,7 @@ export const AuthState = (props) => {
     const iniciarSesionAsyncStorage =() => {
         const token = AsyncStorage.getItem('token')
         if (token) {
-            iniciarSesionContext(AsyncStorage.getItem('token'))
+            iniciarSesionContext(token)
         }
     }
 

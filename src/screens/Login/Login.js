@@ -40,13 +40,16 @@ const Login = (props) => {
             console.log('espuesta' + rpta)
             if (rpta.status === 200) {
                 iniciarSesionContext(rpta.data.token)
-                console.log('exito')
+
+                console.log('exito' + rpta.data.token)
                 props.navigation.navigate("Home")
             }
             else {
                 console.log('error')
                 alert("Cerdo")
             }
+        }).catch((err) => {
+            console.log('error en el catch del submit')
         })
     }
     return (
