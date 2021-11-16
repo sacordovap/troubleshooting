@@ -1,12 +1,14 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { StyleSheet, View, Image, ImageBackground, TouchableOpacity, Text } from "react-native";
 import NewSpeech from "../../../components/NewSpeech";
 import DocumentosRecientes from "../../../components/DocumentosRecientes";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function HomeScreen(props) {
 
-  console.log(props)
+
+
   return (
     <View style={styles.container}>
       <ImageBackground

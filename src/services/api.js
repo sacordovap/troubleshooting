@@ -2,14 +2,14 @@
 import axios from "axios";
 import { URL_BACKEND } from "../enviroments/enviroments";
 export const postLogin = async (login) => {
-    const rpta = await axios.post(`${URL_BACKEND}/login`, JSON.stringify(login),{
-        headers:{"Content-type" : "application/json"}
+    const rpta = await axios.post(`${URL_BACKEND}/login`, JSON.stringify(login), {
+        headers: { "Content-type": "application/json" }
     });
     return rpta
 }
 
 export const getAllData = async () => {
-    const rpta = await axios.get(`${URL_BACKEND}/troubleshooting/getAll`)
+    const rpta = await auth.get(`${URL_BACKEND}/troubleshooting/getAll`)
     return rpta
 }
 
@@ -23,12 +23,18 @@ export const deleteDataByID = async (id) => {
     return rpta
 }
 
-export const createData = async () =>{
+export const postCreateData = async (data, token) => {
     const rpta = await axios.post(`${URL_BACKEND}/troubleshooting/create`)
+    JSON.stringify(data),
+    {
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
     return rpta
 }
 
-export const editData = async(id)=>{
+export const editData = async (id) => {
     const rpta = await axios.put(`${URL_BACKEND}/troubleshooting/update/${id}`)
     return rpta
 }
@@ -36,7 +42,7 @@ export const editData = async(id)=>{
 
 
 
-export const getInformacion = async()=>{
+export const getInformacion = async () => {
     const resp = await fetch(API)
-    return await resp.json() 
+    return await resp.json()
 }

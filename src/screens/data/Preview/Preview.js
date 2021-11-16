@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import {
     StyleSheet,
     View,
@@ -13,12 +13,28 @@ import {
 import firebase from "../../../../database/firebase";
 
 import AwesomeAlert from 'react-native-awesome-alerts';
-
+import { postCreateData } from "../../../services/api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios"
 function Preview(props) {
 
 
-    console.log(props)
+    const [tokenV, setTokenV] = useState("")
+    const checkToken = async () => {
+        const token = await AsyncStorage.getItem('token')
+        setTokenV(token)
+        // console.log("TOEKOTEK " + token);
+    }
 
+    useEffect(() => {
+        checkToken()
+    }, [])
+    
+    axios.defaults.headers.common = {
+        'Authorization': 'Bearer ' + tokenV
+    };
+
+    console.log("ESTE ES EL TOKEN:: " + tokenV)
     const guardarFormulario = () => {
         Alert.alert('se guardará la información', 'espere por favor', [
             { text: 'Si', onPress: () => AddNuevoReporte() },
@@ -26,6 +42,13 @@ function Preview(props) {
         ])
     }
 
+    const handleSubmit = () => {
+
+        postCreateData(formularioFinal, tokenV).then((rpta) => {
+            console.warn(rpta)
+            console.log("Subidaexitosa")
+        })
+    }
     const AddNuevoReporte = async () => {
 
         try {
@@ -56,49 +79,54 @@ function Preview(props) {
     const cancelarFormulario = () => {
         props.navigation.navigate('Home');
     }
-// const [updaloading, setUpdaloading] = useState(false)
+    // const [updaloading, setUpdaloading] = useState(false)
 
-//     const UploadtoFirebase = async ()=>{
-//         const blob = await new Promise ((resolve, reject)=>{
-//             const xhr =new XMLHttpRequest();
-//             xhr.onload = function () {
-//                 reject(new TypeError('fallo de red'));
-//             };
-//             xhr.responseType='blob';
-//             xhr.open('GET',{uri:props.route.params.formulario.foto1}, true);
-//             xhr.send(null);
-//         }); 
+    //     const UploadtoFirebase = async ()=>{
+    //         const blob = await new Promise ((resolve, reject)=>{
+    //             const xhr =new XMLHttpRequest();
+    //             xhr.onload = function () {
+    //                 reject(new TypeError('fallo de red'));
+    //             };
+    //             xhr.responseType='blob';
+    //             xhr.open('GET',{uri:props.route.params.formulario.foto1}, true);
+    //             xhr.send(null);
+    //         }); 
 
-//         const ref=firebase.storage().ref('usuarios').child(new Date().toISOString());
-//         const snapshot = ref.put(blob)
+    //         const ref=firebase.storage().ref('usuarios').child(new Date().toISOString());
+    //         const snapshot = ref.put(blob)
 
-//         snapshot.on(firebase.firebase.storage.TaskEvent.STATE_CHANGED,
-//         ()=>{
-//             setUpdaloading(true)
-//         },
-//         (error)=>{
-//             setUpdaloading(false)
-//             console.log(error );
-//             blob.close();
-//             return
-//         },
-//         ()=>{
-//             snapshot.snapshot.ref.getDownloadURL().then((url)=>{
-//                 setUpdaloading(false)
-//                 console.log("Download URL", url)
-//                 blob.close();
-//                 return url
-//             })
-//         } );
-//     }
+    //         snapshot.on(firebase.firebase.storage.TaskEvent.STATE_CHANGED,
+    //         ()=>{
+    //             setUpdaloading(true)
+    //         },
+    //         (error)=>{
+    //             setUpdaloading(false)
+    //             console.log(error );
+    //             blob.close();
+    //             return
+    //         },
+    //         ()=>{
+    //             snapshot.snapshot.ref.getDownloadURL().then((url)=>{
+    //                 setUpdaloading(false)
+    //                 console.log("Download URL", url)
+    //                 blob.close();
+    //                 return url
+    //             })
+    //         } );
+    //     }
 
-const [Estado, setEstado] = useState(false);
-const showAlert = () => {
-    setEstado(true);
-};
-const hideAlert = () => {
-    setEstado(false);
-};
+    const [formularioFinal, setFormularioFinal] = useState({
+
+        superintendent: "CERDO"
+    })
+    const [Estado, setEstado] = useState(false);
+    const showAlert = () => {
+        setEstado(true);
+
+    };
+    const hideAlert = () => {
+        setEstado(false);
+    };
 
 
     return (
@@ -160,34 +188,35 @@ const hideAlert = () => {
                     </View>
                     <TouchableOpacity
                         style={[styles.containerBotonGuardar, props.style, styles.guardarDataReporte]}
-                        onPress={() => {showAlert()}}>
+                        onPress={() => { showAlert() }}>
                         <Text style={styles.guardarReporte}>Guardar Reporte</Text>
                     </TouchableOpacity>
                     <AwesomeAlert
-                    show={Estado}
-                    showProgress={false}
-                    title="Registro de Incidente"
-                    titleStyle={{ fontSize: 22, marginBottom: 10 }}
-                    messageStyle={{ fontSize: 18, marginBottom: 10 }}
-                    message="Esta seguro de guardar?"
-                    closeOnTouchOutside={true}
-                    closeOnHardwareBackPress={false}
-                    showCancelButton={true}
-                    showConfirmButton={true}
-                    cancelText="No"
-                    confirmText="Si"
-                    cancelButtonStyle={{ width: 100, alignItems: 'center', marginTop: 10 }}
-                    confirmButtonStyle={{ width: 100, alignItems: 'center' }}
-                    confirmButtonColor="#AEDEF4"
-                    cancelButtonColor="#DD6B55"
-                    onCancelPressed={() => {
-                        hideAlert();
-                    }}
-                    onConfirmPressed={() => {
-                        AddNuevoReporte();
-                        hideAlert();
-                    }}
-                />
+                        show={Estado}
+                        showProgress={false}
+                        title="Registro de Incidente"
+                        titleStyle={{ fontSize: 22, marginBottom: 10 }}
+                        messageStyle={{ fontSize: 18, marginBottom: 10 }}
+                        message="Esta seguro de guardar?"
+                        closeOnTouchOutside={true}
+                        closeOnHardwareBackPress={false}
+                        showCancelButton={true}
+                        showConfirmButton={true}
+                        cancelText="No"
+                        confirmText="Si"
+                        cancelButtonStyle={{ width: 100, alignItems: 'center', marginTop: 10 }}
+                        confirmButtonStyle={{ width: 100, alignItems: 'center' }}
+                        confirmButtonColor="#AEDEF4"
+                        cancelButtonColor="#DD6B55"
+                        onCancelPressed={() => {
+                            hideAlert();
+                        }}
+                        onConfirmPressed={() => {
+                            // AddNuevoReporte();
+                            handleSubmit()
+                            hideAlert();
+                        }}
+                    />
                 </View>
             </ImageBackground>
         </ScrollView>
