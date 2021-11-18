@@ -23,14 +23,10 @@ export const deleteDataByID = async (id) => {
     return rpta
 }
 
-export const postCreateData = async (data, token) => {
-    const rpta = await axios.post(`${URL_BACKEND}/troubleshooting/create`)
-    JSON.stringify(data),
-    {
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
+export const postCreateData = async (data) => {
+    const rpta = await axios.post(`${URL_BACKEND}/troubleshooting/create`,
+        JSON.stringify(data),
+        { headers: { 'Content-Type': 'application/json' } })
     return rpta
 }
 

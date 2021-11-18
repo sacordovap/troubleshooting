@@ -27,11 +27,11 @@ function EvidenciacameraScreen(props) {
 
   const handleChangeText = (nombre, value) => {
     setEvidencia({ ...evidencia, [nombre]: value })
-    if (nombre==='evidenciaDetalle') {
-      props.formulario.evidenciaDetalle= value
-     } 
-     props.formulario.foto1 = pickedImagePath.uri
-     props.formulario.foto2 = pickedImagePath2.uri
+    if (nombre === 'evidenciaDetalle') {
+      props.formulario.evidenciaDetalle = value
+    }
+    props.formulario.foto1 = pickedImagePath.uri
+    props.formulario.foto2 = pickedImagePath2.uri
   };
   console.log(props)
   // el  path de las imagenes
@@ -106,7 +106,7 @@ function EvidenciacameraScreen(props) {
 
     if (!result.cancelled) {
       setPickedImagePath2(result.uri);
-      
+
       props.setActivarBoton(true)
       props.formulario.foto2 = result.uri
     }
@@ -130,20 +130,20 @@ function EvidenciacameraScreen(props) {
             onChangeText={(value) => handleChangeText('evidenciaDetalle', value)}
             style={styles.textInput}
           ></TextInput>
-          
+
           <View style={styles.buttonContainer}>
             <Icon onPress={showImagePicker}
               name="upload" style={styles.camera}></Icon>
             <Icon onPress={openCamera}
               name="camera" style={styles.archivos}></Icon>
           </View>
-        
+
           <View style={styles.imageContainer}>
-          <Text style={styles.evidenciasFoto}>Evidencia Captura 1</Text>
+            <Text style={styles.evidenciasFoto}>Evidencia Captura 1</Text>
             {
               pickedImagePath !== '' && <Image
                 source={{ uri: pickedImagePath }}
-                style={styles.image} 
+                style={styles.image}
               />
             }
           </View>
@@ -156,9 +156,9 @@ function EvidenciacameraScreen(props) {
               name="upload" style={styles.camera}></Icon>
             <Icon onPress={openCamera2}
               name="camera" style={styles.archivos}></Icon>
-          </View>         
+          </View>
           <View style={styles.imageContainer}>
-          <Text style={styles.evidenciasFoto}>Evidencia Captura 2</Text>
+            <Text style={styles.evidenciasFoto}>Evidencia Captura 2</Text>
             {
               pickedImagePath2 !== '' && <Image
                 source={{ uri: pickedImagePath2 }}
@@ -174,7 +174,7 @@ function EvidenciacameraScreen(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,       
+    flex: 1,
 
   },
   containerGuardarDataInicial: {
@@ -274,7 +274,7 @@ const styles = StyleSheet.create({
     shadowRadius: 0,
     marginTop: 30,
     marginLeft: 20,
-    marginRight:20,
+    marginRight: 20,
     marginBottom: 30
   },
   iconStack: {
@@ -386,19 +386,19 @@ const styles = StyleSheet.create({
   },
   rightIconButton: {},
   buttonContainer: {
-    marginTop:10,
+    marginTop: 10,
     width: 320,
     flexDirection: 'row',
     justifyContent: "center",
   },
-  imageContainer: {      
+  imageContainer: {
     alignItems: 'center',
     padding: 15
   },
   image: {
     width: 200,
     height: 150,
-    marginBottom:5,
+    marginBottom: 5,
     resizeMode: 'cover'
   }
 });

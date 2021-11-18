@@ -16,6 +16,7 @@ import AwesomeAlert from 'react-native-awesome-alerts';
 import { postCreateData } from "../../../services/api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios"
+import { TextInput } from "react-native";
 function Preview(props) {
 
 
@@ -29,7 +30,7 @@ function Preview(props) {
     useEffect(() => {
         checkToken()
     }, [])
-    
+
     axios.defaults.headers.common = {
         'Authorization': 'Bearer ' + tokenV
     };
@@ -41,12 +42,14 @@ function Preview(props) {
             { text: 'Cancelar', onPress: () => cancelarFormulario() },
         ])
     }
-
+    const [formularioFinal, setFormularioFinal] = useState({
+        superintendent: props.route.params.formulario.superintendente,
+        equipment_id: props.route.params.formulario.equipo
+    })
     const handleSubmit = () => {
 
-        postCreateData(formularioFinal, tokenV).then((rpta) => {
+        postCreateData(formularioFinal).then((rpta) => {
             console.warn(rpta)
-            console.log("Subidaexitosa")
         })
     }
     const AddNuevoReporte = async () => {
@@ -115,10 +118,7 @@ function Preview(props) {
     //         } );
     //     }
 
-    const [formularioFinal, setFormularioFinal] = useState({
 
-        superintendent: "CERDO"
-    })
     const [Estado, setEstado] = useState(false);
     const showAlert = () => {
         setEstado(true);
@@ -128,6 +128,10 @@ function Preview(props) {
         setEstado(false);
     };
 
+    const handleChangeText = (nombre, value) => {
+        setFormularioFinal({ ...formularioFinal, [nombre]: value })
+
+    };
 
     return (
         <ScrollView style={styles.container}>
@@ -148,7 +152,7 @@ function Preview(props) {
                     <Text style={styles.ingreseSupervisores}>{props.route.params.formulario.supervisores}</Text>
                     <Text style={styles.operadores1}>Operadores</Text>
                     <Text style={styles.ingreseOperadores}>{props.route.params.formulario.operadores}</Text>
-                    <Text style={styles.equipo1}>Equipo</Text>
+                    <Text style={styles.equipo1}                   >Equipo</Text>
                     <Text style={styles.ingreseEquipo}>{props.route.params.formulario.equipo}</Text>
                     <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
                     <Text style={styles.horas}>{props.route.params.formulario.tiempoParada}</Text>
@@ -166,6 +170,7 @@ function Preview(props) {
                     <Text style={styles.conclusionesDetalle}>{props.route.params.formulario.conclusiones}</Text>
                     <Text style={styles.detallesDeCapturas}>Detalles de capturas</Text>
                     <Text style={styles.detallesDeLaFotos}>{props.route.params.formulario.evidenciaDetalle}</Text>
+
                     <View style={styles.imagen_1}>{!!props.route.params.formulario.foto1 && (
                         <Image source={{ uri: props.route.params.formulario.foto1 }}
                             style={{
