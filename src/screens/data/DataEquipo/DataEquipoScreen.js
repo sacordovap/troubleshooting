@@ -12,12 +12,13 @@ import {
 import Header from "../../../../components/Header";
 
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+
 import Icon from "react-native-vector-icons/Ionicons";
 import { getEquiment } from "../../../services/api";
 import { AuthContext } from "../../../Context/AuthContext";
 // import SearchableDropDown from 'react-native-dropdown-searchable';
 import DropDownPicker from 'react-native-dropdown-picker';
-
+import Select from 'react-select';
 
 function DataEquipoScreen(props) {
   const [Horas, setHoras] = useState(0);
@@ -67,7 +68,9 @@ function DataEquipoScreen(props) {
   const [itemSelected, setitemSelected] = useState(initialState)
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
-
+  let options = equipos.map(function (obj) {
+    return { value: obj.id, label: obj.name };
+  })
   return (
 
     <><ScrollView style={styles.container}>
@@ -80,15 +83,16 @@ function DataEquipoScreen(props) {
         <View style={styles.contenedorDatos1}>
           <Text style={styles.titulo1}>Equipo y tiempo de Parada</Text>
           <Text style={styles.equipo}>Equipo</Text>
-          <View style={styles.textInput2Row}>   
-          <DropDownPicker
-            open={open}
-            value={value}
-            items={equipos}
-            setOpen={setOpen}
-            setValue={setValue}
-            setItems={setEquipos}
-          /></View>
+          <View style={styles.textInput2Row}>
+            <DropDownPicker
+              open={open}
+              value={value}
+              items={options}
+              setOpen={setOpen}
+              setValue={setValue}
+              setItems={setEquipos}
+            />
+          </View>
 
           <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
           <View style={styles.textInput2Row}>

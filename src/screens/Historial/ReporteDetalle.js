@@ -200,7 +200,7 @@ export default function ReporteDetalle(props) {
                         onChangeText={(value) => handleChangeText('results', value)}
                         editable={estado}
                     ></TextInput>
-                    <Text style={styles.conclusiones}>Conclusiones</Text>
+                    {/* <Text style={styles.conclusiones}>Conclusiones</Text>
                     <TextInput style={styles.conclusionesDetalle}
                         value={formulario.conclusiones}
                         onChangeText={(value) => handleChangeText('conclusiones', value)}
@@ -211,7 +211,7 @@ export default function ReporteDetalle(props) {
                         value={formulario.evidenciaDetalle}
                         onChangeText={(value) => handleChangeText('evidenciaDetalle', value)}
                         editable={estado}
-                    ></TextInput>
+                    ></TextInput> */}
                     <View style={styles.imagen_1}>{!!formulario.attachments && (
                         <Image source={{ uri: formulario.attachments[0]?.url }}
                             style={{

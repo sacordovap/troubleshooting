@@ -173,13 +173,13 @@ function EvidenciacameraScreen(props) {
       >
         <View style={styles.rect}>
           <Text style={styles.titulo1}>Registro de Incidentes</Text>
-          <Text style={styles.evidencias}>Evidencias</Text>
-          <TextInput
+          <Text style={styles.evidencias}>Ingrese las capturas del incidente</Text>
+          {/* <TextInput
             placeholder="Detalles de las fotos"
             multiline={true}
             onChangeText={(value) => handleChangeText('evidenciaDetalle', value)}
             style={styles.textInput}
-          ></TextInput>
+          ></TextInput> */}
 
           <View style={styles.buttonContainer}>
             <Icon onPress={showImagePicker}
