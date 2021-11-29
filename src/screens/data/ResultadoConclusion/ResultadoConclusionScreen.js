@@ -27,7 +27,7 @@ function ResultadoconclusionScreen(props) {
     // props.formulario.equipo=equipo.equipo
     // props.formulario.detalleParada=equipo.detalleParada;
     if (nombre==='resultado') {
-      props.formulario.resultado =value
+      props.formulario.results =value
      } else if (nombre==='conclusiones') {
       props.formulario.conclusiones = value
      } 

@@ -37,8 +37,7 @@ console.log(props)
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
-    props.formulario.fecha=currentDate.getDate() + '/' + (currentDate.getMonth() + 1) + '/' + currentDate.getFullYear()
-    props.formulario.hora=currentDate.getHours() + ':' + currentDate.getMinutes()
+    props.formulario.date=currentDate
     setDate(currentDate);
   };
 
@@ -58,11 +57,11 @@ console.log(props)
   const handleChangeText = (nombre, value) => {
    setState({ ...state, [nombre]: value })
    if (nombre==='superintendente') {
-    props.formulario.superintendente=value
+    props.formulario.superintendent=value
    } else if (nombre==='supervisores') {
-    props.formulario.supervisores=value
+    props.formulario.supervisor=value
    } else if (nombre==='operadores') {       
-   props.formulario.operadores=value
+   props.formulario.operators=value
    } 
   };      
 

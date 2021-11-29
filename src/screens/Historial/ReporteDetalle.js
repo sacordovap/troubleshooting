@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useContext, useEffect, useState } from "react";
 import {
     StyleSheet,
     View,
@@ -6,57 +6,116 @@ import {
     ScrollView,
     TouchableOpacity,
     ImageBackground,
-    
+
     ActivityIndicator,
     Alert,
     Image,
-    LogBox
+    LogBox,
+    TextInput
 } from "react-native";
 
-import firebase from "../../../database/firebase";
-//LogBox.ignoreLogs(['Setting a timer']);
-function ReporteDetalle(props) {
-    const initialState={ 
-        id: '',
-        fecha: '',
-        hora: '',
-        superintendente: '',
-        supervisores: '',
-        operadores: '',
-        equipo: '',
-        tiempoParada: '',
-        detalleParada: '',
-        evento: '',
-        causa: '',
-        accionesTomadas: '',
-        resultado: '',
-        conclusiones: '',
-        evidenciaDetalle: '',
-        foto1: '',
-        foto2: ''
+import axios from "axios"
+import { getTroubleShootingById, putTroubleshootingUpdate, deleteTroubleshootingById } from '../../services/api';
+import { AuthContext } from "../../Context/AuthContext";
+import { useNavigation } from "@react-navigation/native";
+import AwesomeAlert from "react-native-awesome-alerts";
+
+
+export default function ReporteDetalle(props) {
+
+    const { token } = useContext(AuthContext)
+    console.log(token)
+    const [loading, setLoading] = useState()
+    // const [data, setData] = useState([])
+    const [estado, setEstado] = useState(false)
+
+    const getDataByID = () => {
+        const idUrl = props.route.params.id;
+        getTroubleShootingById(idUrl, token).then(rpta => {
+
+            setFormulario({
+                ...rpta.data.data
+            })
+            console.log(rpta.data.data)
+        })
     }
-    console.log(props)
-    const [Reporte, setReporte] = useState(initialState);
+    const navigation = useNavigation();
+    useEffect(() => {
+        getDataByID()
+    }, [])
 
-    const [loading, setLoading] = useState(true)
-
-    const getReporteById = async (id) => {
-        const dbConsulta = firebase.db.collection('Reportes').doc(id)
-        const Documento = await dbConsulta.get();
-        //Convertir los datos a manera legible
-        const Reporte = Documento.data();
-
-        setReporte({
-            ...Reporte,
-            id: Documento.id,
-        });
-        setLoading(false)
+    const [estadoAlertModificar, setEstadoAlertModificar] = useState(false);
+    const [estadoAlertDelete, setEstadoAlertDelete] = useState(false);
+    const showAlertModificar = () => {
+        setEstadoAlertModificar(true);
+    };
+    const hideAlertModificar = () => {
+        setEstadoAlertModificar(false);
     };
 
-    //usar el arreglo en Effect
-    useEffect(() => {
-        getReporteById(props.route.params.ReporteId)
-    },[]);
+    const showAlertDelete = () => {
+        setEstadoAlertDelete(true);
+    };
+    const hideAlertDelete = () => {
+        setEstadoAlertDelete(false);
+    };
+
+
+    const [formulario, setFormulario] = useState({
+        // event: "",
+        // date: "",
+        // description: "",
+        // attributed_cause: "",
+        // superintendent: "",
+        // supervisor: "",
+        // operators: "",
+        // downtime: "",
+        // details: "",
+        // take_actions: "",
+        // equipment:'',
+        // results: "",
+        // equipment_id: "",
+        // attachments: '',
+        // password: ""
+    })
+
+    const handleSubmit = () => {
+
+        putTroubleshootingUpdate(token, formulario, props.route.params.id).then((rpta) => {
+
+            if (rpta.status === 200) {
+                console.warn("Subida extitosa")                
+                navigation.navigate('HistorialReporte')
+            } else {
+                console.warn("Subida errónea")
+
+            }
+        }).catch(err => {
+            console.log("ERROR EN EL SERVICIO CREARDATA")
+            console.warn(err)
+        })
+    }
+
+    const handleChangeText = (nombre, value) => {
+        setFormulario({ ...formulario, [nombre]: value })
+
+    };
+
+    const edit = () => {
+        setEstado(true)
+    }
+
+    const eliminarTroubleshooting = id => {
+        deleteTroubleshootingById(props.route.params.id, token).then((rpta) => {
+            if (rpta.status === 200) {
+                //Se comprueba que se eliminó correctamente
+                props.route.params.traerTroubles()
+                navigation.navigate('HistorialReporte') //Se llama otra vez para setear la variable de estado y recargar la página automáticamente al borrar un usuario
+
+            }
+        })
+    }
+    console.log(props);
 
     if (loading) {
         <View>
@@ -72,37 +131,89 @@ function ReporteDetalle(props) {
                 imageStyle={styles.image_imageStyle}
             >
                 <View style={styles.rect}>
-                    <Text style={styles.tituloIncidente}>Registro de incidente Revisión</Text>
+                    <Text style={styles.tituloIncidente}>Registro de incidente {props.route.params.id}</Text>
                     <Text style={styles.fechaTag1}>Fecha</Text>
-                    <Text style={styles.fecha2}>{Reporte.fecha}</Text>
+                    <TextInput style={styles.fecha2}
+                        value={formulario.date}
+                        onChangeText={(value) => handleChangeText('date', value)}
+                    ></TextInput>
                     <Text style={styles.horaTag1}>Hora</Text>
-                    <Text style={styles.hora2}>{Reporte.hora}</Text>
+                    <TextInput style={styles.hora2}
+                        value={formulario.date}
+                        onChangeText={(value) => handleChangeText('date', value)}
+                    ></TextInput>
                     <Text style={styles.supeintendente1}>Supeintendente</Text>
-                    <Text style={styles.superintendenteEntrada}>{Reporte.superintendente}</Text>
+                    <TextInput style={styles.superintendenteEntrada}
+                        value={formulario.superintendent}
+                        onChangeText={(value) => handleChangeText('superintendent', value)}
+                        editable={estado}
+                    ></TextInput>
                     <Text style={styles.supervisores1}>Supervisores</Text>
-                    <Text style={styles.ingreseSupervisores}>{Reporte.supervisores}</Text>
+                    <TextInput style={styles.ingreseSupervisores}
+                        value={formulario.supervisor}
+                        onChangeText={(value) => handleChangeText('supervisor', value)}
+                        editable={estado}
+                    ></TextInput>
                     <Text style={styles.operadores1}>Operadores</Text>
-                    <Text style={styles.ingreseOperadores}>{Reporte.operadores}</Text>
+                    <TextInput style={styles.ingreseOperadores}
+                        value={formulario.operators}
+                        onChangeText={(value) => handleChangeText('operators', value)}
+                        editable={estado}
+                    ></TextInput>
                     <Text style={styles.equipo1}>Equipo</Text>
-                    <Text style={styles.ingreseEquipo}>{Reporte.equipo}</Text>
+                    <TextInput style={styles.ingreseEquipo}
+                        value={formulario.equipment?.name}
+                    ></TextInput>
                     <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
-                    <Text style={styles.horas}>{Reporte.tiempoParada}</Text>
+                    <TextInput style={styles.horas}
+                        value={formulario.downtime}
+                        onChangeText={(value) => handleChangeText('downtime', value)}
+                        editable={estado}
+                    ></TextInput>
                     <Text style={styles.detalleDeParada1}>Detalle de Parada</Text>
-                    <Text style={styles.ingreseDetalles}>{Reporte.detalleParada}</Text>
+                    <TextInput style={styles.ingreseDetalles}
+                        value={formulario.details}
+                        onChangeText={(value) => handleChangeText('details', value)}
+                        editable={estado}
+                    ></TextInput>
                     <Text style={styles.evento}>Evento</Text>
-                    <Text style={styles.detallesEvento}>{Reporte.evento}</Text>
+                    <TextInput style={styles.detallesEvento}
+                        value={formulario.event}
+                        onChangeText={(value) => handleChangeText('event', value)}
+                        editable={estado}
+                    ></TextInput>
                     <Text style={styles.causa}>Causa</Text>
-                    <Text style={styles.detallesCausa}>{Reporte.causa}</Text>
+                    <TextInput style={styles.detallesCausa}
+                        value={formulario.attributed_cause}
+                        onChangeText={(value) => handleChangeText('attributed_cause', value)}
+                        editable={estado}
+                    ></TextInput>
                     <Text style={styles.accionesTomadas}>Acciones Tomadas</Text>
-                    <Text style={styles.accionesDetalle}>{Reporte.accionesTomadas}</Text>
+                    <TextInput style={styles.accionesDetalle}
+                        value={formulario.take_actions}
+                        onChangeText={(value) => handleChangeText('take_actions', value)}
+                        editable={estado}
+                    ></TextInput>
                     <Text style={styles.resultados}>Resultados</Text>
-                    <Text style={styles.resultadosDetalle}>{Reporte.resultado}</Text>
+                    <TextInput style={styles.resultadosDetalle}
+                        value={formulario.results}
+                        onChangeText={(value) => handleChangeText('results', value)}
+                        editable={estado}
+                    ></TextInput>
                     <Text style={styles.conclusiones}>Conclusiones</Text>
-                    <Text style={styles.conclusionesDetalle}>{Reporte.conclusiones}</Text>
+                    <TextInput style={styles.conclusionesDetalle}
+                        value={formulario.conclusiones}
+                        onChangeText={(value) => handleChangeText('conclusiones', value)}
+                        editable={estado}
+                    ></TextInput>
                     <Text style={styles.detallesDeCapturas}>Detalles de capturas</Text>
-                    <Text style={styles.detallesDeLaFotos}>{Reporte.evidenciaDetalle}</Text>
-                    <View style={styles.imagen_1}>{!!Reporte.foto1 && (
-                    <Image source={{ uri: Reporte.foto1 }}
+                    <TextInput style={styles.detallesDeLaFotos}
+                        value={formulario.evidenciaDetalle}
+                        onChangeText={(value) => handleChangeText('evidenciaDetalle', value)}
+                        editable={estado}
+                    ></TextInput>
+                    <View style={styles.imagen_1}>{!!formulario.attachments && (
+                        <Image source={{ uri: formulario.attachments[0]?.url }}
                             style={{
                                 width: 310,
                                 height: 210,
@@ -111,8 +222,8 @@ function ReporteDetalle(props) {
                                 opacity: 0.9,
                             }} />)}
                     </View>
-                    <View style={styles.imagen_2}>{!!Reporte.foto2&& (
-                    <Image source={{ uri: Reporte.foto2  }}
+                    <View style={styles.imagen_2}>{!!formulario.attachments && (
+                        <Image source={{ uri: formulario.attachments[1]?.url }}
                             style={{
                                 width: 310,
                                 height: 210,
@@ -121,12 +232,79 @@ function ReporteDetalle(props) {
                                 opacity: 0.9,
                             }} />)}
                     </View>
+                    {estado ?
+                        (<TouchableOpacity
+                            style={[styles.containerBotonGuardar, styles.guardarDataReporte]}
+                            onPress={() => showAlertModificar()}>
+                            <Text style={styles.guardarReporte}>Guardar Registro</Text>
+                        </TouchableOpacity>) :
+                        (<TouchableOpacity
+                            style={[styles.containerBotonGuardar, styles.guardarDataReporte]}
+                            onPress={() => edit()}>
+                            <Text style={styles.guardarReporte}>Modificar Registro</Text>
+                        </TouchableOpacity>)
+                    }
                     <TouchableOpacity
-                        style={[styles.containerBotonGuardar, props.style, styles.guardarDataReporte]}
-                        onPress={() => props.navigation.goBack()}>
+                        style={[styles.containerBotonGuardar, styles.guardarDataReporte]}
+                        onPress={() => showAlertDelete()}>
+                        <Text style={styles.guardarReporte}>Eliminar Registro</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[styles.containerBotonGuardar, styles.guardarDataReporte]}
+                        onPress={() => navigation.goBack()}>
                         <Text style={styles.guardarReporte}>Finalizar Revision</Text>
                     </TouchableOpacity>
                 </View>
+                <AwesomeAlert
+                    show={estadoAlertModificar}
+                    showProgress={false}
+                    title="Modificación en Curso"
+                    titleStyle={{ fontSize: 22, marginBottom: 10 }}
+                    messageStyle={{ fontSize: 18, marginBottom: 10 }}
+                    message="¿Desea guardar los cambios?"
+                    closeOnTouchOutside={true}
+                    closeOnHardwareBackPress={false}
+                    showCancelButton={true}
+                    showConfirmButton={true}
+                    cancelText="No"
+                    confirmText="Si"
+                    cancelButtonStyle={{ width: 100, alignItems: 'center', marginTop: 10 }}
+                    confirmButtonStyle={{ width: 100, alignItems: 'center' }}
+                    confirmButtonColor="#AEDEF4"
+                    cancelButtonColor="#DD6B55"
+                    onCancelPressed={() => {                        
+                        hideAlertModificar();
+                    }}
+                    onConfirmPressed={() => {
+                        handleSubmit()
+                        hideAlertModificar();
+                    }}
+                />
+                <AwesomeAlert
+                    show={estadoAlertDelete}
+                    showProgress={false}
+                    title="Eliminación en curso"
+                    titleStyle={{ fontSize: 22, marginBottom: 10 }}
+                    messageStyle={{ fontSize: 18, marginBottom: 10 }}
+                    message="¿Está seguro que desea eliminar?"
+                    closeOnTouchOutside={true}
+                    closeOnHardwareBackPress={false}
+                    showCancelButton={true}
+                    showConfirmButton={true}
+                    cancelText="No"
+                    confirmText="Si"
+                    cancelButtonStyle={{ width: 100, alignItems: 'center', marginTop: 10 }}
+                    confirmButtonStyle={{ width: 100, alignItems: 'center' }}
+                    confirmButtonColor="#AEDEF4"
+                    cancelButtonColor="#DD6B55"
+                    onCancelPressed={() => {
+                        hideAlertDelete();
+                    }}
+                    onConfirmPressed={() => {
+                        eliminarTroubleshooting();
+                        hideAlertDelete();
+                    }}
+                />
             </ImageBackground>
         </ScrollView>
     );
@@ -155,7 +333,7 @@ const styles = StyleSheet.create({
         marginLeft: 10
     },
     tituloIncidente: {
-        textAlign:"center",
+        textAlign: "center",
         color: "#121212",
         fontSize: 24,
         opacity: 0.75,
@@ -480,4 +658,3 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ReporteDetalle;

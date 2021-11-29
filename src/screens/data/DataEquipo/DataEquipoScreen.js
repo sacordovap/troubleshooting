@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component, useState, useEffect, useContext } from "react";
 import {
   StyleSheet,
   View,
@@ -13,6 +13,10 @@ import Header from "../../../../components/Header";
 
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import Icon from "react-native-vector-icons/Ionicons";
+import { getEquiment } from "../../../services/api";
+import { AuthContext } from "../../../Context/AuthContext";
+import SearchableDropDown from 'react-native-dropdown-searchable';
+
 function DataEquipoScreen(props) {
   const [Horas, setHoras] = useState(0);
 
@@ -22,63 +26,99 @@ function DataEquipoScreen(props) {
     detalleParada: '',
   }
 
+  const [cerdo, setCerdo] = useState([
+    {
+      id: '',
+      name: '',
+    }
+  ])
+
   const [equipo, setEquipo] = useState(initialState);
 
   const handleChangeText = (nombre, value) => {
     setEquipo({ ...equipo, [nombre]: value })
-    if (nombre==='equipo') {
-      props.formulario.equipo=value
-     } else if (nombre==='detalleParada') {
-      props.formulario.detalleParada=value
-     } 
-     props.formulario.tiempoParada = Horas
-   };
- 
+    if (nombre === 'equipo') {
+      props.formulario.equipment_id = value
+    } else if (nombre === 'detalleParada') {
+      props.formulario.details = value
+    }
+    props.formulario.downtime = Horas
+  };
+
+  const { token } = useContext(AuthContext)
+
+  const [equipos, setEquipos] = useState([])
+
+  const traerEquipos = () => {
+
+    getEquiment(token).then(rpta => {
+      setEquipos(rpta.data.data)
+    })
+  }
+
+  useEffect(() => {
+    traerEquipos()
+  }, [])
+
+  console.log(cerdo);
+
+  const [itemSelected, setitemSelected] = useState(initialState)
+
   return (
 
     <><ScrollView style={styles.container}>
-        <ImageBackground
-          source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
-          resizeMode="cover"
-          style={styles.image1}
-          imageStyle={styles.image1_imageStyle}
-        >
-          <View style={styles.contenedorDatos1}>
-            <Text style={styles.titulo1}>Equipo y tiempo de Parada</Text>
-            <Text style={styles.equipo}>Equipo</Text>
-            <TextInput
-              placeholder="Ingrese Equipo"
-              style={styles.textInput}
-              onChangeText={(value) => handleChangeText('equipo', value)}
-            ></TextInput>
-            <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
-            <View style={styles.textInput2Row}>
-              <Text style={styles.textInput2}
-                onChangeText={(value) => handleChangeText('tiempoParada', value)}
-              >{Horas } Horas</Text>
-              <TouchableOpacity onPress={() => setHoras(Horas - 1)}>
-                <FontAwesomeIcon
-                  name="minus"
-                  style={styles.icon}
-                ></FontAwesomeIcon></TouchableOpacity>
-              <TouchableOpacity onPress={() => setHoras(Horas + 1)}>
-                <FontAwesomeIcon
-                  name="plus"
-                  style={styles.icon}
-                ></FontAwesomeIcon></TouchableOpacity>
-            </View>
-            <Text style={styles.detalleDeParada}>Detalle de Parada</Text>
-            <TextInput
-              placeholder="Ingrese Detalles"
-              onChangeText={(value) => handleChangeText('detalleParada', value)}
-              multiline={true}
-              selectTextOnFocus={true}
-              disableFullscreenUI={true}
-              style={styles.textInput3}
-            ></TextInput>
+      <ImageBackground
+        source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
+        resizeMode="cover"
+        style={styles.image1}
+        imageStyle={styles.image1_imageStyle}
+      >
+        <View style={styles.contenedorDatos1}>
+          <Text style={styles.titulo1}>Equipo y tiempo de Parada</Text>
+          <Text style={styles.equipo}>Equipo</Text>
+          {equipos && equipos.length > 0 && <SearchableDropDown
+            onTextChange={tag => {
+              setCerdo({ tag });
+            }}
+            onItemSelect={item => {
+              setCerdo  ({ cerdo: item });
+            }}
+            items={equipos}
+            defaultIndex={0}
+            resetValue={false}
+            placeholder={'type something...'}
+            placeholderTextColor={'black'}
+            underlineColorAndroid="transparent"
+          />}
+
+          <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
+          <View style={styles.textInput2Row}>
+            <Text style={styles.textInput2}
+              onChangeText={(value) => handleChangeText('tiempoParada', value)}
+            >{Horas} Horas</Text>
+            <TouchableOpacity onPress={() => setHoras(Horas - 1)}>
+              <FontAwesomeIcon
+                name="minus"
+                style={styles.icon}
+              ></FontAwesomeIcon></TouchableOpacity>
+            <TouchableOpacity onPress={() => setHoras(Horas + 1)}>
+              <FontAwesomeIcon
+                name="plus"
+                style={styles.icon}
+              ></FontAwesomeIcon></TouchableOpacity>
           </View>
-        </ImageBackground>
-      </ScrollView></>
+          <Text style={styles.detalleDeParada}>Detalle de Parada</Text>
+          <TextInput
+            placeholder="Ingrese Detalles"
+            onChangeText={(value) => handleChangeText('detalleParada', value)}
+            multiline={true}
+            selectTextOnFocus={true}
+            disableFullscreenUI={true}
+            style={styles.textInput3}
+          ></TextInput>
+        </View>
+      </ImageBackground>
+    </ScrollView></>
   );
 }
 
@@ -118,7 +158,7 @@ const styles = StyleSheet.create({
     shadowRadius: 0,
     marginTop: 30,
     marginLeft: 20,
-    marginRight:20
+    marginRight: 20
   },
   icon: {
     color: "rgba(128,128,128,1)",

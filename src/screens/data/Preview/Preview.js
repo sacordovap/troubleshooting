@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import {
     StyleSheet,
     View,
@@ -10,95 +10,91 @@ import {
     Image
 } from "react-native";
 
-import firebase from "../../../../database/firebase";
-
+import axios from "axios";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import AwesomeAlert from 'react-native-awesome-alerts';
+import { postCreateData } from "../../../services/api";
 
 function Preview(props) {
 
 
     console.log(props)
+  
+    const [tokenV, setTokenV] = useState("")
 
-    const guardarFormulario = () => {
-        Alert.alert('se guardará la información', 'espere por favor', [
-            { text: 'Si', onPress: () => AddNuevoReporte() },
-            { text: 'Cancelar', onPress: () => cancelarFormulario() },
-        ])
+    const checkToken = async () => {
+        const token = await AsyncStorage.getItem('token')
+        setTokenV(token)
+        // console.log("TOEKOTEK " + token);
     }
 
-    const AddNuevoReporte = async () => {
+    useEffect(() => {
+        checkToken()
+    }, [])
 
-        try {
-            await firebase.db.collection('Reportes').add({
-                fecha: props.route.params.formulario.fecha,
-                hora: props.route.params.formulario.hora,
-                superintendente: props.route.params.formulario.superintendente,
-                supervisores: props.route.params.formulario.supervisores,
-                operadores: props.route.params.formulario.operadores,
-                equipo: props.route.params.formulario.equipo,
-                tiempoParada: props.route.params.formulario.tiempoParada,
-                detalleParada: props.route.params.formulario.detalleParada,
-                evento: props.route.params.formulario.evento,
-                causa: props.route.params.formulario.causa,
-                accionesTomadas: props.route.params.formulario.accionesTomadas,
-                resultado: props.route.params.formulario.resultado,
-                conclusiones: props.route.params.formulario.conclusiones,
-                evidenciaDetalle: props.route.params.formulario.evidenciaDetalle,
-                foto1: props.route.params.formulario.foto1,
-                foto2: props.route.params.formulario.foto2
-            })
-            props.navigation.navigate('Home');
-        } catch (error) {
-            console.log(error);
-        }
+    axios.defaults.headers.common = {
+        'Authorization': 'Bearer ' + tokenV
+    };
 
+    const [formulario, setFormulario] = useState({
+        event: props.route.params.formulario.event,
+        date: props.route.params.formulario.date,
+        description: "1",
+        attributed_cause: props.route.params.formulario.attributed_cause,
+        superintendent: props.route.params.formulario.superintendent,
+        supervisor: props.route.params.formulario.supervisor,
+        operators: props.route.params.formulario.operators,
+        downtime: props.route.params.formulario.downtime,
+        details: props.route.params.formulario.details,
+        take_actions: props.route.params.formulario.take_actions,
+        results: props.route.params.formulario.results,
+        equipment_id: 3,//props.route.params.formulario.equipo
+        attachments: props.route.params.formulario.foto1
+        
+            
+        // password: ""
+    })
+    const handleSubmit = () => {
+
+        postCreateData(formulario).then((rpta) => {
+
+            if (rpta.status === 200) {
+                console.warn("Subida extitosa")
+                props.navigation.navigate('HistorialReporte')
+            } else {
+                console.warn("Subida errónea")
+
+            }
+        }).catch(err => {
+            console.log("ERROR EN EL SERVICIO CREARDATA")
+            console.warn(err)
+        })
+        // guardarJobs(formulario).then((rpta) => {
+        //     console.warn(rpta)
+        // })
+        // postCrearImagen(dataFoto).then((rpta) => {
+        //     console.log(rpta)
+        //     if (rpta.status === 200) {
+        //         console.warn("Subida extitosa de la foto")
+        //         alert("Carga Exitosa")
+        //         console.warn(rpta)
+        //         console.warn(rpta.data)
+        //     } else {
+        //         console.warn("Subida errónea de la foto")
+        //         alert("Carga no se cargó")
+        //     }
+        // }).catch((err) => {
+        //     console.log(err)
+        // })
     }
-    const cancelarFormulario = () => {
-        props.navigation.navigate('Home');
-    }
-// const [updaloading, setUpdaloading] = useState(false)
 
-//     const UploadtoFirebase = async ()=>{
-//         const blob = await new Promise ((resolve, reject)=>{
-//             const xhr =new XMLHttpRequest();
-//             xhr.onload = function () {
-//                 reject(new TypeError('fallo de red'));
-//             };
-//             xhr.responseType='blob';
-//             xhr.open('GET',{uri:props.route.params.formulario.foto1}, true);
-//             xhr.send(null);
-//         }); 
-
-//         const ref=firebase.storage().ref('usuarios').child(new Date().toISOString());
-//         const snapshot = ref.put(blob)
-
-//         snapshot.on(firebase.firebase.storage.TaskEvent.STATE_CHANGED,
-//         ()=>{
-//             setUpdaloading(true)
-//         },
-//         (error)=>{
-//             setUpdaloading(false)
-//             console.log(error );
-//             blob.close();
-//             return
-//         },
-//         ()=>{
-//             snapshot.snapshot.ref.getDownloadURL().then((url)=>{
-//                 setUpdaloading(false)
-//                 console.log("Download URL", url)
-//                 blob.close();
-//                 return url
-//             })
-//         } );
-//     }
-
-const [Estado, setEstado] = useState(false);
-const showAlert = () => {
-    setEstado(true);
-};
-const hideAlert = () => {
-    setEstado(false);
-};
+    const [Estado, setEstado] = useState(false);
+    const showAlert = () => {
+        setEstado(true);
+    };
+    const hideAlert = () => {
+        setEstado(false);
+    };
 
 
     return (
@@ -111,35 +107,39 @@ const hideAlert = () => {
             ><View style={styles.rect}>
                     <Text style={styles.tituloIncidente}>Registro de incidente 01</Text>
                     <Text style={styles.fechaTag1}>Fecha</Text>
-                    <Text style={styles.fecha2}>{props.route.params.formulario.fecha}</Text>
+                    <Text style={styles.fecha2}
+                    >{props.route.params.formulario.date}</Text>
                     <Text style={styles.horaTag1}>Hora</Text>
-                    <Text style={styles.hora2}>{props.route.params.formulario.hora}</Text>
+                    <Text style={styles.hora2}>{props.route.params.formulario.date}</Text>
                     <Text style={styles.supeintendente1}>Supeintendente</Text>
-                    <Text style={styles.superintendenteEntrada}>{props.route.params.formulario.superintendente}</Text>
+                    <Text style={styles.superintendenteEntrada}>{props.route.params.formulario.superintendent}</Text>
                     <Text style={styles.supervisores1}>Supervisores</Text>
-                    <Text style={styles.ingreseSupervisores}>{props.route.params.formulario.supervisores}</Text>
+                    <Text style={styles.ingreseSupervisores}>{props.route.params.formulario.supervisor}</Text>
                     <Text style={styles.operadores1}>Operadores</Text>
-                    <Text style={styles.ingreseOperadores}>{props.route.params.formulario.operadores}</Text>
+                    <Text style={styles.ingreseOperadores}>{props.route.params.formulario.operators}</Text>
                     <Text style={styles.equipo1}>Equipo</Text>
-                    <Text style={styles.ingreseEquipo}>{props.route.params.formulario.equipo}</Text>
+                    <Text style={styles.ingreseEquipo}
+                        name={"equipment_id"}
+                        value={props.route.params.formulario.equipment_id}
+                    >{props.route.params.formulario.equipment_id}</Text>
                     <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
-                    <Text style={styles.horas}>{props.route.params.formulario.tiempoParada}</Text>
+                    <Text style={styles.horas}>{props.route.params.formulario.downtime}</Text>
                     <Text style={styles.detalleDeParada1}>Detalle de Parada</Text>
-                    <Text style={styles.ingreseDetalles}>{props.route.params.formulario.detalleParada}</Text>
+                    <Text style={styles.ingreseDetalles}>{props.route.params.formulario.details}</Text>
                     <Text style={styles.evento}>Evento</Text>
-                    <Text style={styles.detallesEvento}>{props.route.params.formulario.evento}</Text>
+                    <Text style={styles.detallesEvento}>{props.route.params.formulario.event}</Text>
                     <Text style={styles.causa}>Causa</Text>
-                    <Text style={styles.detallesCausa}>{props.route.params.formulario.causa}</Text>
+                    <Text style={styles.detallesCausa}>{props.route.params.formulario.attributed_cause}</Text>
                     <Text style={styles.accionesTomadas}>Acciones Tomadas</Text>
-                    <Text style={styles.accionesDetalle}>{props.route.params.formulario.accionesTomadas}</Text>
+                    <Text style={styles.accionesDetalle}>{props.route.params.formulario.take_actions}</Text>
                     <Text style={styles.resultados}>Resultados</Text>
-                    <Text style={styles.resultadosDetalle}>{props.route.params.formulario.resultado}</Text>
+                    <Text style={styles.resultadosDetalle}>{props.route.params.formulario.results}</Text>
                     <Text style={styles.conclusiones}>Conclusiones</Text>
                     <Text style={styles.conclusionesDetalle}>{props.route.params.formulario.conclusiones}</Text>
                     <Text style={styles.detallesDeCapturas}>Detalles de capturas</Text>
                     <Text style={styles.detallesDeLaFotos}>{props.route.params.formulario.evidenciaDetalle}</Text>
                     <View style={styles.imagen_1}>{!!props.route.params.formulario.foto1 && (
-                        <Image source={{ uri: props.route.params.formulario.foto1 }}
+                        <Image source={{ uri: props.route.params.formulario.foto1[0].base64 }}
                             style={{
                                 width: 310,
                                 height: 210,
@@ -148,8 +148,8 @@ const hideAlert = () => {
                                 opacity: 0.9,
                             }} />
                     )}</View>
-                    <View style={styles.imagen_2}>{!!props.route.params.formulario.foto2 && (
-                        <Image source={{ uri: props.route.params.formulario.foto2 }}
+                    <View style={styles.imagen_2}>{!!props.route.params.formulario.foto1 && (
+                        <Image source={{ uri: props.route.params.formulario.foto1[1].base64  }}
                             style={{
                                 width: 310,
                                 height: 210,
@@ -160,34 +160,34 @@ const hideAlert = () => {
                     </View>
                     <TouchableOpacity
                         style={[styles.containerBotonGuardar, props.style, styles.guardarDataReporte]}
-                        onPress={() => {showAlert()}}>
+                        onPress={() => { showAlert() }}>
                         <Text style={styles.guardarReporte}>Guardar Reporte</Text>
                     </TouchableOpacity>
                     <AwesomeAlert
-                    show={Estado}
-                    showProgress={false}
-                    title="Registro de Incidente"
-                    titleStyle={{ fontSize: 22, marginBottom: 10 }}
-                    messageStyle={{ fontSize: 18, marginBottom: 10 }}
-                    message="Esta seguro de guardar?"
-                    closeOnTouchOutside={true}
-                    closeOnHardwareBackPress={false}
-                    showCancelButton={true}
-                    showConfirmButton={true}
-                    cancelText="No"
-                    confirmText="Si"
-                    cancelButtonStyle={{ width: 100, alignItems: 'center', marginTop: 10 }}
-                    confirmButtonStyle={{ width: 100, alignItems: 'center' }}
-                    confirmButtonColor="#AEDEF4"
-                    cancelButtonColor="#DD6B55"
-                    onCancelPressed={() => {
-                        hideAlert();
-                    }}
-                    onConfirmPressed={() => {
-                        AddNuevoReporte();
-                        hideAlert();
-                    }}
-                />
+                        show={Estado}
+                        showProgress={false}
+                        title="Registro de Incidente"
+                        titleStyle={{ fontSize: 22, marginBottom: 10 }}
+                        messageStyle={{ fontSize: 18, marginBottom: 10 }}
+                        message="Esta seguro de guardar?"
+                        closeOnTouchOutside={true}
+                        closeOnHardwareBackPress={false}
+                        showCancelButton={true}
+                        showConfirmButton={true}
+                        cancelText="No"
+                        confirmText="Si"
+                        cancelButtonStyle={{ width: 100, alignItems: 'center', marginTop: 10 }}
+                        confirmButtonStyle={{ width: 100, alignItems: 'center' }}
+                        confirmButtonColor="#AEDEF4"
+                        cancelButtonColor="#DD6B55"
+                        onCancelPressed={() => {
+                            hideAlert();
+                        }}
+                        onConfirmPressed={() => {
+                            handleSubmit();
+                            hideAlert();
+                        }}
+                    />
                 </View>
             </ImageBackground>
         </ScrollView>

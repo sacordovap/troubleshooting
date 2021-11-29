@@ -27,58 +27,23 @@ import EvidenciacameraScreen from "../EvidenciaFoto/EvidenciacameraScreen";
 function Registro_form(props) {
 
   const [formulario, setFormulario] = useState({
-    fecha: '',
-    hora: '',
-    superintendente: '',
-    supervisores: '',
-    operadores: '',
-    equipo: '',
-    tiempoParada: '',
-    detalleParada: '',
-    evento: '',
-    causa: '',
-    accionesTomadas: '',
-    resultado: '',
+    date: '',
+    description:'',
+    superintendent: '',
+    supervisor: '',
+    operators: '',
+    equipment_id: '',
+    downtime: '',
+    details: '',
+    event: '',
+    attributed_cause: '',
+    take_actions: '',
+    results: '',
     conclusiones: '',
     evidenciaDetalle: '',
-    foto1: '',
-    foto2: ''
+    foto1: []
   })
-  const guardarData = () => {
-    Alert.alert('ya no se podrán realizar cambios', 'estas seguro?', [
-      { text: 'yes', onPress: () => aceptarSolicitud() },
-      { text: 'No', onPress: () => console.log(false) },
-    ])
-  }
-  const aceptarSolicitud = () => {
-    props.navigation.navigate('Preview', { formulario });
-  }
-
-  const [timerCount, setTimer] = useState(5)
-  const [cargando, setCargando] = useState(true)
-  useEffect(() => {
-    let interval = setInterval(() => {
-      setTimer(lastTimerCount => {
-        lastTimerCount <= 1 && clearInterval(interval)
-        return lastTimerCount - 1
-      })
-    }, 1000) //each count lasts for a second
-    //cleanup the interval on complete
-    setCargando(false)
-    return () => clearInterval(interval)
-  }, []);
-
-  const [Alerta, setAlerta] = useState(false)
-
-  const showAlerta = () => {
-    setAlerta(true)
-  }
-  const hideAlerta = () => {
-    setAlerta(false)
-  }
-  const nuevo = Alerta
-  console.log(nuevo);
-
+  
   const [ActivarBoton, setActivarBoton] = useState(false)
 
   return (

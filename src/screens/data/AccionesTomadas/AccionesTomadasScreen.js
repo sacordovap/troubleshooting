@@ -26,7 +26,7 @@ function AccionestomadasScreen(props) {
     // props.formulario.equipo=equipo.equipo
     // props.formulario.detalleParada=equipo.detalleParada;
     if (nombre==='accionesTomadas') {
-      props.formulario.accionesTomadas = value
+      props.formulario.take_actions = value
      } 
 };
 

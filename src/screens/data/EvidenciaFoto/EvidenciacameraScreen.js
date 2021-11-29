@@ -27,16 +27,37 @@ function EvidenciacameraScreen(props) {
 
   const handleChangeText = (nombre, value) => {
     setEvidencia({ ...evidencia, [nombre]: value })
-    if (nombre==='evidenciaDetalle') {
-      props.formulario.evidenciaDetalle= value
-     } 
-     props.formulario.foto1 = pickedImagePath.uri
-     props.formulario.foto2 = pickedImagePath2.uri
+    if (nombre === 'evidenciaDetalle') {
+      props.formulario.evidenciaDetalle = value
+    }
+    props.formulario.foto1 = pickedImagePath.uri
+    props.formulario.foto2 = pickedImagePath2.uri
   };
   console.log(props)
   // el  path de las imagenes
   const [pickedImagePath, setPickedImagePath] = useState('');
   const [pickedImagePath2, setPickedImagePath2] = useState('');
+
+  const [dataFoto, setDataFoto] = useState(
+
+    {
+      model_type: 2,
+      attachmentable_type: "App\\Models\\equipos\\Troubleshooting",
+      attachmentable_id: 1,
+      base64: ""
+    }
+
+  )
+  const [dataFoto2, setDataFoto2] = useState(
+    {
+
+      model_type: 2,
+      attachmentable_type: "App\\Models\\equipos\\Troubleshooting",
+      attachmentable_id: 1,
+      base64: ""
+
+    }
+  )
 
   // funccion lanzada cuando se pulsa el boton subir imagen
   const showImagePicker = async () => {
@@ -48,11 +69,18 @@ function EvidenciacameraScreen(props) {
       return;
     }
 
-    const result = await ImagePicker.launchImageLibraryAsync();
+    const result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: false,
+      base64: true,
+    });
     if (!result.cancelled) {
       setPickedImagePath(result.uri);
       props.setActivarBoton(true)
-      props.formulario.foto1 = result.uri
+
+      const source = { uri: 'data:image/jpeg;base64,' + result.base64 };
+      // console.warn(source.uri);
+      dataFoto.base64 = source.uri
+      props.formulario.foto1[0] = dataFoto
     }
   }
 
@@ -66,32 +94,47 @@ function EvidenciacameraScreen(props) {
       return;
     }
 
-    const result = await ImagePicker.launchCameraAsync();
+    const result = await ImagePicker.launchCameraAsync({
+      allowsEditing: false,
+      base64: true,
+    });
 
     console.log(result)
 
     if (!result.cancelled) {
       setPickedImagePath(result.uri);
       props.setActivarBoton(true)
-      props.formulario.foto1 = result.uri
+
+
+      const source = { uri: 'data:image/jpeg;base64,' + result.base64 };
+      // console.warn(source.uri);
+      dataFoto.base64 = source.uri
+      props.formulario.foto1[0] = dataFoto
     }
   }
   const showImagePicker2 = async () => {
     //permisos
-    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync({});
 
     if (permissionResult.granted === false) {
       alert("Te has negado a permitir que esta aplicación acceda a tus fotos.");
       return;
     }
 
-    const result = await ImagePicker.launchImageLibraryAsync();
+    const result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: false,
+      base64: true,
+    });
 
 
     if (!result.cancelled) {
       setPickedImagePath2(result.uri);
       props.setActivarBoton(true)
-      props.formulario.foto2 = result.uri
+
+      const source = { uri: 'data:image/jpeg;base64,' + result.base64 };
+      // console.warn(source.uri);
+      dataFoto2.base64 = source.uri
+      props.formulario.foto1[1] = dataFoto2
     }
   }
   const openCamera2 = async () => {
@@ -102,15 +145,22 @@ function EvidenciacameraScreen(props) {
       return;
     }
 
-    const result = await ImagePicker.launchCameraAsync();
+    const result = await ImagePicker.launchCameraAsync({
+      allowsEditing: false,
+      base64: true,
+    });
 
     if (!result.cancelled) {
       setPickedImagePath2(result.uri);
-      
+
       props.setActivarBoton(true)
-      props.formulario.foto2 = result.uri
+      const source = { uri: 'data:image/jpeg;base64,' + result.base64 };
+      // console.warn(source.uri);
+      dataFoto2.base64 = source.uri
+      props.formulario.foto1[1] = dataFoto2
     }
   }
+
 
 
   return (
@@ -130,35 +180,33 @@ function EvidenciacameraScreen(props) {
             onChangeText={(value) => handleChangeText('evidenciaDetalle', value)}
             style={styles.textInput}
           ></TextInput>
-          
+
           <View style={styles.buttonContainer}>
             <Icon onPress={showImagePicker}
               name="upload" style={styles.camera}></Icon>
             <Icon onPress={openCamera}
               name="camera" style={styles.archivos}></Icon>
           </View>
-        
+
           <View style={styles.imageContainer}>
-          <Text style={styles.evidenciasFoto}>Evidencia Captura 1</Text>
+            <Text style={styles.evidenciasFoto}>Evidencia Captura 1</Text>
             {
               pickedImagePath !== '' && <Image
                 source={{ uri: pickedImagePath }}
-                style={styles.image} 
+                style={styles.image}
               />
             }
           </View>
 
           <View style={styles.buttonContainer}>
-            {/*           
-            <Button  title="Subir Imagen" />
-            <Button  title="Tomar Foto" /> */}
+        
             <Icon onPress={showImagePicker2}
               name="upload" style={styles.camera}></Icon>
             <Icon onPress={openCamera2}
               name="camera" style={styles.archivos}></Icon>
-          </View>         
+          </View>
           <View style={styles.imageContainer}>
-          <Text style={styles.evidenciasFoto}>Evidencia Captura 2</Text>
+            <Text style={styles.evidenciasFoto}>Evidencia Captura 2</Text>
             {
               pickedImagePath2 !== '' && <Image
                 source={{ uri: pickedImagePath2 }}
@@ -174,7 +222,7 @@ function EvidenciacameraScreen(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,       
+    flex: 1,
 
   },
   containerGuardarDataInicial: {
@@ -274,7 +322,7 @@ const styles = StyleSheet.create({
     shadowRadius: 0,
     marginTop: 30,
     marginLeft: 20,
-    marginRight:20,
+    marginRight: 20,
     marginBottom: 30
   },
   iconStack: {
@@ -386,19 +434,19 @@ const styles = StyleSheet.create({
   },
   rightIconButton: {},
   buttonContainer: {
-    marginTop:10,
+    marginTop: 10,
     width: 320,
     flexDirection: 'row',
     justifyContent: "center",
   },
-  imageContainer: {      
+  imageContainer: {
     alignItems: 'center',
     padding: 15
   },
   image: {
     width: 200,
     height: 150,
-    marginBottom:5,
+    marginBottom: 5,
     resizeMode: 'cover'
   }
 });

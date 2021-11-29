@@ -1,52 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import { Base64 } from 'js-base64';
+import { createContext, useContext, useState } from "react";
 
-import AuthContext from './authContext';
+import React from 'react'
+export const AuthContext = createContext(null)
+export const useAuth = () => useContext(AuthContext)
 
-export const AuthState = (props) => {
-    const [state, setState] = useState({
-        status:false,
-        nombre:null,
-
-        token:null,
-        cargando:true,
-    })
-
-    const iniciarSesionContext = (token) => {
-        AsyncStorage.setItem('token', token);
-        
-        token = JSON.stringify(token);
-        const payloadString = token.split(".")[1]
-        
-        // const payloadDecrypt =   window.btoa(unescape(encodeURIComponent( payloadString )))
-        
-        // console.log(payloadDecrypt)
-        // const payloadJson = JSON.parse(JSON.stringify(payloadDecrypt))
-        const payloadJson = JSON.parse(token)
-        
-        setState({
-            status: true,
-            nombre: "Prueba",
-            token: token,
-            cargando: false
-        })
-
-    }
-    const iniciarSesionAsyncStorage =() => {
-        const token = AsyncStorage.getItem('token')
-        if (token) {
-            iniciarSesionContext(AsyncStorage.getItem('token'))
-        }
-    }
-
-    useEffect(() => {
-     iniciarSesionAsyncStorage()
-    }, [])
+export const AuthProvider = ({ children }) => {
+    const [tokencito, setTokencito] = useState(null)
 
     return (
-        <AuthContext.Provider value={{ 
-            ...state,iniciarSesionContext
-        }}>{props.children}</AuthContext.Provider> 
+        <AuthContext.Provider value={{ tokencito, setTokencito }}>
+            {children}
+        </AuthContext.Provider>
     )
 }

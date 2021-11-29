@@ -26,9 +26,9 @@ const [eventoCausa, setEventoCausa] = useState(initialState);
   const handleChangeText = (nombre, value) => {
     setEventoCausa({ ...eventoCausa, [nombre]: value })
     if (nombre==='evento') {
-      props.formulario.evento=value
+      props.formulario.event=value
      } else if (nombre==='causa') {
-      props.formulario.causa=value
+      props.formulario.attributed_cause=value
      } 
 };
 
