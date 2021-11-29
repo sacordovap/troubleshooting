@@ -49,7 +49,6 @@ const hideAlert = () => {
   console.log(props)
   const doLogin = () => {
     postLogin(datos).then(response => {
-      console.warn(response)
       setToken(response.data.token)
       Asyncstorage.setItem("token", response.data.token).then(response => {
         showAlert() 

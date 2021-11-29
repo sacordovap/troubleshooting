@@ -182,7 +182,7 @@ function EvidenciacameraScreen(props) {
       >
         <View style={styles.rect}>
           <Text style={styles.titulo1}>Registro de Incidentes</Text>
-          <Text style={styles.evidencias}>Evidencias</Text>
+          <Text style={styles.evidencias}>Evidencias tomadas en el incidente</Text>
           {/* <TextInput
             placeholder="Detalles de las fotos"
             multiline={true}
@@ -293,11 +293,8 @@ const styles = StyleSheet.create({
     marginRight: 53
   },
   image1: {
-    width: 360,
     backgroundColor: "rgba(15,15, 15,0.0732)",
-    height: 679,
-    marginTop: 1,
-    paddingBottom: 5
+    height: "105%"
 
   },
   iconoFoto: {
@@ -333,7 +330,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginLeft: 20,
     marginRight: 20,
-    marginBottom: 30
+    marginBottom: 20
   },
   iconStack: {
     width: 40,
@@ -347,9 +344,9 @@ const styles = StyleSheet.create({
     marginLeft: 27
   },
   titulo1: {
+    alignSelf: "center",
     color: "#121212",
     fontSize: 24,
-    textAlign: "center",
     opacity: 0.78,
     height: 29,
     marginTop: 26,
@@ -357,7 +354,7 @@ const styles = StyleSheet.create({
   evidencias: {
     color: "#121212",
     opacity: 0.6,
-    fontSize: 12,
+    fontSize: 14,
     marginTop: 27,
     marginLeft: 20
   },

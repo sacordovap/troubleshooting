@@ -46,11 +46,6 @@ function Registro_form(props) {
 
   const [ActivarBoton, setActivarBoton] = useState(false)
 
-  console.warn(formulario.length);
-  useEffect(() => {
-    console.log(formulario.length);
-  })
-
   const mostrarSize = () =>{
     console.log(Object.keys(formulario).length)
   }

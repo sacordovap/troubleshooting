@@ -505,12 +505,12 @@ const styles = StyleSheet.create({
         height: 36,
         width: 198,
         marginTop: 40,
-        marginLeft: 78
     },
     containerBotonGuardar: {
         backgroundColor: "rgba(1,123,146,1)",
         justifyContent: "center",
         alignItems: "center",
+        alignSelf: "center",
         flexDirection: "row",
         borderRadius: 2,
         shadowColor: "#000",
@@ -531,7 +531,6 @@ const styles = StyleSheet.create({
         fontSize: 14
     },
     image: {
-        width: 360,
         backgroundColor: "rgba(15,15, 15,0.0732)",
         marginTop: 1
     },

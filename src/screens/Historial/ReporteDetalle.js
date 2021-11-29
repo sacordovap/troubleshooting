@@ -84,7 +84,7 @@ export default function ReporteDetalle(props) {
         putTroubleshootingUpdate(token, formulario, props.route.params.id).then((rpta) => {
 
             if (rpta.status === 200) {
-                console.warn("Subida extitosa")                
+                console.warn("Subida extitosa")
                 navigation.navigate('HistorialReporte')
             } else {
                 console.warn("Subida errónea")
@@ -164,7 +164,7 @@ export default function ReporteDetalle(props) {
                     ></TextInput>
                     <Text style={styles.equipo1}>Equipo</Text>
                     <TextInput style={styles.ingreseEquipo}
-                    editable={false}
+                        editable={false}
                         value={formulario.equipment?.name}
                     ></TextInput>
                     <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
@@ -185,7 +185,7 @@ export default function ReporteDetalle(props) {
                         onChangeText={(value) => handleChangeText('event', value)}
                         editable={estado}
                     ></TextInput>
-                     <Text style={styles.evento}>Descripción del evento</Text>
+                    <Text style={styles.evento}>Descripción del evento</Text>
                     <TextInput style={styles.detallesEvento}
                         value={formulario.description}
                         onChangeText={(value) => handleChangeText('description', value)}
@@ -241,7 +241,7 @@ export default function ReporteDetalle(props) {
                                 opacity: 0.9,
                             }} />)}
                     </View>
-                    <View style={{alignSelf: 'center'}} > {estado ?
+                    <View style={{ alignSelf: 'center' }}>{estado ?
                         (<TouchableOpacity
                             style={[styles.containerCambios, styles.guardarDataReporte]}
                             onPress={() => showAlertModificar()}>
@@ -252,17 +252,16 @@ export default function ReporteDetalle(props) {
                             onPress={() => edit()}>
                             <Text style={styles.guardarReporte}>Modificar Registro</Text>
                         </TouchableOpacity>)
-                    }
-                    <TouchableOpacity
+                    }<TouchableOpacity
                         style={[styles.containerEliminar, styles.guardarDataReporte]}
                         onPress={() => showAlertDelete()}>
-                        <Text style={styles.guardarReporte}>Eliminar Registro</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={[styles.containerBotonGuardar, styles.guardarDataReporte]}
-                        onPress={() => navigation.goBack()}>
-                        <Text style={styles.guardarReporte}>Finalizar Revision</Text>
-                    </TouchableOpacity></View>
+                            <Text style={styles.guardarReporte}>Eliminar Registro</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={[styles.containerBotonGuardar, styles.guardarDataReporte]}
+                            onPress={() => navigation.goBack()}>
+                            <Text style={styles.guardarReporte}>Finalizar Revision</Text>
+                        </TouchableOpacity></View>
                 </View>
                 <AwesomeAlert
                     show={estadoAlertModificar}
@@ -281,7 +280,7 @@ export default function ReporteDetalle(props) {
                     confirmButtonStyle={{ width: 100, alignItems: 'center' }}
                     confirmButtonColor="#AEDEF4"
                     cancelButtonColor="#DD6B55"
-                    onCancelPressed={() => {                        
+                    onCancelPressed={() => {
                         hideAlertModificar();
                     }}
                     onConfirmPressed={() => {

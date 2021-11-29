@@ -54,10 +54,8 @@ export default StyleSheet.create({
   rightIconButton: {},
 
   image1: {
-    width: 360,
     backgroundColor: "rgba(15,15, 15,0.0732)",
-    height: 679,
-    marginTop: 1
+    height: '105%',
   },
   image1_imageStyle: {
     opacity: 0.61
@@ -77,6 +75,7 @@ export default StyleSheet.create({
     shadowOpacity: 0.41,
     shadowRadius: 0,
     marginTop: 30,
+    marginBottom: 27,
     marginLeft: 20,    
     marginRight:20
   },

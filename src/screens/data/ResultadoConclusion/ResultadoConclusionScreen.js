@@ -47,7 +47,7 @@ function ResultadoconclusionScreen(props) {
           imageStyle={styles.image1_imageStyle}
         >
           <View style={styles.contenedorDatos1}>
-            <Text style={styles.titulo1}>Resultado y Conclusiones</Text>
+            <Text style={styles.titulo1}>Resultado Obtenidos</Text>
             <Text style={styles.resultados}>Resultados</Text>
             <TextInput
               placeholder="Ingrese los resultados obtenidos"

@@ -47,6 +47,7 @@ export default StyleSheet.create({
     height: 608,
     backgroundColor: "rgba(255,255,255,1)",
     borderWidth: 1,
+    alignSelf: "center",
     borderColor: "#E4E9F7",
     borderRadius: 36,
     shadowColor: "rgba(7,252,21,1)",
@@ -57,6 +58,7 @@ export default StyleSheet.create({
     elevation: 5,
     shadowOpacity: 0.41,
     shadowRadius: 0,
+    marginBottom: 27,
     marginTop: 27,
     marginLeft: 20,
     marginRight:20
@@ -69,7 +71,8 @@ export default StyleSheet.create({
     width: 243,
     height: 29,
     marginTop: 29,
-    marginLeft: 39
+    marginLeft: 39,
+    alignSelf: "center"
   },
   fecha_tag: {
     color: "#121212",
