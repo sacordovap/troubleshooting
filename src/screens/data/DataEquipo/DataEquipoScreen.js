@@ -15,7 +15,9 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import Icon from "react-native-vector-icons/Ionicons";
 import { getEquiment } from "../../../services/api";
 import { AuthContext } from "../../../Context/AuthContext";
-import SearchableDropDown from 'react-native-dropdown-searchable';
+// import SearchableDropDown from 'react-native-dropdown-searchable';
+import DropDownPicker from 'react-native-dropdown-picker';
+
 
 function DataEquipoScreen(props) {
   const [Horas, setHoras] = useState(0);
@@ -63,6 +65,8 @@ function DataEquipoScreen(props) {
   console.log(cerdo);
 
   const [itemSelected, setitemSelected] = useState(initialState)
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
 
   return (
 
@@ -76,20 +80,15 @@ function DataEquipoScreen(props) {
         <View style={styles.contenedorDatos1}>
           <Text style={styles.titulo1}>Equipo y tiempo de Parada</Text>
           <Text style={styles.equipo}>Equipo</Text>
-          {equipos && equipos.length > 0 && <SearchableDropDown
-            onTextChange={tag => {
-              setCerdo({ tag });
-            }}
-            onItemSelect={item => {
-              setCerdo  ({ cerdo: item });
-            }}
+          <View style={styles.textInput2Row}>   
+          <DropDownPicker
+            open={open}
+            value={value}
             items={equipos}
-            defaultIndex={0}
-            resetValue={false}
-            placeholder={'type something...'}
-            placeholderTextColor={'black'}
-            underlineColorAndroid="transparent"
-          />}
+            setOpen={setOpen}
+            setValue={setValue}
+            setItems={setEquipos}
+          /></View>
 
           <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
           <View style={styles.textInput2Row}>

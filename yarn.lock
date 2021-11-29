@@ -5042,7 +5042,12 @@ react-native-awesome-alerts@^1.5.2:
   dependencies:
     prop-types "^15.7.2"
 
-react-native-dropdown-searchable@^1.0.1:
+react-native-dropdown-picker@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/react-native-dropdown-picker/-/react-native-dropdown-picker-5.2.3.tgz#2ab6819f258ba58328cdc69c9593fb3769f20347"
+  integrity sha512-nT2p/3pzydi6CAUPbC7WR1Yo2/FDX6napouAQ1ueuCGD48afYiWERh2J+mAUes/v4MKl68oriEz9C7GM6aAILg==
+
+react-native-dropdown-searchable@*:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-native-dropdown-searchable/-/react-native-dropdown-searchable-1.0.1.tgz#e56aae4de6e5e5319cb46dfb150ccd93074cd378"
   integrity sha512-Zg4iICEapAU380dHoA2BPPkFjwI2fy4UTYkkjo6swRJsgHt0L9LJ6+rFzak8SgVT5Gl2rKx5XB7AOKSen9LqLQ==

@@ -232,20 +232,20 @@ export default function ReporteDetalle(props) {
                                 opacity: 0.9,
                             }} />)}
                     </View>
-                    {estado ?
+                    <View> {estado ?
                         (<TouchableOpacity
-                            style={[styles.containerBotonGuardar, styles.guardarDataReporte]}
+                            style={[styles.containerCambios, styles.guardarDataReporte]}
                             onPress={() => showAlertModificar()}>
                             <Text style={styles.guardarReporte}>Guardar Registro</Text>
                         </TouchableOpacity>) :
                         (<TouchableOpacity
-                            style={[styles.containerBotonGuardar, styles.guardarDataReporte]}
+                            style={[styles.containerCambios, styles.guardarDataReporte]}
                             onPress={() => edit()}>
                             <Text style={styles.guardarReporte}>Modificar Registro</Text>
                         </TouchableOpacity>)
                     }
                     <TouchableOpacity
-                        style={[styles.containerBotonGuardar, styles.guardarDataReporte]}
+                        style={[styles.containerEliminar, styles.guardarDataReporte]}
                         onPress={() => showAlertDelete()}>
                         <Text style={styles.guardarReporte}>Eliminar Registro</Text>
                     </TouchableOpacity>
@@ -253,7 +253,7 @@ export default function ReporteDetalle(props) {
                         style={[styles.containerBotonGuardar, styles.guardarDataReporte]}
                         onPress={() => navigation.goBack()}>
                         <Text style={styles.guardarReporte}>Finalizar Revision</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity></View>
                 </View>
                 <AwesomeAlert
                     show={estadoAlertModificar}
@@ -622,7 +622,7 @@ const styles = StyleSheet.create({
     guardarDataReporte: {
         height: 36,
         width: 198,
-        marginTop: 40,
+        marginTop: 15,
         marginLeft: 78
     },
     containerBotonGuardar: {
@@ -643,6 +643,44 @@ const styles = StyleSheet.create({
         paddingLeft: 16,
         paddingRight: 16,
         marginBottom: 20
+    },
+    containerEliminar: {
+        backgroundColor: "#DD6B55",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
+        borderRadius: 2,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1
+        },
+        shadowOpacity: 0.35,
+        shadowRadius: 5,
+        elevation: 2,
+        minWidth: 88,
+        paddingLeft: 16,
+        paddingRight: 16,
+        marginBottom: 1
+    },
+    containerCambios: {
+        backgroundColor: "#35C45A",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
+        borderRadius: 2,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1
+        },
+        shadowOpacity: 0.35,
+        shadowRadius: 5,
+        elevation: 2,
+        minWidth: 88,
+        paddingLeft: 16,
+        paddingRight: 16,
+        marginBottom: 1
     },
     guardarReporte: {
         color: "#fff",
