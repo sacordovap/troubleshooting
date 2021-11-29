@@ -37,7 +37,7 @@ export default StyleSheet.create({
   },
   image: {
     backgroundColor: "rgba(15,15, 15,0.0732)",
-    height: 679,
+    height: '105%',
     marginTop: 1
   },
   image_imageStyle: {

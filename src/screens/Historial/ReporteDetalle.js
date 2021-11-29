@@ -135,11 +135,13 @@ export default function ReporteDetalle(props) {
                     <Text style={styles.fechaTag1}>Fecha</Text>
                     <TextInput style={styles.fecha2}
                         value={formulario.date}
+                        editable={false}
                         onChangeText={(value) => handleChangeText('date', value)}
                     ></TextInput>
                     <Text style={styles.horaTag1}>Hora</Text>
                     <TextInput style={styles.hora2}
                         value={formulario.date}
+                        editable={false}
                         onChangeText={(value) => handleChangeText('date', value)}
                     ></TextInput>
                     <Text style={styles.supeintendente1}>Supeintendente</Text>
@@ -162,6 +164,7 @@ export default function ReporteDetalle(props) {
                     ></TextInput>
                     <Text style={styles.equipo1}>Equipo</Text>
                     <TextInput style={styles.ingreseEquipo}
+                    editable={false}
                         value={formulario.equipment?.name}
                     ></TextInput>
                     <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
@@ -180,6 +183,12 @@ export default function ReporteDetalle(props) {
                     <TextInput style={styles.detallesEvento}
                         value={formulario.event}
                         onChangeText={(value) => handleChangeText('event', value)}
+                        editable={estado}
+                    ></TextInput>
+                     <Text style={styles.evento}>Descripción del evento</Text>
+                    <TextInput style={styles.detallesEvento}
+                        value={formulario.description}
+                        onChangeText={(value) => handleChangeText('description', value)}
                         editable={estado}
                     ></TextInput>
                     <Text style={styles.causa}>Causa</Text>
@@ -232,7 +241,7 @@ export default function ReporteDetalle(props) {
                                 opacity: 0.9,
                             }} />)}
                     </View>
-                    <View> {estado ?
+                    <View style={{alignSelf: 'center'}} > {estado ?
                         (<TouchableOpacity
                             style={[styles.containerCambios, styles.guardarDataReporte]}
                             onPress={() => showAlertModificar()}>
@@ -623,7 +632,6 @@ const styles = StyleSheet.create({
         height: 36,
         width: 198,
         marginTop: 15,
-        marginLeft: 78
     },
     containerBotonGuardar: {
         backgroundColor: "rgba(1,123,146,1)",
@@ -687,7 +695,6 @@ const styles = StyleSheet.create({
         fontSize: 14
     },
     image: {
-        width: 360,
         backgroundColor: "rgba(15,15, 15,0.0732)",
         marginTop: 1
     },

@@ -45,6 +45,7 @@ function AccionestomadasScreen(props) {
 
           <View style={styles.contenedorDatos1}>
             <Text style={styles.titulo1}>Acciones Tomadas</Text>
+            <Text style={styles.equipo}>Acciones Realizadas</Text>
             <TextInput
               placeholder="Ingrese las acciones realizadas"
               multiline={true}

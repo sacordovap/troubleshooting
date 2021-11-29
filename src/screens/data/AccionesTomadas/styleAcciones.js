@@ -101,7 +101,6 @@ export default StyleSheet.create({
   equipo: {
     color: "#121212",
     height: 13,
-    width: 83,
     opacity: 0.6,
     fontSize: 12,
     marginTop: 32,

@@ -90,3 +90,13 @@ export const getEquiment = async (token) => {
     return rpta
 }
 
+
+export const getEquipmentById = async (id, token) => {
+    const rpta = await axios.get(`${URL_BACKEND}/equipments/getEspecific/${id}?all=1`, {
+        headers: {
+            Authorization: "Bearer " + token
+        }
+    })
+    return rpta
+}
+

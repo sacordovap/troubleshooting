@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useContext, useEffect, useState } from "react";
 import {
     StyleSheet,
     View,
@@ -13,28 +13,15 @@ import {
 import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AwesomeAlert from 'react-native-awesome-alerts';
-import { postCreateData } from "../../../services/api";
+import { postCreateData, getEquiment, getEquipmentById } from "../../../services/api";
+import { AuthContext } from "../../../Context/AuthContext";
 
 function Preview(props) {
 
 
     console.log(props)
   
-    const [tokenV, setTokenV] = useState("")
-
-    const checkToken = async () => {
-        const token = await AsyncStorage.getItem('token')
-        setTokenV(token)
-        // console.log("TOEKOTEK " + token);
-    }
-
-    useEffect(() => {
-        checkToken()
-    }, [])
-
-    axios.defaults.headers.common = {
-        'Authorization': 'Bearer ' + tokenV
-    };
+    const { token } = useContext(AuthContext)
 
     const [formulario, setFormulario] = useState({
         event: props.route.params.formulario.event,
@@ -96,6 +83,18 @@ function Preview(props) {
         setEstado(false);
     };
 
+const [equipoNombre, setequipoNombre] = useState(null)
+
+    const obtenerEquipo = () => {
+        getEquipmentById(props.route.params.formulario.equipment_id, token).then(rpta=>{
+            setequipoNombre(rpta.data.data)
+         
+            console.log(rpta.data.data);
+        })
+    }
+    useEffect(() => {
+      obtenerEquipo()
+    }, [])
 
     return (
         <ScrollView style={styles.container}>
@@ -119,9 +118,7 @@ function Preview(props) {
                     <Text style={styles.ingreseOperadores}>{props.route.params.formulario.operators}</Text>
                     <Text style={styles.equipo1}>Equipo</Text>
                     <Text style={styles.ingreseEquipo}
-                        name={"equipment_id"}
-                        value={props.route.params.formulario.equipment_id}
-                    >{props.route.params.formulario.equipment_id}</Text>
+                    >{equipoNombre?.name}</Text>
                     <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
                     <Text style={styles.horas}>{props.route.params.formulario.downtime}</Text>
                     <Text style={styles.detalleDeParada1}>Detalle de Parada</Text>
@@ -134,12 +131,12 @@ function Preview(props) {
                     <Text style={styles.accionesDetalle}>{props.route.params.formulario.take_actions}</Text>
                     <Text style={styles.resultados}>Resultados</Text>
                     <Text style={styles.resultadosDetalle}>{props.route.params.formulario.results}</Text>
-                    <Text style={styles.conclusiones}>Conclusiones</Text>
+                    {/* <Text style={styles.conclusiones}>Conclusiones</Text>
                     <Text style={styles.conclusionesDetalle}>{props.route.params.formulario.conclusiones}</Text>
-                    <Text style={styles.detallesDeCapturas}>Detalles de capturas</Text>
-                    <Text style={styles.detallesDeLaFotos}>{props.route.params.formulario.evidenciaDetalle}</Text>
+                    <Text style={styles.detallesDeCapturas}>Detalles de capturas</Text> */}
+                    {/* <Text style={styles.detallesDeLaFotos}>{props.route.params.formulario.evidenciaDetalle}</Text> */}
                     <View style={styles.imagen_1}>{!!props.route.params.formulario.foto1 && (
-                        <Image source={{ uri: props.route.params.formulario.foto1[0].base64 }}
+                        <Image source={{ uri: props.route.params.formulario.foto1[0]?.base64 }}
                             style={{
                                 width: 310,
                                 height: 210,
@@ -149,7 +146,7 @@ function Preview(props) {
                             }} />
                     )}</View>
                     <View style={styles.imagen_2}>{!!props.route.params.formulario.foto1 && (
-                        <Image source={{ uri: props.route.params.formulario.foto1[1].base64  }}
+                        <Image source={{ uri: props.route.params.formulario.foto1[1]?.base64  }}
                             style={{
                                 width: 310,
                                 height: 210,

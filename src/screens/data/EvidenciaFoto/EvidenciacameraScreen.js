@@ -75,7 +75,6 @@ function EvidenciacameraScreen(props) {
     });
     if (!result.cancelled) {
       setPickedImagePath(result.uri);
-      props.setActivarBoton(true)
 
       const source = { uri: 'data:image/jpeg;base64,' + result.base64 };
       // console.warn(source.uri);
@@ -103,7 +102,6 @@ function EvidenciacameraScreen(props) {
 
     if (!result.cancelled) {
       setPickedImagePath(result.uri);
-      props.setActivarBoton(true)
 
 
       const source = { uri: 'data:image/jpeg;base64,' + result.base64 };
@@ -112,9 +110,11 @@ function EvidenciacameraScreen(props) {
       props.formulario.foto1[0] = dataFoto
     }
   }
+
+
   const showImagePicker2 = async () => {
     //permisos
-    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync({});
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
     if (permissionResult.granted === false) {
       alert("Te has negado a permitir que esta aplicación acceda a tus fotos.");
@@ -126,10 +126,11 @@ function EvidenciacameraScreen(props) {
       base64: true,
     });
 
+    
 
     if (!result.cancelled) {
       setPickedImagePath2(result.uri);
-      props.setActivarBoton(true)
+
 
       const source = { uri: 'data:image/jpeg;base64,' + result.base64 };
       // console.warn(source.uri);
@@ -153,7 +154,7 @@ function EvidenciacameraScreen(props) {
     if (!result.cancelled) {
       setPickedImagePath2(result.uri);
 
-      props.setActivarBoton(true)
+
       const source = { uri: 'data:image/jpeg;base64,' + result.base64 };
       // console.warn(source.uri);
       dataFoto2.base64 = source.uri
@@ -161,7 +162,15 @@ function EvidenciacameraScreen(props) {
     }
   }
 
-
+  const comprobarFotos =()=> {
+    if (props.formulario.foto1.length===2) {
+      
+      props.setActivarBoton(true)
+    }
+  }
+  useEffect(() => {
+    comprobarFotos()
+  })
 
   return (
     <><ScrollView style={styles.container}>
@@ -173,7 +182,7 @@ function EvidenciacameraScreen(props) {
       >
         <View style={styles.rect}>
           <Text style={styles.titulo1}>Registro de Incidentes</Text>
-          <Text style={styles.evidencias}>Ingrese las capturas del incidente</Text>
+          <Text style={styles.evidencias}>Evidencias</Text>
           {/* <TextInput
             placeholder="Detalles de las fotos"
             multiline={true}
@@ -199,7 +208,7 @@ function EvidenciacameraScreen(props) {
           </View>
 
           <View style={styles.buttonContainer}>
-        
+
             <Icon onPress={showImagePicker2}
               name="upload" style={styles.camera}></Icon>
             <Icon onPress={openCamera2}
@@ -214,6 +223,7 @@ function EvidenciacameraScreen(props) {
               />
             }
           </View>
+
         </View>
       </ImageBackground>
     </ScrollView></>

@@ -12,7 +12,7 @@ import {
   ActivityIndicator
 } from "react-native";
 
-import Swiper from "react-native-swiper";
+import Swiper from "react-native-web-swiper";
 import DataEquipoScreen from "../DataEquipo/DataEquipoScreen";
 import AccionestomadasScreen from "../AccionesTomadas/AccionesTomadasScreen";
 import DatosInicialesScreen from "../datosIniciales/DatosInicialesScreen";
@@ -28,7 +28,7 @@ function Registro_form(props) {
 
   const [formulario, setFormulario] = useState({
     date: '',
-    description:'',
+    description: '',
     superintendent: '',
     supervisor: '',
     operators: '',
@@ -39,12 +39,34 @@ function Registro_form(props) {
     attributed_cause: '',
     take_actions: '',
     results: '',
-    conclusiones: '',
-    evidenciaDetalle: '',
+    // conclusiones: '',
+    // evidenciaDetalle: '',
     foto1: []
   })
-  
+
   const [ActivarBoton, setActivarBoton] = useState(false)
+
+  console.warn(formulario.length);
+  useEffect(() => {
+    console.log(formulario.length);
+  })
+
+  const mostrarSize = () =>{
+    console.log(Object.keys(formulario).length)
+  }
+
+  useEffect(() => {
+    mostrarSize()
+  })
+
+  const [Estado, setEstado] = useState(false);
+    const showAlert = () => {
+        setEstado(true);
+    };
+    const hideAlert = () => {
+        setEstado(false);
+    };
+
 
   return (
     <>
@@ -53,7 +75,7 @@ function Registro_form(props) {
           <TouchableOpacity style={styles.leftIconButton}
             onPress={() => props.navigation.navigate('Home')}
           ><Icons name="ios-arrow-back" style={styles.leftIcon}
-            ></Icons>
+          ></Icons>
             <Text style={styles.leftText}>Back</Text>
           </TouchableOpacity>
         </View>
@@ -63,12 +85,29 @@ function Registro_form(props) {
           </Text>
         </View>
         <View style={styles.rightWrapper}>
-       {ActivarBoton?(<TouchableOpacity style={styles.leftIconButton}
-            onPress={() => props.navigation.navigate('Preview', { formulario })}
+          {ActivarBoton ? (<TouchableOpacity style={styles.leftIconButton}
+            onPress={() => {
+              if (
+                formulario.description === '' ||
+                formulario.superintendent === '' ||
+                formulario.supervisor === '' ||
+                formulario.operators === '' ||
+                formulario. equipment_id === '' ||
+                formulario.downtime === '' ||
+                formulario.details === '' ||
+                formulario.event === '' ||
+                formulario.attributed_cause === '' ||
+                formulario.take_actions === '' ||
+                formulario.results === '' ) {
+                showAlert()
+              }
+              else { props.navigation.navigate('Preview', { formulario }) }
+            }}
+
           ><Icon name="save" style={styles.leftIcon}
-            ></Icon>
+          ></Icon>
             <Text style={styles.leftText}>Guardar</Text>
-          </TouchableOpacity>):null}      
+          </TouchableOpacity>) : null}
         </View>
 
       </View>
@@ -111,10 +150,31 @@ function Registro_form(props) {
             </View>
 
             <View style={{ flex: 1, justifyContent: "center" }}>
-              <EvidenciacameraScreen formulario={formulario} setActivarBoton={setActivarBoton}/>
+              <EvidenciacameraScreen formulario={formulario} setActivarBoton={setActivarBoton} />
             </View>
           </Swiper>
         </View>
+        <AwesomeAlert
+          show={Estado}
+          showProgress={false}
+          title="Alerta"
+          titleStyle={{ fontSize: 22, marginBottom: 10 }}
+          messageStyle={{ fontSize: 18, marginBottom: 10 }}
+          message="Completa los campos necesarios"
+          closeOnTouchOutside={true}
+          closeOnHardwareBackPress={false}
+          showCancelButton={false}
+          showConfirmButton={true}
+          cancelText="No"
+          confirmText="Continuar"
+          cancelButtonStyle={{ width: 100, alignItems: 'center', marginTop: 10 }}
+          confirmButtonStyle={{ width: 100, alignItems: 'center' }}
+          confirmButtonColor="#AEDEF4"
+          cancelButtonColor="#DD6B55"
+          onConfirmPressed={() => {
+            hideAlert();
+          }}
+        />
       </View></>
   )
 

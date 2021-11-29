@@ -24,9 +24,9 @@ function DataEquipoScreen(props) {
   const [Horas, setHoras] = useState(0);
 
   const initialState = {
-    equipo: '',
-    tiempoParada: '',
-    detalleParada: '',
+    equipment_id: '',
+    downtime: '',
+    details: '',
   }
 
   const [cerdo, setCerdo] = useState([
@@ -40,12 +40,11 @@ function DataEquipoScreen(props) {
 
   const handleChangeText = (nombre, value) => {
     setEquipo({ ...equipo, [nombre]: value })
-    if (nombre === 'equipo') {
-      props.formulario.equipment_id = value
-    } else if (nombre === 'detalleParada') {
+    if (nombre === 'details') {
       props.formulario.details = value
     }
     props.formulario.downtime = Horas
+    props.formulario.equipment_id=initialState.equipment_id
   };
 
   const { token } = useContext(AuthContext)
@@ -67,7 +66,7 @@ function DataEquipoScreen(props) {
 
   const [itemSelected, setitemSelected] = useState(initialState)
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState('equiment-test');
   let options = equipos.map(function (obj) {
     return { value: obj.id, label: obj.name };
   })
@@ -91,13 +90,18 @@ function DataEquipoScreen(props) {
               setOpen={setOpen}
               setValue={setValue}
               setItems={setEquipos}
+              onChangeValue={(value, index) => {
+                initialState.equipment_id = value;
+                console.log("selected value", value);
+
+              }}
             />
           </View>
 
           <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
           <View style={styles.textInput2Row}>
             <Text style={styles.textInput2}
-              onChangeText={(value) => handleChangeText('tiempoParada', value)}
+              onChangeText={(value) => handleChangeText('downtime', value)}
             >{Horas} Horas</Text>
             <TouchableOpacity onPress={() => setHoras(Horas - 1)}>
               <FontAwesomeIcon
@@ -113,8 +117,9 @@ function DataEquipoScreen(props) {
           <Text style={styles.detalleDeParada}>Detalle de Parada</Text>
           <TextInput
             placeholder="Ingrese Detalles"
-            onChangeText={(value) => handleChangeText('detalleParada', value)}
+            onChangeText={(value) => handleChangeText('details', value)}
             multiline={true}
+            require={true}
             selectTextOnFocus={true}
             disableFullscreenUI={true}
             style={styles.textInput3}

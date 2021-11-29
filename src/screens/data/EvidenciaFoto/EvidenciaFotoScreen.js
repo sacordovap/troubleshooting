@@ -113,12 +113,12 @@ function EvidenciaFotoScreen(props) {
         >
           <View style={styles.rect}>
             <Text style={styles.titulo1}>Registro de Incidentes</Text>
-            <Text style={styles.evidencias}>Evidencias</Text>
-            <TextInput
-              placeholder="Detalles de las Evidencias"
-              onChangeText={(value) => handleChangeText('evidenciaDetalle', value)}
-              style={styles.textInput}
-            ></TextInput>
+            <Text style={styles.evidencias}>Evidencias </Text>
+              <TextInput
+                placeholder="Detalles de las Evidencias"
+                onChangeText={(value) => handleChangeText('evidenciaDetalle', value)}
+                style={styles.textInput}
+              ></TextInput>
             <View style={styles.iconoFoto}>
               <View style={styles.iconStack}>
                 <Icon

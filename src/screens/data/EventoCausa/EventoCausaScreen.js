@@ -19,6 +19,7 @@ function EventoCausaScreen(props) {
 
 const initialState={ 
     evento: '',
+    description:'',
     causa: '',
 }
 const [eventoCausa, setEventoCausa] = useState(initialState);
@@ -29,6 +30,9 @@ const [eventoCausa, setEventoCausa] = useState(initialState);
       props.formulario.event=value
      } else if (nombre==='causa') {
       props.formulario.attributed_cause=value
+     } 
+     else if (nombre==='description') {
+      props.formulario.description=value
      } 
 };
 
@@ -52,6 +56,13 @@ const [eventoCausa, setEventoCausa] = useState(initialState);
               placeholder="Ingrese el Evento ocurrido"
               multiline
               onChangeText={(value)=>handleChangeText('evento', value)}
+              style={styles.textInput}
+            ></TextInput>
+            <Text style={styles.evento}>Descripción del evento</Text>
+            <TextInput
+              placeholder="Escriba lo sucedido"
+              multiline
+              onChangeText={(value)=>handleChangeText('description', value)}
               style={styles.textInput}
             ></TextInput>
             <Text style={styles.causas}>Causas</Text>
