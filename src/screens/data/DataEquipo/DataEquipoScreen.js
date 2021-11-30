@@ -63,7 +63,6 @@ function DataEquipoScreen(props) {
     traerEquipos()
   }, [])
 
-  console.log(cerdo);
 
   const [itemSelected, setitemSelected] = useState(initialState)
   const [open, setOpen] = useState(false);

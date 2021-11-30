@@ -35,7 +35,7 @@ function Preview(props) {
         details: props.route.params.formulario.details,
         take_actions: props.route.params.formulario.take_actions,
         results: props.route.params.formulario.results,
-        equipment_id: 3,//props.route.params.formulario.equipo
+        equipment_id: props.route.params.formulario.equipment_id,
         attachments: props.route.params.formulario.foto1
         
             
@@ -43,7 +43,7 @@ function Preview(props) {
     })
     const handleSubmit = () => {
 
-        postCreateData(formulario).then((rpta) => {
+        postCreateData(formulario, token).then((rpta) => {
 
             if (rpta.status === 200) {
                 console.warn("Subida extitosa")
@@ -74,6 +74,7 @@ function Preview(props) {
         //     console.log(err)
         // })
     }
+    const [hora, setHora] = useState()
 
     const [Estado, setEstado] = useState(false);
     const showAlert = () => {
@@ -88,14 +89,15 @@ const [equipoNombre, setequipoNombre] = useState(null)
     const obtenerEquipo = () => {
         getEquipmentById(props.route.params.formulario.equipment_id, token).then(rpta=>{
             setequipoNombre(rpta.data.data)
-         
+            
             console.log(rpta.data.data);
         })
     }
     useEffect(() => {
       obtenerEquipo()
+        setHora(formulario.date)
     }, [])
-
+    console.log(hora);
     return (
         <ScrollView style={styles.container}>
             <ImageBackground
@@ -107,9 +109,9 @@ const [equipoNombre, setequipoNombre] = useState(null)
                     <Text style={styles.tituloIncidente}>Registro de incidente 01</Text>
                     <Text style={styles.fechaTag1}>Fecha</Text>
                     <Text style={styles.fecha2}
-                    >{props.route.params.formulario.date}</Text>
+                    >{hora?.getDate() + '/' + (hora?.getMonth() + 1) + '/' + hora?.getFullYear()}</Text>
                     <Text style={styles.horaTag1}>Hora</Text>
-                    <Text style={styles.hora2}>{props.route.params.formulario.date}</Text>
+                    <Text style={styles.hora2}>{ hora?.getHours() + ':' + hora?.getMinutes()}</Text>
                     <Text style={styles.supeintendente1}>Supeintendente</Text>
                     <Text style={styles.superintendenteEntrada}>{props.route.params.formulario.superintendent}</Text>
                     <Text style={styles.supervisores1}>Supervisores</Text>

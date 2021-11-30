@@ -12,7 +12,7 @@ import {
   ActivityIndicator
 } from "react-native";
 
-import Swiper from "react-native-web-swiper";
+import Swiper from "react-native-swiper";
 import DataEquipoScreen from "../DataEquipo/DataEquipoScreen";
 import AccionestomadasScreen from "../AccionesTomadas/AccionesTomadasScreen";
 import DatosInicialesScreen from "../datosIniciales/DatosInicialesScreen";
