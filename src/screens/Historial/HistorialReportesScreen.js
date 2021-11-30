@@ -8,9 +8,9 @@ import {
 import { ListItem, Avatar, Divider } from "react-native-elements";
 import Icons from "react-native-vector-icons/Ionicons";
 import { getTroubleShooting } from '../../services/api';
-import { AuthContext } from '../../Context/AuthContext';
 import { useNavigation } from '@react-navigation/native';
 import AwesomeAlert from 'react-native-awesome-alerts';
+import { AuthContext } from "../../Context/authState";
 export default function HistorialReportesScreen({ children }) {
 
 

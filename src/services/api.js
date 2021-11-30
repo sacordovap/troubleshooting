@@ -19,10 +19,15 @@ export const guardarJobs = async (jobs) => {
 }
 
 
-export const postCreateData = async (data) => {
+export const postCreateData = async (data, token) => {
     const rpta = await axios.post(`${URL_BACKEND}/troubleshooting/create`,
         JSON.stringify(data),
-        { headers: { 'Content-Type': 'application/json' } })
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: "Bearer " + token
+            }
+        })
     return rpta
 }
 
@@ -56,7 +61,7 @@ export const getTroubleShootingById = async (id, token) => {
     return rpta
 }
 
-export const putTroubleshootingUpdate = async (token, data,id) => {
+export const putTroubleshootingUpdate = async (token, data, id) => {
     const rpta = await axios.put(`${URL_BACKEND}/troubleshooting/update/${id}`,
         JSON.stringify(data),
         {
@@ -74,7 +79,7 @@ export const deleteTroubleshootingById = async (id, token) => {
         headers: {
             Authorization: "Bearer " + token
         }
-        })
+    })
     return rpta
 }
 

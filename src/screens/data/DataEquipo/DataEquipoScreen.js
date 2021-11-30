@@ -15,10 +15,11 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 import Icon from "react-native-vector-icons/Ionicons";
 import { getEquiment } from "../../../services/api";
-import { AuthContext } from "../../../Context/AuthContext";
+
 // import SearchableDropDown from 'react-native-dropdown-searchable';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Select from 'react-select';
+import { AuthContext } from "../../../Context/authState";
 
 function DataEquipoScreen(props) {
   const [Horas, setHoras] = useState(0);

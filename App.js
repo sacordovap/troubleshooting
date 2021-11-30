@@ -27,7 +27,7 @@ import Registro_form from "./src/screens/data/Registro_form/Registro_form";
 import EvidenciacameraScreen from './src/screens/data/EvidenciaFoto/EvidenciacameraScreen';
 import HistorialReportesScreen from './src/screens/Historial/HistorialReportesScreen';
 import ReporteDetalle from './src/screens/Historial/ReporteDetalle';
-import { AuthProvider } from './src/Context/AuthContext';
+import { AuthProvider } from './src/Context/authState';
 
 const Stack = createNativeStackNavigator();
 
@@ -77,4 +77,3 @@ export default function App() {
 }
 
 //Esto se debe de importar desde styles
-

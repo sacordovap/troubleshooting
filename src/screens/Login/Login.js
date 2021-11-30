@@ -16,9 +16,10 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import Asyncstorage from "@react-native-async-storage/async-storage"
 import { postLogin } from '../../services/api';
 import { useNavigation } from '@react-navigation/native';
-import { useAuth } from '../../Context/AuthContext';
 
 import AwesomeAlert from 'react-native-awesome-alerts';
+import { useAuth } from "../../Context/authState";
+
 
 const Login = (props) => {
   console.log(props)

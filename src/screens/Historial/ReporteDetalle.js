@@ -16,9 +16,9 @@ import {
 
 import axios from "axios"
 import { getTroubleShootingById, putTroubleshootingUpdate, deleteTroubleshootingById } from '../../services/api';
-import { AuthContext } from "../../Context/AuthContext";
 import { useNavigation } from "@react-navigation/native";
 import AwesomeAlert from "react-native-awesome-alerts";
+import { AuthContext } from "../../Context/authState";
 
 
 export default function ReporteDetalle(props) {

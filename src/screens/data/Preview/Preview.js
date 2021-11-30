@@ -14,7 +14,7 @@ import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import { postCreateData, getEquiment, getEquipmentById } from "../../../services/api";
-import { AuthContext } from "../../../Context/AuthContext";
+import { AuthContext } from "../../../Context/authState";
 
 function Preview(props) {
 
