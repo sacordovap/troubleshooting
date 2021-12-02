@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useContext, useEffect, useState } from "react";
 import {
   StyleSheet,
   View,
@@ -18,9 +18,13 @@ import InputScrollView from 'react-native-input-scroll-view';
 import Icon from "react-native-vector-icons/Ionicons";
 
 import styles from "./sylesDatosIniciales";
+import { AuthContext } from "../../../Context/authState";
+import { getSuperIntendent } from "../../../services/api";
 
-function DatosInicialesScreen (props) {
-console.log(props)
+function DatosInicialesScreen(props) {
+
+  const { token } = useContext(AuthContext)
+  console.log(props)
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
@@ -37,7 +41,7 @@ console.log(props)
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setShow(Platform.OS === 'ios');
-    props.formulario.date=currentDate
+    // props.formulario.date=currentDate
     setDate(currentDate);
   };
 
@@ -55,18 +59,31 @@ console.log(props)
   };
 
   const handleChangeText = (nombre, value) => {
-   setState({ ...state, [nombre]: value })
-   if (nombre==='superintendente') {
-    props.formulario.superintendent=value
-   } else if (nombre==='supervisores') {
-    props.formulario.supervisor=value
-   } else if (nombre==='operadores') {       
-   props.formulario.operators=value
-   } 
-  };      
+    setState({ ...state, [nombre]: value })
+    if (nombre === 'superintendente') {
+      props.formulario.superintendent = value
+    } else if (nombre === 'supervisores') {
+      props.formulario.supervisor = value
+    } else if (nombre === 'operadores') {
+      props.formulario.operators = value
+    }
+    props.formulario.date = date;
+  };
 
 
+  const [superIntendent, setSuperIntent] = useState([])
+  const [id, setId] = useState(1)
+  const traerSuperIntendent = () => {
 
+    getSuperIntendent(token,id).then(rpta => {
+      setSuperIntent(rpta.data.data)
+    })
+  }
+
+  useEffect(() => {
+    traerSuperIntendent()
+  }, [])
+  console.log('list a ' +superIntendent[0]);
 
 
 
@@ -96,14 +113,14 @@ console.log(props)
             <View style={styles.hora2Row}>
               <Text style={styles.hora2}>
                 {date.getHours() + ':' + date.getMinutes()}
-                </Text>
+              </Text>
               <TouchableOpacity onPress={showTimepicker}>
                 <FeatherIcon name="clock" style={styles.icon2}></FeatherIcon>
               </TouchableOpacity>
             </View>
             <Text style={styles.superintendente}>Super Intendente</Text>
             <TextInput
-             multiline={true}
+              multiline={true}
               placeholder="Ingrese Super Intendente"
               onChangeText={(value) => handleChangeText('superintendente', value)}
               style={styles.textInput}

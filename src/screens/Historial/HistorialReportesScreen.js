@@ -39,7 +39,7 @@ export default function HistorialReportesScreen({ children }) {
           <Icons name="ios-arrow-back" style={styles.leftIcon}
 
           ></Icons>
-          <Text style={styles.leftText}>Back</Text>
+          <Text style={styles.leftText}></Text>
         </TouchableOpacity>
       </View>
       <View style={styles.textWrapper}>
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
   },
   leftIcon: {
     color: "rgba(255,255,255,255)",
-    fontSize: 23
+    fontSize: 30
   },
   leftText: {
     fontSize: 15,
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   ingresoDeDatos: {
-    fontSize: 15,
+    fontSize: 16,
     lineHeight: 17,
     color: "rgba(255,255,255,255)",
     textAlign: "center"

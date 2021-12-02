@@ -269,13 +269,13 @@ const styles = StyleSheet.create({
 
   },
   camera: {
-    color: "rgba(128,128,128,0.65)",
+    color: "#2596be",
     fontSize: 32,
     height: 44,
     width: 40
   },
   archivos: {
-    color: "rgba(128,128,128,0.65)",
+    color: "#2596be",
     fontSize: 32,
     height: 44,
     width: 40

@@ -93,7 +93,6 @@ function DataEquipoScreen(props) {
               onChangeValue={(value, index) => {
                 initialState.equipment_id = value;
                 console.log("selected value", value);
-
               }}
             />
           </View>
@@ -168,7 +167,7 @@ const styles = StyleSheet.create({
     marginRight: 20
   },
   icon: {
-    color: "rgba(128,128,128,1)",
+    color: "#74a7e2",
     fontSize: 21,
     width: 21,
     opacity: 0.84,
@@ -188,7 +187,7 @@ const styles = StyleSheet.create({
     color: "#121212",
     width: 83,
     opacity: 0.6,
-    fontSize: 14,
+    fontSize: 15,
     marginTop: 32,
     marginLeft: 19
   },
@@ -203,9 +202,9 @@ const styles = StyleSheet.create({
   tiempoDeParada: {
     color: "#121212",
     opacity: 0.6,
-    marginTop: 30,
-    marginLeft: 19,
     fontSize: 14,
+    marginTop: 30,
+    marginLeft: 19
   },
   textInput2: {
     color: "#121212",
@@ -231,10 +230,8 @@ const styles = StyleSheet.create({
   },
   detalleDeParada: {
     color: "#121212",
-    width: 110,
-    height: 17,
-    fontSize: 14,
     opacity: 0.6,
+    fontSize: 15,
     marginTop: 18,
     marginLeft: 19
   },

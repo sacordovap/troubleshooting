@@ -241,7 +241,7 @@ export default function ReporteDetalle(props) {
                                 opacity: 0.9,
                             }} />)}
                     </View>
-                    <View style={{ alignSelf: 'center' }}>{estado ?
+                    <View style={{ alignSelf: 'center', flexDirection: 'column'}}>{estado ?
                         (<TouchableOpacity
                             style={[styles.containerCambios, styles.guardarDataReporte]}
                             onPress={() => showAlertModificar()}>
@@ -350,7 +350,7 @@ const styles = StyleSheet.create({
     fechaTag1: {
 
         color: "#121212",
-        fontSize: 12,
+        fontSize: 15,
         opacity: 0.6,
         marginTop: 22,
         marginLeft: 30
@@ -372,8 +372,8 @@ const styles = StyleSheet.create({
     horaTag1: {
 
         color: "#121212",
+        fontSize: 15,
         opacity: 0.6,
-        fontSize: 12,
         marginTop: 10,
         marginLeft: 30
     },
@@ -394,7 +394,8 @@ const styles = StyleSheet.create({
     supeintendente1: {
 
         color: "#121212",
-        opacity: 0.7,
+        fontSize: 15,
+        opacity: 0.6,
         marginTop: 20,
         marginLeft: 30
     },
@@ -411,7 +412,8 @@ const styles = StyleSheet.create({
     supervisores1: {
 
         color: "#121212",
-        opacity: 0.7,
+        fontSize: 15,
+        opacity: 0.6,
         marginTop: 20,
         marginLeft: 30
     },
@@ -428,7 +430,8 @@ const styles = StyleSheet.create({
     operadores1: {
 
         color: "#121212",
-        opacity: 0.7,
+        fontSize: 15,
+        opacity: 0.6,
         marginTop: 20,
         marginLeft: 30
     },
@@ -445,9 +448,8 @@ const styles = StyleSheet.create({
     equipo1: {
 
         color: "#121212",
-        width: 83,
+        fontSize: 15,
         opacity: 0.6,
-        fontSize: 12,
         marginTop: 20,
         marginLeft: 30
     },
@@ -464,9 +466,8 @@ const styles = StyleSheet.create({
     tiempoDeParada: {
 
         color: "#121212",
-        lineHeight: 12,
+        fontSize: 15,
         opacity: 0.6,
-        width: 112,
         fontSize: 12,
         marginTop: 20,
         marginLeft: 30
@@ -485,8 +486,7 @@ const styles = StyleSheet.create({
     detalleDeParada1: {
 
         color: "#121212",
-        width: 110,
-        fontSize: 12,
+        fontSize: 15,
         opacity: 0.6,
         marginTop: 20,
         marginLeft: 30
@@ -504,9 +504,8 @@ const styles = StyleSheet.create({
     evento: {
 
         color: "#121212",
-        width: 113,
+        fontSize: 15,
         opacity: 0.6,
-        fontSize: 12,
         marginTop: 20,
         marginLeft: 30
     },
@@ -523,9 +522,8 @@ const styles = StyleSheet.create({
     causa: {
 
         color: "#121212",
-        width: 282,
+        fontSize: 15,
         opacity: 0.6,
-        fontSize: 12,
         marginTop: 20,
         marginLeft: 30
     },
@@ -542,9 +540,8 @@ const styles = StyleSheet.create({
     accionesTomadas: {
 
         color: "#121212",
-        width: 200,
+        fontSize: 15,
         opacity: 0.6,
-        fontSize: 12,
         marginTop: 20,
         marginLeft: 30
     },
@@ -561,9 +558,8 @@ const styles = StyleSheet.create({
     resultados: {
 
         color: "#121212",
-        width: 113,
+        fontSize: 15,
         opacity: 0.6,
-        fontSize: 12,
         marginTop: 20,
         marginLeft: 30
     },
@@ -580,9 +576,8 @@ const styles = StyleSheet.create({
     conclusiones: {
 
         color: "#121212",
-        width: 120,
+        fontSize: 15,
         opacity: 0.6,
-        fontSize: 12,
         marginTop: 20,
         marginLeft: 30
     },
@@ -599,8 +594,7 @@ const styles = StyleSheet.create({
     detallesDeCapturas: {
 
         color: "#121212",
-        width: 282,
-        fontSize: 14,
+        fontSize: 15,
         opacity: 0.6,
         marginTop: 20,
         marginLeft: 30

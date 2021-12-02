@@ -12,7 +12,7 @@ import {
   ActivityIndicator
 } from "react-native";
 
-import Swiper from "react-native-swiper";
+import Swiper from "react-native-web-swiper";
 import DataEquipoScreen from "../DataEquipo/DataEquipoScreen";
 import AccionestomadasScreen from "../AccionesTomadas/AccionesTomadasScreen";
 import DatosInicialesScreen from "../datosIniciales/DatosInicialesScreen";
@@ -71,12 +71,12 @@ function Registro_form(props) {
             onPress={() => props.navigation.navigate('Home')}
           ><Icons name="ios-arrow-back" style={styles.leftIcon}
           ></Icons>
-            <Text style={styles.leftText}>Back</Text>
+            <Text style={styles.leftText}></Text>
           </TouchableOpacity>
         </View>
         <View style={styles.textWrapper}>
           <Text numberOfLines={1} style={styles.ingresoDeDatos}>
-            Ingreso de Datos
+            TROUBLESHOOTING
           </Text>
         </View>
         <View style={styles.rightWrapper}>
@@ -113,6 +113,8 @@ function Registro_form(props) {
             minDistanceForAction={0.1}
             controlsProps={{
               dotsTouchable: true,
+              dotsPos:'top',
+              dotActiveStyle: { backgroundColor: 'white' },
               prevPos: 'left',
               nextPos: 'right',
               nextTitle: '>',
@@ -228,7 +230,7 @@ const styles = StyleSheet.create({
   },
   leftIcon: {
     color: "rgba(255,255,255,255)",
-    fontSize: 23
+    fontSize: 30
   },
   leftText: {
     fontSize: 15,

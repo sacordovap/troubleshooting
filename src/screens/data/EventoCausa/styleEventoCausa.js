@@ -19,19 +19,16 @@ export default StyleSheet.create({
     },
     evento: {
       color: "#121212",
-      height: 13,
       opacity: 0.6,
-      fontSize: 12,
+      fontSize: 15,
       marginTop: 32,
       marginLeft: 19
     },
    
     causas: {
       color: "#121212",
-      height: 13,
-      width: 83,
       opacity: 0.6,
-      fontSize: 12,
+    fontSize: 15,
       marginTop: 32,
       marginLeft: 19
     },

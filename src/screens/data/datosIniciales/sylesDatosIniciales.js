@@ -76,8 +76,8 @@ export default StyleSheet.create({
   },
   fecha_tag: {
     color: "#121212",
-    fontSize: 12,
-    opacity: 0.8,
+    opacity: 0.6,
+    fontSize: 15,
     marginTop: 35,
     marginLeft: 30
   },
@@ -92,7 +92,7 @@ export default StyleSheet.create({
     marginTop: 2
   },
   icon: {
-    color: "rgba(128,128,128,1)",
+    color: "#74a7e2",
     fontSize: 21,
     width: 21,
     opacity: 0.84,
@@ -108,8 +108,8 @@ export default StyleSheet.create({
   },
   hora_tag: {
     color: "#121212",
-    opacity: 0.8,
-    fontSize: 12,
+    opacity: 0.6,
+    fontSize: 15,
     marginTop: 7,
     marginLeft: 30
   },
@@ -125,7 +125,7 @@ export default StyleSheet.create({
     marginTop: 2
   },
   icon2: {
-    color: "rgba(128,128,128,1)",
+    color: "#74a7e2",
     fontSize: 23,
     height: 23,
     width: 23,
@@ -140,7 +140,8 @@ export default StyleSheet.create({
   },
   superintendente: {
     color: "#121212",
-    opacity: 0.8,
+    opacity: 0.6,
+    fontSize: 15,
     marginTop: 30,
     marginLeft: 30
   },
@@ -154,7 +155,8 @@ export default StyleSheet.create({
   },
   supervisores: {
     color: "#121212",
-    opacity: 0.8,
+    opacity: 0.6,
+    fontSize: 15,
     marginTop: 21,
     marginLeft: 30
   },
@@ -168,7 +170,8 @@ export default StyleSheet.create({
   },
   operadores: {
     color: "#121212",
-    opacity: 0.8,
+    opacity: 0.6,
+    fontSize: 15,
     marginTop: 20,
     marginLeft: 30
   },

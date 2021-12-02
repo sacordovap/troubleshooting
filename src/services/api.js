@@ -105,3 +105,13 @@ export const getEquipmentById = async (id, token) => {
     return rpta
 }
 
+
+// Get Superintendent
+export const getSuperIntendent = async (token, id) => {
+    const rpta = await axios.get(`${URL_BACKEND}/troubleshooting/getUserTrobuleshooting?type=${id}`, {
+        headers: {
+            Authorization: "Bearer " + token
+        }
+    })
+    return rpta
+}

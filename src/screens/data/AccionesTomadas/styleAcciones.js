@@ -99,9 +99,8 @@ export default StyleSheet.create({
   },
   equipo: {
     color: "#121212",
-    height: 13,
     opacity: 0.6,
-    fontSize: 12,
+    fontSize: 15,
     marginTop: 32,
     marginLeft: 19
   },

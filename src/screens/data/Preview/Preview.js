@@ -121,7 +121,7 @@ const [equipoNombre, setequipoNombre] = useState(null)
                     <Text style={styles.equipo1}>Equipo</Text>
                     <Text style={styles.ingreseEquipo}
                     >{equipoNombre?.name}</Text>
-                    <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
+                    <Text style={styles.tiempoDeParada}>Tiempo de parada en Horas</Text>
                     <Text style={styles.horas}>{props.route.params.formulario.downtime}</Text>
                     <Text style={styles.detalleDeParada1}>Detalle de Parada</Text>
                     <Text style={styles.ingreseDetalles}>{props.route.params.formulario.details}</Text>
@@ -342,7 +342,6 @@ const styles = StyleSheet.create({
         color: "#121212",
         lineHeight: 12,
         opacity: 0.6,
-        width: 112,
         fontSize: 12,
         marginTop: 20,
         marginLeft: 30

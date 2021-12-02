@@ -51,7 +51,7 @@ const [eventoCausa, setEventoCausa] = useState(initialState);
         >
           <View style={styles.contenedorDatos1}>
           <Text style={styles.titulo1}>Evento y causas Asociadas</Text>
-            <Text style={styles.evento}>Evento</Text>
+            <Text style={styles.evento}>Evento ocurrido</Text>
             <TextInput
               placeholder="Ingrese el Evento ocurrido"
               multiline
