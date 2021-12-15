@@ -2,7 +2,16 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: "#fff"
+      backgroundColor: "#fff",
+      borderRadius: 20,
+      shadowColor:"rgba(1,123,146,255)",
+      shadowOffset: {
+        width: 0,
+        height: 3
+      },
+      elevation: 5,
+      shadowOpacity: 0.41,
+      marginBottom:10
     },
     header_Registro: {
       height: 39,

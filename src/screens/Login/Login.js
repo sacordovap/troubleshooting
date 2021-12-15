@@ -8,7 +8,8 @@ import {
   Button,
   Text,
   TouchableOpacity,
-  Alert
+  Alert,
+  ActivityIndicator
 } from "react-native";
 
 import BotonIniciarSesion from "../../../components/BotonIniciarSesion";
@@ -32,10 +33,10 @@ const Login = (props) => {
   const [Estado, setEstado] = useState(false);
   const showAlert = () => {
     setEstado(true);
-};
-const hideAlert = () => {
+  };
+  const hideAlert = () => {
     setEstado(false);
-};
+  };
 
 
   const { token, setToken } = useAuth()
@@ -52,8 +53,8 @@ const hideAlert = () => {
     postLogin(datos).then(response => {
       setToken(response.data.token)
       Asyncstorage.setItem("token", response.data.token).then(response => {
-        showAlert() 
-       
+        showAlert()
+
       })
 
     }, err => {
@@ -61,6 +62,17 @@ const hideAlert = () => {
       alert("Usuario no encontrado")
     })
   }
+
+  const [loading, setLoading] = useState(false);
+
+  const startLoading = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  };
+
+
   return (
 
     // <View styles={{ marginTop: 21 }}>
@@ -115,13 +127,25 @@ const hideAlert = () => {
             onChangeText={(value) => handleChangeText('password', value)}
           ></TextInput>
         </View>
+        {loading ? (
+          <ActivityIndicator
+            //visibility of Overlay Loading Spinner
+            visible={loading}
+            //Text with the Spinner
+            textContent={'Loading...'}
+            size="large" 
+            color="#00ff00"
+            //Text style of the Spinner Text
+            textStyle={styles.spinnerTextStyle}
+          />
+        ) :(
         <TouchableOpacity
           name="Submit"
           onPress={doLogin}
           style={styles.button}
         >
           <Text style={styles.iniciarSesion}>INICIAR SESION</Text>
-        </TouchableOpacity>
+        </TouchableOpacity>)}
         <AwesomeAlert
           show={Estado}
           showProgress={false}

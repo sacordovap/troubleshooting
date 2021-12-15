@@ -39,17 +39,12 @@ function ResultadoconclusionScreen(props) {
 
 
   return(
-    <><ScrollView style={styles.container}>
-        <ImageBackground
-          source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
-          resizeMode="cover"
-          style={styles.image1}
-          imageStyle={styles.image1_imageStyle}
-        >
-          <View style={styles.contenedorDatos1}>
+    <>
+    <ScrollView style={styles.container}>         
+          {/* <View style={styles.contenedorDatos1}> */}
             <Text style={styles.titulo1}>Resultado Obtenidos</Text>
             <Text style={styles.resultados}>Resultados</Text>
-            <TextInput
+            <TextInput 
               placeholder="Ingrese los resultados obtenidos"
               multiline
               onChangeText={(value)=>handleChangeText('resultado', value)}
@@ -62,9 +57,11 @@ function ResultadoconclusionScreen(props) {
               onChangeText={(value)=>handleChangeText('conclusiones', value)}
               style={styles.textInput}
             ></TextInput> */}
-          </View>
-        </ImageBackground>
-      </ScrollView></>
+          {/* </View> */}
+      
+      </ScrollView>
+      </>
+      
   );
 }
 

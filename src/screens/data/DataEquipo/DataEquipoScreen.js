@@ -30,13 +30,6 @@ function DataEquipoScreen(props) {
     details: '',
   }
 
-  const [cerdo, setCerdo] = useState([
-    {
-      id: '',
-      name: '',
-    }
-  ])
-
   const [equipo, setEquipo] = useState(initialState);
 
   const handleChangeText = (nombre, value) => {
@@ -73,13 +66,13 @@ function DataEquipoScreen(props) {
   return (
 
     <><ScrollView style={styles.container}>
-      <ImageBackground
+      {/* <ImageBackground
         source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
         resizeMode="cover"
         style={styles.image1}
         imageStyle={styles.image1_imageStyle}
       >
-        <View style={styles.contenedorDatos1}>
+        <View style={styles.contenedorDatos1}> */}
           <Text style={styles.titulo1}>Equipo y tiempo de Parada</Text>
           <Text style={styles.equipo}>Equipo</Text>
           <View style={styles.textInput2Row}>
@@ -123,8 +116,8 @@ function DataEquipoScreen(props) {
             disableFullscreenUI={true}
             style={styles.textInput3}
           ></TextInput>
-        </View>
-      </ImageBackground>
+        {/* </View>
+      </ImageBackground> */}
     </ScrollView></>
   );
 }
@@ -132,7 +125,16 @@ function DataEquipoScreen(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    shadowColor:"rgba(1,123,146,255)",
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    elevation: 5,
+    shadowOpacity: 0.41,
+    marginBottom:3
   },
   header_Registro: {
     height: 39,
@@ -222,11 +224,12 @@ const styles = StyleSheet.create({
     marginLeft: 20
   },
   textInput2Row: {
-    height: 29,
-    flexDirection: "row",
-    marginTop: 17,
-    marginLeft: 19,
-    marginRight: 75
+    color: "#121212",
+    borderBottomWidth: 1,
+    borderColor: "rgba(1,123,146,255)",
+    marginTop: 15,
+    marginRight: 19,
+    marginLeft: 19
   },
   detalleDeParada: {
     color: "#121212",

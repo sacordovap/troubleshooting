@@ -2,11 +2,20 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
+    borderRadius: 20,
+    shadowColor:"rgba(1,123,146,255)",
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    elevation: 5,
+    shadowOpacity: 0.41,
+    marginBottom:10
   },
   header_Registro: {
     height: 39,
-    borderWidth: 1,
+    borderWidth: 1, 
     borderColor:"rgba(1,123,146,255)",
     backgroundColor: "rgba(1,123,146,255)",
   },
@@ -34,11 +43,11 @@ export default StyleSheet.create({
     marginLeft: 19
   },
   contenedorDatos1: {
-    height: 608,
+    height: '100%',
     backgroundColor: "rgba(255,255,255,1)",
     borderWidth: 1,
     borderColor: "rgba(197,196,196,1)",
-    borderRadius: 36,
+    borderRadius: 20,
     shadowColor:"rgba(1,123,146,255)",
     shadowOffset: {
       width: 0,
@@ -48,9 +57,7 @@ export default StyleSheet.create({
     shadowOpacity: 0.41,
     shadowRadius: 0,
     marginTop: 30,
-    marginBottom: 27,
-    marginLeft: 20,
-    marginRight:20
+    marginBottom:1
   },
   icon: {
     color: "rgba(128,128,128,1)",
@@ -80,10 +87,10 @@ export default StyleSheet.create({
   },
   textInput: {
     color: "#121212",
-    width: 282,
     borderBottomWidth: 1,
     borderColor: "rgba(1,123,146,255)",
     marginTop: 15,
+    marginRight: 19,
     marginLeft: 19
   },
   tiempoDeParada: {

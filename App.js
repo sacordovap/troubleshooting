@@ -37,6 +37,7 @@ function MyStack() {
     <Stack.Navigator screenOptions={{
       headerShown: false
     }}>
+     
       <Stack.Screen name="Login"
         component={Login} />
       <Stack.Screen name="Evidencia-Camera"
@@ -56,8 +57,8 @@ function MyStack() {
         component={DataEquipo} />
       <Stack.Screen name="Evidencia-Foto"
         component={EvidenciaFoto} />
-      <Stack.Screen name="Resultado-Conclusion"
-        component={ResultadoConclusion} />
+      <Stack.Screen name="Acciones-Tomadas"
+        component={AccionesTomadasScreen} />
       <Stack.Screen name="Evento-Causa"
         component={EventoCausa} />
 

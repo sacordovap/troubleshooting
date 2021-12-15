@@ -174,13 +174,13 @@ function EvidenciacameraScreen(props) {
 
   return (
     <><ScrollView style={styles.container}>
-      <ImageBackground
+      {/* <ImageBackground
         source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
         resizeMode="cover"
         style={styles.image1}
         imageStyle={styles.image1_imageStyle}
       >
-        <View style={styles.rect}>
+        <View style={styles.rect}> */}
           <Text style={styles.titulo1}>Registro de Incidentes</Text>
           <Text style={styles.evidencias}>Evidencias tomadas en el incidente</Text>
           {/* <TextInput
@@ -224,8 +224,8 @@ function EvidenciacameraScreen(props) {
             }
           </View>
 
-        </View>
-      </ImageBackground>
+        {/* </View>
+      </ImageBackground> */}
     </ScrollView></>
   );
 }
@@ -233,6 +233,16 @@ function EvidenciacameraScreen(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#fff",
+    borderRadius: 20,
+    shadowColor:"rgba(1,123,146,255)",
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    elevation: 5,
+    shadowOpacity: 0.41,
+    marginBottom:10
 
   },
   containerGuardarDataInicial: {

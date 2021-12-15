@@ -23,7 +23,7 @@ import { getSuperIntendent } from "../../../services/api";
 
 function DatosInicialesScreen(props) {
 
-  const { token } = useContext(AuthContext)
+  const { token } = useContext(AuthContext) 
   console.log(props)
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
@@ -90,16 +90,17 @@ function DatosInicialesScreen(props) {
   return (
     <>
       <ScrollView style={styles.container}>
-        <ImageBackground
+        {/* <ImageBackground
           source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
           resizeMode="cover"
           style={styles.image}
-          imageStyle={styles.image_imageStyle}
+          imageStyle={styles.image_imageStyle} 
         >
-          <View style={styles.rect}>
+          <View style={styles.rect}> */}
             <Text style={styles.titulo}>Registro de Incidentes</Text>
+            
+            <View style={styles.fecha2Row}>  
             <Text style={styles.fecha_tag}>Fecha</Text>
-            <View style={styles.fecha2Row}>
               <Text style={styles.fecha2}>
                 {date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()}
               </Text>
@@ -109,8 +110,9 @@ function DatosInicialesScreen(props) {
                   style={styles.icon}
                 ></FontAwesomeIcon></TouchableOpacity>
             </View>
-            <Text style={styles.hora_tag}>Hora</Text>
+           
             <View style={styles.hora2Row}>
+            <Text style={styles.hora_tag}>Hora</Text>
               <Text style={styles.hora2}>
                 {date.getHours() + ':' + date.getMinutes()}
               </Text>
@@ -148,8 +150,8 @@ function DatosInicialesScreen(props) {
                 display="default"
                 onChange={onChange} />
             )}
-          </View>
-        </ImageBackground>
+          {/* </View>
+        </ImageBackground> */}
       </ScrollView></>
   );
 }

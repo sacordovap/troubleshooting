@@ -37,6 +37,7 @@
     "react-native-keyboard-aware-scroll-view": "^0.9.4",
     "react-native-modal-datetime-picker": "^11.0.0",
     "react-native-outline-input": "^1.0.8",
+    "react-native-paper": "^4.11.1",
     "react-native-parallax-swiper": "^1.1.7",
     "react-native-reanimated": "2.0.0-rc.0",
     "react-native-safe-area-context": "3.2.0",

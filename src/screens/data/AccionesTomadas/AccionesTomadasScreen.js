@@ -36,14 +36,14 @@ function AccionestomadasScreen(props) {
   return (
 
     <><ScrollView style={styles.container}>
-        <ImageBackground
+        {/* <ImageBackground
           source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
           resizeMode="cover"
           style={styles.image1}
           imageStyle={styles.image1_imageStyle}
         >
 
-          <View style={styles.contenedorDatos1}>
+          <View style={styles.contenedorDatos1}> */}
             <Text style={styles.titulo1}>Acciones Tomadas</Text>
             <Text style={styles.equipo}>Acciones Realizadas</Text>
             <TextInput
@@ -52,8 +52,7 @@ function AccionestomadasScreen(props) {
               onChangeText={(value) => handleChangeText('accionesTomadas', value)}
               style={styles.textInput}
             ></TextInput>
-          </View>
-        </ImageBackground>
+          
       </ScrollView></>
   );
 }

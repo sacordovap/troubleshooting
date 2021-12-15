@@ -43,13 +43,13 @@ const [eventoCausa, setEventoCausa] = useState(initialState);
   return (
     
       <><ScrollView style={styles.container}>
-        <ImageBackground
+        {/* <ImageBackground
           source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
           resizeMode="cover"
           style={styles.image1}
           imageStyle={styles.image1_imageStyle}
         >
-          <View style={styles.contenedorDatos1}>
+          <View style={styles.contenedorDatos1}> */}
           <Text style={styles.titulo1}>Evento y causas Asociadas</Text>
             <Text style={styles.evento}>Evento ocurrido</Text>
             <TextInput
@@ -72,8 +72,8 @@ const [eventoCausa, setEventoCausa] = useState(initialState);
               onChangeText={(value)=>handleChangeText('causa', value)}
               style={styles.textInput}
             ></TextInput>
-          </View>
-        </ImageBackground>
+          {/* </View>
+        </ImageBackground> */}
       </ScrollView></>
   );
 }

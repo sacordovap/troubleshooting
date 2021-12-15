@@ -2,7 +2,16 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "rgba(230, 230, 230,1)"
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    shadowColor:"rgba(1,123,146,255)",
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    elevation: 5,
+    shadowOpacity: 0.41,
+    marginBottom:3
   },
   leftWrapper: {
     flex: 0.28,
@@ -65,31 +74,26 @@ export default StyleSheet.create({
   },
   titulo: {
     color: "#121212",
-    fontSize: 24,
+    fontSize: 26,
     textAlign: "center",
-    opacity: 0.78,
-    width: 243,
-    height: 29,
-    marginTop: 29,
-    marginLeft: 39,
+    marginTop: 35,
+    marginBottom:10,
     alignSelf: "center"
   },
   fecha_tag: {
     color: "#121212",
-    opacity: 0.6,
-    fontSize: 15,
-    marginTop: 35,
-    marginLeft: 30
+    opacity: 0.8,
+    fontSize: 16,
   },
   fecha2: {
-    color: "#121212",
-    opacity: 0.6,
+    color: "#696969",
+    opacity: 0.8,
     borderBottomWidth: 1,
     borderColor: "rgba(1,123,146,255)",
-    width: 89,
+    width: 89, 
     height: 19,
     textAlign: "center",
-    marginTop: 2
+    marginLeft: 25,
   },
   icon: {
     color: "#74a7e2",
@@ -100,29 +104,24 @@ export default StyleSheet.create({
     marginLeft: 23
   },
   fecha2Row: {
-    height: 21,
     flexDirection: "row",
-    marginTop: 5,
-    marginLeft: 30,
-    marginRight: 158
+    marginTop: 20,
+    marginLeft: 19,
   },
   hora_tag: {
     color: "#121212",
-    opacity: 0.6,
-    fontSize: 15,
-    marginTop: 7,
-    marginLeft: 30
+    opacity: 0.8,
+    fontSize: 16,
   },
   hora2: {
-
-    color: "#121212",
+    color: "#696969",
     height: 19,
     width: 89,
-    opacity: 0.6,
+    opacity: 0.8,
     borderBottomWidth: 1,
     borderColor: "rgba(1,123,146,255)",
     textAlign: "center",
-    marginTop: 2
+    marginLeft:33,
   },
   icon2: {
     color: "#74a7e2",
@@ -132,56 +131,55 @@ export default StyleSheet.create({
     marginLeft: 21
   },
   hora2Row: {
-    height: 23,
     flexDirection: "row",
-    marginTop: 8,
-    marginLeft: 30,
-    marginRight: 158
+    marginTop: 20,
+    marginLeft: 19,
   },
   superintendente: {
     color: "#121212",
-    opacity: 0.6,
-    fontSize: 15,
-    marginTop: 30,
-    marginLeft: 30
+    opacity: 0.8,
+    fontSize: 16,
+    marginTop: 20,
+    marginLeft: 19
   },
   textInput: {
-    color: "#121212",
-    width: 263,
-    borderBottomWidth: 1,
-    borderColor: "rgba(1,123,146,255)",
-    marginTop: 6,
-    marginLeft: 30
-  },
-  supervisores: {
-    color: "#121212",
-    opacity: 0.6,
-    fontSize: 15,
-    marginTop: 21,
-    marginLeft: 30
-  },
-  textInput2: {
-    color: "#121212",
-    width: 263,
-    borderBottomWidth: 1,
-    borderColor: "rgba(1,123,146,255)",
-    marginTop: 9,
-    marginLeft: 30
-  },
-  operadores: {
-    color: "#121212",
-    opacity: 0.6,
-    fontSize: 15,
-    marginTop: 20,
-    marginLeft: 30
-  },
-  textInput3: {
-    color: "#121212",
-    width: 263,
+    color: "#696969",
     borderBottomWidth: 1,
     borderColor: "rgba(1,123,146,255)",
     marginTop: 15,
-    marginLeft: 30
+    marginRight: 19,
+    marginLeft: 19
+  },
+  supervisores: {
+    color: "#121212",
+    opacity: 0.8,
+    fontSize: 16,
+    marginTop: 32,
+    marginLeft: 19
+  },
+  textInput2: {
+    color: "#696969",
+    borderBottomWidth: 1,
+    borderColor: "rgba(1,123,146,255)",
+    marginTop: 15,
+    marginRight: 19,
+    marginLeft: 19
+  },
+  operadores: {
+    color: "#121212",
+    opacity: 0.8,
+    fontSize: 16,
+    marginTop: 32,
+    marginLeft: 19
+  },
+  textInput3: {
+    color: "#696969",
+    borderBottomWidth: 1,
+    borderColor: "rgba(1,123,146,255)",
+    marginTop: 15,
+    marginRight: 19,
+    marginLeft: 19,
+    marginBottom:30,
   },
   container1: {
     flexDirection: "row",
