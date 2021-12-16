@@ -9,29 +9,26 @@ function HomeScreen(props) {
   console.log(props)
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={require("../../../assets/images/FondoCurvo.png")}
-        resizeMode="stretch"
-        style={styles.fondoCurvo}
-        imageStyle={styles.fondoCurvo_imageStyle}
-      >
+      <View style={styles.rect}>
         <Text style={styles.bienvenido}>BIENVENIDO</Text>
         <Image
           source={require("../../../assets/images/LogoNuevo.png")}
           resizeMode="contain"
           style={styles.logoNuevo}
         ></Image>
-      </ImageBackground>
+
+      </View>
       <View style={styles.wIdgets}>
         <View style={styles.buttonRow}>
           <TouchableOpacity
             onPress={() => props.navigation.navigate("Registro-form")}
             style={styles.button}
-          > 
+          >
             <FontAwesomeIcon
               name="file-powerpoint-o"
               style={styles.iconReporte}
             ></FontAwesomeIcon>
+            <Text style={styles.nuevoReporte}>NUEVO REPORTE</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => props.navigation.navigate("HistorialReporte")}
@@ -41,12 +38,10 @@ function HomeScreen(props) {
               name="list-alt"
               style={styles.iconLista}
             ></FontAwesomeIcon>
+            <Text style={styles.reportesRealizados}>REPORTES REALIZADOS</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.nuevoReporteRow}>
-          <Text style={styles.nuevoReporte}>NUEVO REPORTE</Text>
-          <Text style={styles.reportesRealizados}>REPORTES REALIZADOS</Text>
-        </View>
+        
       </View>
     </View>
   );
@@ -54,7 +49,8 @@ function HomeScreen(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "#eaebeb"
   },
   fondoCurvo: {
     width: 658,
@@ -63,9 +59,10 @@ const styles = StyleSheet.create({
   },
   fondoCurvo_imageStyle: {},
   bienvenido: {
+    fontWeight: 'bold',
     color: "rgba(255,255,255,1)",
     fontSize: 40,
-    marginTop: 54,
+    marginTop: 70,
     alignSelf: "center"
   },
   logoNuevo: {
@@ -76,10 +73,10 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   wIdgets: {
-    width: 330,
-    height: 176,
-    marginTop: 87,
-    alignSelf: "center"
+    alignSelf: "center",
+    marginTop: 90,
+    marginLeft:15,
+    marginRight:15
   },
   button: {
     width: 152,
@@ -116,22 +113,34 @@ const styles = StyleSheet.create({
     marginRight: 1
   },
   nuevoReporte: {
-    color: "#121212",
     textAlign: "center",
-    marginLeft:3,
+    fontWeight: 'bold',
+    color: "#ffffff",
+    marginTop:5,
   },
   reportesRealizados: {
-    color: "#121212",
+    marginTop:5,
+    color: "#ffffff",
     textAlign: "center",
-    marginLeft:56,
+    fontWeight: 'bold'
 
   },
   nuevoReporteRow: {
     height: 19,
     flexDirection: "row",
     marginTop: 12,
-    marginLeft: 22,
-    marginRight: 6,
+    marginLeft: 15,
+    marginRight: 15,
+    alignSelf: "center"
+  },
+  rect: {
+    width:'100%',
+    height: 259,
+    backgroundColor: "rgba(43,183,196,1)",
+    borderWidth: 0,
+    borderColor: "rgba(43,183,196,1)",
+    borderRadius: 20,
+    marginTop: -20,
     alignSelf: "center"
   }
 });

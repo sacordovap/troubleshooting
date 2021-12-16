@@ -100,13 +100,13 @@ const [equipoNombre, setequipoNombre] = useState(null)
     console.log(hora);
     return (
         <ScrollView style={styles.container}>
-            <ImageBackground
+            {/* <ImageBackground
                 source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
                 resizeMode="cover"
                 style={styles.image}
                 imageStyle={styles.image_imageStyle}
-            ><View style={styles.rect}>
-                    <Text style={styles.tituloIncidente}>Registro de incidente 01</Text>
+            ><View style={styles.rect}> */}
+                    <Text style={styles.tituloIncidente}>Registro de incidente</Text>
                     <Text style={styles.fechaTag1}>Fecha</Text>
                     <Text style={styles.fecha2}
                     >{hora?.getDate() + '/' + (hora?.getMonth() + 1) + '/' + hora?.getFullYear()}</Text>
@@ -153,15 +153,16 @@ const [equipoNombre, setequipoNombre] = useState(null)
                                 width: 310,
                                 height: 210,
                                 marginLeft: 20,
-                                marginRight: 20,
+                                marginRight: 20, 
                                 opacity: 0.9,
                             }} />)}
                     </View>
                     <TouchableOpacity
-                        style={[styles.containerBotonGuardar, props.style, styles.guardarDataReporte]}
+                        style={[styles.containerBotonGuardar, styles.guardarDataReporte]}
                         onPress={() => { showAlert() }}>
                         <Text style={styles.guardarReporte}>Guardar Reporte</Text>
                     </TouchableOpacity>
+
                     <AwesomeAlert
                         show={Estado}
                         showProgress={false}
@@ -187,15 +188,26 @@ const [equipoNombre, setequipoNombre] = useState(null)
                             hideAlert();
                         }}
                     />
-                </View>
-            </ImageBackground>
+                {/* </View>
+            </ImageBackground> */}
         </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: "#fff",
+        borderRadius: 10,
+        shadowColor: "rgba(1,123,146,255)",
+        shadowOffset: {
+            width: 0,
+            height: 3
+        },
+        elevation: 5,
+        marginTop: 21,
+        shadowOpacity: 0.41,
+        marginBottom: 3
     },
     rect: {
         backgroundColor: "rgba(255,255,255,1)",
@@ -216,279 +228,242 @@ const styles = StyleSheet.create({
         marginLeft: 10
     },
     tituloIncidente: {
-
         color: "#121212",
-        fontSize: 24,
-        opacity: 0.75,
-        marginTop: 30,
-        marginLeft: 38
+        fontSize: 26,
+        textAlign: "center",
+        marginTop: 35,
+        marginBottom: 10,
+        alignSelf: "center"
     },
     fechaTag1: {
 
         color: "#121212",
-        fontSize: 12,
-        opacity: 0.6,
-        marginTop: 22,
-        marginLeft: 30
+        opacity: 0.8,
+        fontSize: 16,
+        marginTop: 20,
+        marginLeft: 19
     },
     fecha2: {
-
-        color: "#121212",
-        opacity: 0.8,
+        color: "#696969",
         borderBottomWidth: 1,
         borderColor: "rgba(1,123,146,255)",
-        width: 89,
-        height: 19,
-        textAlign: "center",
-        marginTop: 8,
-        marginLeft: 30,
-        marginRight: 111
+        marginTop: 15,
+        marginRight: 19,
+        marginLeft: 19
 
     },
     horaTag1: {
 
         color: "#121212",
-        opacity: 0.6,
-        fontSize: 12,
-        marginTop: 10,
-        marginLeft: 30
+        opacity: 0.8,
+        fontSize: 16,
+        marginTop: 20,
+        marginLeft: 19
     },
     hora2: {
 
-        color: "#121212",
-        height: 21,
-        opacity: 0.8,
+        color: "#696969",
         borderBottomWidth: 1,
         borderColor: "rgba(1,123,146,255)",
-        width: 89,
-        marginLeft: 30,
-        marginRight: 109,
-        borderBottomWidth: 1,
-        textAlign: "center",
-        marginTop: 10
+        marginTop: 15,
+        marginRight: 19,
+        marginLeft: 19
     },
     supeintendente1: {
-
         color: "#121212",
-        opacity: 0.7,
+        opacity: 0.8,
+        fontSize: 16,
         marginTop: 20,
-        marginLeft: 30
+        marginLeft: 19
     },
     superintendenteEntrada: {
-
-        color: "#121212",
-        width: 282,
+        color: "#696969",
         borderBottomWidth: 1,
         borderColor: "rgba(1,123,146,255)",
-        opacity: 0.8,
-        marginTop: 10,
-        marginLeft: 30
+        marginTop: 15,
+        marginRight: 19,
+        marginLeft: 19
     },
     supervisores1: {
-
         color: "#121212",
-        opacity: 0.7,
+        opacity: 0.8,
+        fontSize: 16,
         marginTop: 20,
-        marginLeft: 30
+        marginLeft: 19
     },
     ingreseSupervisores: {
 
-        color: "#121212",
-        width: 282,
+        color: "#696969",
         borderBottomWidth: 1,
         borderColor: "rgba(1,123,146,255)",
-        opacity: 0.8,
-        marginTop: 10,
-        marginLeft: 30
+        marginTop: 15,
+        marginRight: 19,
+        marginLeft: 19
     },
     operadores1: {
-
         color: "#121212",
-        opacity: 0.7,
+        opacity: 0.8,
+        fontSize: 16,
         marginTop: 20,
-        marginLeft: 30
+        marginLeft: 19
     },
     ingreseOperadores: {
 
-        color: "#121212",
-        width: 282,
+        color: "#696969",
         borderBottomWidth: 1,
         borderColor: "rgba(1,123,146,255)",
-        opacity: 0.8,
-        marginTop: 10,
-        marginLeft: 30
+        marginTop: 15,
+        marginRight: 19,
+        marginLeft: 19
     },
     equipo1: {
-
         color: "#121212",
-        width: 83,
-        opacity: 0.6,
-        fontSize: 12,
+        opacity: 0.8,
+        fontSize: 16,
         marginTop: 20,
-        marginLeft: 30
+        marginLeft: 19
     },
     ingreseEquipo: {
 
-        color: "#121212",
-        width: 282,
+        color: "#696969",
         borderBottomWidth: 1,
         borderColor: "rgba(1,123,146,255)",
-        opacity: 0.8,
-        marginTop: 10,
-        marginLeft: 30
+        marginTop: 15,
+        marginRight: 19,
+        marginLeft: 19
     },
     tiempoDeParada: {
-
         color: "#121212",
-        lineHeight: 12,
-        opacity: 0.6,
-        fontSize: 12,
+        opacity: 0.8,
+        fontSize: 16,
         marginTop: 20,
-        marginLeft: 30
+        marginLeft: 19
     },
     horas: {
 
-        color: "#121212",
-        width: 83,
-        textAlign: "center",
+        color: "#696969",
         borderBottomWidth: 1,
         borderColor: "rgba(1,123,146,255)",
-        opacity: 0.8,
-        marginTop: 10,
-        marginLeft: 30
+        marginTop: 15,
+       width: 83,
+        marginLeft: 19,
+        textAlign: "center",
     },
     detalleDeParada1: {
-
         color: "#121212",
-        width: 110,
-        fontSize: 12,
-        opacity: 0.6,
+        opacity: 0.8,
+        fontSize: 16,
         marginTop: 20,
-        marginLeft: 30
+        marginLeft: 19
     },
     ingreseDetalles: {
 
-        color: "#121212",
-        width: 282,
+        color: "#696969",
         borderBottomWidth: 1,
         borderColor: "rgba(1,123,146,255)",
-        opacity: 0.8,
-        marginTop: 10,
-        marginLeft: 30
+        marginTop: 15,
+        marginRight: 19,
+        marginLeft: 19
     },
     evento: {
-
         color: "#121212",
-        width: 113,
-        opacity: 0.6,
-        fontSize: 12,
+        opacity: 0.8,
+        fontSize: 16,
         marginTop: 20,
-        marginLeft: 30
+        marginLeft: 19
     },
     detallesEvento: {
 
-        color: "#121212",
-        width: 282,
-        opacity: 0.6,
+        color: "#696969",
         borderBottomWidth: 1,
         borderColor: "rgba(1,123,146,255)",
-        marginTop: 10,
-        marginLeft: 30
+        marginTop: 15,
+        marginRight: 19,
+        marginLeft: 19
     },
     causa: {
-
         color: "#121212",
-        width: 282,
-        opacity: 0.6,
-        fontSize: 12,
+        opacity: 0.8,
+        fontSize: 16,
         marginTop: 20,
-        marginLeft: 30
+        marginLeft: 19
     },
     detallesCausa: {
 
-        color: "#121212",
-        width: 282,
-        opacity: 0.6,
+        color: "#696969",
         borderBottomWidth: 1,
         borderColor: "rgba(1,123,146,255)",
-        marginTop: 10,
-        marginLeft: 30
+        marginTop: 15,
+        marginRight: 19,
+        marginLeft: 19
     },
     accionesTomadas: {
 
         color: "#121212",
-        width: 200,
-        opacity: 0.6,
-        fontSize: 12,
+        opacity: 0.8,
+        fontSize: 16,
         marginTop: 20,
-        marginLeft: 30
+        marginLeft: 19
     },
     accionesDetalle: {
 
-        color: "#121212",
-        width: 282,
-        opacity: 0.6,
+        color: "#696969",
         borderBottomWidth: 1,
         borderColor: "rgba(1,123,146,255)",
-        marginTop: 10,
-        marginLeft: 30
+        marginTop: 15,
+        marginRight: 19,
+        marginLeft: 19
     },
     resultados: {
 
         color: "#121212",
-        width: 113,
-        opacity: 0.6,
-        fontSize: 12,
+        opacity: 0.8,
+        fontSize: 16,
         marginTop: 20,
-        marginLeft: 30
+        marginLeft: 19
     },
     resultadosDetalle: {
 
-        color: "#121212",
-        width: 282,
-        opacity: 0.6,
+        color: "#696969",
         borderBottomWidth: 1,
         borderColor: "rgba(1,123,146,255)",
-        marginTop: 10,
-        marginLeft: 30
+        marginTop: 15,
+        marginRight: 19,
+        marginLeft: 19
     },
     conclusiones: {
 
         color: "#121212",
-        width: 120,
-        opacity: 0.6,
-        fontSize: 12,
+        opacity: 0.8,
+        fontSize: 16,
         marginTop: 20,
-        marginLeft: 30
+        marginLeft: 19
     },
     conclusionesDetalle: {
 
-        color: "#121212",
-        width: 282,
-        opacity: 0.6,
+        color: "#696969",
         borderBottomWidth: 1,
         borderColor: "rgba(1,123,146,255)",
-        marginTop: 10,
-        marginLeft: 30
+        marginTop: 15,
+        marginRight: 19,
+        marginLeft: 19
     },
     detallesDeCapturas: {
 
         color: "#121212",
-        width: 282,
-        fontSize: 14,
-        opacity: 0.6,
+        opacity: 0.8,
+        fontSize: 16,
         marginTop: 20,
-        marginLeft: 30
+        marginLeft: 19
     },
     detallesDeLaFotos: {
 
-        color: "#121212",
-        width: 282,
+        color: "#696969",
         borderBottomWidth: 1,
         borderColor: "rgba(1,123,146,255)",
-        opacity: 0.8,
-        marginTop: 10,
-        marginLeft: 30
+        marginTop: 15,
+        marginRight: 19,
+        marginLeft: 19
     },
     imagen_1: {
         marginTop: 25,
@@ -505,13 +480,13 @@ const styles = StyleSheet.create({
     guardarDataReporte: {
         height: 36,
         width: 198,
-        marginTop: 40,
+        marginTop: 15,
+        alignSelf: "center"
     },
     containerBotonGuardar: {
         backgroundColor: "rgba(1,123,146,1)",
         justifyContent: "center",
         alignItems: "center",
-        alignSelf: "center",
         flexDirection: "row",
         borderRadius: 2,
         shadowColor: "#000",
@@ -527,7 +502,7 @@ const styles = StyleSheet.create({
         paddingRight: 16,
         marginBottom: 20
     },
-    guardarReporte: {
+        guardarReporte: {
         color: "#fff",
         fontSize: 14
     },

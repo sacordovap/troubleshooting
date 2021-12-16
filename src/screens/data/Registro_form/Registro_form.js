@@ -16,7 +16,6 @@ import Swiper from "react-native-web-swiper";
 import DataEquipoScreen from "../DataEquipo/DataEquipoScreen";
 import AccionestomadasScreen from "../AccionesTomadas/AccionesTomadasScreen";
 import DatosInicialesScreen from "../datosIniciales/DatosInicialesScreen";
-import EvidenciaFotoScreen from "../EvidenciaFoto/EvidenciaFotoScreen";
 import EventoCausaScreen from "../EventoCausa/EventoCausaScreen";
 import ResultadoconclusionScreen from "../ResultadoConclusion/ResultadoConclusionScreen";
 import Icon from "react-native-vector-icons/Entypo";
@@ -114,7 +113,7 @@ function Registro_form(props) {
             controlsProps={{
               dotsTouchable: true,
               dotsPos:'top',
-              dotActiveStyle: { backgroundColor: 'white' },
+              dotActiveStyle: { backgroundColor: '#2596be' },
               prevPos: 'left',
               nextPos: 'right',
               nextTitle: '>',

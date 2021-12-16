@@ -109,7 +109,7 @@ const Login = (props) => {
           <FontAwesomeIcon name="user" style={styles.icon}></FontAwesomeIcon>
           <TextInput
             placeholder="Ingrese Usuario"
-            placeholderTextColor="rgba(251,249,249,1)"
+            placeholderTextColor="rgba(234,235,235,255)"
             selectionColor="rgba(255,253,253,1)"
             style={styles.usuario}
             onChangeText={(value) => handleChangeText('email', value)}
@@ -120,7 +120,7 @@ const Login = (props) => {
           <FontAwesomeIcon name="key" style={styles.icon2}></FontAwesomeIcon>
           <TextInput
             placeholder="Ingrese Contraseña"
-            placeholderTextColor="rgba(251,249,249,1)"
+            placeholderTextColor="rgba(234,235,235,255)"
             selectionColor="rgba(255,253,253,1)"
             secureTextEntry={true}
             style={styles.password}
@@ -229,13 +229,14 @@ const styles = StyleSheet.create({
     width: 19
   },
   usuario: {
-    color: "#121212",
+    color: 'white',
     height: 21,
-    width: 179,
+    width: 150,
     opacity: 0.8,
     textAlign: "center",
     marginLeft: 18,
-    marginTop: 6
+    marginTop: 6,
+    fontSize:16,
   },
   iconRow: {
     height: 27,
@@ -261,13 +262,12 @@ const styles = StyleSheet.create({
     width: 27
   },
   password: {
-    color: "#121212",
-    height: 21,
-    width: 179,
+    color: 'white',
     opacity: 0.8,
     textAlign: "center",
     marginLeft: 14,
-    marginTop: 10
+    marginTop: 10,
+    fontSize:16,
   },
   icon2Row: {
     height: 27,

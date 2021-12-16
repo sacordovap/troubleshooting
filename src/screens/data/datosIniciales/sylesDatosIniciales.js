@@ -135,12 +135,20 @@ export default StyleSheet.create({
     marginTop: 20,
     marginLeft: 19,
   },
+  textInput2Row: {
+    color: "#121212",
+    flexDirection: "row",
+    // borderBottomWidth: 1,
+    // borderColor: "rgba(1,123,146,255)",
+    marginTop: 20,
+    marginRight: 19,
+    marginLeft: 19
+  },
   superintendente: {
     color: "#121212",
     opacity: 0.8,
     fontSize: 16,
     marginTop: 20,
-    marginLeft: 19
   },
   textInput: {
     color: "#696969",
@@ -171,8 +179,8 @@ export default StyleSheet.create({
     fontSize: 16,
     marginTop: 32,
     marginLeft: 19
-  },
-  textInput3: {
+  }, 
+  textInput3: { 
     color: "#696969",
     borderBottomWidth: 1,
     borderColor: "rgba(1,123,146,255)",

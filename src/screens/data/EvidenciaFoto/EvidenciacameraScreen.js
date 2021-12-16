@@ -182,7 +182,7 @@ function EvidenciacameraScreen(props) {
       >
         <View style={styles.rect}> */}
           <Text style={styles.titulo1}>Registro de Incidentes</Text>
-          <Text style={styles.evidencias}>Evidencias tomadas en el incidente</Text>
+          <Text style={styles.evidencias}>Capturas del incidente</Text>
           {/* <TextInput
             placeholder="Detalles de las fotos"
             multiline={true}
@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    borderRadius: 20,
+    borderRadius: 10,
     shadowColor:"rgba(1,123,146,255)",
     shadowOffset: {
       width: 0,
@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
     },
     elevation: 5,
     shadowOpacity: 0.41,
-    marginBottom:10
+    marginBottom:3
 
   },
   containerGuardarDataInicial: {
@@ -280,15 +280,12 @@ const styles = StyleSheet.create({
   },
   camera: {
     color: "#2596be",
-    fontSize: 32,
-    height: 44,
-    width: 40
+    fontSize: 40,
+    marginRight: 30,
   },
   archivos: {
     color: "#2596be",
-    fontSize: 32,
-    height: 44,
-    width: 40
+    fontSize: 40,
   },
   iconos: {
     width: 40,
@@ -354,24 +351,24 @@ const styles = StyleSheet.create({
     marginLeft: 27
   },
   titulo1: {
-    alignSelf: "center",
     color: "#121212",
-    fontSize: 24,
-    opacity: 0.78,
-    height: 29,
-    marginTop: 26,
+    fontSize: 26,
+    textAlign: "center",
+    marginTop: 35,
+    marginBottom:10,
+    alignSelf: "center"
   },
   evidencias: {
     color: "#121212",
-    opacity: 0.6,
-    fontSize: 14,
-    marginTop: 27,
-    marginLeft: 20
+    opacity: 0.8,
+    fontSize: 16,
+    marginTop: 20,
+    marginLeft: 19
   },
   evidenciasFoto: {
-    color: "#121212",
-    opacity: 0.6,
-    fontSize: 12,
+    color: "#696969",
+    marginRight: 19,
+    marginLeft: 19
   },
   textInput: {
     color: "#121212",
@@ -451,8 +448,7 @@ const styles = StyleSheet.create({
   },
   rightIconButton: {},
   buttonContainer: {
-    marginTop: 10,
-    width: 320,
+    marginTop: 20,
     flexDirection: 'row',
     justifyContent: "center",
   },

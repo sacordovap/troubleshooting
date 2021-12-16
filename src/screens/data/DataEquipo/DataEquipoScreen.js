@@ -21,6 +21,8 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import Select from 'react-select';
 import { AuthContext } from "../../../Context/authState";
 
+import SearchableDropdown from 'react-native-searchable-dropdown';
+
 function DataEquipoScreen(props) {
   const [Horas, setHoras] = useState(0);
 
@@ -38,7 +40,7 @@ function DataEquipoScreen(props) {
       props.formulario.details = value
     }
     props.formulario.downtime = Horas
-    props.formulario.equipment_id=initialState.equipment_id
+    props.formulario.equipment_id = selection?.id
   };
 
   const { token } = useContext(AuthContext)
@@ -56,16 +58,18 @@ function DataEquipoScreen(props) {
     traerEquipos()
   }, [])
 
-
+  const [selection, setSelection] = useState()
   const [itemSelected, setitemSelected] = useState(initialState)
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState('equiment-test');
   let options = equipos.map(function (obj) {
-    return { value: obj.id, label: obj.name };
+    return { id: obj.id, name: obj.name };
   })
+  console.log(options);
+  console.log('escogi' + selection?.id);
   return (
 
-    <><ScrollView style={styles.container}>
+    <><View style={styles.container}>
       {/* <ImageBackground
         source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
         resizeMode="cover"
@@ -73,10 +77,11 @@ function DataEquipoScreen(props) {
         imageStyle={styles.image1_imageStyle}
       >
         <View style={styles.contenedorDatos1}> */}
-          <Text style={styles.titulo1}>Equipo y tiempo de Parada</Text>
-          <Text style={styles.equipo}>Equipo</Text>
-          <View style={styles.textInput2Row}>
-            <DropDownPicker
+      <Text style={styles.titulo1}>Equipo y tiempo de Parada</Text>
+
+      <View style={styles.textInput2Row}>
+        <Text style={styles.equipo}>Equipo afectado</Text>
+        {/* <DropDownPicker
               open={open}
               value={value}
               items={options}
@@ -87,38 +92,88 @@ function DataEquipoScreen(props) {
                 initialState.equipment_id = value;
                 console.log("selected value", value);
               }}
-            />
-          </View>
-
-          <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
-          <View style={styles.textInput2Row}>
-            <Text style={styles.textInput2}
-              onChangeText={(value) => handleChangeText('downtime', value)}
-            >{Horas} Horas</Text>
-            <TouchableOpacity onPress={() => setHoras(Horas - 1)}>
-              <FontAwesomeIcon
-                name="minus"
-                style={styles.icon}
-              ></FontAwesomeIcon></TouchableOpacity>
-            <TouchableOpacity onPress={() => setHoras(Horas + 1)}>
-              <FontAwesomeIcon
-                name="plus"
-                style={styles.icon}
-              ></FontAwesomeIcon></TouchableOpacity>
-          </View>
-          <Text style={styles.detalleDeParada}>Detalle de Parada</Text>
-          <TextInput
-            placeholder="Ingrese Detalles"
-            onChangeText={(value) => handleChangeText('details', value)}
-            multiline={true}
-            require={true}
-            selectTextOnFocus={true}
-            disableFullscreenUI={true}
-            style={styles.textInput3}
-          ></TextInput>
-        {/* </View>
+            /> */}
+        <SearchableDropdown
+          onTextChange={(text) => console.log(text)}
+          //On text change listner on the searchable input
+          onItemSelect={(item) => setSelection(item)}
+          //onItemSelect called after the selection from the dropdown
+          containerStyle={{ padding: 5 }}
+          //suggestion container style
+          textInputStyle={{
+            //inserted text style
+            color: "#696969",
+            borderBottomWidth: 1,
+            borderColor: "rgba(1,123,146,255)",
+            width:150,
+            marginTop: 5,
+            marginRight: 19,
+            marginLeft: 5,
+          }}
+          itemStyle={{
+            //single dropdown item style
+            padding: 6,
+            backgroundColor: '#FAF9F8',
+            borderColor: '#bbb',
+          }}
+          itemTextStyle={{
+            //text style of a single dropdown item
+            color: '#222',
+          }}
+          itemsContainerStyle={{
+            //items container style you can pass maxHeight
+            //to restrict the items dropdown hieght
+            maxHeight: '50%',
+          }}
+          items={equipos}
+          //mapping of item array 
+          defaultIndex={2}
+          //default selected item index
+          placeholder="buscar equipo"
+          //place holder for the search input
+          resetValue={false}
+          //reset textInput Value with true and false state
+          underlineColorAndroid="transparent"
+        //To remove the underline from the android input
+        />
+      </View>
+      <TextInput
+          placeholder=" "
+          value={selection?.name}
+          editable={false}
+          multiline={true}
+          style={styles.EquipoInput}
+        ></TextInput>
+      <ScrollView><View style={styles.textInput2Row}>     
+        <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
+        <TouchableOpacity onPress={() => setHoras(Horas - 1)}>
+          <FontAwesomeIcon
+            name="minus"
+            style={styles.icon}
+          ></FontAwesomeIcon></TouchableOpacity>
+        <Text style={styles.textInput2}
+          onChangeText={(value) => handleChangeText('downtime', value)}
+        >{Horas} Horas</Text>
+        <TouchableOpacity onPress={() => setHoras(Horas + 1)}>
+          <FontAwesomeIcon
+            name="plus"
+            style={styles.icon}
+          ></FontAwesomeIcon></TouchableOpacity>
+      </View>
+        <Text style={styles.detalleDeParada}>Detalle de Parada</Text>
+        <TextInput
+          placeholder="Ingrese Detalles"
+          onChangeText={(value) => handleChangeText('details', value)}
+          multiline={true}
+          require={true}
+          selectTextOnFocus={true}
+          disableFullscreenUI={true}
+          style={styles.textInput3}
+        ></TextInput>
+      </ScrollView>
+      {/* </View>
       </ImageBackground> */}
-    </ScrollView></>
+    </View></>
   );
 }
 
@@ -127,14 +182,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     borderRadius: 10,
-    shadowColor:"rgba(1,123,146,255)",
+    shadowColor: "rgba(1,123,146,255)",
     shadowOffset: {
       width: 0,
       height: 3
     },
     elevation: 5,
     shadowOpacity: 0.41,
-    marginBottom:3
+    marginBottom: 3
   },
   header_Registro: {
     height: 39,
@@ -174,24 +229,22 @@ const styles = StyleSheet.create({
     width: 21,
     opacity: 0.84,
     height: 21,
-    marginLeft: 23
+    marginLeft: 18,
+    marginRight: 18,
   },
   titulo1: {
     color: "#121212",
-    fontSize: 24,
+    fontSize: 26,
     textAlign: "center",
-    opacity: 0.78,
-    width: 243,
-    marginTop: 26,
-    marginLeft: 39
+    marginTop: 35,
+    marginBottom: 10,
+    alignSelf: "center"
   },
   equipo: {
     color: "#121212",
-    width: 83,
-    opacity: 0.6,
-    fontSize: 15,
-    marginTop: 32,
-    marginLeft: 19
+    opacity: 0.8,
+    fontSize: 16,
+    marginTop: 20,
   },
   textInput: {
     color: "#121212",
@@ -203,20 +256,16 @@ const styles = StyleSheet.create({
   },
   tiempoDeParada: {
     color: "#121212",
-    opacity: 0.6,
-    fontSize: 14,
-    marginTop: 30,
-    marginLeft: 19
+    opacity: 0.8,
+    fontSize: 16,
+    marginRight: 18
   },
   textInput2: {
-    color: "#121212",
-    height: 23,
-    width: 113,
-    textAlign: "center",
+    color: "#696969",
     borderBottomWidth: 1,
     borderColor: "rgba(1,123,146,255)",
-    opacity: 0.6,
-    marginTop: 3
+    marginRight: 19,
+    marginLeft: 19,
   },
   controlHoras: {
     height: 29,
@@ -225,27 +274,46 @@ const styles = StyleSheet.create({
   },
   textInput2Row: {
     color: "#121212",
-    borderBottomWidth: 1,
-    borderColor: "rgba(1,123,146,255)",
-    marginTop: 15,
+    flexDirection: "row",
+    // borderBottomWidth: 1,
+    // borderColor: "rgba(1,123,146,255)",
+    marginTop: 20,
     marginRight: 19,
     marginLeft: 19
   },
   detalleDeParada: {
     color: "#121212",
-    opacity: 0.6,
-    fontSize: 15,
-    marginTop: 18,
+    opacity: 0.8,
+    fontSize: 16,
+    marginTop: 30,
     marginLeft: 19
   },
-  textInput3: {
-    color: "#121212",
-
-    width: 282,
+  entradaEquipo: {
+    color: "#696969",
     borderBottomWidth: 1,
     borderColor: "rgba(1,123,146,255)",
-    marginTop: 12,
-    marginLeft: 19
+    marginTop: 15,
+    marginRight: 19,
+    marginLeft: 19,
+    marginBottom: 30,
+  },
+  textInput3: {
+    color: "#696969",
+    borderBottomWidth: 1,
+    borderColor: "rgba(1,123,146,255)",
+    marginTop: 15,
+    marginRight: 19,
+    marginLeft: 19,
+    marginBottom: 30,
+  },
+  EquipoInput: {
+    color: "#696969",
+    borderBottomWidth: 1,
+    borderColor: "rgba(1,123,146,255)",
+    marginTop: 25,
+    marginRight: 19,
+    marginLeft: 19,
+    marginBottom: 10,
   },
   container1: {
     flexDirection: "row",

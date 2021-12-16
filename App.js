@@ -21,7 +21,6 @@ import ResultadoConclusion from "./src/screens/data/ResultadoConclusion/Resultad
 import EventoCausa from "./src/screens/data/EventoCausa/EventoCausaScreen";
 import Login from "./src/screens/Login/Login";
 import DataEquipo from "./src/screens/data/DataEquipo/DataEquipoScreen"
-import EvidenciaFoto from "./src/screens/data/EvidenciaFoto/EvidenciaFotoScreen"
 import Preview from "./src/screens/data/Preview/Preview"
 import Registro_form from "./src/screens/data/Registro_form/Registro_form";
 import EvidenciacameraScreen from './src/screens/data/EvidenciaFoto/EvidenciacameraScreen';
@@ -55,8 +54,6 @@ function MyStack() {
         component={Preview} />
       <Stack.Screen name="Datos-Equipo"
         component={DataEquipo} />
-      <Stack.Screen name="Evidencia-Foto"
-        component={EvidenciaFoto} />
       <Stack.Screen name="Acciones-Tomadas"
         component={AccionesTomadasScreen} />
       <Stack.Screen name="Evento-Causa"

@@ -3,7 +3,7 @@ export default StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: "#fff",
-      borderRadius: 20,
+      borderRadius: 10,
       shadowColor:"rgba(1,123,146,255)",
       shadowOffset: {
         width: 0,
@@ -11,7 +11,7 @@ export default StyleSheet.create({
       },
       elevation: 5,
       shadowOpacity: 0.41,
-      marginBottom:10
+      marginBottom:3
     },
     header_Registro: {
       height: 39,
@@ -28,18 +28,18 @@ export default StyleSheet.create({
     },
     evento: {
       color: "#121212",
-      opacity: 0.6,
-      fontSize: 15,
-      marginTop: 32,
+      opacity: 0.8,
+      fontSize: 16,
+      marginTop: 25,
       marginLeft: 19
     },
    
     causas: {
       color: "#121212",
-      opacity: 0.6,
-    fontSize: 15,
-      marginTop: 32,
-      marginLeft: 19
+    opacity: 0.8,
+    fontSize: 16,
+    marginTop: 32,
+    marginLeft: 19
     },
     contenedorDatos1: {
       height: 608,
@@ -70,10 +70,11 @@ export default StyleSheet.create({
     },
     titulo1: {
       color: "#121212",
-      fontSize: 24,
+      fontSize: 26,
       textAlign: "center",
-      opacity: 0.78,
-      marginTop: 26,
+      marginTop: 35,
+      marginBottom:10,
+      alignSelf: "center"
     },
     equipo: {
       color: "#121212",
@@ -85,11 +86,11 @@ export default StyleSheet.create({
       marginLeft: 19
     },
     textInput: {
-      color: "#121212",
-      width: 282,
+      color: "#696969",
       borderBottomWidth: 1,
       borderColor: "rgba(1,123,146,255)",
       marginTop: 15,
+      marginRight: 19,
       marginLeft: 19
     },
     tiempoDeParada: {
