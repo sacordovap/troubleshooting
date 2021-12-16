@@ -19,7 +19,7 @@ import { getTroubleShootingById, putTroubleshootingUpdate, deleteTroubleshooting
 import { useNavigation } from "@react-navigation/native";
 import AwesomeAlert from "react-native-awesome-alerts";
 import { AuthContext } from "../../Context/authState";
-
+import { format } from "date-fns";
 
 
 export default function ReporteDetalle(props) {
@@ -27,23 +27,6 @@ export default function ReporteDetalle(props) {
     const { token } = useContext(AuthContext)
     console.log(token)
     const [loading, setLoading] = useState()
-    // const [data, setData] = useState([])
-    const [estado, setEstado] = useState(false)
-
-    const getDataByID = () => {
-        const idUrl = props.route.params.id;
-        getTroubleShootingById(idUrl, token).then(rpta => {
-
-            setFormulario({
-                ...rpta.data.data
-            })
-            console.log(rpta.data.data)
-        })
-    }
-    const navigation = useNavigation();
-    useEffect(() => {
-        getDataByID()
-    }, [])
 
     const [estadoAlertModificar, setEstadoAlertModificar] = useState(false);
     const [estadoAlertDelete, setEstadoAlertDelete] = useState(false);
@@ -79,6 +62,22 @@ export default function ReporteDetalle(props) {
         // attachments: '',
         // password: ""
     })
+
+    const [hora, setHora] = useState(new Date())
+    // const [data, setData] = useState([])
+    const [estado, setEstado] = useState(false)
+    
+    const getDataByID = () => {
+        const idUrl = props.route.params.id;
+        getTroubleShootingById(idUrl, token).then(rpta => {
+            setFormulario(rpta.data.data)       
+        })
+    }
+    const navigation = useNavigation();
+    useEffect(() => {
+        getDataByID()
+    }, [])
+
 
     const handleSubmit = () => {
 
@@ -116,7 +115,12 @@ export default function ReporteDetalle(props) {
             }
         })
     }
-    console.log(props);
+    // console.log(formulario);
+    
+ 
+    // var formattedDate = format(hora, "MMMM do, yyyy H:mma");
+  
+    // console.log(formattedDate);
 
     if (loading) {
         <View>
@@ -133,15 +137,15 @@ export default function ReporteDetalle(props) {
             >
                 <View style={styles.rect}> */}
             <Text style={styles.tituloIncidente}>Registro de incidente {props.route.params.id}</Text>
-            <Text style={styles.fechaTag1}>Fecha</Text>
+            <Text style={styles.fechaTag1}>Fecha y Hora</Text>
             <TextInput style={styles.fecha2}
-                value={formulario.date}
+                value={formulario?.date}
                 editable={false}
                 onChangeText={(value) => handleChangeText('date', value)}
             ></TextInput>
             <Text style={styles.horaTag1}>Hora</Text>
             <TextInput style={styles.hora2}
-                value={formulario.date}
+                value={formulario.date?.getHours() + ':' + formulario.date?.getMinutes()}
                 editable={false}
                 onChangeText={(value) => handleChangeText('date', value)}
             ></TextInput>

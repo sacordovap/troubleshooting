@@ -11,6 +11,7 @@ import { getTroubleShooting } from '../../services/api';
 import { useNavigation } from '@react-navigation/native';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import { AuthContext } from "../../Context/authState";
+import { format } from "date-fns";
 export default function HistorialReportesScreen({ children }) {
 
 
@@ -25,10 +26,19 @@ export default function HistorialReportesScreen({ children }) {
     })
   }
 
+
   useEffect(() => {
     traerTroubles()
   }, [])
 
+
+
+  // const [hora, setHora] = useState()
+
+  // function convertFormat(date) {
+  //    var formattedDate = format(date, "MMMM do, yyyy H:mma");
+  //    return formattedDate
+  // }
 
   return (
     <><View style={[styles.container1]}>

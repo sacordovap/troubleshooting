@@ -40,7 +40,7 @@ function DataEquipoScreen(props) {
       props.formulario.details = value
     }
     props.formulario.downtime = Horas
-    props.formulario.equipment_id = selection?.id
+    props.formulario.equipment_id = 3
   };
 
   const { token } = useContext(AuthContext)

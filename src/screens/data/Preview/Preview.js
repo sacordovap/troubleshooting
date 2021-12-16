@@ -97,6 +97,7 @@ const [equipoNombre, setequipoNombre] = useState(null)
       obtenerEquipo()
         setHora(formulario.date)
     }, [])
+    
     console.log(hora);
     return (
         <ScrollView style={styles.container}>
@@ -109,9 +110,9 @@ const [equipoNombre, setequipoNombre] = useState(null)
                     <Text style={styles.tituloIncidente}>Registro de incidente</Text>
                     <Text style={styles.fechaTag1}>Fecha</Text>
                     <Text style={styles.fecha2}
-                    >{hora?.getDate() + '/' + (hora?.getMonth() + 1) + '/' + hora?.getFullYear()}</Text>
-                    <Text style={styles.horaTag1}>Hora</Text>
-                    <Text style={styles.hora2}>{ hora?.getHours() + ':' + hora?.getMinutes()}</Text>
+                    >{hora}</Text>
+                    {/* <Text style={styles.horaTag1}>Hora</Text>
+                    <Text style={styles.hora2}>{ hora?.getHours() + ':' + hora?.getMinutes()}</Text> */}
                     <Text style={styles.supeintendente1}>Supeintendente</Text>
                     <Text style={styles.superintendenteEntrada}>{props.route.params.formulario.superintendent}</Text>
                     <Text style={styles.supervisores1}>Supervisores</Text>

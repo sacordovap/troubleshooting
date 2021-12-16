@@ -16,7 +16,7 @@ import FeatherIcon from "react-native-vector-icons/Feather";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import InputScrollView from 'react-native-input-scroll-view';
 import Icon from "react-native-vector-icons/Ionicons";
-
+import { format } from "date-fns";
 import styles from "./sylesDatosIniciales";
 import { AuthContext } from "../../../Context/authState";
 import { getSuperIntendent } from "../../../services/api";
@@ -68,7 +68,7 @@ function DatosInicialesScreen(props) {
     } else if (nombre === 'operadores') {
       props.formulario.operators = value
     }
-    props.formulario.date = date;
+    props.formulario.date = formattedDate;
   };
 
   const [selection, setSelection] = useState()
@@ -85,7 +85,9 @@ function DatosInicialesScreen(props) {
     traerSuperIntendent()
   }, [])
 
+  var formattedDate = format(date, "MMMM do, yyyy H:mma");
 
+  console.log(formattedDate);
 
   let arregloOriginal = superIntendent // Aquí almacenamos los nuevos arreglos
   // const LONGITUD_PEDAZOS = 1 // Partir en arreglo de 3
