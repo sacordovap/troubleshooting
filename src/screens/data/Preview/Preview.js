@@ -20,7 +20,7 @@ function Preview(props) {
 
 
     console.log(props)
-  
+
     const { token } = useContext(AuthContext)
 
     const [formulario, setFormulario] = useState({
@@ -37,20 +37,21 @@ function Preview(props) {
         results: props.route.params.formulario.results,
         equipment_id: props.route.params.formulario.equipment_id,
         attachments: props.route.params.formulario.foto1
-        
-            
+
+
         // password: ""
     })
     const handleSubmit = () => {
 
         postCreateData(formulario, token).then((rpta) => {
-
+            setLoading(true)
             if (rpta.status === 200) {
+                setLoading(false)
                 console.warn("Subida extitosa")
                 props.navigation.navigate('HistorialReporte')
             } else {
                 console.warn("Subida errónea")
-
+                setLoading(false)
             }
         }).catch(err => {
             console.log("ERROR EN EL SERVICIO CREARDATA")
@@ -84,24 +85,50 @@ function Preview(props) {
         setEstado(false);
     };
 
-const [equipoNombre, setequipoNombre] = useState(null)
+    const [equipoNombre, setequipoNombre] = useState(null)
 
     const obtenerEquipo = () => {
-        getEquipmentById(props.route.params.formulario.equipment_id, token).then(rpta=>{
+        getEquipmentById(props.route.params.formulario.equipment_id, token).then(rpta => {
             setequipoNombre(rpta.data.data)
-            
+
             console.log(rpta.data.data);
         })
     }
     useEffect(() => {
-      obtenerEquipo()
+        obtenerEquipo()
         setHora(formulario.date)
     }, [])
-    
+
     console.log(hora);
+
+    const [loading, setLoading] = useState(false);
+
+    const startLoading = () => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 3000);
+    };
+
     return (
+
+
+
         <ScrollView style={styles.container}>
-            {/* <ImageBackground
+            {loading ? (
+                <ActivityIndicator
+                    //visibility of Overlay Loading Spinner
+                    visible={loading}
+                    //Text with the Spinner
+                    size="large" 
+                    color="#00ff00"
+                    //Text style of the Spinner Text
+                    textStyle={styles.spinnerTextStyle}
+                />
+            ) : (
+                <>
+
+                    {/* <ImageBackground
                 source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
                 resizeMode="cover"
                 style={styles.image}
@@ -149,12 +176,12 @@ const [equipoNombre, setequipoNombre] = useState(null)
                             }} />
                     )}</View>
                     <View style={styles.imagen_2}>{!!props.route.params.formulario.foto1 && (
-                        <Image source={{ uri: props.route.params.formulario.foto1[1]?.base64  }}
+                        <Image source={{ uri: props.route.params.formulario.foto1[1]?.base64 }}
                             style={{
                                 width: 310,
                                 height: 210,
                                 marginLeft: 20,
-                                marginRight: 20, 
+                                marginRight: 20,
                                 opacity: 0.9,
                             }} />)}
                     </View>
@@ -163,33 +190,34 @@ const [equipoNombre, setequipoNombre] = useState(null)
                         onPress={() => { showAlert() }}>
                         <Text style={styles.guardarReporte}>Guardar Reporte</Text>
                     </TouchableOpacity>
-
-                    <AwesomeAlert
-                        show={Estado}
-                        showProgress={false}
-                        title="Registro de Incidente"
-                        titleStyle={{ fontSize: 22, marginBottom: 10 }}
-                        messageStyle={{ fontSize: 18, marginBottom: 10 }}
-                        message="Esta seguro de guardar?"
-                        closeOnTouchOutside={true}
-                        closeOnHardwareBackPress={false}
-                        showCancelButton={true}
-                        showConfirmButton={true}
-                        cancelText="No"
-                        confirmText="Si"
-                        cancelButtonStyle={{ width: 100, alignItems: 'center', marginTop: 10 }}
-                        confirmButtonStyle={{ width: 100, alignItems: 'center' }}
-                        confirmButtonColor="#AEDEF4"
-                        cancelButtonColor="#DD6B55"
-                        onCancelPressed={() => {
-                            hideAlert();
-                        }}
-                        onConfirmPressed={() => {
-                            handleSubmit();
-                            hideAlert();
-                        }}
-                    />
-                {/* </View>
+                </>
+            )}
+            <AwesomeAlert
+                show={Estado}
+                showProgress={false}
+                title="Registro de Incidente"
+                titleStyle={{ fontSize: 22, marginBottom: 10 }}
+                messageStyle={{ fontSize: 18, marginBottom: 10 }}
+                message="Esta seguro de guardar?"
+                closeOnTouchOutside={true}
+                closeOnHardwareBackPress={false}
+                showCancelButton={true}
+                showConfirmButton={true}
+                cancelText="No"
+                confirmText="Si"
+                cancelButtonStyle={{ width: 100, alignItems: 'center', marginTop: 10 }}
+                confirmButtonStyle={{ width: 100, alignItems: 'center' }}
+                confirmButtonColor="#AEDEF4"
+                cancelButtonColor="#DD6B55"
+                onCancelPressed={() => {
+                    hideAlert();
+                }}
+                onConfirmPressed={() => {
+                    handleSubmit();
+                    hideAlert();
+                }}
+            />
+            {/* </View>
             </ImageBackground> */}
         </ScrollView>
     );
@@ -346,7 +374,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: "rgba(1,123,146,255)",
         marginTop: 15,
-       width: 83,
+        width: 83,
         marginLeft: 19,
         textAlign: "center",
     },
@@ -503,7 +531,7 @@ const styles = StyleSheet.create({
         paddingRight: 16,
         marginBottom: 20
     },
-        guardarReporte: {
+    guardarReporte: {
         color: "#fff",
         fontSize: 14
     },
