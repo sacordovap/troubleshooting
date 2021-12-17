@@ -33,6 +33,11 @@ export default function HistorialReportesScreen({ children }) {
 
 
 
+  // var fechaConv = new Date(Reportes[0]?.date)
+  // console.log(Reportes[0]?.date)
+  // console.log(fechaConv.getFullYear())
+  // console.log(fechaConv.getHours())
+
   // const [hora, setHora] = useState()
 
   // function convertFormat(date) {
@@ -70,11 +75,12 @@ export default function HistorialReportesScreen({ children }) {
     </Button> */}
 
         {//recorrer usuarios
-          Reportes.map(Reportes => {
+          Reportes.map(ReportesObj => {
+           
             return (
-              <ListItem style={styles.inputGroups} key={Reportes.id} buttonDivider
+              <ListItem style={styles.inputGroups} key={ReportesObj.id} buttonDivider
                 onPress={() => navigation.navigate('ReporteDetalle', {
-                  id: Reportes.id,
+                  id: ReportesObj.id,
                   traerTroubles
                 })}>
 
@@ -84,8 +90,9 @@ export default function HistorialReportesScreen({ children }) {
                 }}
                   rounded />
                 <ListItem.Content>
-                  <ListItem.Title>{Reportes.event}</ListItem.Title>
-                  <ListItem.Subtitle>Fecha: {Reportes.date}</ListItem.Subtitle>
+                  <ListItem.Title>{ReportesObj.event}</ListItem.Title>
+                  <ListItem.Subtitle>Fecha: {(new Date(ReportesObj.date)).toLocaleDateString()}</ListItem.Subtitle>
+                  <ListItem.Subtitle>Hora: {(new Date(ReportesObj.date)).toLocaleTimeString()}</ListItem.Subtitle>
                 </ListItem.Content>        
               </ListItem>
             );

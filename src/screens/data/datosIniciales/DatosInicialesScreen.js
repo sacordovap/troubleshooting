@@ -71,6 +71,8 @@ function DatosInicialesScreen(props) {
     props.formulario.date = formattedDate;
   };
 
+
+
   const [selection, setSelection] = useState()
   const [superIntendent, setSuperIntent] = useState([])
   const [id, setId] = useState(1)
@@ -85,28 +87,17 @@ function DatosInicialesScreen(props) {
     traerSuperIntendent()
   }, [])
 
+  console.log(superIntendent)
+  var newArr = superIntendent.map(function(value) {
+    return {name: value};
+  });
+
+  console.log(newArr)
+
   var formattedDate = format(date, "MMMM do, yyyy H:mma");
 
   console.log(formattedDate);
 
-  let arregloOriginal = superIntendent // Aquí almacenamos los nuevos arreglos
-  // const LONGITUD_PEDAZOS = 1 // Partir en arreglo de 3
-  // for (let i = 0; i < arregloOriginal.length; i += LONGITUD_PEDAZOS) {
-  //   let pedazo = arregloOriginal.slice(i, i + LONGITUD_PEDAZOS);
-  //   arregloDeArreglos.push( pedazo);
-  // }
-  // console.log("Arreglo de arreglos: ", arregloDeArreglos); 
-
-  console.log('arreglo ', arregloOriginal);
-
-  function toObject(arr) {
-    var rv = {};
-    for (var i = 0; i < arr.length; ++i)
-      if (arr[i] !== undefined) rv[i] = arr[i];
-    return rv;
-  }
- 
-  console.log('list a ' + toObject(arregloOriginal));
 
   return (
     <>
@@ -175,7 +166,7 @@ function DatosInicialesScreen(props) {
               //to restrict the items dropdown hieght
               maxHeight: '50%',
             }}
-            items={arregloOriginal}
+            items={newArr}
             //mapping of item array 
             defaultIndex={2}
             //default selected item index
