@@ -61,19 +61,20 @@ function DatosInicialesScreen(props) {
 
   const handleChangeText = (nombre, value) => {
     setState({ ...state, [nombre]: value })
-    if (nombre === 'superintendente') {
-      props.formulario.superintendent = value
-    } else if (nombre === 'supervisores') {
+
+
+    if (nombre === 'supervisores') {
       props.formulario.supervisor = value
     } else if (nombre === 'operadores') {
       props.formulario.operators = value
     }
-    props.formulario.date = formattedDate;
+    props.formulario.superintendent = selection?.name
+    props.formulario.date = date;
   };
 
 
 
-  const [selection, setSelection] = useState()
+  const [selection, setSelection] = useState(props.formulario.superintendent)
   const [superIntendent, setSuperIntent] = useState([])
   const [id, setId] = useState(1)
   const traerSuperIntendent = () => {
@@ -85,11 +86,14 @@ function DatosInicialesScreen(props) {
 
   useEffect(() => {
     traerSuperIntendent()
+    return function cleanup() {
+      traerSuperIntendent()
+    }
   }, [])
 
   console.log(superIntendent)
-  var newArr = superIntendent.map(function(value) {
-    return {name: value};
+  var newArr = superIntendent.map(function (value) {
+    return { name: value };
   });
 
   console.log(newArr)
@@ -110,7 +114,6 @@ function DatosInicialesScreen(props) {
         >
           <View style={styles.rect}> */}
         <Text style={styles.titulo}>Registro de Incidentes</Text>
-
         <View style={styles.fecha2Row}>
           <Text style={styles.fecha_tag}>Fecha</Text>
           <Text style={styles.fecha2}>
@@ -178,17 +181,19 @@ function DatosInicialesScreen(props) {
           //To remove the underline from the android input
           />
         </View>
-        <TextInput
-          defaultValue={selection?.name}
-          multiline={true}
-          placeholder="Ingrese Super Intendente"
-          onChangeText={(value) => handleChangeText('superintendente', value)}
-          style={styles.textInput}
-        ></TextInput>
         <ScrollView>
+          <TextInput
+            defaultValue={selection?.name}
+            multiline={true}
+            placeholder="Ingrese Super Intendente"
+            onChangeText={(value) => handleChangeText('superintendente', value)}
+            style={styles.textInput}
+          ></TextInput>
+
           <Text style={styles.supervisores}>Supervisores</Text>
           <TextInput
             placeholder="Ingrese Supervisores"
+            defaultValue={props.formulario.supervisor}
             multiline={true}
             onChangeText={(value) => handleChangeText('supervisores', value)}
             style={styles.textInput2}
@@ -196,6 +201,7 @@ function DatosInicialesScreen(props) {
           <Text style={styles.operadores}>Operadores</Text>
           <TextInput
             placeholder="Ingrese Operadores"
+            defaultValue={props.formulario.operators}
             multiline={true}
             onChangeText={(value) => handleChangeText('operadores', value)}
             style={styles.textInput3}

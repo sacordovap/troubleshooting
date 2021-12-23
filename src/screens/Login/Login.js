@@ -50,15 +50,18 @@ const Login = (props) => {
 
   console.log(props)
   const doLogin = () => {
+    startLoading()
     postLogin(datos).then(response => {
       setToken(response.data.token)
       Asyncstorage.setItem("token", response.data.token).then(response => {
-        showAlert()
+        setLoading(false)
 
+        showAlert()
       })
 
     }, err => {
-      console.warn(err)
+      setLoading(false)
+
       alert("Usuario no encontrado")
     })
   }
@@ -86,89 +89,92 @@ const Login = (props) => {
 
 
     <View style={styles.container}>
-      <ImageBackground
-        source={require("../../../assets/images/fondo3.png")}
-        resizeMode="stretch"
-        style={styles.background}
-        imageStyle={styles.background_imageStyle}
-      >
-        <Text style={styles.antapaccay}>ANTAPACCAY</Text>
-        <View style={styles.lineIzquierdaRow}>
-          <View style={styles.lineIzquierda}></View>
-          <View style={styles.lineIzquierdaFiller}>
-            <Image
-              source={require("../../../assets/images/LogoNuevo.png")}
-              resizeMode="contain"
-              style={styles.logoNuevo}
-
-            ></Image>
-          </View>
-          <View style={styles.lineDerecha}></View>
-        </View>
-        <View style={styles.iconRow}>
-          <FontAwesomeIcon name="user" style={styles.icon}></FontAwesomeIcon>
-          <TextInput
-            placeholder="Ingrese Usuario"
-            placeholderTextColor="rgba(234,235,235,255)"
-            selectionColor="rgba(255,253,253,1)"
-            style={styles.usuario}
-            onChangeText={(value) => handleChangeText('email', value)}
-          ></TextInput>
-        </View>
-        <View style={styles.lineaSeparadora}></View>
-        <View style={styles.icon2Row}>
-          <FontAwesomeIcon name="key" style={styles.icon2}></FontAwesomeIcon>
-          <TextInput
-            placeholder="Ingrese Contraseña"
-            placeholderTextColor="rgba(234,235,235,255)"
-            selectionColor="rgba(255,253,253,1)"
-            secureTextEntry={true}
-            style={styles.password}
-            onChangeText={(value) => handleChangeText('password', value)}
-          ></TextInput>
-        </View>
-        {loading ? (
-          <ActivityIndicator
-            //visibility of Overlay Loading Spinner
-            visible={loading}
-            //Text with the Spinner
-            textContent={'Loading...'}
-            size="large" 
-            color="#00ff00"
-            //Text style of the Spinner Text
-            textStyle={styles.spinnerTextStyle}
-          />
-        ) :(
-        <TouchableOpacity
-          name="Submit"
-          onPress={doLogin}
-          style={styles.button}
-        >
-          <Text style={styles.iniciarSesion}>INICIAR SESION</Text>
-        </TouchableOpacity>)}
-        <AwesomeAlert
-          show={Estado}
-          showProgress={false}
-          title="Bienvenido"
-          titleStyle={{ fontSize: 22, marginBottom: 10 }}
-          messageStyle={{ fontSize: 18, marginBottom: 10 }}
-          message="inicio de sesión exitoso"
-          closeOnTouchOutside={true}
-          closeOnHardwareBackPress={false}
-          showCancelButton={false}
-          showConfirmButton={true}
-          cancelText="No"
-          confirmText="Continuar"
-          cancelButtonStyle={{ width: 100, alignItems: 'center', marginTop: 10 }}
-          confirmButtonStyle={{ width: 100, alignItems: 'center' }}
-          confirmButtonColor="#AEDEF4"
-          cancelButtonColor="#DD6B55"
-          onConfirmPressed={() => {
-            navigation.navigate('Home')
-            hideAlert();
-          }}
+      {loading ? (
+        <ActivityIndicator
+          //visibility of Overlay Loading Spinner
+          visible={loading}
+          //Text with the Spinner
+          size="large"
+          color="#f4c47c"
+          //Text style of the Spinner Text
+          textStyle={styles.spinnerTextStyle}
         />
-      </ImageBackground>
+      ) : (
+        <>
+          <ImageBackground
+            source={require("../../../assets/images/fondo3.png")}
+            resizeMode="stretch"
+            style={styles.background}
+            imageStyle={styles.background_imageStyle}
+          >
+            <Text style={styles.antapaccay}>ANTAPACCAY</Text>
+            <View style={styles.lineIzquierdaRow}>
+              <View style={styles.lineIzquierda}></View>
+              <View style={styles.lineIzquierdaFiller}>
+                <Image
+                  source={require("../../../assets/images/LogoNuevo.png")}
+                  resizeMode="contain"
+                  style={styles.logoNuevo}
+
+                ></Image>
+              </View>
+              <View style={styles.lineDerecha}></View>
+            </View>
+            <View style={styles.iconRow}>
+              <FontAwesomeIcon name="user" style={styles.icon}></FontAwesomeIcon>
+              <TextInput
+                placeholder="Ingrese Usuario"
+                placeholderTextColor="rgba(234,235,235,255)"
+                selectionColor="rgba(255,253,253,1)"
+                style={styles.usuario}
+                onChangeText={(value) => handleChangeText('email', value)}
+              ></TextInput>
+            </View>
+            <View style={styles.lineaSeparadora}></View>
+            <View style={styles.icon2Row}>
+              <FontAwesomeIcon name="key" style={styles.icon2}></FontAwesomeIcon>
+              <TextInput
+                placeholder="Ingrese Contraseña"
+                placeholderTextColor="rgba(234,235,235,255)"
+                selectionColor="rgba(255,253,253,1)"
+                secureTextEntry={true}
+                style={styles.password}
+                onChangeText={(value) => handleChangeText('password', value)}
+              ></TextInput>
+            </View>
+
+            <TouchableOpacity
+              name="Submit"
+              onPress={doLogin}
+              style={styles.button}
+            >
+              <Text style={styles.iniciarSesion}>INICIAR SESION</Text>
+            </TouchableOpacity>
+            <AwesomeAlert
+              show={Estado}
+              showProgress={false}
+              title="Bienvenido"
+              titleStyle={{ fontSize: 22, marginBottom: 10 }}
+              messageStyle={{ fontSize: 18, marginBottom: 10 }}
+              message="inicio de sesión exitoso"
+              closeOnTouchOutside={true}
+              closeOnHardwareBackPress={false}
+              showCancelButton={false}
+              showConfirmButton={true}
+              cancelText="No"
+              confirmText="Continuar"
+              cancelButtonStyle={{ width: 100, alignItems: 'center', marginTop: 10 }}
+              confirmButtonStyle={{ width: 100, alignItems: 'center' }}
+              confirmButtonColor="#AEDEF4"
+              cancelButtonColor="#DD6B55"
+              onConfirmPressed={() => {
+                navigation.navigate('Home')
+                hideAlert();
+              }}
+            />
+          </ImageBackground>
+        </>
+      )}
     </View>
   );
 }
@@ -179,7 +185,8 @@ export default Login
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "rgba(251,251,251,1)"
+    backgroundColor: "rgba(251,251,251,1)",
+    justifyContent: "center"
   },
   background: {
     flex: 1
@@ -236,7 +243,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginLeft: 18,
     marginTop: 6,
-    fontSize:16,
+    fontSize: 16,
   },
   iconRow: {
     height: 27,
@@ -267,7 +274,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginLeft: 14,
     marginTop: 10,
-    fontSize:16,
+    fontSize: 16,
   },
   icon2Row: {
     height: 27,

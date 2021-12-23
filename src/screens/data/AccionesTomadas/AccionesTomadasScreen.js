@@ -49,6 +49,7 @@ function AccionestomadasScreen(props) {
             <TextInput
               placeholder="Ingrese las acciones realizadas"
               multiline={true}
+              defaultValue={props.formulario.take_actions }
               onChangeText={(value) => handleChangeText('accionesTomadas', value)}
               style={styles.textInput}
             ></TextInput>

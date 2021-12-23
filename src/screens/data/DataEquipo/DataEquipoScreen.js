@@ -24,7 +24,7 @@ import { AuthContext } from "../../../Context/authState";
 import SearchableDropdown from 'react-native-searchable-dropdown';
 
 function DataEquipoScreen(props) {
-  const [Horas, setHoras] = useState(0);
+  const [Horas, setHoras] = useState(props.formulario.downtime);
 
   const initialState = {
     equipment_id: '',
@@ -40,7 +40,7 @@ function DataEquipoScreen(props) {
       props.formulario.details = value
     }
     props.formulario.downtime = Horas
-    props.formulario.equipment_id = 3
+    props.formulario.equipment_id = selection?.id
   };
 
   const { token } = useContext(AuthContext)
@@ -56,6 +56,9 @@ function DataEquipoScreen(props) {
 
   useEffect(() => {
     traerEquipos()
+    return function cleanup() {
+      traerEquipos()
+    }
   }, [])
 
   const [selection, setSelection] = useState()
@@ -165,9 +168,7 @@ function DataEquipoScreen(props) {
           placeholder="Ingrese Detalles"
           onChangeText={(value) => handleChangeText('details', value)}
           multiline={true}
-          require={true}
-          selectTextOnFocus={true}
-          disableFullscreenUI={true}
+          defaultValue={props.formulario.details}
           style={styles.textInput3}
         ></TextInput>
       </ScrollView>

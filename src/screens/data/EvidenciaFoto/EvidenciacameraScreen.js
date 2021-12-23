@@ -35,8 +35,8 @@ function EvidenciacameraScreen(props) {
   };
   console.log(props)
   // el  path de las imagenes
-  const [pickedImagePath, setPickedImagePath] = useState('');
-  const [pickedImagePath2, setPickedImagePath2] = useState('');
+  const [pickedImagePath, setPickedImagePath] = useState(props.formulario.foto1[0]?.base64 );
+  const [pickedImagePath2, setPickedImagePath2] = useState(props.formulario.foto1[1]?.base64);
 
   const [dataFoto, setDataFoto] = useState(
 
@@ -186,12 +186,14 @@ function EvidenciacameraScreen(props) {
           {/* <TextInput
             placeholder="Detalles de las fotos"
             multiline={true}
+            defaultValue={props.formulario.evidenciaDetalle}
             onChangeText={(value) => handleChangeText('evidenciaDetalle', value)}
             style={styles.textInput}
           ></TextInput> */}
 
           <View style={styles.buttonContainer}>
             <Icon onPress={showImagePicker}
+            
               name="upload" style={styles.camera}></Icon>
             <Icon onPress={openCamera}
               name="camera" style={styles.archivos}></Icon>

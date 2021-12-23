@@ -47,13 +47,15 @@ function ResultadoconclusionScreen(props) {
             <TextInput 
               placeholder="Ingrese los resultados obtenidos"
               multiline
+              defaultValue={props.formulario.results}
               onChangeText={(value)=>handleChangeText('resultado', value)}
               style={styles.textInput}
             ></TextInput>
             {/* <Text style={styles.concluciones}>Conclusiones</Text>
             <TextInput
               placeholder="Ingrese las conclusiones "
-              multiline
+              multiline  
+              defaultValue={props.formulario.conclusiones }
               onChangeText={(value)=>handleChangeText('conclusiones', value)}
               style={styles.textInput}
             ></TextInput> */}

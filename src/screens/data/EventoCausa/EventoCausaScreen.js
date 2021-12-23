@@ -54,6 +54,7 @@ const [eventoCausa, setEventoCausa] = useState(initialState);
             <Text style={styles.evento}>Evento ocurrido</Text>
             <TextInput
               placeholder="Ingrese el Evento ocurrido"
+              defaultValue={props.formulario.event}
               multiline
               onChangeText={(value)=>handleChangeText('evento', value)}
               style={styles.textInput}
@@ -62,6 +63,7 @@ const [eventoCausa, setEventoCausa] = useState(initialState);
             <TextInput
               placeholder="Escriba lo sucedido"
               multiline
+              defaultValue={props.formulario.description}
               onChangeText={(value)=>handleChangeText('description', value)}
               style={styles.textInput}
             ></TextInput>
@@ -69,6 +71,7 @@ const [eventoCausa, setEventoCausa] = useState(initialState);
             <TextInput
               placeholder="Ingrese Causas encontradas"
               multiline
+              defaultValue={props.formulario.attributed_cause}
               onChangeText={(value)=>handleChangeText('causa', value)}
               style={styles.textInput}
             ></TextInput>

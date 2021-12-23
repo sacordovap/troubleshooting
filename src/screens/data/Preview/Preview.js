@@ -7,7 +7,8 @@ import {
     TouchableOpacity,
     ImageBackground,
     Alert,
-    Image
+    Image,
+    ActivityIndicator
 } from "react-native";
 
 import axios from "axios";
@@ -15,6 +16,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import { postCreateData, getEquiment, getEquipmentById } from "../../../services/api";
 import { AuthContext } from "../../../Context/authState";
+import format from "date-fns/format";
 
 function Preview(props) {
 
@@ -26,7 +28,7 @@ function Preview(props) {
     const [formulario, setFormulario] = useState({
         event: props.route.params.formulario.event,
         date: props.route.params.formulario.date,
-        description: "1",
+        description: props.route.params.formulario.equipment_id,
         attributed_cause: props.route.params.formulario.attributed_cause,
         superintendent: props.route.params.formulario.superintendent,
         supervisor: props.route.params.formulario.supervisor,
@@ -35,19 +37,20 @@ function Preview(props) {
         details: props.route.params.formulario.details,
         take_actions: props.route.params.formulario.take_actions,
         results: props.route.params.formulario.results,
+        // equipment_id: props.route.params.formulario.equipment_id,
         equipment_id: props.route.params.formulario.equipment_id,
         attachments: props.route.params.formulario.foto1
-
-
         // password: ""
     })
-    const handleSubmit = () => {
 
+    console.log(formulario)
+
+    const handleSubmit = () => {
+        startLoading()
         postCreateData(formulario, token).then((rpta) => {
-            setLoading(true)
+
             if (rpta.status === 200) {
                 setLoading(false)
-                console.warn("Subida extitosa")
                 props.navigation.navigate('HistorialReporte')
             } else {
                 console.warn("Subida errónea")
@@ -107,21 +110,23 @@ function Preview(props) {
         setLoading(true);
         setTimeout(() => {
             setLoading(false);
-        }, 3000);
+        }, 10000);
     };
 
+
+    var formattedDate = format(props.route.params.formulario?.date, "MMMM do, yyyy H:mma");
+
+    console.log(formattedDate);
+
     return (
-
-
-
         <ScrollView style={styles.container}>
             {loading ? (
                 <ActivityIndicator
                     //visibility of Overlay Loading Spinner
                     visible={loading}
                     //Text with the Spinner
-                    size="large" 
-                    color="#00ff00"
+                    size="large"
+                    color="#f4c47c"
                     //Text style of the Spinner Text
                     textStyle={styles.spinnerTextStyle}
                 />
@@ -137,7 +142,7 @@ function Preview(props) {
                     <Text style={styles.tituloIncidente}>Registro de incidente</Text>
                     <Text style={styles.fechaTag1}>Fecha</Text>
                     <Text style={styles.fecha2}
-                    >{hora}</Text>
+                    >{formattedDate}</Text>
                     {/* <Text style={styles.horaTag1}>Hora</Text>
                     <Text style={styles.hora2}>{ hora?.getHours() + ':' + hora?.getMinutes()}</Text> */}
                     <Text style={styles.supeintendente1}>Supeintendente</Text>
@@ -190,35 +195,36 @@ function Preview(props) {
                         onPress={() => { showAlert() }}>
                         <Text style={styles.guardarReporte}>Guardar Reporte</Text>
                     </TouchableOpacity>
+
+                    <AwesomeAlert
+                        show={Estado}
+                        showProgress={false}
+                        title="Registro de Incidente"
+                        titleStyle={{ fontSize: 22, marginBottom: 10 }}
+                        messageStyle={{ fontSize: 18, marginBottom: 10 }}
+                        message="Esta seguro de guardar?"
+                        closeOnTouchOutside={true}
+                        closeOnHardwareBackPress={false}
+                        showCancelButton={true}
+                        showConfirmButton={true}
+                        cancelText="No"
+                        confirmText="Si"
+                        cancelButtonStyle={{ width: 100, alignItems: 'center', marginTop: 10 }}
+                        confirmButtonStyle={{ width: 100, alignItems: 'center' }}
+                        confirmButtonColor="#AEDEF4"
+                        cancelButtonColor="#DD6B55"
+                        onCancelPressed={() => {
+                            hideAlert();
+                        }}
+                        onConfirmPressed={() => {
+                            handleSubmit();
+                            hideAlert();
+                        }}
+                    />
+                    {/* </View>
+            </ImageBackground> */}
                 </>
             )}
-            <AwesomeAlert
-                show={Estado}
-                showProgress={false}
-                title="Registro de Incidente"
-                titleStyle={{ fontSize: 22, marginBottom: 10 }}
-                messageStyle={{ fontSize: 18, marginBottom: 10 }}
-                message="Esta seguro de guardar?"
-                closeOnTouchOutside={true}
-                closeOnHardwareBackPress={false}
-                showCancelButton={true}
-                showConfirmButton={true}
-                cancelText="No"
-                confirmText="Si"
-                cancelButtonStyle={{ width: 100, alignItems: 'center', marginTop: 10 }}
-                confirmButtonStyle={{ width: 100, alignItems: 'center' }}
-                confirmButtonColor="#AEDEF4"
-                cancelButtonColor="#DD6B55"
-                onCancelPressed={() => {
-                    hideAlert();
-                }}
-                onConfirmPressed={() => {
-                    handleSubmit();
-                    hideAlert();
-                }}
-            />
-            {/* </View>
-            </ImageBackground> */}
         </ScrollView>
     );
 }
@@ -236,7 +242,7 @@ const styles = StyleSheet.create({
         elevation: 5,
         marginTop: 21,
         shadowOpacity: 0.41,
-        marginBottom: 3
+        marginBottom: 3,
     },
     rect: {
         backgroundColor: "rgba(255,255,255,1)",

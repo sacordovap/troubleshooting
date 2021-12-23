@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import {
   View, Text, ScrollView, Button, StyleSheet,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  ActivityIndicator
 } from "react-native";
 
 import { ListItem, Avatar, Divider } from "react-native-elements";
@@ -20,8 +21,10 @@ export default function HistorialReportesScreen({ children }) {
   const navigation = useNavigation();
 
   const traerTroubles = () => {
+    startLoading()
     getTroubleShooting(token).then(rpta => {
       setReportes(rpta.data.data)
+      setLoading(false)
       // console.log(rpta.data.data)
     })
   }
@@ -33,17 +36,15 @@ export default function HistorialReportesScreen({ children }) {
 
 
 
-  // var fechaConv = new Date(Reportes[0]?.date)
-  // console.log(Reportes[0]?.date)
-  // console.log(fechaConv.getFullYear())
-  // console.log(fechaConv.getHours())
+  const [loading, setLoading] = useState(false);
 
-  // const [hora, setHora] = useState()
+  const startLoading = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 10000);
+  };
 
-  // function convertFormat(date) {
-  //    var formattedDate = format(date, "MMMM do, yyyy H:mma");
-  //    return formattedDate
-  // }
 
   return (
     <><View style={[styles.container1]}>
@@ -69,34 +70,49 @@ export default function HistorialReportesScreen({ children }) {
 
       <ScrollView style={styles.container}>
 
-        {/* <Button title="Crear Usuario"
+        {loading ? (
+          <ActivityIndicator
+            //visibility of Overlay Loading Spinner
+            visible={loading}
+            //Text with the Spinner
+            size="large"
+            color="#f4c47c"
+            //Text style of the Spinner Text
+            textStyle={styles.spinnerTextStyle}
+          />
+        ) : (
+          <>
+
+            {/* <Button title="Crear Usuario"
       onPress={() =>
         props.navigation.navigate('Crear Usuario')}>
     </Button> */}
 
-        {//recorrer usuarios
-          Reportes.map(ReportesObj => {
-           
-            return (
-              <ListItem style={styles.inputGroups} key={ReportesObj.id} buttonDivider
-                onPress={() => navigation.navigate('ReporteDetalle', {
-                  id: ReportesObj.id,
-                  traerTroubles
-                })}>
+            {//recorrer usuarios
+              Reportes.map(ReportesObj => {
 
-                <ListItem.Chevron /*es el icono*/ />
-                <Avatar source={{
-                  uri: 'https://yosirvoblog.files.wordpress.com/2016/05/fir-reporte-de-incidentes-de-edificios.png'
-                }}
-                  rounded />
-                <ListItem.Content>
-                  <ListItem.Title>{ReportesObj.event}</ListItem.Title>
-                  <ListItem.Subtitle>Fecha: {(new Date(ReportesObj.date)).toLocaleDateString()}</ListItem.Subtitle>
-                  <ListItem.Subtitle>Hora: {(new Date(ReportesObj.date)).toLocaleTimeString()}</ListItem.Subtitle>
-                </ListItem.Content>        
-              </ListItem>
-            );
-          })}
+                return (
+                  <ListItem style={styles.inputGroups} key={ReportesObj.id} buttonDivider
+                    onPress={() => navigation.navigate('ReporteDetalle', {
+                      id: ReportesObj.id,
+                      traerTroubles
+                    })}>
+
+                    <ListItem.Chevron /*es el icono*/ />
+                    <Avatar source={{
+                      uri: 'https://yosirvoblog.files.wordpress.com/2016/05/fir-reporte-de-incidentes-de-edificios.png'
+                    }}
+                      rounded />
+                    <ListItem.Content>
+                      <ListItem.Title>{ReportesObj.event}</ListItem.Title>
+                      <ListItem.Subtitle>Fecha: {(new Date(ReportesObj.date)).toLocaleDateString()}</ListItem.Subtitle>
+                      <ListItem.Subtitle>Hora: {(new Date(ReportesObj.date)).toLocaleTimeString()}</ListItem.Subtitle>
+                    </ListItem.Content>
+                  </ListItem>
+                );
+              })}
+          </>
+        )}
       </ScrollView></>
   )
 }
@@ -128,7 +144,8 @@ const styles = StyleSheet.create({
     height: 40,
     paddingRight: 8,
     marginTop: 21,
-    paddingLeft: 8
+    paddingLeft: 8,
+
   },
   header_Registro: {
     height: 39,

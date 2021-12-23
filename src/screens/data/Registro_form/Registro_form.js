@@ -32,7 +32,7 @@ function Registro_form(props) {
     supervisor: '',
     operators: '',
     equipment_id: '',
-    downtime: '',
+    downtime: 0,
     details: '',
     event: '',
     attributed_cause: '',
@@ -116,12 +116,12 @@ function Registro_form(props) {
               dotActiveStyle: { backgroundColor: '#2596be' },
               prevPos: 'left',
               nextPos: 'right',
-              nextTitle: '>',
+              nextTitle: ' ',
               nextTitleStyle: { color: 'gray', fontSize: 24, fontWeight: '500' },
               PrevComponent: ({ onPress }) => (
                 <TouchableOpacity onPress={onPress}>
                   <Text style={{ color: 'gray', fontSize: 24, fontWeight: '500' }}>
-                    {'<'}
+                    {' '}
                   </Text>
                 </TouchableOpacity>
               ),

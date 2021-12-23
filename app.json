@@ -1,18 +1,18 @@
 {
   "expo": {
-    "name": "troubleshooting",
-    "slug": "troubleshooting",
-    "version": "1.0.0",
+    "name": "Troubleshooting",
+    "slug": "Troubleshooting",
+    "version": "1.1.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/iconT.png",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "image": "./assets/splashT.png",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
-    },
+    }, 
     "assetBundlePatterns": [
       "**/*"
     ],

@@ -66,11 +66,11 @@ export default function ReporteDetalle(props) {
     const [hora, setHora] = useState(new Date())
     // const [data, setData] = useState([])
     const [estado, setEstado] = useState(false)
-    
+
     const getDataByID = () => {
         const idUrl = props.route.params.id;
         getTroubleShootingById(idUrl, token).then(rpta => {
-            setFormulario(rpta.data.data)       
+            setFormulario(rpta.data.data)
         })
     }
     const navigation = useNavigation();
@@ -115,16 +115,13 @@ export default function ReporteDetalle(props) {
             }
         })
     }
-    // console.log(formulario);
-    
- 
-    // var formattedDate = format(hora, "MMMM do, yyyy H:mma");
-  
-    // console.log(formattedDate);
+
+    var fechaDetalle = new Date(formulario?.date)
+
 
     if (loading) {
         <View>
-            <ActivityIndicator size="large" color="#547485" />
+            <ActivityIndicator size="large" color="#f4c47c" />
         </View>
     }
     return (
@@ -139,13 +136,13 @@ export default function ReporteDetalle(props) {
             <Text style={styles.tituloIncidente}>Registro de incidente {props.route.params.id}</Text>
             <Text style={styles.fechaTag1}>Fecha y Hora</Text>
             <TextInput style={styles.fecha2}
-                value={formulario?.date}
+                value={fechaDetalle?.getDate() + '/' + (fechaDetalle?.getMonth() + 1) + '/' + fechaDetalle?.getFullYear()}
                 editable={false}
                 onChangeText={(value) => handleChangeText('date', value)}
             ></TextInput>
             <Text style={styles.horaTag1}>Hora</Text>
             <TextInput style={styles.hora2}
-                value={formulario.date?.getHours() + ':' + formulario.date?.getMinutes()}
+                value={fechaDetalle?.getHours() + ':' + fechaDetalle?.getMinutes()}
                 editable={false}
                 onChangeText={(value) => handleChangeText('date', value)}
             ></TextInput>
@@ -485,7 +482,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: "rgba(1,123,146,255)",
         marginTop: 15,
-       width: 83,
+        width: 83,
         marginLeft: 19,
         textAlign: "center",
     },

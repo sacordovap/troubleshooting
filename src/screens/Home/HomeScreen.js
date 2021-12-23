@@ -28,7 +28,7 @@ function HomeScreen(props) {
               name="file-powerpoint-o"
               style={styles.iconReporte}
             ></FontAwesomeIcon>
-            <Text style={styles.nuevoReporte}>NUEVO REPORTE</Text>
+            <Text style={styles.nuevoReporte}>Nuevo Reporte</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => props.navigation.navigate("HistorialReporte")}
@@ -38,7 +38,7 @@ function HomeScreen(props) {
               name="list-alt"
               style={styles.iconLista}
             ></FontAwesomeIcon>
-            <Text style={styles.reportesRealizados}>REPORTES REALIZADOS</Text>
+            <Text style={styles.reportesRealizados}>Reportes Realizados</Text>
           </TouchableOpacity>
         </View>
         
@@ -116,10 +116,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: 'bold',
     color: "#ffffff",
-    marginTop:5,
+    marginTop:8,
   },
   reportesRealizados: {
-    marginTop:5,
+    marginTop:-2,
     color: "#ffffff",
     textAlign: "center",
     fontWeight: 'bold'
