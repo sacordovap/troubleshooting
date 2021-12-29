@@ -22,6 +22,7 @@ import Icon from "react-native-vector-icons/Entypo";
 import Icons from "react-native-vector-icons/Ionicons";
 import AwesomeAlert from 'react-native-awesome-alerts';
 import EvidenciacameraScreen from "../EvidenciaFoto/EvidenciacameraScreen";
+import { useNavigation } from '@react-navigation/native';
 
 function Registro_form(props) {
 
@@ -60,18 +61,18 @@ function Registro_form(props) {
     const hideAlert = () => {
         setEstado(false);
     };
-
+    const navigation = useNavigation();
 
   return (
     <>
       <View style={[styles.container1, props.style]}>
         <View style={styles.leftWrapper}>
-          <TouchableOpacity style={styles.leftIconButton}
-            onPress={() => props.navigation.navigate('Home')}
+          {/* <TouchableOpacity style={styles.leftIconButton}
+            onPress={() => navigation.navigate('Tabs')}
           ><Icons name="ios-arrow-back" style={styles.leftIcon}
           ></Icons>
             <Text style={styles.leftText}></Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
         <View style={styles.textWrapper}>
           <Text numberOfLines={1} style={styles.ingresoDeDatos}>

@@ -168,7 +168,7 @@ const Login = (props) => {
               confirmButtonColor="#AEDEF4"
               cancelButtonColor="#DD6B55"
               onConfirmPressed={() => {
-                navigation.navigate('Home')
+                navigation.navigate('Tabs')
                 hideAlert();
               }}
             />

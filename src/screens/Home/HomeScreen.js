@@ -1,11 +1,26 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Image, ImageBackground, TouchableOpacity, Text } from "react-native";
+import { StyleSheet, View, Image, ImageBackground, TouchableOpacity, Text, Button, Alert } from "react-native";
 import NewSpeech from "../../../components/NewSpeech";
 import DocumentosRecientes from "../../../components/DocumentosRecientes";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import Asyncstorage from "@react-native-async-storage/async-storage"
+import { useNavigation } from "@react-navigation/native";
+
+
 
 function HomeScreen(props) {
+  const navigation = useNavigation();
 
+  const cerrarSesion = async () => {
+    try {
+      await Asyncstorage.removeItem('token')
+      navigation.navigate('Login')
+    } catch(e) {
+      Alert(e)
+    }
+  
+    console.log('Done.')
+  }
   console.log(props)
   return (
     <View style={styles.container}>
@@ -41,8 +56,9 @@ function HomeScreen(props) {
             <Text style={styles.reportesRealizados}>Reportes Realizados</Text>
           </TouchableOpacity>
         </View>
-        
+
       </View>
+      <Button title="Cerrar Sesión" onPress={() => cerrarSesion()}>CERODO</Button>
     </View>
   );
 }
@@ -75,8 +91,8 @@ const styles = StyleSheet.create({
   wIdgets: {
     alignSelf: "center",
     marginTop: 90,
-    marginLeft:15,
-    marginRight:15
+    marginLeft: 15,
+    marginRight: 15
   },
   button: {
     width: 152,
@@ -116,10 +132,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: 'bold',
     color: "#ffffff",
-    marginTop:8,
+    marginTop: 8,
   },
   reportesRealizados: {
-    marginTop:-2,
+    marginTop: -2,
     color: "#ffffff",
     textAlign: "center",
     fontWeight: 'bold'
@@ -134,7 +150,7 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   rect: {
-    width:'100%',
+    width: '100%',
     height: 259,
     backgroundColor: "rgba(43,183,196,1)",
     borderWidth: 0,

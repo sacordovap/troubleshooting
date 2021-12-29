@@ -49,14 +49,14 @@ export default function HistorialReportesScreen({ children }) {
   return (
     <><View style={[styles.container1]}>
       <View style={styles.leftWrapper}>
-        <TouchableOpacity style={styles.leftIconButton}
+        {/* <TouchableOpacity style={styles.leftIconButton}
           onPress={() => navigation.navigate('Home')}
         >
           <Icons name="ios-arrow-back" style={styles.leftIcon}
 
           ></Icons>
           <Text style={styles.leftText}></Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
       <View style={styles.textWrapper}>
         <Text numberOfLines={1} style={styles.ingresoDeDatos}>

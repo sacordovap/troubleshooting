@@ -27,20 +27,24 @@ import EvidenciacameraScreen from './src/screens/data/EvidenciaFoto/Evidenciacam
 import HistorialReportesScreen from './src/screens/Historial/HistorialReportesScreen';
 import ReporteDetalle from './src/screens/Historial/ReporteDetalle';
 import { AuthProvider } from './src/Context/authState';
+import TabNavigationBar from './src/screens/Home/TabNavigationBar';
 
 const Stack = createNativeStackNavigator();
 
 function MyStack() {
   return (
- 
+
     <Stack.Navigator screenOptions={{
       headerShown: false
     }}>
-     
+
       <Stack.Screen name="Login"
         component={Login} />
       <Stack.Screen name="Evidencia-Camera"
         component={EvidenciacameraScreen} />
+      <Stack.Screen name="Tabs"
+        component={TabNavigationBar}
+        options={{ title: 'Tabs' }} />
       <Stack.Screen name="Home"
         component={HomeScreen}
         options={{ title: 'Home' }} />
