@@ -10,7 +10,7 @@ import Asyncstorage from "@react-native-async-storage/async-storage"
 import AwesomeAlert from 'react-native-awesome-alerts';
 import { useState, useRef, useEffect } from 'react';
 import { useNavigation } from "@react-navigation/native";
-
+import { TabActions } from '@react-navigation/native';
 
 function Home() {
     return (
@@ -38,10 +38,10 @@ function Profile() {
     );
 }
 
-function Notifications() {
+function finalizarSesion() {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Listado de reportes registrados</Text>
+            <Text>Cerrando Sesión</Text>
         </View>
     );
 }
@@ -70,11 +70,14 @@ function MyTabs() {
         console.log('Done.')
     }
 
+    console.log();
+
     const irHome = () => {
-        hideAlert();
-        NavigationActions.navigate({ routeName: 'Home' })
+
+
+
     }
-   
+
     return (
         <>
             <Tab.Navigator
@@ -130,8 +133,8 @@ function MyTabs() {
             /> */}
 
 
-               
-                <Tab.Screen
+
+                {/* <Tab.Screen
                     name="Cerrar Sesión"
                     component={View}
                     listeners={({ navigation }) => ({
@@ -144,6 +147,15 @@ function MyTabs() {
                             // navigation.navigate("Login"); // Here!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                         },
                     })}
+                    options={{
+                        tabBarLabel: 'Cerrar Sesión',
+                        tabBarIcon: ({ color, size }) => (
+                            <MaterialCommunityIcons name="logout" color={color} size={size} />
+                        ),
+                    }} */}
+                <Tab.Screen
+                    name="cierre de Sesion"
+                    component={finalizarSesion}
                     options={{
                         tabBarLabel: 'Cerrar Sesión',
                         tabBarIcon: ({ color, size }) => (
@@ -172,8 +184,8 @@ function MyTabs() {
                     confirmButtonColor="#AEDEF4"
                     cancelButtonColor="#DD6B55"
                     onCancelPressed={() => {
-
-                        irHome()
+                       hideAlert();
+                        navigation.navigate('Antapaccay')
 
                     }
                     }
