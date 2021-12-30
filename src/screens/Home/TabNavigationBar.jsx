@@ -134,7 +134,7 @@ function MyTabs() {
 
 
 
-                {/* <Tab.Screen
+                <Tab.Screen
                     name="Cerrar Sesión"
                     component={View}
                     listeners={({ navigation }) => ({
@@ -152,17 +152,9 @@ function MyTabs() {
                         tabBarIcon: ({ color, size }) => (
                             <MaterialCommunityIcons name="logout" color={color} size={size} />
                         ),
-                    }} */}
-                <Tab.Screen
-                    name="cierre de Sesion"
-                    component={finalizarSesion}
-                    options={{
-                        tabBarLabel: 'Cerrar Sesión',
-                        tabBarIcon: ({ color, size }) => (
-                            <MaterialCommunityIcons name="logout" color={color} size={size} />
-                        ),
                     }}
                 />
+
 
             </Tab.Navigator>
             <View>
@@ -173,7 +165,7 @@ function MyTabs() {
                     titleStyle={{ fontSize: 22, marginBottom: 10 }}
                     messageStyle={{ fontSize: 18, marginBottom: 10 }}
                     message="Está seguro que desea cerrar sesión?"
-                    closeOnTouchOutside={true}
+                    closeOnTouchOutside={false}
                     closeOnHardwareBackPress={false}
                     showCancelButton={true}
                     showConfirmButton={true}
@@ -184,7 +176,7 @@ function MyTabs() {
                     confirmButtonColor="#AEDEF4"
                     cancelButtonColor="#DD6B55"
                     onCancelPressed={() => {
-                       hideAlert();
+                        hideAlert();
                         navigation.navigate('Antapaccay')
 
                     }
