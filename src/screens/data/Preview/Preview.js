@@ -17,6 +17,7 @@ import AwesomeAlert from 'react-native-awesome-alerts';
 import { postCreateData, getEquiment, getEquipmentById } from "../../../services/api";
 import { AuthContext } from "../../../Context/authState";
 import format from "date-fns/format";
+import { CommonActions } from "@react-navigation/native";
 
 function Preview(props) {
 
@@ -69,7 +70,8 @@ function Preview(props) {
         
             if (rpta.status === 200) {
                 setLoading(false)
-                props.navigation.navigate('Tabs', { screen: 'Historial de Reportes' })
+                props.navigation.push('Tabs', { screen: 'Historial de Reportes' })
+                
             } else {
                 console.warn("Subida errónea")
                 setLoading(false)
