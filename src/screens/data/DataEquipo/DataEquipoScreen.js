@@ -80,7 +80,7 @@ function DataEquipoScreen(props) {
         imageStyle={styles.image1_imageStyle}
       >
         <View style={styles.contenedorDatos1}> */}
-      <Text style={styles.titulo1}>Equipo y tiempo de Parada</Text>
+      <Text style={styles.titulo1}>Equipo y Tiempo de Parada</Text>
 
       <View style={styles.textInput2Row}>
         <Text style={styles.equipo}>Equipo afectado</Text>
@@ -108,8 +108,7 @@ function DataEquipoScreen(props) {
             color: "#696969",
             borderBottomWidth: 1,
             borderColor: "rgba(1,123,146,255)",
-            width:150,
-            marginTop: 5,
+            marginTop: 11,
             marginRight: 19,
             marginLeft: 5,
           }}
@@ -132,7 +131,7 @@ function DataEquipoScreen(props) {
           //mapping of item array 
           defaultIndex={2}
           //default selected item index
-          placeholder="buscar equipo"
+          placeholder="Buscar equipo"
           //place holder for the search input
           resetValue={false}
           //reset textInput Value with true and false state
@@ -311,7 +310,7 @@ const styles = StyleSheet.create({
     color: "#696969",
     borderBottomWidth: 1,
     borderColor: "rgba(1,123,146,255)",
-    marginTop: 25,
+    marginTop: 5,
     marginRight: 19,
     marginLeft: 19,
     marginBottom: 10,

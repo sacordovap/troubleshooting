@@ -148,9 +148,8 @@ function DatosInicialesScreen(props) {
               //inserted text style
               color: "#696969",
               borderBottomWidth: 1,
-              borderColor: "rgba(1,123,146,255)",
-              width: 207,
-              marginTop: 5,
+              borderColor: "rgba(1,123,146,255)",            
+              marginTop: 7,
               marginRight: 19,
               marginLeft: 5,
             }}
@@ -173,7 +172,7 @@ function DatosInicialesScreen(props) {
             //mapping of item array 
             defaultIndex={2}
             //default selected item index
-            placeholder="Busqueda rapida"
+            placeholder="Búsqueda rápida"
             //place holder for the search input
             resetValue={false}
             //reset textInput Value with true and false state

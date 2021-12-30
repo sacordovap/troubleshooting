@@ -23,11 +23,12 @@ import { format } from "date-fns";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+
 export default function ReporteDetalle(props) {
 
     const { token } = useContext(AuthContext)
     console.log(token)
-    const [loading, setLoading] = useState()
 
     const [estadoAlertModificar, setEstadoAlertModificar] = useState(false);
     const [estadoAlertDelete, setEstadoAlertDelete] = useState(false);
@@ -69,13 +70,16 @@ export default function ReporteDetalle(props) {
     const [estado, setEstado] = useState(false)
 
     const getDataByID = () => {
+        startLoading()
         const idUrl = props.route.params.id;
         getTroubleShootingById(idUrl, token).then(rpta => {
             setFormulario(rpta.data.data)
+            setLoading(false)
         })
     }
     const navigation = useNavigation();
     useEffect(() => {
+        
         getDataByID()
     }, [])
 
@@ -86,7 +90,7 @@ export default function ReporteDetalle(props) {
 
             if (rpta.status === 200) {
                 console.warn("Subida extitosa")
-                navigation.navigate('HistorialReporte')
+                navigation.goBack()
             } else {
                 console.warn("Subida errónea")
 
@@ -111,23 +115,42 @@ export default function ReporteDetalle(props) {
             if (rpta.status === 200) {
                 //Se comprueba que se eliminó correctamente
                 props.route.params.traerTroubles()
-                navigation.navigate('HistorialReporte') //Se llama otra vez para setear la variable de estado y recargar la página automáticamente al borrar un usuario
+                navigation.goBack() //Se llama otra vez para setear la variable de estado y recargar la página automáticamente al borrar un usuario
 
             }
         })
     }
 
     var fechaDetalle = new Date(formulario?.date)
+    
 
 
-    if (loading) {
-        <View>
-            <ActivityIndicator size="large" color="#f4c47c" />
-        </View>
-    }
+
+    const [loading, setLoading] = useState(false);
+
+    const startLoading = () => {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+      }, 3000);
+    };
+  
     return (
         <>
+       
             <ScrollView style={styles.container}>
+            {loading ? (
+          <ActivityIndicator
+            //visibility of Overlay Loading Spinner
+            visible={loading}
+            //Text with the Spinner
+            size="large"
+            color="#f4c47c"
+            //Text style of the Spinner Text
+            textStyle={styles.spinnerTextStyle}
+          />
+        ) : (
+          <>
                 {/* <ImageBackground
                 source={require("../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
                 resizeMode="cover"
@@ -135,7 +158,7 @@ export default function ReporteDetalle(props) {
                 imageStyle={styles.image_imageStyle}
             >
                 <View style={styles.rect}> */}
-                <Text style={styles.tituloIncidente}>Registro de incidente {props.route.params.id}</Text>
+                <Text style={styles.tituloIncidente}>{formulario.event}</Text>
                 <Text style={styles.fechaTag1}>Fecha y Hora</Text>
                 <TextInput style={styles.fecha2}
                     value={fechaDetalle?.getDate() + '/' + (fechaDetalle?.getMonth() + 1) + '/' + fechaDetalle?.getFullYear()}
@@ -256,27 +279,7 @@ export default function ReporteDetalle(props) {
                             opacity: 0.9,
                         }} />)}
                 </View>
-                <View style={{ alignSelf: 'center', flexDirection: 'column' }}>{estado ?
-                    (<TouchableOpacity
-                        style={[styles.containerCambios, styles.guardarDataReporte]}
-                        onPress={() => showAlertModificar()}>
-                        <Text style={styles.guardarReporte}>Guardar Registro</Text>
-                    </TouchableOpacity>) :
-                    (<TouchableOpacity
-                        style={[styles.containerCambios, styles.guardarDataReporte]}
-                        onPress={() => edit()}>
-                        <Text style={styles.guardarReporte}>Modificar Registro</Text>
-                    </TouchableOpacity>)
-                }<TouchableOpacity
-                    style={[styles.containerEliminar, styles.guardarDataReporte]}
-                    onPress={() => showAlertDelete()}>
-                        <Text style={styles.guardarReporte}>Eliminar Registro</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={[styles.containerBotonGuardar, styles.guardarDataReporte]}
-                        onPress={() => navigation.goBack()}>
-                        <Text style={styles.guardarReporte}>Finalizar Revision</Text>
-                    </TouchableOpacity></View>
+
                 {/* </View> */}
                 <AwesomeAlert
                     show={estadoAlertModificar}
@@ -329,12 +332,35 @@ export default function ReporteDetalle(props) {
                     }}
                 />
                 {/* </ImageBackground> */}
-             
-            </ScrollView >
-            <View style={{ backgroundColor: "red", position: 'absolute', bottom: 0 }}>
-                <Text>Footer</Text>
-            </View>
 
+                </>
+        )}
+            </ScrollView >
+            <View style={{ flexDirection: "row", position: 'absolute', bottom: 0 , alignSelf: 'center'}}>
+                {estado ? 
+                    (<TouchableOpacity
+                        style={[styles.containerCambios, styles.guardarDataReporte]}
+                        onPress={() => showAlertModificar()}>
+                        <FontAwesomeIcon name="save" style={styles.icon}></FontAwesomeIcon>
+                    </TouchableOpacity>) :
+                    (<TouchableOpacity
+                        style={[styles.containerCambios, styles.guardarDataReporte]}
+                        onPress={() => edit()}>
+                        <FontAwesomeIcon name="edit" style={styles.icon}></FontAwesomeIcon>
+                    </TouchableOpacity>)
+                }<TouchableOpacity
+                    style={[styles.containerCambios, styles.guardarDataReporte]}
+                    onPress={() => showAlertDelete()}>
+                    <FontAwesomeIcon name="trash" style={styles.icon2}></FontAwesomeIcon>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={[styles.containerCambios, styles.guardarDataReporte]}
+                    onPress={() => navigation.goBack()}>
+                    <FontAwesomeIcon name="reply" style={styles.icon3}></FontAwesomeIcon>
+                </TouchableOpacity>
+            </View>
+            
+        
         </>
     );
 }
@@ -344,15 +370,9 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#fff",
         borderRadius: 10,
-        shadowColor: "rgba(1,123,146,255)",
-        shadowOffset: {
-            width: 0,
-            height: 3
-        },
-        elevation: 5,
         marginTop: 21,
         shadowOpacity: 0.41,
-        marginBottom: 3
+        marginBottom: 45
     },
     rect: {
         backgroundColor: "rgba(255,255,255,1)",
@@ -372,6 +392,22 @@ const styles = StyleSheet.create({
         marginRight: 10,
         marginLeft: 10
     },
+    icon: {
+        color: 'green',
+        fontSize: 24,
+        marginTop:10
+      },
+      icon2: {
+        color: 'red',
+        fontSize: 24,
+        marginTop:10
+        
+      },
+      icon3: {
+        color: 'blue',
+        fontSize: 24,
+        marginTop:10
+      },
     tituloIncidente: {
         color: "#121212",
         fontSize: 26,
@@ -620,12 +656,12 @@ const styles = StyleSheet.create({
         marginTop: 25,
         marginLeft: 40,
         marginRight: 40,
+        marginBottom: 30,
         alignItems: 'center'
     },
     guardarDataReporte: {
-        height: 36,
-        width: 198,
-        marginTop: 15,
+        height: 55,
+        width: 55,
     },
     containerBotonGuardar: {
         backgroundColor: "rgba(1,123,146,1)",
@@ -633,18 +669,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
         flexDirection: "row",
         borderRadius: 2,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 1
-        },
         shadowOpacity: 0.35,
         shadowRadius: 5,
         elevation: 2,
-        minWidth: 88,
-        paddingLeft: 16,
-        paddingRight: 16,
-        marginBottom: 20
     },
     containerEliminar: {
         backgroundColor: "#DD6B55",
@@ -660,29 +687,13 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.35,
         shadowRadius: 5,
         elevation: 2,
-        minWidth: 88,
-        paddingLeft: 16,
-        paddingRight: 16,
-        marginBottom: 1
+      
     },
     containerCambios: {
-        backgroundColor: "#35C45A",
         justifyContent: "center",
         alignItems: "center",
-        flexDirection: "row",
-        borderRadius: 2,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 1
-        },
-        shadowOpacity: 0.35,
-        shadowRadius: 5,
-        elevation: 2,
-        minWidth: 88,
-        paddingLeft: 16,
-        paddingRight: 16,
-        marginBottom: 1
+        marginRight:12,
+        marginLeft:12,
     },
     guardarReporte: {
         color: "#fff",

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Alert, ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { Alert, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -69,14 +69,12 @@ function MyTabs() {
 
         console.log('Done.')
     }
-    const mounted = useRef(false)
-    useEffect(() => {
-        mounted.current = true
-        return () => {
-            mounted.current = false
-        }
-    }, [Estado])
 
+    const irHome = () => {
+        hideAlert();
+        NavigationActions.navigate({ routeName: 'Home' })
+    }
+   
     return (
         <>
             <Tab.Navigator
@@ -131,6 +129,8 @@ function MyTabs() {
                 }}
             /> */}
 
+
+               
                 <Tab.Screen
                     name="Cerrar Sesión"
                     component={View}
@@ -171,12 +171,19 @@ function MyTabs() {
                     confirmButtonStyle={{ width: 100, alignItems: 'center' }}
                     confirmButtonColor="#AEDEF4"
                     cancelButtonColor="#DD6B55"
+                    onCancelPressed={() => {
+
+                        irHome()
+
+                    }
+                    }
                     onConfirmPressed={() => {
                         hideAlert();
                         cerrarSesion()
                         // navigation.navigate('Login')
-                        
+
                     }}
+
                 />
             </View>
         </>
@@ -185,7 +192,7 @@ function MyTabs() {
 }
 
 export default function TabNavigationBar() {
-  
+
 
     return (
 

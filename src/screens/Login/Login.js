@@ -156,7 +156,7 @@ const Login = (props) => {
               title="Bienvenido"
               titleStyle={{ fontSize: 22, marginBottom: 10 }}
               messageStyle={{ fontSize: 18, marginBottom: 10 }}
-              message="inicio de sesión exitoso"
+              message="Inicio de Sesión Exitoso"
               closeOnTouchOutside={true}
               closeOnHardwareBackPress={false}
               showCancelButton={false}
@@ -208,9 +208,6 @@ const styles = StyleSheet.create({
   logoNuevo: {
     width: 106,
     height: 103,
-    borderWidth: 1,
-    borderColor: "rgba(250,248,248,1)",
-    borderRadius: 100,
   },
   lineIzquierdaFiller: {
     flex: 1,

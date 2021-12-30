@@ -44,9 +44,30 @@ function Registro_form(props) {
     foto1: []
   })
 
+  const resetFormulario = () => {
+
+    setFormulario({
+      date: '',
+      description: '',
+      superintendent: '',
+      supervisor: '',
+      operators: '',
+      equipment_id: '',
+      downtime: 0,
+      details: '',
+      event: '',
+      attributed_cause: '',
+      take_actions: '',
+      results: '',
+      // conclusiones: '',
+      // evidenciaDetalle: '',
+      foto1: []
+    })
+  }
+
   const [ActivarBoton, setActivarBoton] = useState(false)
 
-  const mostrarSize = () =>{
+  const mostrarSize = () => {
     console.log(Object.keys(formulario).length)
   }
 
@@ -55,13 +76,13 @@ function Registro_form(props) {
   })
 
   const [Estado, setEstado] = useState(false);
-    const showAlert = () => {
-        setEstado(true);
-    };
-    const hideAlert = () => {
-        setEstado(false);
-    };
-    const navigation = useNavigation();
+  const showAlert = () => {
+    setEstado(true);
+  };
+  const hideAlert = () => {
+    setEstado(false);
+  };
+  const navigation = useNavigation();
 
   return (
     <>
@@ -87,16 +108,16 @@ function Registro_form(props) {
                 formulario.superintendent === '' ||
                 formulario.supervisor === '' ||
                 formulario.operators === '' ||
-                formulario. equipment_id === '' ||
+                formulario.equipment_id === '' ||
                 formulario.downtime === '' ||
                 formulario.details === '' ||
                 formulario.event === '' ||
                 formulario.attributed_cause === '' ||
                 formulario.take_actions === '' ||
-                formulario.results === '' ) {
+                formulario.results === '') {
                 showAlert()
               }
-              else { props.navigation.navigate('Preview', { formulario }) }
+              else { props.navigation.navigate('Preview', { formulario, setFormulario, resetFormulario}) }
             }}
 
           ><Icon name="save" style={styles.leftIcon}
@@ -113,7 +134,7 @@ function Registro_form(props) {
             minDistanceForAction={0.1}
             controlsProps={{
               dotsTouchable: true,
-              dotsPos:'top',
+              dotsPos: 'top',
               dotActiveStyle: { backgroundColor: '#2596be' },
               prevPos: 'left',
               nextPos: 'right',

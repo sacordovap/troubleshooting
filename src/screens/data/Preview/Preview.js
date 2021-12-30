@@ -25,6 +25,24 @@ function Preview(props) {
 
     const { token } = useContext(AuthContext)
 
+    const [formularioInicial, setFormularioInicial] = useState({
+        date: '',
+        description: '',
+        superintendent: '',
+        supervisor: '',
+        operators: '',
+        equipment_id: '',
+        downtime: 0,
+        details: '',
+        event: '',
+        attributed_cause: '',
+        take_actions: '',
+        results: '',
+        // conclusiones: '',
+        // evidenciaDetalle: '',
+        foto1: []
+    })
+
     const [formulario, setFormulario] = useState({
         event: props.route.params.formulario.event,
         date: props.route.params.formulario.date,
@@ -43,15 +61,15 @@ function Preview(props) {
         // password: ""
     })
 
-    console.log(formulario)
+    console.log(props)
 
     const handleSubmit = () => {
         startLoading()
         postCreateData(formulario, token).then((rpta) => {
-
+        
             if (rpta.status === 200) {
                 setLoading(false)
-                props.navigation.navigate('HistorialReporte')
+                props.navigation.navigate('Tabs', { screen: 'Historial de Reportes' })
             } else {
                 console.warn("Subida errónea")
                 setLoading(false)
