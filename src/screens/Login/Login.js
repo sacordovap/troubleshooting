@@ -39,6 +39,15 @@ const Login = (props) => {
   };
 
 
+  const [EstadoError, setEstadoError] = useState(false);
+  const showAlertError = () => {
+    setEstadoError(true);
+  };
+  const hideAlertError = () => {
+    setEstadoError(false);
+  };
+
+
   const { token, setToken } = useAuth()
   const navigation = useNavigation();
 
@@ -61,8 +70,7 @@ const Login = (props) => {
 
     }, err => {
       setLoading(false)
-
-      alert("Usuario no encontrado")
+      showAlertError()
     })
   }
 
@@ -170,6 +178,28 @@ const Login = (props) => {
               onConfirmPressed={() => {
                 navigation.navigate('Tabs')
                 hideAlert();
+              }}
+            />
+
+            <AwesomeAlert
+              show={EstadoError}
+              showProgress={false}
+              title="Error de Inicio"
+              titleStyle={{ fontSize: 22, marginBottom: 10 }}
+              messageStyle={{ fontSize: 18, marginBottom: 10 }}
+              message="Ingrese sus datos nuevamente"
+              closeOnTouchOutside={true}
+              closeOnHardwareBackPress={false}
+              showCancelButton={false}
+              showConfirmButton={true}
+              cancelText="No"
+              confirmText="Volver"
+              cancelButtonStyle={{ width: 100, alignItems: 'center', marginTop: 10 }}
+              confirmButtonStyle={{ width: 100, alignItems: 'center' }}
+              confirmButtonColor="#DD6B55"
+              cancelButtonColor="#DD6B55"
+              onConfirmPressed={() => {
+                hideAlertError();
               }}
             />
           </ImageBackground>

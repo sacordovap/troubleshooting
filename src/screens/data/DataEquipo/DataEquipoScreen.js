@@ -39,7 +39,9 @@ function DataEquipoScreen(props) {
     if (nombre === 'details') {
       props.formulario.details = value
     }
-    props.formulario.downtime = Horas
+    if (nombre === 'downtime') {
+      props.formulario.downtime = value
+    }
     props.formulario.equipment_id = selection?.id
   };
 
@@ -140,27 +142,32 @@ function DataEquipoScreen(props) {
         />
       </View>
       <TextInput
-          placeholder=" "
-          value={selection?.name}
-          editable={false}
-          multiline={true}
-          style={styles.EquipoInput}
-        ></TextInput>
-      <ScrollView><View style={styles.textInput2Row}>     
+        placeholder=" "
+        value={selection?.name}
+        editable={false}
+        multiline={true}
+        style={styles.EquipoInput}
+      ></TextInput>
+      <ScrollView><View style={styles.textInput2Row}>
         <Text style={styles.tiempoDeParada}>Tiempo de parada</Text>
-        <TouchableOpacity onPress={() => setHoras(Horas - 1)}>
+        {/* <TouchableOpacity onPress={() => setHoras(Horas - 1)}>
           <FontAwesomeIcon
             name="minus"
             style={styles.icon}
-          ></FontAwesomeIcon></TouchableOpacity>
-        <Text style={styles.textInput2}
+          ></FontAwesomeIcon></TouchableOpacity> */}
+        <TextInput
+          style={styles.textInput2}
+          placeholder="Ingrese horas"
           onChangeText={(value) => handleChangeText('downtime', value)}
-        >{Horas} Horas</Text>
-        <TouchableOpacity onPress={() => setHoras(Horas + 1)}>
-          <FontAwesomeIcon
+          defaultValue={""+props.formulario.downtime}
+          multiline={true}
+          keyboardType='numeric'
+        ></TextInput>
+        {/* <TouchableOpacity onPress={() => setHoras(Horas + 1)}>
+          <FontAwesomeIcon 
             name="plus"
             style={styles.icon}
-          ></FontAwesomeIcon></TouchableOpacity>
+          ></FontAwesomeIcon></TouchableOpacity> */}
       </View>
         <Text style={styles.detalleDeParada}>Detalle de Parada</Text>
         <TextInput

@@ -53,7 +53,7 @@ function Registro_form(props) {
       supervisor: '',
       operators: '',
       equipment_id: '',
-      downtime: 0,
+      downtime: '',
       details: '',
       event: '',
       attributed_cause: '',
@@ -136,17 +136,21 @@ function Registro_form(props) {
               dotsTouchable: true,
               dotsPos: 'top',
               dotActiveStyle: { backgroundColor: '#2596be' },
-              prevPos: 'left',
-              nextPos: 'right',
-              nextTitle: ' ',
-              nextTitleStyle: { color: 'gray', fontSize: 24, fontWeight: '500' },
-              PrevComponent: ({ onPress }) => (
-                <TouchableOpacity onPress={onPress}>
-                  <Text style={{ color: 'gray', fontSize: 24, fontWeight: '500' }}>
-                    {' '}
-                  </Text>
-                </TouchableOpacity>
-              ),
+              prevPos: 'top',
+              nextPos: 'top',
+              prevTitle: 'Anterior',
+              nextTitle: 'Siguiente',
+              // prevPos: 'left',
+              // nextPos: 'right',
+              // nextTitle: ' ',
+              // nextTitleStyle: { color: 'gray', fontSize: 24, fontWeight: '500' },
+              // PrevComponent: ({ onPress }) => (
+              //   <TouchableOpacity onPress={onPress}>
+              //     <Text style={{ color: 'gray', fontSize: 24, fontWeight: '500' }}>
+              //       {' '}
+              //     </Text>
+              //   </TouchableOpacity>
+              // ),
             }}
           >
             <View style={{ flex: 1, justifyContent: "center" }}>
