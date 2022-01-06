@@ -79,7 +79,7 @@ export default function ReporteDetalle(props) {
     }
     const navigation = useNavigation();
     useEffect(() => {
-        
+
         getDataByID()
     }, [])
 
@@ -122,132 +122,132 @@ export default function ReporteDetalle(props) {
     }
 
     var fechaDetalle = new Date(formulario?.date)
-    
+
 
 
 
     const [loading, setLoading] = useState(false);
 
     const startLoading = () => {
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-      }, 3000);
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 3000);
     };
-  
+
     return (
         <>
-       
+
             <ScrollView style={styles.container}>
-            {loading ? (
-          <ActivityIndicator
-            //visibility of Overlay Loading Spinner
-            visible={loading}
-            //Text with the Spinner
-            size="large"
-            color="#f4c47c"
-            //Text style of the Spinner Text
-            textStyle={styles.spinnerTextStyle}
-          />
-        ) : (
-          <>
-                {/* <ImageBackground
+                {loading ? (
+                    <ActivityIndicator
+                        //visibility of Overlay Loading Spinner
+                        visible={loading}
+                        //Text with the Spinner
+                        size="large"
+                        color="#f4c47c"
+                        //Text style of the Spinner Text
+                        textStyle={styles.spinnerTextStyle}
+                    />
+                ) : (
+                    <>
+                        {/* <ImageBackground
                 source={require("../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
                 resizeMode="cover"
                 style={styles.image}
                 imageStyle={styles.image_imageStyle}
             >
                 <View style={styles.rect}> */}
-                <Text style={styles.tituloIncidente}>{formulario.event}</Text>
-                <Text style={styles.fechaTag1}>Fecha y Hora</Text>
-                <TextInput style={styles.fecha2}
-                    value={fechaDetalle?.getDate() + '/' + (fechaDetalle?.getMonth() + 1) + '/' + fechaDetalle?.getFullYear()}
-                    editable={false}
-                    onChangeText={(value) => handleChangeText('date', value)}
-                ></TextInput>
-                <Text style={styles.horaTag1}>Hora</Text>
-                <TextInput style={styles.hora2}
-                    value={fechaDetalle?.getHours() + ':' + fechaDetalle?.getMinutes()}
-                    editable={false}
-                    onChangeText={(value) => handleChangeText('date', value)}
-                ></TextInput>
-                <Text style={styles.supeintendente1}>Supeintendente</Text>
-                <TextInput style={styles.superintendenteEntrada}
-                    value={formulario.superintendent}
-                    multiline={true}
-                    onChangeText={(value) => handleChangeText('superintendent', value)}
-                    editable={estado}
-                ></TextInput>
-                <Text style={styles.supervisores1}>Supervisores</Text>
-                <TextInput style={styles.ingreseSupervisores}
-                    value={formulario.supervisor}
-                    multiline={true}
-                    onChangeText={(value) => handleChangeText('supervisor', value)}
-                    editable={estado}
-                ></TextInput>
-                <Text style={styles.operadores1}>Operadores</Text>
-                <TextInput style={styles.ingreseOperadores}
-                    value={formulario.operators}
-                    multiline={true}
-                    onChangeText={(value) => handleChangeText('operators', value)}
-                    editable={estado}
-                ></TextInput>
-                <Text style={styles.equipo1}>Equipo</Text>
-                <TextInput style={styles.ingreseEquipo}
-                    editable={false}
-                    multiline={true}
-                    value={formulario.equipment?.name}
-                ></TextInput>
-                <Text style={styles.tiempoDeParada}>Tiempo de parada (horas)</Text>
-                <TextInput style={styles.horas}
-                    value={formulario.downtime}
-                    multiline={true}
-                    onChangeText={(value) => handleChangeText('downtime', value)}
-                    editable={estado}
-                ></TextInput>
-                <Text style={styles.detalleDeParada1}>Detalle de Parada</Text>
-                <TextInput style={styles.ingreseDetalles}
-                    value={formulario.details}
-                    multiline={true}
-                    onChangeText={(value) => handleChangeText('details', value)}
-                    editable={estado}
-                ></TextInput>
-                <Text style={styles.evento}>Evento</Text>
-                <TextInput style={styles.detallesEvento}
-                    value={formulario.event}
-                    multiline={true}
-                    onChangeText={(value) => handleChangeText('event', value)}
-                    editable={estado}
-                ></TextInput>
-                <Text style={styles.evento}>Descripción del evento</Text>
-                <TextInput style={styles.detallesEvento}
-                    value={formulario.description}
-                    multiline={true}
-                    onChangeText={(value) => handleChangeText('description', value)}
-                    editable={estado}
-                ></TextInput>
-                <Text style={styles.causa}>Causa</Text>
-                <TextInput style={styles.detallesCausa}
-                    value={formulario.attributed_cause}
-                    multiline={true}
-                    onChangeText={(value) => handleChangeText('attributed_cause', value)}
-                    editable={estado}
-                ></TextInput>
-                <Text style={styles.accionesTomadas}>Acciones Tomadas</Text>
-                <TextInput style={styles.accionesDetalle}
-                    value={formulario.take_actions}
-                    multiline={true}
-                    onChangeText={(value) => handleChangeText('take_actions', value)}
-                    editable={estado}
-                ></TextInput>
-                <Text style={styles.resultados}>Resultados</Text>
-                <TextInput style={styles.resultadosDetalle}
-                    value={formulario.results}
-                    multiline={true}
-                    onChangeText={(value) => handleChangeText('results', value)}
-                    editable={estado}
-                ></TextInput>
-                {/* <Text style={styles.conclusiones}>Conclusiones</Text>
+                        <Text style={styles.tituloIncidente}>{formulario.event}</Text>
+                        <Text style={styles.fechaTag1}>Fecha y Hora</Text>
+                        <TextInput style={styles.fecha2}
+                            value={fechaDetalle?.getDate() + '/' + (fechaDetalle?.getMonth() + 1) + '/' + fechaDetalle?.getFullYear()}
+                            editable={false}
+                            onChangeText={(value) => handleChangeText('date', value)}
+                        ></TextInput>
+                        <Text style={styles.horaTag1}>Hora</Text>
+                        <TextInput style={styles.hora2}
+                            value={fechaDetalle?.getHours() + ':' + fechaDetalle?.getMinutes()}
+                            editable={false}
+                            onChangeText={(value) => handleChangeText('date', value)}
+                        ></TextInput>
+                        <Text style={styles.supeintendente1}>Supeintendente</Text>
+                        <TextInput style={styles.superintendenteEntrada}
+                            value={formulario.superintendent}
+                            multiline={true}
+                            onChangeText={(value) => handleChangeText('superintendent', value)}
+                            editable={estado}
+                        ></TextInput>
+                        <Text style={styles.supervisores1}>Supervisores</Text>
+                        <TextInput style={styles.ingreseSupervisores}
+                            value={formulario.supervisor}
+                            multiline={true}
+                            onChangeText={(value) => handleChangeText('supervisor', value)}
+                            editable={estado}
+                        ></TextInput>
+                        <Text style={styles.operadores1}>Operadores</Text>
+                        <TextInput style={styles.ingreseOperadores}
+                            value={formulario.operators}
+                            multiline={true}
+                            onChangeText={(value) => handleChangeText('operators', value)}
+                            editable={estado}
+                        ></TextInput>
+                        <Text style={styles.equipo1}>Equipo</Text>
+                        <TextInput style={styles.ingreseEquipo}
+                            editable={false}
+                            multiline={true}
+                            value={formulario.equipment?.name}
+                        ></TextInput>
+                        <Text style={styles.tiempoDeParada}>Tiempo de parada (horas)</Text>
+                        <TextInput style={styles.horas}
+                            value={formulario.downtime}
+                            multiline={true}
+                            onChangeText={(value) => handleChangeText('downtime', value)}
+                            editable={estado}
+                        ></TextInput>
+                        <Text style={styles.detalleDeParada1}>Detalle de Parada</Text>
+                        <TextInput style={styles.ingreseDetalles}
+                            value={formulario.details}
+                            multiline={true}
+                            onChangeText={(value) => handleChangeText('details', value)}
+                            editable={estado}
+                        ></TextInput>
+                        <Text style={styles.evento}>Evento</Text>
+                        <TextInput style={styles.detallesEvento}
+                            value={formulario.event}
+                            multiline={true}
+                            onChangeText={(value) => handleChangeText('event', value)}
+                            editable={estado}
+                        ></TextInput>
+                        <Text style={styles.evento}>Descripción del evento</Text>
+                        <TextInput style={styles.detallesEvento}
+                            value={formulario.description}
+                            multiline={true}
+                            onChangeText={(value) => handleChangeText('description', value)}
+                            editable={estado}
+                        ></TextInput>
+                        <Text style={styles.causa}>Causa</Text>
+                        <TextInput style={styles.detallesCausa}
+                            value={formulario.attributed_cause}
+                            multiline={true}
+                            onChangeText={(value) => handleChangeText('attributed_cause', value)}
+                            editable={estado}
+                        ></TextInput>
+                        <Text style={styles.accionesTomadas}>Acciones Tomadas</Text>
+                        <TextInput style={styles.accionesDetalle}
+                            value={formulario.take_actions}
+                            multiline={true}
+                            onChangeText={(value) => handleChangeText('take_actions', value)}
+                            editable={estado}
+                        ></TextInput>
+                        <Text style={styles.resultados}>Resultados</Text>
+                        <TextInput style={styles.resultadosDetalle}
+                            value={formulario.results}
+                            multiline={true}
+                            onChangeText={(value) => handleChangeText('results', value)}
+                            editable={estado}
+                        ></TextInput>
+                        {/* <Text style={styles.conclusiones}>Conclusiones</Text>
                     <TextInput style={styles.conclusionesDetalle}
                         value={formulario.conclusiones}
                         onChangeText={(value) => handleChangeText('conclusiones', value)}
@@ -259,85 +259,85 @@ export default function ReporteDetalle(props) {
                         onChangeText={(value) => handleChangeText('evidenciaDetalle', value)}
                         editable={estado}
                     ></TextInput> */}
-                <View style={styles.imagen_1}>{!!formulario.attachments && (
-                    <Image source={{ uri: formulario.attachments[0]?.url }}
-                        style={{
-                            width: 310,
-                            height: 210,
-                            marginLeft: 20,
-                            marginRight: 20,
-                            opacity: 0.9,
-                        }} />)}
-                </View>
-                <View style={styles.imagen_2}>{!!formulario.attachments && (
-                    <Image source={{ uri: formulario.attachments[1]?.url }}
-                        style={{
-                            width: 310,
-                            height: 210,
-                            marginLeft: 20,
-                            marginRight: 20,
-                            opacity: 0.9,
-                        }} />)}
-                </View>
+                        <View style={styles.imagen_1}>{!!formulario.attachments && (
+                            <Image source={{ uri: formulario.attachments[0]?.url }}
+                                style={{
+                                    width: 310,
+                                    height: 210,
+                                    marginLeft: 20,
+                                    marginRight: 20,
+                                    opacity: 0.9,
+                                }} />)}
+                        </View>
+                        <View style={styles.imagen_2}>{!!formulario.attachments && (
+                            <Image source={{ uri: formulario.attachments[1]?.url }}
+                                style={{
+                                    width: 310,
+                                    height: 210,
+                                    marginLeft: 20,
+                                    marginRight: 20,
+                                    opacity: 0.9,
+                                }} />)}
+                        </View>
 
-                {/* </View> */}
-                <AwesomeAlert
-                    show={estadoAlertModificar}
-                    showProgress={false}
-                    title="Modificación en Curso"
-                    titleStyle={{ fontSize: 22, marginBottom: 10 }}
-                    messageStyle={{ fontSize: 18, marginBottom: 10 }}
-                    message="¿Desea guardar los cambios?"
-                    closeOnTouchOutside={true}
-                    closeOnHardwareBackPress={false}
-                    showCancelButton={true}
-                    showConfirmButton={true}
-                    cancelText="No"
-                    confirmText="Si"
-                    cancelButtonStyle={{ width: 100, alignItems: 'center', marginTop: 10 }}
-                    confirmButtonStyle={{ width: 100, alignItems: 'center' }}
-                    confirmButtonColor="#AEDEF4"
-                    cancelButtonColor="#DD6B55"
-                    onCancelPressed={() => {
-                        hideAlertModificar();
-                    }}
-                    onConfirmPressed={() => {
-                        handleSubmit()
-                        hideAlertModificar();
-                    }}
-                />
-                <AwesomeAlert
-                    show={estadoAlertDelete}
-                    showProgress={false}
-                    title="Eliminación en curso"
-                    titleStyle={{ fontSize: 22, marginBottom: 10 }}
-                    messageStyle={{ fontSize: 18, marginBottom: 10 }}
-                    message="¿Está seguro que desea eliminar?"
-                    closeOnTouchOutside={true}
-                    closeOnHardwareBackPress={false}
-                    showCancelButton={true}
-                    showConfirmButton={true}
-                    cancelText="No"
-                    confirmText="Si"
-                    cancelButtonStyle={{ width: 100, alignItems: 'center', marginTop: 10 }}
-                    confirmButtonStyle={{ width: 100, alignItems: 'center' }}
-                    confirmButtonColor="#AEDEF4"
-                    cancelButtonColor="#DD6B55"
-                    onCancelPressed={() => {
-                        hideAlertDelete();
-                    }}
-                    onConfirmPressed={() => {
-                        eliminarTroubleshooting();
-                        hideAlertDelete();
-                    }}
-                />
-                {/* </ImageBackground> */}
+                        {/* </View> */}
+                        <AwesomeAlert
+                            show={estadoAlertModificar}
+                            showProgress={false}
+                            title="Modificación en Curso"
+                            titleStyle={{ fontSize: 22, marginBottom: 10 }}
+                            messageStyle={{ fontSize: 18, marginBottom: 10 }}
+                            message="¿Desea guardar los cambios?"
+                            closeOnTouchOutside={true}
+                            closeOnHardwareBackPress={false}
+                            showCancelButton={true}
+                            showConfirmButton={true}
+                            cancelText="No"
+                            confirmText="Si"
+                            cancelButtonStyle={{ width: 100, alignItems: 'center', marginTop: 10 }}
+                            confirmButtonStyle={{ width: 100, alignItems: 'center' }}
+                            confirmButtonColor="#AEDEF4"
+                            cancelButtonColor="#DD6B55"
+                            onCancelPressed={() => {
+                                hideAlertModificar();
+                            }}
+                            onConfirmPressed={() => {
+                                handleSubmit()
+                                hideAlertModificar();
+                            }}
+                        />
+                        <AwesomeAlert
+                            show={estadoAlertDelete}
+                            showProgress={false}
+                            title="Eliminación en curso"
+                            titleStyle={{ fontSize: 22, marginBottom: 10 }}
+                            messageStyle={{ fontSize: 18, marginBottom: 10 }}
+                            message="¿Está seguro que desea eliminar?"
+                            closeOnTouchOutside={true}
+                            closeOnHardwareBackPress={false}
+                            showCancelButton={true}
+                            showConfirmButton={true}
+                            cancelText="No"
+                            confirmText="Si"
+                            cancelButtonStyle={{ width: 100, alignItems: 'center', marginTop: 10 }}
+                            confirmButtonStyle={{ width: 100, alignItems: 'center' }}
+                            confirmButtonColor="#AEDEF4"
+                            cancelButtonColor="#DD6B55"
+                            onCancelPressed={() => {
+                                hideAlertDelete();
+                            }}
+                            onConfirmPressed={() => {
+                                eliminarTroubleshooting();
+                                hideAlertDelete();
+                            }}
+                        />
+                        {/* </ImageBackground> */}
 
-                </>
-        )}
+                    </>
+                )}
             </ScrollView >
-            <View style={{ flexDirection: "row", position: 'absolute', bottom: 0 , alignSelf: 'center'}}>
-                {estado ? 
+            <View style={{ flexDirection: "row", position: 'absolute', bottom: 0, alignSelf: 'center' }}>
+                {estado ?
                     (<TouchableOpacity
                         style={[styles.containerCambios, styles.guardarDataReporte]}
                         onPress={() => showAlertModificar()}>
@@ -359,8 +359,8 @@ export default function ReporteDetalle(props) {
                     <FontAwesomeIcon name="reply" style={styles.icon3}></FontAwesomeIcon>
                 </TouchableOpacity>
             </View>
-            
-        
+
+
         </>
     );
 }
@@ -395,19 +395,19 @@ const styles = StyleSheet.create({
     icon: {
         color: 'green',
         fontSize: 24,
-        marginTop:10
-      },
-      icon2: {
+        marginTop: 10
+    },
+    icon2: {
         color: 'red',
         fontSize: 24,
-        marginTop:10
-        
-      },
-      icon3: {
+        marginTop: 10
+
+    },
+    icon3: {
         color: 'blue',
         fontSize: 24,
-        marginTop:10
-      },
+        marginTop: 10
+    },
     tituloIncidente: {
         color: "#121212",
         fontSize: 26,
@@ -687,13 +687,13 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.35,
         shadowRadius: 5,
         elevation: 2,
-      
+
     },
     containerCambios: {
         justifyContent: "center",
         alignItems: "center",
-        marginRight:12,
-        marginLeft:12,
+        marginRight: 12,
+        marginLeft: 12,
     },
     guardarReporte: {
         color: "#fff",

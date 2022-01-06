@@ -67,11 +67,11 @@ function Preview(props) {
     const handleSubmit = () => {
         startLoading()
         postCreateData(formulario, token).then((rpta) => {
-        
+
             if (rpta.status === 200) {
                 setLoading(false)
                 props.navigation.push('Tabs', { screen: 'Historial de Reportes' })
-                
+
             } else {
                 console.warn("Subida errónea")
                 setLoading(false)
@@ -139,7 +139,7 @@ function Preview(props) {
     console.log(formattedDate);
 
     return (
-        <ScrollView style={styles.container}>
+        <><ScrollView style={styles.container}>
             {loading ? (
                 <ActivityIndicator
                     //visibility of Overlay Loading Spinner
@@ -148,23 +148,22 @@ function Preview(props) {
                     size="large"
                     color="#f4c47c"
                     //Text style of the Spinner Text
-                    textStyle={styles.spinnerTextStyle}
-                />
+                    textStyle={styles.spinnerTextStyle} />
             ) : (
                 <>
 
                     {/* <ImageBackground
-                source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
-                resizeMode="cover"
-                style={styles.image}
-                imageStyle={styles.image_imageStyle}
-            ><View style={styles.rect}> */}
+        source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
+        resizeMode="cover"
+        style={styles.image}
+        imageStyle={styles.image_imageStyle}
+    ><View style={styles.rect}> */}
                     <Text style={styles.tituloIncidente}>Registro de incidente</Text>
                     <Text style={styles.fechaTag1}>Fecha</Text>
                     <Text style={styles.fecha2}
                     >{formattedDate}</Text>
                     {/* <Text style={styles.horaTag1}>Hora</Text>
-                    <Text style={styles.hora2}>{ hora?.getHours() + ':' + hora?.getMinutes()}</Text> */}
+            <Text style={styles.hora2}>{ hora?.getHours() + ':' + hora?.getMinutes()}</Text> */}
                     <Text style={styles.supeintendente1}>Supeintendente</Text>
                     <Text style={styles.superintendenteEntrada}>{props.route.params.formulario.superintendent}</Text>
                     <Text style={styles.supervisores1}>Supervisores</Text>
@@ -187,8 +186,8 @@ function Preview(props) {
                     <Text style={styles.resultados}>Resultados</Text>
                     <Text style={styles.resultadosDetalle}>{props.route.params.formulario.results}</Text>
                     {/* <Text style={styles.conclusiones}>Conclusiones</Text>
-                    <Text style={styles.conclusionesDetalle}>{props.route.params.formulario.conclusiones}</Text>
-                    <Text style={styles.detallesDeCapturas}>Detalles de capturas</Text> */}
+            <Text style={styles.conclusionesDetalle}>{props.route.params.formulario.conclusiones}</Text>
+            <Text style={styles.detallesDeCapturas}>Detalles de capturas</Text> */}
                     {/* <Text style={styles.detallesDeLaFotos}>{props.route.params.formulario.evidenciaDetalle}</Text> */}
                     <View style={styles.imagen_1}>{!!props.route.params.formulario.foto1 && (
                         <Image source={{ uri: props.route.params.formulario.foto1[0]?.base64 }}
@@ -210,11 +209,7 @@ function Preview(props) {
                                 opacity: 0.9,
                             }} />)}
                     </View>
-                    <TouchableOpacity
-                        style={[styles.containerBotonGuardar, styles.guardarDataReporte]}
-                        onPress={() => { showAlert() }}>
-                        <Text style={styles.guardarReporte}>Guardar Reporte</Text>
-                    </TouchableOpacity>
+
 
                     <AwesomeAlert
                         show={Estado}
@@ -239,13 +234,24 @@ function Preview(props) {
                         onConfirmPressed={() => {
                             handleSubmit();
                             hideAlert();
-                        }}
-                    />
+                        }} />
                     {/* </View>
-            </ImageBackground> */}
+    </ImageBackground> */}
                 </>
             )}
         </ScrollView>
+            <View style={{ flexDirection: "row", position: 'absolute', bottom: 0, alignSelf: 'center' }}>
+                <TouchableOpacity
+                    style={[styles.containerBotonGuardar, styles.guardarDataReporte]}
+                    onPress={() => { showAlert(); }}>
+                    <Text style={styles.guardarReporte}>Guardar Reporte</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={[styles.containerBotonCancelar, styles.guardarDataReporte]}
+                    onPress={() => {props.navigation.push('Tabs', { screen: 'Antapaccay' })}}>
+                    <Text style={styles.guardarReporte}>Cancelar</Text>
+                </TouchableOpacity>
+            </View></>
     );
 }
 
@@ -254,15 +260,9 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#fff",
         borderRadius: 10,
-        shadowColor: "rgba(1,123,146,255)",
-        shadowOffset: {
-            width: 0,
-            height: 3
-        },
-        elevation: 5,
         marginTop: 21,
         shadowOpacity: 0.41,
-        marginBottom: 3,
+        marginBottom: 45
     },
     rect: {
         backgroundColor: "rgba(255,255,255,1)",
@@ -534,28 +534,28 @@ const styles = StyleSheet.create({
     },
     guardarDataReporte: {
         height: 36,
-        width: 198,
-        marginTop: 15,
-        alignSelf: "center"
+        alignSelf: "center",
+        marginRight:5,
     },
     containerBotonGuardar: {
         backgroundColor: "rgba(1,123,146,1)",
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "row",
-        borderRadius: 2,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 1
-        },
-        shadowOpacity: 0.35,
-        shadowRadius: 5,
-        elevation: 2,
         minWidth: 88,
         paddingLeft: 16,
         paddingRight: 16,
-        marginBottom: 20
+        marginBottom:4,
+    },
+    containerBotonCancelar: {
+        backgroundColor: "#DD6B55",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
+        minWidth: 88,
+        paddingLeft: 16,
+        paddingRight: 16,
+        marginBottom:4,
     },
     guardarReporte: {
         color: "#fff",

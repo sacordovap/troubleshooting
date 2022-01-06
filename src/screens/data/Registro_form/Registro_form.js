@@ -84,6 +84,8 @@ function Registro_form(props) {
   };
   const navigation = useNavigation();
 
+  var faltantes;
+
   return (
     <>
       <View style={[styles.container1, props.style]}>
@@ -136,8 +138,8 @@ function Registro_form(props) {
               dotsTouchable: true,
               dotsPos: 'top',
               dotActiveStyle: { backgroundColor: '#2596be' },
-              prevPos: 'top',
-              nextPos: 'top',
+              prevPos: 'top-left',
+              nextPos: 'top-right',
               prevTitle: 'Anterior',
               nextTitle: 'Siguiente',
               // prevPos: 'left',
@@ -182,7 +184,7 @@ function Registro_form(props) {
           title="Alerta"
           titleStyle={{ fontSize: 22, marginBottom: 10 }}
           messageStyle={{ fontSize: 18, marginBottom: 10 }}
-          message="Completa los campos necesarios"
+          message="Completa todos los campos"
           closeOnTouchOutside={true}
           closeOnHardwareBackPress={false}
           showCancelButton={false}

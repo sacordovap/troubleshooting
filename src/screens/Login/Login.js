@@ -187,7 +187,7 @@ const Login = (props) => {
               title="Error de Inicio"
               titleStyle={{ fontSize: 22, marginBottom: 10 }}
               messageStyle={{ fontSize: 18, marginBottom: 10 }}
-              message="Ingrese sus datos nuevamente"
+              message="Ingrese sus Datos Nuevamente"
               closeOnTouchOutside={true}
               closeOnHardwareBackPress={false}
               showCancelButton={false}
