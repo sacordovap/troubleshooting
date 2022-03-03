@@ -6,7 +6,7 @@ import {
   ImageBackground,
   Text,
   TextInput,
-  TouchableOpacity, 
+  TouchableOpacity,
   ScrollView
 } from "react-native";
 import Header from "../../../../components/Header";
@@ -17,67 +17,82 @@ import styles from './styleEventoCausa'
 
 function EventoCausaScreen(props) {
 
-const initialState={ 
+  const initialState = {
     evento: '',
-    description:'',
+    description: '',
     causa: '',
-}
-const [eventoCausa, setEventoCausa] = useState(initialState);
+  }
+  const [eventoCausa, setEventoCausa] = useState(initialState);
 
   const handleChangeText = (nombre, value) => {
     setEventoCausa({ ...eventoCausa, [nombre]: value })
-    if (nombre==='evento') {
-      props.formulario.event=value
-     } else if (nombre==='causa') {
-      props.formulario.attributed_cause=value
-     } 
-     else if (nombre==='description') {
-      props.formulario.description=value
-     } 
-};
+    if (nombre === 'evento') {
+      props.formulario.event = value
+    } else if (nombre === 'causa') {
+      props.formulario.attributed_cause = value
+    }
+    else if (nombre === 'description') {
+      props.formulario.description = value
+    }
+  };
+
+  //get All data
+  const [Reportes, setReportes] = useState([])
+  const { token } = useContext(AuthContext)
+
+  const traerTroubles = () => {
+    startLoading()
+    getTroubleShooting(token).then(rpta => {
+      setReportes(rpta.data.data)
+      setLoading(false)
+      // console.log(rpta.data.data)
+    })
+  }
 
 
-
+  useEffect(() => {
+    traerTroubles()
+  }, [])
 
 
   return (
-    
-      <><ScrollView style={styles.container}>
-        {/* <ImageBackground
+
+    <><ScrollView style={styles.container}>
+      {/* <ImageBackground
           source={require("../../../../assets/images/T2MDYDINPBHWNGA76MRDJARKGA1.jpg")}
           resizeMode="cover"
           style={styles.image1}
           imageStyle={styles.image1_imageStyle}
         >
           <View style={styles.contenedorDatos1}> */}
-          <Text style={styles.titulo1}>Evento y causas Asociadas</Text>
-            <Text style={styles.evento}>Evento ocurrido</Text>
-            <TextInput
-              placeholder="Ingrese el Evento ocurrido"
-              defaultValue={props.formulario.event}
-              multiline
-              onChangeText={(value)=>handleChangeText('evento', value)}
-              style={styles.textInput}
-            ></TextInput>
-            <Text style={styles.evento}>Descripción del evento</Text>
-            <TextInput
-              placeholder="Escriba lo sucedido"
-              multiline
-              defaultValue={props.formulario.description}
-              onChangeText={(value)=>handleChangeText('description', value)}
-              style={styles.textInput}
-            ></TextInput>
-            <Text style={styles.causas}>Causas</Text>
-            <TextInput
-              placeholder="Ingrese Causas encontradas"
-              multiline
-              defaultValue={props.formulario.attributed_cause}
-              onChangeText={(value)=>handleChangeText('causa', value)}
-              style={styles.textInput}
-            ></TextInput>
-          {/* </View>
+      <Text style={styles.titulo1}>Evento y causas Asociadas</Text>
+      <Text style={styles.evento}>Evento ocurrido</Text>
+      <TextInput
+        placeholder="Ingrese el Evento ocurrido"
+        defaultValue={props.formulario.event}
+        multiline
+        onChangeText={(value) => handleChangeText('evento', value)}
+        style={styles.textInput}
+      ></TextInput>
+      <Text style={styles.evento}>Descripción del evento</Text>
+      <TextInput
+        placeholder="Escriba lo sucedido"
+        multiline
+        defaultValue={props.formulario.description}
+        onChangeText={(value) => handleChangeText('description', value)}
+        style={styles.textInput}
+      ></TextInput>
+      <Text style={styles.causas}>Causas</Text>
+      <TextInput
+        placeholder="Ingrese Causas encontradas"
+        multiline
+        defaultValue={props.formulario.attributed_cause}
+        onChangeText={(value) => handleChangeText('causa', value)}
+        style={styles.textInput}
+      ></TextInput>
+      {/* </View>
         </ImageBackground> */}
-      </ScrollView></>
+    </ScrollView></>
   );
 }
 

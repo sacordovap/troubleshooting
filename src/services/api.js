@@ -115,3 +115,13 @@ export const getSuperIntendent = async (token, id) => {
     })
     return rpta
 }
+
+// Search
+export const getSearch = async (token, id, text) => {
+    const rpta = await axios.get(`${URL_BACKEND}/troubleshooting/getAll?type=${id}&text=${text}`, {
+        headers: {
+            Authorization: "Bearer " + token
+        }
+    })
+    return rpta
+}

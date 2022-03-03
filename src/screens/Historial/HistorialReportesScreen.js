@@ -7,12 +7,13 @@ import {
 } from "react-native";
 
 import { ListItem, Avatar, Divider } from "react-native-elements";
-import Icons from "react-native-vector-icons/Ionicons";
-import { getTroubleShooting } from '../../services/api';
+import { getTroubleShooting, getSearch } from '../../services/api';
 import { useNavigation } from '@react-navigation/native';
-import AwesomeAlert from 'react-native-awesome-alerts';
 import { AuthContext } from "../../Context/authState";
-import { format } from "date-fns";
+import { HStack, Spacer, Select, NativeBaseProvider } from 'native-base'
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import Constants from 'expo-constants';
+
 export default function HistorialReportesScreen({ children }) {
 
 
@@ -46,6 +47,34 @@ export default function HistorialReportesScreen({ children }) {
   };
 
 
+
+
+  const [masterDataSource, setMasterDataSource] = useState([]);
+  //data de la busqueda
+  const [filteredDataSource, setFilteredDataSource] = useState(null);
+  const [search, setSearch] = useState('');
+  let [service, setService] = React.useState("");
+
+  const traerBusqueda = () => {
+    startLoading()
+    getSearch(token, service, search).then(rpta => {
+      setFilteredDataSource(rpta.data.data)
+      setLoading(false)
+      // console.log(rpta.data.data)
+    })
+  }
+
+
+
+
+  const searchFilterFunction = (text) => {
+    setSearch(text);
+  };
+
+
+  console.log(filteredDataSource);
+  console.log(Reportes);
+
   return (
     <><View style={[styles.container1]}>
       <View style={styles.leftWrapper}>
@@ -70,7 +99,7 @@ export default function HistorialReportesScreen({ children }) {
 
       <ScrollView style={styles.container}>
 
-        {loading ? (
+        {/* {loading ? (
           <ActivityIndicator
             //visibility of Overlay Loading Spinner
             visible={loading}
@@ -80,16 +109,77 @@ export default function HistorialReportesScreen({ children }) {
             //Text style of the Spinner Text
             textStyle={styles.spinnerTextStyle}
           />
-        ) : (
+        ) : ( */}
+        <View style={styles.containerS}>
+          <TextInput
+            style={styles.textInputStyle}
+            onChangeText={(text) => searchFilterFunction(text)}
+            value={search}
+            underlineColorAndroid="transparent"
+            placeholder="Busqueda personalizada"
+          />
+          <NativeBaseProvider>
+            <Select selectedValue={service}
+              width="100%"
+              height="10"
+              _dark={{
+                bg: "#eeeee4"
+              }}
+              _light={{
+                bg: "#eeeee4"
+              }}
+              color='gray.500'
+              accessibilityLabel="-"
+              placeholder="Tipo"
+              _selectedItem={{
+                bg: "#1e81b0"
+              }} onValueChange={itemValue => setService(itemValue)}>
+              <Select.Item label="Evento" value="1" />
+              <Select.Item label="Causa" value="2" />
+              <Select.Item label="Equipo" value="3" />
+            </Select>
+          </NativeBaseProvider>
+
+          <View style={{ marginLeft: 5, alignSelf: 'center' }}>
+            <TouchableOpacity
+              style={[styles.containerCambios, styles.guardarDataReporte]}
+              onPress={() => traerBusqueda()}>
+              <FontAwesomeIcon name="search" style={styles.icon3}></FontAwesomeIcon>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+
+        {filteredDataSource === null ? (
           <>
-
-            {/* <Button title="Crear Usuario"
-      onPress={() =>
-        props.navigation.navigate('Crear Usuario')}>
-    </Button> */}
-
             {//recorrer usuarios
               Reportes.map(ReportesObj => {
+
+                return (
+                  <ListItem style={styles.inputGroups} key={ReportesObj.id} buttonDivider
+                    onPress={() => navigation.navigate('ReporteDetalle', {
+                      id: ReportesObj.id,
+                      traerTroubles
+                    })}>
+
+                    <ListItem.Chevron /*es el icono*/ />
+                    <Avatar source={{
+                      uri: 'https://yosirvoblog.files.wordpress.com/2016/05/fir-reporte-de-incidentes-de-edificios.png'
+                    }}
+                      rounded />
+                    <ListItem.Content>
+                      <ListItem.Title>{ReportesObj.event}</ListItem.Title>
+                      <ListItem.Subtitle>Fecha: {(new Date(ReportesObj.date)).toLocaleDateString()}</ListItem.Subtitle>
+                      <ListItem.Subtitle>Hora: {(new Date(ReportesObj.date)).toLocaleTimeString()}</ListItem.Subtitle>
+                    </ListItem.Content>
+                  </ListItem>
+                );
+              })}
+          </>
+        ) : (
+          <>
+            {//recorrer usuarios
+              filteredDataSource.map(ReportesObj => {
 
                 return (
                   <ListItem style={styles.inputGroups} key={ReportesObj.id} buttonDivider
@@ -121,6 +211,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+  },
+  containerS: {
+    flexDirection: "row",
+    backgroundColor: '#ecf0f1',
+  },
+  textInputStyle: {
+    height: 40,
+    width: "58%",
+    borderWidth: 1,
+    paddingLeft: 20,
+    marginRight: 3,
+    borderColor: '#009688',
+    backgroundColor: '#FFFFFF',
   },
   listaReportes: {
     color: "#121212",
@@ -187,5 +290,20 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
     justifyContent: "center"
   },
-  rightIconButton: {}
+  rightIconButton: {},
+
+  containerCambios: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 12,
+    marginLeft: 12,
+  },
+  guardarReporte: {
+    color: "#fff",
+    fontSize: 14
+  },
+  icon3: {
+    color: 'gray',
+    fontSize: 24,
+  },
 });
