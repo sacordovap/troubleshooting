@@ -180,7 +180,6 @@ export default function HistorialReportesScreen({ children }) {
           <>
             {//recorrer usuarios
               filteredDataSource.map(ReportesObj => {
-
                 return (
                   <ListItem style={styles.inputGroups} key={ReportesObj.id} buttonDivider
                     onPress={() => navigation.navigate('ReporteDetalle', {
