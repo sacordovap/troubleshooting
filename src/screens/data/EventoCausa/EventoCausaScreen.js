@@ -36,25 +36,6 @@ function EventoCausaScreen(props) {
     }
   };
 
-  //get All data
-  const [Reportes, setReportes] = useState([])
-  const { token } = useContext(AuthContext)
-
-  const traerTroubles = () => {
-    startLoading()
-    getTroubleShooting(token).then(rpta => {
-      setReportes(rpta.data.data)
-      setLoading(false)
-      // console.log(rpta.data.data)
-    })
-  }
-
-
-  useEffect(() => {
-    traerTroubles()
-  }, [])
-
-
   return (
 
     <><ScrollView style={styles.container}>
